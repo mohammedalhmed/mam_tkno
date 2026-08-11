@@ -1,69 +1,82 @@
-import { Code2, Palette, Zap, Search } from 'lucide-react';
+/** Product Systems Atelier — الخبرات كطبقات نظام متجر لا كسحابة شعارات عامة. */
+import { Blocks, Gauge, LayoutTemplate, PenTool } from 'lucide-react';
 
-const skillCategories = [
+const capabilities = [
   {
-    title: 'Frontend',
-    icon: Code2,
-    skills: ['React.js', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Radix UI'],
-    color: 'from-blue-500 to-blue-600',
+    number: '01',
+    title: 'واجهات سلة',
+    description: 'تطوير ثيمات وأقسام المتجر بما يحافظ على هوية النشاط وسهولة الإدارة من المنصة.',
+    icon: LayoutTemplate,
+    skills: ['Salla Themes', 'Storefront UX', 'Reusable Sections', 'RTL'],
   },
   {
-    title: 'Backend',
-    icon: Zap,
-    skills: ['PHP', 'Laravel', 'MySQL', 'REST APIs', 'Node.js'],
-    color: 'from-green-500 to-green-600',
+    number: '02',
+    title: 'تطوير الواجهة',
+    description: 'تحويل التصميم إلى واجهة متجاوبة ونظيفة يمكن تطويرها ومراجعتها عبر GitHub.',
+    icon: Blocks,
+    skills: ['HTML', 'CSS', 'JavaScript', 'Tailwind', 'Bootstrap', 'GitHub'],
   },
   {
-    title: 'Design & UX',
-    icon: Palette,
-    skills: ['UI/UX Design', 'Responsive Design', 'Mobile First', 'Figma', 'User Research'],
-    color: 'from-purple-500 to-purple-600',
+    number: '03',
+    title: 'تصميم المنتج',
+    description: 'بناء تدفق واضح للشراء ونظام بصري متسق يبدأ من Figma قبل كتابة الكود.',
+    icon: PenTool,
+    skills: ['Figma', 'UI/UX', 'Design Systems', 'Prototyping'],
   },
   {
-    title: 'Optimization',
-    icon: Search,
-    skills: ['SEO', 'Performance', 'Core Web Vitals', 'Schema.org', 'Technical SEO'],
-    color: 'from-orange-500 to-orange-600',
+    number: '04',
+    title: 'الأداء والنمو',
+    description: 'مراجعة البنية والمحتوى والتفاصيل التي تؤثر في السرعة والوضوح والظهور في البحث.',
+    icon: Gauge,
+    skills: ['Performance', 'Technical SEO', 'Content Structure', 'Accessibility'],
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 px-4 bg-white">
+    <section id="skills" className="atelier-grid py-24 md:py-32">
       <div className="container">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">المهارات والتقنيات</h2>
-          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
-            مجموعة شاملة من المهارات التقنية والتصميمية
-          </p>
+        <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+          <div>
+            <span className="eyebrow text-[#0b0f14]/60">مجال الخبرة</span>
+            <p className="font-latin mt-5 text-xs font-bold text-[#0b0f14]/35">CAPABILITIES / FOUR LAYERS</p>
+            <span className="atelier-note mt-5">SYSTEM MAP / 04</span>
+          </div>
+          <div>
+            <h2 className="text-[clamp(2.6rem,6vw,5.3rem)] font-extrabold leading-[1.08]">أصمم الرحلة، لا الشاشة فقط.</h2>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#0b0f14]/62">
+              كل قرار بصري مرتبط بتجربة الزائر، قابلية إدارة المتجر، وسلامة التنفيذ التقني.
+            </p>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {skillCategories.map((category, index) => {
-            const Icon = category.icon;
+        <div className="mt-16 border-y border-[#0b0f14]/20">
+          {capabilities.map((capability) => {
+            const Icon = capability.icon;
             return (
-              <div
-                key={index}
-                className="p-8 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-border hover:border-blue-200 transition-all duration-300 hover:shadow-lg animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
+              <article
+                key={capability.number}
+                className="group grid gap-5 border-b border-[#0b0f14]/15 py-8 last:border-b-0 md:grid-cols-[100px_1fr_1.25fr] md:items-center md:gap-8"
               >
-                <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${category.color} mb-4`}>
-                  <Icon className="w-6 h-6 text-white" />
+                <div className="flex items-center justify-between md:block">
+                  <span className="font-latin text-sm font-extrabold text-[#0b0f14]/28">{capability.number}</span>
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-[.7rem_.15rem_.7rem_.15rem] bg-[#0b0f14] text-[#cbff59] transition-transform duration-200 group-hover:-rotate-3 md:mt-4">
+                    <Icon className="h-5 w-5" />
+                  </span>
                 </div>
-
-                <h3 className="text-2xl font-bold text-foreground mb-4">{category.title}</h3>
-
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-4 py-2 bg-white border border-border rounded-lg text-sm font-medium text-foreground hover:border-blue-300 transition-colors"
-                    >
+                <div>
+                  <h3 className="text-2xl font-extrabold md:text-3xl">{capability.title}</h3>
+                  <p className="mt-3 max-w-xl leading-7 text-[#0b0f14]/60">{capability.description}</p>
+                  <span className="atelier-measure mt-4">LAYER / {capability.number}</span>
+                </div>
+                <div className="flex flex-wrap gap-2 md:justify-end">
+                  {capability.skills.map((skill) => (
+                    <span key={skill} className="font-latin rounded-sm border border-[#0b0f14]/18 bg-white/35 px-3 py-2 text-[11px] font-bold">
                       {skill}
                     </span>
                   ))}
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>

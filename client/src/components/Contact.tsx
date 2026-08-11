@@ -1,105 +1,96 @@
-import { Mail, Phone, MapPin, Facebook } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+/** Product Systems Atelier — تواصل واضح بأسماء الحسابات ووصف كل قناة بدلاً من أيقونات مجهولة. */
+import { ArrowUpLeft, Facebook, Github, Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { contactDetails, socialLinks } from '@/lib/portfolio-data';
+
+const iconMap = {
+  github: Github,
+  facebook: Facebook,
+  instagram: Instagram,
+  'instagram-work': Instagram,
+};
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 px-4 bg-white">
-      <div className="container">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">تواصل معي</h2>
-            <p className="text-lg text-foreground/60">
-              هل لديك مشروع في الذهن؟ دعنا نتحدث عن كيفية تحويله إلى واقع
+    <section id="contact" className="relative overflow-hidden bg-[#0b0f14] py-24 text-[#f7f3e8] md:py-32">
+      <div className="absolute inset-x-0 top-0 h-2 bg-[#cbff59]" />
+      <div className="pointer-events-none absolute -left-32 top-24 h-96 w-96 rounded-full bg-[#cbff59]/10 blur-3xl" />
+      <div className="container relative">
+        <div className="grid gap-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
+          <div>
+            <span className="eyebrow text-[#cbff59]">التواصل</span>
+            <span className="atelier-note mt-6 text-[#cbff59]">CHANNELS / VERIFIED</span>
+            <h2 className="mt-7 max-w-4xl text-[clamp(3rem,7vw,6.4rem)] font-extrabold leading-[1.05]">عندك متجر يحتاج واجهة أقوى؟</h2>
+            <p className="mt-7 max-w-2xl text-lg leading-9 text-white/62">
+              أرسل رابط المتجر وما الذي تريد تحسينه. سأبدأ بمراجعة مختصرة تحدد الأولويات قبل الحديث عن التفاصيل.
             </p>
+
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <a href={contactDetails.whatsapp} target="_blank" rel="noopener noreferrer" className="lime-button">
+                <MessageCircle className="h-5 w-5" />
+                تحدث عبر واتساب
+                <ArrowUpLeft className="h-5 w-5" />
+              </a>
+              <a href={`mailto:${contactDetails.email}`} className="inline-flex min-h-13 items-center justify-center gap-2 rounded-xl border border-white/20 px-5 font-bold transition-colors hover:bg-white/8">
+                <Mail className="h-5 w-5" />
+                أرسل بريداً
+              </a>
+            </div>
+
+            <div className="mt-12 grid gap-3 sm:grid-cols-3">
+              <a href={`mailto:${contactDetails.email}`} className="border-t border-white/18 pt-4 text-sm text-white/58 hover:text-white">
+                <Mail className="mb-3 h-5 w-5 text-[#cbff59]" />
+                <span className="block text-xs text-white/35">البريد</span>
+                <span className="font-latin mt-1 block break-all text-xs">{contactDetails.email}</span>
+              </a>
+              <a href={`tel:${contactDetails.phone}`} className="border-t border-white/18 pt-4 text-sm text-white/58 hover:text-white">
+                <Phone className="mb-3 h-5 w-5 text-[#cbff59]" />
+                <span className="block text-xs text-white/35">الهاتف</span>
+                <span className="font-latin mt-1 block text-xs">{contactDetails.phoneDisplay}</span>
+              </a>
+              <a href={contactDetails.map} target="_blank" rel="noopener noreferrer" className="border-t border-white/18 pt-4 text-sm text-white/58 hover:text-white">
+                <MapPin className="mb-3 h-5 w-5 text-[#cbff59]" />
+                <span className="block text-xs text-white/35">الموقع</span>
+                <span className="mt-1 block">{contactDetails.location}</span>
+              </a>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8 animate-slide-in">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-blue-50">
-                  <Mail className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-foreground mb-1">البريد الإلكتروني</h3>
-                  <a
-                    href="mailto:mohammedalhmedi738@gmail.com"
-                    className="text-foreground/70 hover:text-blue-600 transition-colors"
-                  >
-                    mohammedalhmedi738@gmail.com
-                  </a>
-                </div>
+          <div className="lg:border-r lg:border-white/15 lg:pr-10">
+            <div className="mb-6 flex items-end justify-between gap-4">
+              <div>
+                <p className="text-xs font-bold text-[#cbff59]">الحسابات الشخصية</p>
+                <h3 className="mt-2 text-2xl font-extrabold">تابع العمل والمحتوى</h3>
               </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-blue-50">
-                  <Phone className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-foreground mb-1">الهاتف</h3>
-                  <a
-                    href="tel:+967738738317"
-                    className="text-foreground/70 hover:text-blue-600 transition-colors"
-                  >
-                    +967 738738317
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-blue-50">
-                  <MapPin className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-foreground mb-1">الموقع</h3>
-                  <a
-                    href="https://maps.app.goo.gl/U9U6FzbXQcTAzpar9"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-foreground/70 hover:text-blue-600 transition-colors"
-                  >
-                    اليمن
-                  </a>
-                </div>
-              </div>
-
-              <div className="pt-8 border-t border-border">
-                <h3 className="font-bold text-foreground mb-4">تابعني على</h3>
-                <div className="flex gap-4">
-                  <a
-                    href="https://www.facebook.com/MAMInTec"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
-                  >
-                    <Facebook className="w-5 h-5" />
-                  </a>
-                  <a
-                    href="https://wa.me/qr/HWR572FKMTPEJ1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition-colors"
-                  >
-                    <Phone className="w-5 h-5" />
-                  </a>
-                </div>
-              </div>
+              <span className="font-latin text-xs font-bold text-white/28">04 LINKS</span>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8 border border-blue-200 flex flex-col justify-center animate-fade-in-up">
-              <h3 className="text-2xl font-bold text-foreground mb-4">جاهز للبدء؟</h3>
-              <p className="text-foreground/70 mb-8">
-                دعنا نناقش مشروعك ونحدد كيفية تحويل رؤيتك إلى واقع رقمي فعّال.
-              </p>
-              <Button
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-base w-full"
-                onClick={() => window.location.href = 'mailto:mohammedalhmedi738@gmail.com'}
-              >
-                أرسل لي رسالة
-              </Button>
-              <p className="text-sm text-foreground/60 text-center mt-4">
-                أو اتصل بي مباشرة على +967 738738317
-              </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {socialLinks.map((social) => {
+                const Icon = iconMap[social.platform];
+                return (
+                  <a
+                    key={`${social.platform}-${social.handle}`}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group min-h-44 border border-white/15 bg-white/[.035] p-5 transition-all duration-200 hover:-translate-y-1 hover:border-[#cbff59]/70 hover:bg-white/[.07]"
+                    aria-label={`فتح ${social.label} باسم ${social.handle}`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-[.65rem_.15rem_.65rem_.15rem] bg-[#cbff59] text-[#0b0f14]">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <ArrowUpLeft className="h-5 w-5 text-white/35 transition-colors group-hover:text-[#cbff59]" />
+                    </div>
+                    <p className="font-latin mt-6 text-base font-extrabold">@{social.handle}</p>
+                    <p className="mt-2 text-sm leading-6 text-white/48">{social.description}</p>
+                  </a>
+                );
+              })}
             </div>
+            <p className="mt-5 text-xs leading-6 text-white/35">
+              تم التحقق من الروابط العامة الظاهرة في الملف الشخصي وقت تحديث الموقع.
+            </p>
           </div>
         </div>
       </div>
