@@ -10,7 +10,8 @@ const proofPoints = [
 export default function Hero() {
   return (
     <section id="home" className="atelier-grid grain relative overflow-hidden pb-20 pt-32 lg:min-h-[92svh] lg:pb-28 lg:pt-36">
-      <div className="pointer-events-none absolute -left-20 top-24 h-52 w-52 rounded-full bg-[#ff6b35]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 top-24 h-52 w-52 rounded-full bg-[#ff7a0a]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-[#16d5df]/12 blur-3xl" />
       <div className="container relative">
         <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,.88fr)_minmax(560px,1.12fr)] lg:gap-10">
           <div className="reveal max-w-3xl">
@@ -26,7 +27,7 @@ export default function Hero() {
               متجرك ليس
               <span className="relative mx-2 inline-block">
                 قالباً
-                <span className="absolute inset-x-0 bottom-[7%] -z-10 h-[22%] -rotate-1 bg-[#cbff59]" />
+                <span className="absolute inset-x-0 bottom-[7%] -z-10 h-[22%] -rotate-1 bg-[#16d5df]" />
               </span>
               <br />
               نبني له نظاماً.
@@ -64,15 +65,15 @@ export default function Hero() {
           </div>
 
           <div className="reveal-delayed relative lg:translate-x-10">
-            <div className="absolute -right-4 top-12 z-20 hidden -rotate-3 border-2 border-[#0b0f14] bg-[#ff6b35] px-4 py-2 text-xs font-extrabold text-white shadow-[5px_5px_0_#0b0f14] md:block">
+            <div className="absolute -right-4 top-12 z-20 hidden -rotate-3 border-2 border-[#07164f] bg-[#ff7a0a] px-4 py-2 text-xs font-extrabold text-white shadow-[5px_5px_0_#07164f] md:block">
               Product / UI / Code
             </div>
 
             <figure className="case-window bg-[#0b0f14] p-2.5">
               <div className="mb-2.5 flex items-center justify-between px-2 py-1 text-[#f7f3e8]/60">
                 <div className="flex gap-1.5" aria-hidden="true">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff6b35]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#cbff59]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff7a0a]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#16d5df]" />
                   <span className="h-2.5 w-2.5 rounded-full bg-white/25" />
                 </div>
                 <span className="font-latin text-[10px]">storefront.system / 01</span>
@@ -88,14 +89,14 @@ export default function Hero() {
                     <p className="text-xs text-white/60">من لوحة التصميم إلى الواجهة</p>
                     <p className="mt-1 font-['Alexandria'] text-lg font-bold">نظام متسق لكل نقطة بيع</p>
                   </div>
-                  <ArrowUpLeft className="h-6 w-6 text-[#cbff59]" />
+                  <ArrowUpLeft className="h-6 w-6 text-[#16d5df]" />
                 </div>
               </div>
             </figure>
 
             <span className="atelier-measure absolute -right-2 -bottom-14 hidden sm:flex">FRAME / 16:10 / RTL</span>
 
-            <div className="absolute -bottom-8 -left-3 grid w-[82%] grid-cols-3 border-2 border-[#0b0f14] bg-[#f7f3e8] p-3 shadow-[8px_8px_0_#cbff59] sm:-left-8 sm:w-[72%] sm:p-4">
+            <div className="absolute -bottom-8 -left-3 grid w-[82%] grid-cols-3 border-2 border-[#07164f] bg-[#f7f3e8] p-3 shadow-[8px_8px_0_#16d5df] sm:-left-8 sm:w-[72%] sm:p-4">
               <div className="flex items-center gap-2 border-l border-[#0b0f14]/15 px-2">
                 <ShoppingBag className="h-4 w-4" />
                 <span className="text-[10px] font-bold sm:text-xs">تجارة</span>

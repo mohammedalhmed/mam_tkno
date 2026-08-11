@@ -60,7 +60,7 @@ export default function Skills() {
               >
                 <div className="flex items-center justify-between md:block">
                   <span className="font-latin text-sm font-extrabold text-[#0b0f14]/28">{capability.number}</span>
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-[.7rem_.15rem_.7rem_.15rem] bg-[#0b0f14] text-[#cbff59] transition-transform duration-200 group-hover:-rotate-3 md:mt-4">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-[.7rem_.15rem_.7rem_.15rem] bg-[#07164f] text-[#16d5df] transition-transform duration-200 group-hover:-rotate-3 md:mt-4">
                     <Icon className="h-5 w-5" />
                   </span>
                 </div>

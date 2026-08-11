@@ -1,6 +1,6 @@
-/*
+/**
  * Product Systems Atelier
- * ورق عاجي + حبر فحمي + Lime Signal، بطباعة عربية تحريرية وحركة تقنية هادفة.
+ * ورق عاجي + حبر فحمي + Cyan Signal مستمد من الشعار، بطباعة عربية تحريرية وحركة تقنية هادفة.
  */
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -48,38 +48,42 @@
 
 :root {
   --radius: 0.75rem;
+  --brand-navy: #07164f;
+  --brand-blue: #2145a8;
+  --brand-cyan: #16d5df;
+  --brand-orange: #ff7a0a;
   --background: oklch(0.965 0.015 93);
   --foreground: oklch(0.145 0.018 252);
   --card: oklch(0.99 0.008 93);
   --card-foreground: oklch(0.145 0.018 252);
   --popover: oklch(0.99 0.008 93);
   --popover-foreground: oklch(0.145 0.018 252);
-  --primary: oklch(0.91 0.19 124);
-  --primary-foreground: oklch(0.13 0.018 252);
+  --primary: oklch(0.81 0.13 194);
+  --primary-foreground: oklch(0.22 0.08 265);
   --secondary: oklch(0.92 0.018 91);
   --secondary-foreground: oklch(0.22 0.02 252);
   --muted: oklch(0.91 0.012 92);
   --muted-foreground: oklch(0.47 0.02 252);
-  --accent: oklch(0.68 0.2 37);
+  --accent: oklch(0.7 0.19 45);
   --accent-foreground: oklch(0.99 0 0);
   --destructive: oklch(0.59 0.22 28);
   --destructive-foreground: oklch(0.99 0 0);
   --border: oklch(0.83 0.017 91);
   --input: oklch(0.89 0.016 91);
-  --ring: oklch(0.77 0.18 124);
-  --chart-1: oklch(0.91 0.19 124);
-  --chart-2: oklch(0.68 0.2 37);
-  --chart-3: oklch(0.53 0.12 341);
-  --chart-4: oklch(0.54 0.12 145);
+  --ring: oklch(0.81 0.13 194);
+  --chart-1: oklch(0.81 0.13 194);
+  --chart-2: oklch(0.51 0.17 266);
+  --chart-3: oklch(0.7 0.19 45);
+  --chart-4: oklch(0.34 0.12 265);
   --chart-5: oklch(0.36 0.08 252);
   --sidebar: oklch(0.965 0.015 93);
   --sidebar-foreground: oklch(0.145 0.018 252);
-  --sidebar-primary: oklch(0.91 0.19 124);
-  --sidebar-primary-foreground: oklch(0.13 0.018 252);
+  --sidebar-primary: oklch(0.81 0.13 194);
+  --sidebar-primary-foreground: oklch(0.22 0.08 265);
   --sidebar-accent: oklch(0.92 0.018 91);
   --sidebar-accent-foreground: oklch(0.22 0.02 252);
   --sidebar-border: oklch(0.83 0.017 91);
-  --sidebar-ring: oklch(0.77 0.18 124);
+  --sidebar-ring: oklch(0.81 0.13 194);
 }
 
 .dark {
@@ -89,25 +93,25 @@
   --card-foreground: oklch(0.965 0.015 93);
   --popover: oklch(0.19 0.019 252);
   --popover-foreground: oklch(0.965 0.015 93);
-  --primary: oklch(0.91 0.19 124);
-  --primary-foreground: oklch(0.13 0.018 252);
+  --primary: oklch(0.81 0.13 194);
+  --primary-foreground: oklch(0.22 0.08 265);
   --secondary: oklch(0.24 0.02 252);
   --secondary-foreground: oklch(0.92 0.015 93);
   --muted: oklch(0.24 0.02 252);
   --muted-foreground: oklch(0.72 0.015 93);
-  --accent: oklch(0.68 0.2 37);
+  --accent: oklch(0.7 0.19 45);
   --accent-foreground: oklch(0.99 0 0);
   --border: oklch(1 0 0 / 14%);
   --input: oklch(1 0 0 / 18%);
-  --ring: oklch(0.91 0.19 124);
+  --ring: oklch(0.81 0.13 194);
   --sidebar: oklch(0.16 0.019 252);
   --sidebar-foreground: oklch(0.965 0.015 93);
-  --sidebar-primary: oklch(0.91 0.19 124);
-  --sidebar-primary-foreground: oklch(0.13 0.018 252);
+  --sidebar-primary: oklch(0.81 0.13 194);
+  --sidebar-primary-foreground: oklch(0.22 0.08 265);
   --sidebar-accent: oklch(0.24 0.02 252);
   --sidebar-accent-foreground: oklch(0.92 0.015 93);
   --sidebar-border: oklch(1 0 0 / 14%);
-  --sidebar-ring: oklch(0.91 0.19 124);
+  --sidebar-ring: oklch(0.81 0.13 194);
 }
 
 @layer base {
@@ -126,8 +130,9 @@
     font-family: 'IBM Plex Sans Arabic', sans-serif;
     overflow-x: hidden;
     background-image:
-      radial-gradient(circle at 8% 4%, rgb(203 255 89 / 0.12), transparent 21rem),
-      radial-gradient(circle at 98% 30%, rgb(255 107 53 / 0.07), transparent 25rem);
+      radial-gradient(circle at 8% 4%, rgb(22 213 223 / 0.13), transparent 21rem),
+      radial-gradient(circle at 98% 30%, rgb(255 122 10 / 0.07), transparent 25rem),
+      radial-gradient(circle at 72% 64%, rgb(33 69 168 / 0.045), transparent 28rem);
   }
 
   h1,
@@ -141,8 +146,8 @@
   }
 
   ::selection {
-    background: #cbff59;
-    color: #0b0f14;
+    background: var(--brand-cyan);
+    color: var(--brand-navy);
   }
 
   a,
@@ -163,7 +168,7 @@
   }
 
   :focus-visible {
-    outline: 3px solid #cbff59;
+    outline: 3px solid var(--brand-cyan);
     outline-offset: 4px;
   }
 }
@@ -177,8 +182,8 @@
 
   .atelier-grid {
     background-image:
-      linear-gradient(rgb(11 15 20 / 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(11 15 20 / 0.045) 1px, transparent 1px);
+      linear-gradient(rgb(7 22 79 / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(7 22 79 / 0.045) 1px, transparent 1px);
     background-size: 36px 36px;
   }
 
@@ -192,7 +197,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    opacity: 0.22;
+    opacity: 0.2;
     pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
   }
@@ -223,13 +228,13 @@
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    background: #cbff59;
-    color: #0b0f14;
+    background: var(--brand-cyan);
+    color: var(--brand-navy);
     padding: 0.45rem 0.7rem;
     font-size: 0.73rem;
     font-weight: 800;
     border-radius: 0.15rem 0.65rem 0.15rem 0.65rem;
-    box-shadow: 4px 4px 0 #0b0f14;
+    box-shadow: 4px 4px 0 var(--brand-navy);
   }
 
   .atelier-note {
@@ -250,7 +255,7 @@
     content: '';
     width: 0.38rem;
     height: 0.38rem;
-    background: #cbff59;
+    background: var(--brand-cyan);
     border: 1px solid currentColor;
   }
 
@@ -258,7 +263,7 @@
     display: flex;
     align-items: center;
     gap: 0.7rem;
-    color: rgb(11 15 20 / 0.42);
+    color: rgb(7 22 79 / 0.42);
     font-family: 'Manrope', sans-serif;
     font-size: 0.62rem;
     font-weight: 800;
@@ -284,7 +289,8 @@
 
   .ink-button,
   .lime-button,
-  .ghost-button {
+  .ghost-button,
+  .brand-button {
     display: inline-flex;
     min-height: 3.25rem;
     align-items: center;
@@ -302,17 +308,17 @@
   .ink-button {
     background: #0b0f14;
     color: #f7f3e8;
-    box-shadow: 5px 5px 0 #cbff59;
+    box-shadow: 5px 5px 0 var(--brand-cyan);
   }
 
   .ink-button:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0 #cbff59;
+    box-shadow: 8px 8px 0 var(--brand-cyan);
   }
 
   .lime-button {
-    background: #cbff59;
-    color: #0b0f14;
+    background: var(--brand-cyan);
+    color: var(--brand-navy);
     box-shadow: 5px 5px 0 rgb(255 255 255 / 0.18);
   }
 
@@ -322,7 +328,7 @@
   }
 
   .ghost-button {
-    border: 1px solid rgb(11 15 20 / 0.2);
+    border: 1px solid rgb(7 22 79 / 0.2);
     background: rgb(255 255 255 / 0.48);
   }
 
@@ -331,13 +337,24 @@
     transform: translateY(-2px);
   }
 
+  .brand-button {
+    background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-blue) 100%);
+    color: white;
+    box-shadow: 5px 5px 0 var(--brand-cyan);
+  }
+
+  .brand-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--brand-cyan);
+  }
+
   .case-window {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgb(11 15 20 / 0.18);
+    border: 1px solid rgb(22 213 223 / 0.18);
     border-radius: 1.25rem 0.25rem 1.25rem 0.25rem;
     background: #11161d;
-    box-shadow: 0 30px 70px rgb(11 15 20 / 0.16);
+    box-shadow: 0 30px 70px rgb(7 22 79 / 0.18);
   }
 
   .case-window img {
@@ -350,7 +367,7 @@
   }
 
   .section-rule {
-    border-top: 1px solid rgb(11 15 20 / 0.25);
+    border-top: 1px solid rgb(7 22 79 / 0.25);
   }
 
   .reveal {

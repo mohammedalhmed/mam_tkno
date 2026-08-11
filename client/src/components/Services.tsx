@@ -27,9 +27,9 @@ const steps = [
 
 export default function Services() {
   return (
-    <section id="services" className="relative overflow-hidden bg-[#e7eadc] py-24 text-[#0b0f14] md:py-32">
-      <div className="absolute inset-y-0 left-0 w-3 bg-[#ff6b35]" aria-hidden="true" />
-      <div className="absolute -left-32 top-20 h-80 w-80 rounded-full bg-[#ff6b35]/14 blur-3xl" aria-hidden="true" />
+    <section id="services" className="relative overflow-hidden bg-[#e8f1ef] py-24 text-[#0b0f14] md:py-32">
+      <div className="absolute inset-y-0 left-0 w-3 bg-gradient-to-b from-[#ff7a0a] via-[#2145a8] to-[#16d5df]" aria-hidden="true" />
+      <div className="absolute -left-32 top-20 h-80 w-80 rounded-full bg-[#16d5df]/14 blur-3xl" aria-hidden="true" />
       <div className="container relative">
         <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr]">
           <div className="lg:sticky lg:top-28 lg:self-start">
@@ -51,11 +51,11 @@ export default function Services() {
               return (
                 <article
                   key={step.number}
-                  className="grid gap-6 border-2 border-[#0b0f14] bg-[#f7f3e8] p-6 shadow-[8px_8px_0_#cbff59] transition-transform duration-200 hover:-translate-y-1 md:grid-cols-[86px_1fr] md:p-8"
+                  className="grid gap-6 border-2 border-[#07164f] bg-[#f7f3e8] p-6 shadow-[8px_8px_0_#16d5df] transition-transform duration-200 hover:-translate-y-1 md:grid-cols-[86px_1fr] md:p-8"
                 >
                   <div>
                     <span className="font-latin text-sm font-extrabold text-[#0b0f14]/40">{step.number}</span>
-                    <span className="mt-4 flex h-12 w-12 items-center justify-center rounded-[.75rem_.15rem_.75rem_.15rem] bg-[#0b0f14] text-[#cbff59]">
+                    <span className="mt-4 flex h-12 w-12 items-center justify-center rounded-[.75rem_.15rem_.75rem_.15rem] bg-[#07164f] text-[#16d5df]">
                       <Icon className="h-6 w-6" />
                     </span>
                   </div>
@@ -63,7 +63,7 @@ export default function Services() {
                     <h3 className="text-2xl font-extrabold md:text-3xl">{step.title}</h3>
                     <p className="mt-4 text-lg leading-8 text-[#0b0f14]/65">{step.description}</p>
                     <p className="mt-5 flex items-center gap-2 text-sm font-bold">
-                      <Check className="h-4 w-4 text-[#4f7300]" />
+                      <Check className="h-4 w-4 text-[#147e87]" />
                       {step.output}
                     </p>
                     <span className="atelier-measure mt-5">CHECKPOINT / {step.number}</span>

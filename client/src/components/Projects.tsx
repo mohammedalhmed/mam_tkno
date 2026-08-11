@@ -8,7 +8,7 @@ export default function Projects() {
       <div className="container">
         <div className="grid gap-8 border-b border-white/15 pb-10 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
           <div>
-            <span className="eyebrow text-[#cbff59]">المشاريع الحيّة</span>
+            <span className="eyebrow text-[#16d5df]">المشاريع الحيّة</span>
             <p className="font-latin mt-5 text-xs font-bold text-white/35">SELECTED WORK / 2026</p>
           </div>
           <div>
@@ -34,8 +34,8 @@ export default function Projects() {
               >
                 <div className="flex h-11 items-center justify-between border-b border-white/10 px-4 text-white/45">
                   <div className="flex gap-1.5" aria-hidden="true">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#ff6b35]" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#cbff59]" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#ff7a0a]" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#16d5df]" />
                     <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
                   </div>
                   <span className="font-latin text-[10px]">{project.url.replace('https://', '')}</span>
@@ -43,7 +43,7 @@ export default function Projects() {
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <img src={project.image} alt={`معاينة تحريرية لمشروع ${project.arabicTitle}`} className="h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-[#0b0f14]/0 transition-colors duration-200 group-hover:bg-[#0b0f14]/25" />
-                  <div className="absolute bottom-4 left-4 flex translate-y-3 items-center gap-2 bg-[#cbff59] px-4 py-3 text-sm font-extrabold text-[#0b0f14] opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="absolute bottom-4 left-4 flex translate-y-3 items-center gap-2 bg-[#16d5df] px-4 py-3 text-sm font-extrabold text-[#07164f] opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                     فتح الموقع الحي
                     <ArrowUpLeft className="h-4 w-4" />
                   </div>
@@ -59,16 +59,16 @@ export default function Projects() {
                 </div>
 
                 <h3 className="mt-7 text-4xl font-extrabold md:text-5xl">{project.arabicTitle}</h3>
-                <p className="font-latin mt-2 text-sm font-bold text-[#cbff59]">{project.title}</p>
+                <p className="font-latin mt-2 text-sm font-bold text-[#16d5df]">{project.title}</p>
                 <p className="mt-6 text-lg leading-9 text-white/68">{project.description}</p>
 
-                <div className="mt-7 border-r-2 border-[#cbff59] pr-4">
+                <div className="mt-7 border-r-2 border-[#16d5df] pr-4">
                   <p className="text-xs font-bold text-white/40">الدور في المشروع</p>
                   <p className="mt-1.5 font-semibold leading-7 text-white/90">{project.role}</p>
                 </div>
 
                 <div className="mt-5 border border-white/15 bg-white/[.035] p-4">
-                  <span className="atelier-note text-[#cbff59]">DECISION / 0{index + 1}</span>
+                  <span className="atelier-note text-[#16d5df]">DECISION / 0{index + 1}</span>
                   <p className="mt-4 text-xs font-bold text-white/38">قرار الواجهة</p>
                   <p className="mt-2 leading-7 text-white/72">{project.decision}</p>
                 </div>
@@ -76,7 +76,7 @@ export default function Projects() {
                 <ul className="mt-7 grid gap-2.5 sm:grid-cols-2" aria-label="بيانات ظاهرة في الموقع">
                   {project.facts.map((fact) => (
                     <li key={fact} className="flex items-center gap-2 text-sm text-white/62">
-                      <CheckCircle2 className="h-4 w-4 shrink-0 text-[#cbff59]" />
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-[#16d5df]" />
                       {fact}
                     </li>
                   ))}
