@@ -96,16 +96,16 @@ export const socialLinks = [
   {
     platform: 'instagram',
     label: 'Instagram',
-    handle: 'mam.rm7',
-    description: 'الحساب الشخصي',
-    url: 'https://www.instagram.com/mam.rm7',
+    handle: 'mam_tkno',
+    description: 'المحتوى التقني وتصميم الواجهات',
+    url: 'https://www.instagram.com/mam_tkno',
   },
   {
-    platform: 'instagram-work',
-    label: 'Instagram',
-    handle: 'tiknumidia',
-    description: 'التصميم والمحتوى الرقمي',
-    url: 'https://www.instagram.com/tiknumidia',
+    platform: 'telegram',
+    label: 'Telegram',
+    handle: 'MAM_Tkno',
+    description: 'التواصل والتحديثات عبر تلجرام',
+    url: 'https://t.me/MAM_Tkno',
   },
 ] as const;
 

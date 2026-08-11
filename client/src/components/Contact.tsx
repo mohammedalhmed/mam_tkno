@@ -1,12 +1,12 @@
 /** Product Systems Atelier — تواصل واضح بأسماء الحسابات ووصف كل قناة بدلاً من أيقونات مجهولة. */
-import { ArrowUpLeft, Facebook, Github, Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { ArrowUpLeft, Facebook, Github, Instagram, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
 import { contactDetails, socialLinks } from '@/lib/portfolio-data';
 
 const iconMap = {
   github: Github,
   facebook: Facebook,
   instagram: Instagram,
-  'instagram-work': Instagram,
+  telegram: Send,
 };
 
 export default function Contact() {

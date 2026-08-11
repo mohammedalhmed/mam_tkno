@@ -1,9 +1,11 @@
-import { ArrowUpLeft, Github, Mail, MessageCircle } from 'lucide-react';
-import { contactDetails } from '@/lib/portfolio-data';
+import { ArrowUpLeft, Github, Instagram, Mail, MessageCircle, Send } from 'lucide-react';
+import { contactDetails, socialLinks } from '@/lib/portfolio-data';
 import BrandMark from '@/components/BrandMark';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const instagram = socialLinks.find((social) => social.platform === 'instagram');
+  const telegram = socialLinks.find((social) => social.platform === 'telegram');
 
   return (
     <footer className="relative overflow-hidden border-t border-white/12 bg-[#0b0f14] pb-8 pt-14 text-[#f7f3e8]">
@@ -26,6 +28,16 @@ export default function Footer() {
             <a href="https://github.com/mohammedalhmed" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/18 bg-white/[.03] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#16d5df] hover:text-[#16d5df]" aria-label="GitHub">
               <Github className="h-5 w-5" />
             </a>
+            {instagram && (
+              <a href={instagram.url} target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/18 bg-white/[.03] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#16d5df] hover:text-[#16d5df]" aria-label={`إنستجرام @${instagram.handle}`}>
+                <Instagram className="h-5 w-5" />
+              </a>
+            )}
+            {telegram && (
+              <a href={telegram.url} target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/18 bg-white/[.03] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#16d5df] hover:text-[#16d5df]" aria-label={`تلجرام @${telegram.handle}`}>
+                <Send className="h-5 w-5" />
+              </a>
+            )}
             <a href={`mailto:${contactDetails.email}`} className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/18 bg-white/[.03] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#16d5df] hover:text-[#16d5df]" aria-label="البريد الإلكتروني">
               <Mail className="h-5 w-5" />
             </a>
