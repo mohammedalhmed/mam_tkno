@@ -1,0 +1,21 @@
+{
+  "name": "محمد الحضرمي — تصميم وتطوير واجهات متاجر سلة",
+  "short_name": "محمد الحضرمي",
+  "description": "محفظة مصمم ومطور واجهات وثيمات متاجر سلة، من تصميم تجربة المستخدم في Figma إلى كود قابل للاستيراد عبر GitHub.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f3e8",
+  "theme_color": "#07164f",
+  "icons": [
+    {
+      "src": "/manus-storage/mahmoud-brand-logo_4a650db3.jpg",
+      "sizes": "any",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

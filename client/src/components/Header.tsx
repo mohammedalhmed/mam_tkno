@@ -7,6 +7,7 @@ const navItems = [
   { label: 'المشاريع', href: '#projects' },
   { label: 'الخبرات', href: '#skills' },
   { label: 'آلية العمل', href: '#services' },
+  { label: 'الأسئلة', href: '#faq' },
   { label: 'التواصل', href: '#contact' },
 ];
 
@@ -59,10 +60,10 @@ export default function Header() {
         <a href="#home" className="group flex items-center gap-3" aria-label="العودة إلى بداية الصفحة">
           <BrandMark size="sm" eager />
           <div className="leading-none">
-            <strong className="block font-['Alexandria'] text-sm font-extrabold text-[#07164f]">
+            <strong className="block font-['Alexandria'] text-base font-black tracking-[-.04em] text-[#07164f] sm:text-lg">
               محمد الحضرمي <span className="text-[#ff7a0a]">/</span>
             </strong>
-            <span className="font-latin mt-1.5 block text-[9px] font-extrabold tracking-[.12em] text-[#2145a8]/60">STORE · UI · SYSTEMS</span>
+            <span className="font-latin mt-1.5 block text-[9px] font-extrabold tracking-[.16em] text-[#2145a8]/65">MAHMOUD / STORE · UI · SYSTEMS</span>
           </div>
         </a>
 

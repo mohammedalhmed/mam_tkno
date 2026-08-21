@@ -16,11 +16,11 @@ export default function Footer() {
           <a href="#home" className="group flex items-center gap-4" aria-label="العودة إلى بداية الصفحة">
             <BrandMark size="lg" onDark />
             <div>
-              <p className="font-['Alexandria'] text-lg font-extrabold">
+              <p className="font-['Alexandria'] text-2xl font-black tracking-[-.04em]">
                 محمد الحضرمي <span className="text-[#ff7a0a]">/</span>
               </p>
-              <p className="font-latin mt-1 text-[10px] font-extrabold tracking-[.12em] text-[#16d5df]/65">STORE · UI · SYSTEMS</p>
-              <p className="mt-2 text-xs font-semibold text-white/38">واجهات متاجر سلة من الفكرة إلى GitHub.</p>
+              <p className="font-latin mt-1.5 text-[10px] font-extrabold tracking-[.16em] text-[#16d5df]/70">MAHMOUD / STORE · UI · SYSTEMS</p>
+              <p className="mt-3 max-w-xs text-sm font-semibold leading-7 text-white/48">استوديو صغير لواجهات متاجر سلة: رؤية واضحة، قرار موثق، وكود قابل للنمو.</p>
             </div>
           </a>
 
