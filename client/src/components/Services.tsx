@@ -35,8 +35,8 @@ export default function Services() {
           <div className="lg:sticky lg:top-28 lg:self-start">
             <span className="eyebrow">آلية العمل</span>
             <span className="atelier-note mt-6">PROCESS / GITHUB → SALLA</span>
-            <h2 className="mt-7 text-[clamp(2.7rem,5vw,5rem)] font-extrabold leading-[1.08]">من الفكرة إلى ثيم سلة قابل للاستيراد.</h2>
-            <p className="mt-6 max-w-lg text-lg leading-8 text-[#0b0f14]/70">
+            <h2 className="mt-7 text-[clamp(2.45rem,9vw,5rem)] font-extrabold leading-[1.12] sm:text-[clamp(2.7rem,5vw,5rem)] sm:leading-[1.08]">من الفكرة إلى ثيم سلة قابل للاستيراد.</h2>
+            <p className="mt-6 max-w-lg text-[1.05rem] leading-[1.95] text-[#0b0f14]/70 sm:text-lg sm:leading-8">
               عملية واضحة تقلل التعديلات العشوائية وتُبقي التصميم والكود في مسار واحد يمكن مراجعته وتطويره.
             </p>
             <a href="#contact" className="ink-button mt-9">
@@ -60,9 +60,9 @@ export default function Services() {
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-extrabold md:text-3xl">{step.title}</h3>
-                    <p className="mt-4 text-lg leading-8 text-[#0b0f14]/65">{step.description}</p>
-                    <p className="mt-5 flex items-center gap-2 text-sm font-bold">
+                    <h3 className="text-[1.35rem] font-extrabold leading-[1.45] sm:text-2xl md:text-3xl">{step.title}</h3>
+                    <p className="mt-4 text-[1rem] leading-[1.95] text-[#0b0f14]/65 sm:text-lg sm:leading-8">{step.description}</p>
+                    <p className="mt-5 flex items-start gap-2 text-[0.86rem] font-bold leading-6 sm:text-sm">
                       <Check className="h-4 w-4 text-[#147e87]" />
                       {step.output}
                     </p>

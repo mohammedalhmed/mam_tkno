@@ -23,9 +23,9 @@ export default function Hero() {
               <span className="text-sm font-semibold text-[#0b0f14]/55">مصمم ومطوّر واجهات متاجر</span>
             </div>
 
-            <h1 className="max-w-4xl text-[clamp(3.15rem,8vw,7.2rem)] font-extrabold leading-[1.03] text-[#0b0f14]">
+            <h1 className="max-w-4xl text-[clamp(2.85rem,11vw,7.2rem)] font-extrabold leading-[1.06] text-[#0b0f14] sm:text-[clamp(3.4rem,8vw,7.2rem)] sm:leading-[1.03]">
               متجرك ليس
-              <span className="relative mx-2 inline-block">
+                <span className="relative mx-1.5 inline-block sm:mx-2">
                 قالباً
                 <span className="absolute inset-x-0 bottom-[7%] -z-10 h-[22%] -rotate-1 bg-[#16d5df]" />
               </span>
@@ -35,10 +35,10 @@ export default function Hero() {
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <span className="atelier-note">DECISION / 01</span>
-              <span className="text-xs font-bold text-[#0b0f14]/48">الهدف التجاري أولاً، ثم الشكل الذي يخدمه</span>
+              <span className="text-[0.74rem] font-bold leading-6 text-[#0b0f14]/48 sm:text-xs">الهدف التجاري أولاً، ثم الشكل الذي يخدمه</span>
             </div>
 
-            <p className="mt-7 max-w-2xl text-lg leading-9 text-[#0b0f14]/68 md:text-xl">
+            <p className="mt-7 max-w-2xl text-[1.05rem] leading-[1.95] text-[#0b0f14]/68 sm:text-lg sm:leading-8 md:text-xl md:leading-9">
               أنا محمد الحضرمي، أحوّل احتياج المتجر التجاري إلى واجهة سلة سريعة وواضحة، من التصميم في Figma إلى الكود
               القابل للاستيراد عبر GitHub.
             </p>
@@ -58,7 +58,7 @@ export default function Hero() {
               {proofPoints.map((point) => (
                 <div key={point.value}>
                   <div className="font-latin text-xl font-extrabold sm:text-2xl">{point.value}</div>
-                  <div className="mt-1 text-[11px] font-semibold leading-5 text-[#0b0f14]/55 sm:text-xs">{point.label}</div>
+                  <div className="mt-1 text-[0.72rem] font-semibold leading-5 text-[#0b0f14]/55 sm:text-xs">{point.label}</div>
                 </div>
               ))}
             </div>
@@ -86,8 +86,8 @@ export default function Hero() {
                 />
                 <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-[#0b0f14] via-[#0b0f14]/75 to-transparent px-5 pb-5 pt-16 text-white">
                   <div>
-                    <p className="text-xs text-white/60">من لوحة التصميم إلى الواجهة</p>
-                    <p className="mt-1 font-['Alexandria'] text-lg font-bold">نظام متسق لكل نقطة بيع</p>
+                    <p className="text-[0.7rem] leading-5 text-white/60 sm:text-xs">من لوحة التصميم إلى الواجهة</p>
+                    <p className="mt-1 font-['Alexandria'] text-base font-bold leading-7 sm:text-lg">نظام متسق لكل نقطة بيع</p>
                   </div>
                   <ArrowUpLeft className="h-6 w-6 text-[#16d5df]" />
                 </div>

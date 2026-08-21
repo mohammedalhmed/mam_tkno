@@ -19,8 +19,8 @@ export default function Contact() {
           <div>
             <span className="eyebrow text-[#16d5df]">التواصل</span>
             <span className="atelier-note mt-6 text-[#16d5df]">CHANNELS / VERIFIED</span>
-            <h2 className="mt-7 max-w-4xl text-[clamp(3rem,7vw,6.4rem)] font-extrabold leading-[1.05]">عندك متجر يحتاج واجهة أقوى؟</h2>
-            <p className="mt-7 max-w-2xl text-lg leading-9 text-white/62">
+            <h2 className="mt-7 max-w-4xl text-[clamp(2.65rem,10vw,6.4rem)] font-extrabold leading-[1.1] sm:text-[clamp(3rem,7vw,6.4rem)] sm:leading-[1.05]">عندك متجر يحتاج واجهة أقوى؟</h2>
+            <p className="mt-7 max-w-2xl text-[1.05rem] leading-[1.95] text-white/62 sm:text-lg sm:leading-8 md:text-xl md:leading-9">
               أرسل رابط المتجر وما الذي تريد تحسينه. سأبدأ بمراجعة مختصرة تحدد الأولويات قبل الحديث عن التفاصيل.
             </p>
 
@@ -40,17 +40,17 @@ export default function Contact() {
               <a href={`mailto:${contactDetails.email}`} className="border-t border-white/18 pt-4 text-sm text-white/58 hover:text-white">
                 <Mail className="mb-3 h-5 w-5 text-[#16d5df]" />
                 <span className="block text-xs text-white/35">البريد</span>
-                <span className="font-latin mt-1 block break-all text-xs">{contactDetails.email}</span>
+                <span className="font-latin mt-1 block break-all text-[0.72rem] leading-5 sm:text-xs">{contactDetails.email}</span>
               </a>
               <a href={`tel:${contactDetails.phone}`} className="border-t border-white/18 pt-4 text-sm text-white/58 hover:text-white">
                 <Phone className="mb-3 h-5 w-5 text-[#16d5df]" />
                 <span className="block text-xs text-white/35">الهاتف</span>
-                <span className="font-latin mt-1 block text-xs">{contactDetails.phoneDisplay}</span>
+                <span className="font-latin mt-1 block text-[0.72rem] leading-5 sm:text-xs">{contactDetails.phoneDisplay}</span>
               </a>
               <a href={contactDetails.map} target="_blank" rel="noopener noreferrer" className="border-t border-white/18 pt-4 text-sm text-white/58 hover:text-white">
                 <MapPin className="mb-3 h-5 w-5 text-[#16d5df]" />
                 <span className="block text-xs text-white/35">الموقع</span>
-                <span className="mt-1 block">{contactDetails.location}</span>
+                <span className="mt-1 block text-[0.92rem] leading-6 sm:text-base">{contactDetails.location}</span>
               </a>
             </div>
           </div>
@@ -82,8 +82,8 @@ export default function Contact() {
                       </span>
                       <ArrowUpLeft className="h-5 w-5 text-white/35 transition-colors group-hover:text-[#16d5df]" />
                     </div>
-                    <p className="font-latin mt-6 text-base font-extrabold">@{social.handle}</p>
-                    <p className="mt-2 text-sm leading-6 text-white/48">{social.description}</p>
+                    <p className="font-latin mt-6 text-[0.95rem] font-extrabold leading-6 sm:text-base">@{social.handle}</p>
+                    <p className="mt-2 text-[0.82rem] leading-6 text-white/48 sm:text-sm">{social.description}</p>
                   </a>
                 );
               })}

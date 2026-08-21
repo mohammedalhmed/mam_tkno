@@ -43,8 +43,8 @@ export default function Skills() {
             <span className="atelier-note mt-5">SYSTEM MAP / 04</span>
           </div>
           <div>
-            <h2 className="text-[clamp(2.6rem,6vw,5.3rem)] font-extrabold leading-[1.08]">أصمم الرحلة، لا الشاشة فقط.</h2>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#0b0f14]/62">
+            <h2 className="text-[clamp(2.45rem,9vw,5.3rem)] font-extrabold leading-[1.12] sm:text-[clamp(2.6rem,6vw,5.3rem)] sm:leading-[1.08]">أصمم الرحلة، لا الشاشة فقط.</h2>
+            <p className="mt-5 max-w-2xl text-[1.05rem] leading-[1.95] text-[#0b0f14]/62 sm:text-lg sm:leading-8">
               كل قرار بصري مرتبط بتجربة الزائر، قابلية إدارة المتجر، وسلامة التنفيذ التقني.
             </p>
           </div>
@@ -65,13 +65,13 @@ export default function Skills() {
                   </span>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-extrabold md:text-3xl">{capability.title}</h3>
-                  <p className="mt-3 max-w-xl leading-7 text-[#0b0f14]/60">{capability.description}</p>
+                  <h3 className="text-[1.35rem] font-extrabold leading-[1.45] sm:text-2xl md:text-3xl">{capability.title}</h3>
+                  <p className="mt-3 max-w-xl text-[0.98rem] leading-[1.9] text-[#0b0f14]/60 sm:text-base sm:leading-7">{capability.description}</p>
                   <span className="atelier-measure mt-4">LAYER / {capability.number}</span>
                 </div>
                 <div className="flex flex-wrap gap-2 md:justify-end">
                   {capability.skills.map((skill) => (
-                    <span key={skill} className="font-latin rounded-sm border border-[#0b0f14]/18 bg-white/35 px-3 py-2 text-[11px] font-bold">
+                    <span key={skill} className="font-latin rounded-sm border border-[#0b0f14]/18 bg-white/35 px-3 py-2 text-[0.68rem] font-bold leading-5 sm:text-[11px]">
                       {skill}
                     </span>
                   ))}

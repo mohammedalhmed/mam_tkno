@@ -52,6 +52,9 @@
   --brand-blue: #2145a8;
   --brand-cyan: #16d5df;
   --brand-orange: #ff7a0a;
+  --font-display: 'Alexandria', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', sans-serif;
+  --font-latin: 'Manrope', sans-serif;
   --background: oklch(0.965 0.015 93);
   --foreground: oklch(0.145 0.018 252);
   --card: oklch(0.99 0.008 93);
@@ -127,7 +130,12 @@
   body {
     @apply bg-background text-foreground antialiased;
     direction: rtl;
-    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 400;
+    font-kerning: normal;
+    font-synthesis: none;
+    line-height: 1.78;
     overflow-x: hidden;
     background-image:
       radial-gradient(circle at 8% 4%, rgb(22 213 223 / 0.13), transparent 21rem),
@@ -141,8 +149,21 @@
   h4,
   h5,
   h6 {
-    font-family: 'Alexandria', sans-serif;
-    letter-spacing: -0.035em;
+    font-family: var(--font-display);
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  button,
+  a {
+    line-height: 1.35;
   }
 
   ::selection {
@@ -204,16 +225,18 @@
 
   .font-latin {
     direction: ltr;
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--font-latin);
     letter-spacing: -0.02em;
+    line-height: 1.25;
   }
 
   .eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 700;
+    line-height: 1.35;
     letter-spacing: 0.02em;
   }
 
@@ -244,9 +267,10 @@
     min-height: 1.8rem;
     border: 1px solid currentColor;
     padding-inline: 0.55rem;
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--font-latin);
     font-size: 0.62rem;
     font-weight: 800;
+    line-height: 1.25;
     letter-spacing: 0.08em;
     direction: ltr;
   }
@@ -264,9 +288,10 @@
     align-items: center;
     gap: 0.7rem;
     color: rgb(7 22 79 / 0.42);
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--font-latin);
     font-size: 0.62rem;
     font-weight: 800;
+    line-height: 1.25;
     letter-spacing: 0.08em;
     direction: ltr;
   }
@@ -386,6 +411,37 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 639px) {
+    body {
+      font-size: 0.98rem;
+      line-height: 1.82;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      gap: 0.45rem;
+    }
+
+    .eyebrow::before {
+      width: 1.2rem;
+    }
+
+    .atelier-note,
+    .atelier-measure {
+      font-size: 0.56rem;
+      letter-spacing: 0.06em;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      letter-spacing: -0.015em;
     }
   }
 

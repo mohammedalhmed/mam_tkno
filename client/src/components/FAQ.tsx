@@ -36,10 +36,10 @@ export default function FAQ() {
           <div className="lg:sticky lg:top-28 lg:self-start">
             <span className="eyebrow">أسئلة شائعة</span>
             <span className="atelier-note mt-6">CLARITY / BEFORE BUILD</span>
-            <h2 id="faq-title" className="mt-7 text-[clamp(2.7rem,5vw,5rem)] font-extrabold leading-[1.08]">
+            <h2 id="faq-title" className="mt-7 text-[clamp(2.45rem,9vw,5rem)] font-extrabold leading-[1.12] sm:text-[clamp(2.7rem,5vw,5rem)] sm:leading-[1.08]">
               قبل أن يبدأ الكود، يجب أن تكون الصورة واضحة.
             </h2>
-            <p className="mt-6 max-w-lg text-lg leading-8 text-[#0b0f14]/70">
+            <p className="mt-6 max-w-lg text-[1.05rem] leading-[1.95] text-[#0b0f14]/70 sm:text-lg sm:leading-8">
               إجابات مختصرة عن طريقة العمل، مخرجات مشروع الثيم، وما أحتاجه حتى تتحول المراجعة الأولى إلى قرار عملي.
             </p>
           </div>
@@ -49,8 +49,8 @@ export default function FAQ() {
               <div key={item.question} className="grid gap-4 py-7 md:grid-cols-[76px_1fr] md:gap-8 md:py-9">
                 <dt className="font-latin text-sm font-extrabold text-[#2145a8]/55">0{index + 1}</dt>
                 <div>
-                  <dt className="text-xl font-extrabold leading-9 md:text-2xl">{item.question}</dt>
-                  <dd className="mt-3 max-w-2xl text-base leading-8 text-[#0b0f14]/68 md:text-lg">{item.answer}</dd>
+                  <dt className="text-[1.18rem] font-extrabold leading-[1.75] sm:text-xl sm:leading-9 md:text-2xl">{item.question}</dt>
+                  <dd className="mt-3 max-w-2xl text-[1rem] leading-[1.95] text-[#0b0f14]/68 sm:text-base sm:leading-8 md:text-lg">{item.answer}</dd>
                 </div>
               </div>
             ))}
