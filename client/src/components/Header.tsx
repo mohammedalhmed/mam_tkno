@@ -59,11 +59,11 @@ export default function Header() {
       <div className={`container flex items-center justify-between gap-4 transition-[height] duration-200 ${scrolled ? 'h-[4.5rem]' : 'h-20'}`}>
         <a href="#home" className="group flex min-w-0 items-center gap-3" aria-label="العودة إلى بداية الصفحة">
           <BrandMark size="sm" eager />
-          <div className="leading-none">
-            <strong className="block text-[0.94rem] font-black leading-5 tracking-[-.025em] text-[#07164f] sm:text-lg">
+          <div className="min-w-0 leading-none">
+            <strong className="block font-['Alexandria'] text-[1.03rem] font-extrabold leading-6 tracking-[-.025em] text-[#07164f] sm:text-xl">
               محمد الحضرمي <span className="text-[#ff7a0a]">/</span>
             </strong>
-            <span className="font-latin mt-1.5 block text-[0.54rem] font-extrabold leading-4 tracking-[.12em] text-[#2145a8]/65 sm:text-[9px] sm:tracking-[.16em]">MAHMOUD / STORE · UI · SYSTEMS</span>
+            <span className="font-latin mt-1.5 block whitespace-nowrap text-[0.58rem] font-extrabold leading-4 tracking-[.1em] text-[#2145a8]/65 sm:text-[9px] sm:tracking-[.16em]">MAHMOUD / STORE · UI · SYSTEMS</span>
           </div>
         </a>
 
@@ -74,7 +74,7 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`relative rounded-full px-4 py-2 text-sm font-bold transition-colors ${
+                  className={`relative rounded-full px-4 py-2 text-[0.92rem] font-bold transition-colors ${
                   isActive ? 'bg-[#07164f] text-white' : 'text-[#07164f]/58 hover:bg-white/75 hover:text-[#07164f]'
                 }`}
               >

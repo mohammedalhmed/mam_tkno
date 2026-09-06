@@ -13,14 +13,14 @@ export default function Footer() {
       <div className="pointer-events-none absolute -bottom-32 -right-24 h-72 w-72 rounded-full bg-[#2145a8]/18 blur-3xl" />
       <div className="container relative">
         <div className="flex flex-col gap-8 border-b border-white/12 pb-10 md:flex-row md:items-end md:justify-between">
-          <a href="#home" className="group flex items-center gap-4" aria-label="العودة إلى بداية الصفحة">
+          <a href="#home" className="group flex min-w-0 items-center gap-4" aria-label="العودة إلى بداية الصفحة">
             <BrandMark size="lg" onDark />
             <div>
-              <p className="font-['Alexandria'] text-2xl font-black tracking-[-.04em]">
+              <p className="text-[1.5rem] font-black leading-8 tracking-[-.02em] sm:text-2xl">
                 محمد الحضرمي <span className="text-[#ff7a0a]">/</span>
               </p>
-              <p className="font-latin mt-1.5 text-[10px] font-extrabold tracking-[.16em] text-[#16d5df]/70">MAHMOUD / STORE · UI · SYSTEMS</p>
-              <p className="mt-3 max-w-xs text-sm font-semibold leading-7 text-white/48">استوديو صغير لواجهات متاجر سلة: رؤية واضحة، قرار موثق، وكود قابل للنمو.</p>
+              <p className="font-latin mt-1.5 text-[0.62rem] font-extrabold leading-5 tracking-[.12em] text-[#16d5df]/70 sm:text-[10px] sm:tracking-[.16em]">MAHMOUD / STORE · UI · SYSTEMS</p>
+              <p className="mt-3 max-w-xs text-[0.92rem] font-semibold leading-7 text-white/48 sm:text-sm">استوديو صغير لواجهات متاجر سلة: رؤية واضحة، قرار موثق، وكود قابل للنمو.</p>
             </div>
           </a>
 
@@ -44,14 +44,14 @@ export default function Footer() {
             <a href={contactDetails.whatsapp} target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/18 bg-white/[.03] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#16d5df] hover:text-[#16d5df]" aria-label="واتساب">
               <MessageCircle className="h-5 w-5" />
             </a>
-            <a href="#home" className="flex min-h-11 items-center gap-2 rounded-xl border border-white/18 bg-white/[.03] px-4 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 hover:border-[#16d5df] hover:text-[#16d5df]">
+            <a href="#home" className="flex min-h-11 items-center gap-2 rounded-xl border border-white/18 bg-white/[.03] px-4 text-[0.86rem] font-bold leading-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#16d5df] hover:text-[#16d5df]">
               للأعلى
               <ArrowUpLeft className="h-4 w-4" />
             </a>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 pt-7 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 pt-7 text-[0.72rem] leading-6 text-white/35 sm:flex-row sm:items-center sm:justify-between sm:text-xs">
           <p>© {currentYear} محمد الحضرمي. محتوى البورتفوليو محفوظ.</p>
           <p className="font-latin">DESIGNED FOR COMMERCE · BUILT FOR SALLA</p>
         </div>

@@ -131,10 +131,12 @@
     @apply bg-background text-foreground antialiased;
     direction: rtl;
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: clamp(0.98rem, 0.94rem + 0.18vw, 1.08rem);
     font-weight: 400;
     font-kerning: normal;
     font-synthesis: none;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1;
+    text-rendering: optimizeLegibility;
     line-height: 1.78;
     overflow-x: hidden;
     background-image:
@@ -153,6 +155,8 @@
     font-weight: 750;
     letter-spacing: -0.02em;
     line-height: 1.12;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1;
     text-wrap: balance;
   }
 
@@ -163,7 +167,7 @@
 
   button,
   a {
-    line-height: 1.35;
+    line-height: 1.4;
   }
 
   ::selection {
@@ -226,6 +230,7 @@
   .font-latin {
     direction: ltr;
     font-family: var(--font-latin);
+    font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
     line-height: 1.25;
   }
@@ -418,6 +423,11 @@
     body {
       font-size: 0.98rem;
       line-height: 1.82;
+    }
+
+    button,
+    a {
+      line-height: 1.45;
     }
 
     .eyebrow {

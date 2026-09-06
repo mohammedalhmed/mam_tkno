@@ -29,15 +29,15 @@ export default function Projects() {
         <div className="grid gap-8 border-b border-white/15 pb-10 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
           <div>
             <span className="eyebrow text-[#16d5df]">المشاريع الحيّة</span>
-            <p className="font-latin mt-5 text-xs font-bold text-white/35">SELECTED WORK / 2026</p>
+              <p className="font-latin mt-5 text-[0.68rem] font-bold leading-5 text-white/35 sm:text-xs">SELECTED WORK / 2026</p>
             <div className="mt-8 border-r-2 border-[#16d5df] pr-4">
-              <p className="font-latin text-[10px] font-extrabold tracking-[.16em] text-[#16d5df]">EVIDENCE / DECISIONS / LIVE PROOF</p>
-              <p className="mt-2 max-w-xs text-sm leading-7 text-white/52">كل دراسة حالة توضح قراراً مرئياً، لا مجرد لقطة واجهة.</p>
+              <p className="font-latin text-[0.62rem] font-extrabold leading-5 tracking-[.12em] text-[#16d5df] sm:text-[10px] sm:tracking-[.16em]">EVIDENCE / DECISIONS / LIVE PROOF</p>
+              <p className="mt-2 max-w-xs text-[0.9rem] leading-7 text-white/52 sm:text-sm">كل دراسة حالة توضح قراراً مرئياً، لا مجرد لقطة واجهة.</p>
             </div>
           </div>
           <div>
-            <h2 className="text-[clamp(2.7rem,6vw,5.7rem)] font-extrabold leading-[1.08]">واجهات تتحدث بلغة نشاطها.</h2>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/60">
+            <h2 className="text-[clamp(2.45rem,9vw,5.7rem)] font-extrabold leading-[1.12] sm:text-[clamp(2.7rem,6vw,5.7rem)] sm:leading-[1.08]">واجهات تتحدث بلغة نشاطها.</h2>
+            <p className="mt-5 max-w-2xl text-[1.05rem] leading-[1.95] text-white/60 sm:text-lg sm:leading-8">
               البيانات أدناه مستخرجة من الصفحات العامة للمشاريع، ومع كل بطاقة رابط مباشر لمراجعة التجربة الحيّة.
             </p>
           </div>
@@ -67,15 +67,15 @@ export default function Projects() {
                       <span className="h-2.5 w-2.5 rounded-full bg-[#16d5df]" />
                       <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
                     </div>
-                    <span className="font-latin text-[10px]">{project.url.replace('https://', '')}</span>
+                    <span className="font-latin text-[0.62rem] leading-5 sm:text-[10px]">{project.url.replace('https://', '')}</span>
                   </div>
                   <div className="relative aspect-[16/9] overflow-hidden">
                     <img src={project.image} alt={`معاينة تحريرية لمشروع ${project.arabicTitle}`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]" />
                     <div className="absolute inset-0 bg-[#0b0f14]/0 transition-colors duration-200 group-hover:bg-[#0b0f14]/25" />
-                    <div className={`absolute right-4 top-4 border px-3 py-2 font-latin text-[10px] font-extrabold tracking-[.12em] opacity-0 transition-all duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 ${signature.tone}`}>
+                    <div className={`absolute right-4 top-4 border px-3 py-2 font-latin text-[0.62rem] font-extrabold leading-5 tracking-[.1em] opacity-0 transition-all duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 ${signature.tone}`}>
                       {signature.label}
                     </div>
-                    <div className="absolute bottom-4 left-4 flex translate-y-3 items-center gap-2 bg-[#16d5df] px-4 py-3 text-sm font-extrabold text-[#07164f] opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                    <div className="absolute bottom-4 left-4 flex translate-y-3 items-center gap-2 bg-[#16d5df] px-4 py-3 text-[0.8rem] font-extrabold leading-5 text-[#07164f] opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                       فتح الموقع الحي
                       <ArrowUpLeft className="h-4 w-4" />
                     </div>
@@ -91,10 +91,10 @@ export default function Projects() {
                   </div>
 
                   <div className="mt-7 flex flex-wrap items-baseline gap-x-4 gap-y-2">
-                    <h3 className="text-4xl font-extrabold md:text-5xl">{project.arabicTitle}</h3>
+                    <h3 className="text-[clamp(2rem,8vw,3rem)] font-extrabold leading-[1.28] sm:text-4xl md:text-5xl">{project.arabicTitle}</h3>
                     <p className="font-latin text-sm font-bold text-[#16d5df]">{project.title}</p>
                   </div>
-                  <p className="mt-6 text-lg leading-9 text-white/68">{project.description}</p>
+                  <p className="mt-6 text-[1rem] leading-[1.95] text-white/68 sm:text-lg sm:leading-9">{project.description}</p>
 
                   <div className={`mt-7 border-r-2 pr-4 ${project.accentBorder.replace('border-', 'border-r-')}`}>
                     <p className="font-latin text-[10px] font-extrabold tracking-[.16em] text-white/40">ROLE / PROJECT SCOPE</p>
@@ -106,7 +106,7 @@ export default function Projects() {
                     <span className={`inline-flex w-fit items-center border px-2.5 py-1.5 font-latin text-[10px] font-extrabold tracking-[.14em] ${signature.tone}`}>DECISION / 0{index + 1}</span>
                     <div>
                       <p className="text-xs font-bold text-white/40">قرار الواجهة</p>
-                      <p className="mt-2 leading-7 text-white/72">{project.decision}</p>
+                      <p className="mt-2 text-[0.98rem] leading-[1.9] text-white/72 sm:text-base sm:leading-7">{project.decision}</p>
                     </div>
                   </div>
 
@@ -117,7 +117,7 @@ export default function Projects() {
 
                   <ul className="mt-7 grid gap-2.5 sm:grid-cols-2" aria-label="بيانات ظاهرة في الموقع">
                     {project.facts.map((fact) => (
-                      <li key={fact} className="flex items-center gap-2 text-sm text-white/62">
+                      <li key={fact} className="flex items-start gap-2 text-[0.88rem] leading-6 text-white/62 sm:text-sm">
                         <CheckCircle2 className="h-4 w-4 shrink-0 text-[#16d5df]" />
                         {fact}
                       </li>
@@ -126,7 +126,7 @@ export default function Projects() {
 
                   <div className="mt-7 flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="font-latin rounded-sm border border-white/15 px-2.5 py-1.5 text-[10px] font-bold text-white/55">
+                      <span key={tag} className="font-latin rounded-sm border border-white/15 px-2.5 py-1.5 text-[0.65rem] font-bold leading-5 text-white/55 sm:text-[10px]">
                         {tag}
                       </span>
                     ))}
@@ -137,7 +137,7 @@ export default function Projects() {
                       زيارة المشروع
                       <ExternalLink className="h-4 w-4" />
                     </a>
-                    <span className="flex items-center gap-2 text-xs text-white/35">
+                    <span className="flex items-start gap-2 text-[0.72rem] leading-5 text-white/35 sm:text-xs">
                       <Globe2 className="h-4 w-4" />
                       تم التحقق من الصفحة العامة · أغسطس 2026
                     </span>
