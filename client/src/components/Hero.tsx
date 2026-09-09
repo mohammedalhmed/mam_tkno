@@ -87,7 +87,7 @@ export default function Hero() {
                 <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-[#0b0f14] via-[#0b0f14]/75 to-transparent px-5 pb-5 pt-16 text-white">
                   <div>
                     <p className="text-[0.7rem] leading-5 text-white/60 sm:text-xs">من لوحة التصميم إلى الواجهة</p>
-                    <p className="mt-1 font-['Alexandria'] text-base font-bold leading-7 sm:text-lg">نظام متسق لكل نقطة بيع</p>
+                    <p className="mt-1 font-display text-base font-bold leading-7 sm:text-lg">نظام متسق لكل نقطة بيع</p>
                   </div>
                   <ArrowUpLeft className="h-6 w-6 text-[#16d5df]" />
                 </div>

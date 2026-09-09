@@ -60,7 +60,7 @@ export default function Header() {
         <a href="#home" className="group flex min-w-0 items-center gap-3" aria-label="العودة إلى بداية الصفحة">
           <BrandMark size="sm" eager />
           <div className="min-w-0 leading-none">
-            <strong className="block font-['Alexandria'] text-[1.03rem] font-extrabold leading-6 tracking-[-.025em] text-[#07164f] sm:text-xl">
+            <strong className="block font-display text-[1.03rem] font-extrabold leading-6 tracking-[-.025em] text-[#07164f] sm:text-xl">
               محمد الحضرمي <span className="text-[#ff7a0a]">/</span>
             </strong>
             <span className="font-latin mt-1.5 block whitespace-nowrap text-[0.58rem] font-extrabold leading-4 tracking-[.1em] text-[#2145a8]/65 sm:text-[9px] sm:tracking-[.16em]">MAHMOUD / STORE · UI · SYSTEMS</span>
@@ -114,7 +114,7 @@ export default function Header() {
           <button type="button" className="absolute inset-0 bg-[#07164f]/38 backdrop-blur-sm" onClick={() => setIsOpen(false)} aria-label="إغلاق القائمة" />
           <nav className="relative mx-3 overflow-hidden rounded-b-[1.75rem] border border-[#07164f]/12 bg-[#f7f3e8] shadow-[0_28px_80px_rgba(7,22,79,.25)]" aria-label="قائمة الجوال">
             <div className="border-b border-[#07164f]/10 bg-gradient-to-l from-[#16d5df]/12 via-transparent to-[#2145a8]/8 px-5 py-5">
-              <p className="font-['Alexandria'] text-lg font-extrabold text-[#07164f]">انتقل إلى القسم</p>
+              <p className="font-display text-lg font-extrabold text-[#07164f]">انتقل إلى القسم</p>
               <p className="mt-1 text-xs font-semibold text-[#07164f]/50">واجهة مختصرة، وكل قسم له هدف واضح.</p>
             </div>
             <div className="p-3">

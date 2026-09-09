@@ -52,9 +52,9 @@
   --brand-blue: #2145a8;
   --brand-cyan: #16d5df;
   --brand-orange: #ff7a0a;
-  --font-display: 'Alexandria', sans-serif;
-  --font-body: 'IBM Plex Sans Arabic', sans-serif;
-  --font-latin: 'Manrope', sans-serif;
+  --font-display: 'Noto Kufi Arabic', sans-serif;
+  --font-body: 'Noto Sans Arabic', sans-serif;
+  --font-latin: 'Plus Jakarta Sans', sans-serif;
   --background: oklch(0.965 0.015 93);
   --foreground: oklch(0.145 0.018 252);
   --card: oklch(0.99 0.008 93);
@@ -237,6 +237,13 @@
     opacity: 0.2;
     pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
   }
 
   .font-latin {
