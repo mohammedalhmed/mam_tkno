@@ -1,3 +1,4 @@
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { ArrowUpLeft, CheckCircle2, ExternalLink, Globe2 } from 'lucide-react';
 import { projects } from '@/lib/portfolio-data';
 
@@ -23,13 +24,42 @@ const projectSignatures = {
 } as const;
 
 export default function Projects() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const revealItems = Array.from(section.querySelectorAll<HTMLElement>('[data-reveal]'));
+    if (!('IntersectionObserver' in window)) {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.12 },
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="projects" className="bg-[#0b0f14] py-24 text-[#f7f3e8] md:py-32">
+    <section ref={sectionRef} id="projects" className="bg-[#0b0f14] py-24 text-[#f7f3e8] md:py-32">
       <div className="container">
         <div className="grid gap-8 border-b border-white/15 pb-10 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
-          <div>
+              <div>
             <span className="eyebrow text-[#16d5df]">المشاريع الحيّة</span>
               <p className="font-latin mt-5 text-[0.68rem] font-bold leading-5 text-white/35 sm:text-xs">SELECTED WORK / 2026</p>
+              <p className="atelier-stamp mt-4 text-[#16d5df]">MAHMOUD / STORE · UI · SYSTEMS</p>
             <div className="mt-8 border-r-2 border-[#16d5df] pr-4">
               <p className="font-latin text-[0.62rem] font-extrabold leading-5 tracking-[.12em] text-[#16d5df] sm:text-[10px] sm:tracking-[.16em]">EVIDENCE / DECISIONS / LIVE PROOF</p>
               <p className="mt-2 max-w-xs text-[0.9rem] leading-7 text-white/52 sm:text-sm">كل دراسة حالة توضح قراراً مرئياً، لا مجرد لقطة واجهة.</p>
@@ -52,13 +82,15 @@ export default function Projects() {
             return (
               <article
                 key={project.id}
-                className={`grid gap-10 py-16 lg:grid-cols-[minmax(0,1.2fr)_minmax(340px,.8fr)] lg:items-center lg:gap-14 ${isFeatured ? 'lg:py-28' : isCompact ? 'lg:py-20' : 'lg:py-24'}`}
+                data-reveal
+                style={{ '--reveal-delay': `${Math.min(index * 90, 180)}ms` } as CSSProperties}
+                className={`reveal-card grid gap-10 py-16 lg:grid-cols-[minmax(0,1.2fr)_minmax(340px,.8fr)] lg:items-center lg:gap-14 ${isFeatured ? 'lg:py-28' : isCompact ? 'lg:py-20' : 'lg:py-24'}`}
               >
                 <a
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`case-window group block overflow-hidden ${signature.frame} ${index % 2 === 1 ? 'lg:order-2 lg:-translate-y-4' : ''} ${isFeatured ? 'lg:scale-[1.02]' : ''}`}
+                  className={`case-window group block overflow-hidden transition-[transform,box-shadow] duration-500 hover:-translate-y-1 focus-visible:-translate-y-1 ${signature.frame} ${index % 2 === 1 ? 'lg:order-2 lg:-translate-y-4' : ''} ${isFeatured ? 'lg:scale-[1.02]' : ''}`}
                   aria-label={`فتح موقع ${project.arabicTitle}`}
                 >
                   <div className="flex h-11 items-center justify-between border-b border-white/10 px-4 text-white/45">
@@ -72,7 +104,7 @@ export default function Projects() {
                   <div className="relative aspect-[16/9] overflow-hidden">
                     <img src={project.image} alt={`معاينة تحريرية لمشروع ${project.arabicTitle}`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]" />
                     <div className="absolute inset-0 bg-[#0b0f14]/0 transition-colors duration-200 group-hover:bg-[#0b0f14]/25" />
-                    <div className={`absolute right-4 top-4 border px-3 py-2 font-latin text-[0.62rem] font-extrabold leading-5 tracking-[.1em] opacity-0 transition-all duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 ${signature.tone}`}>
+                    <div className={`absolute right-4 top-4 border px-3 py-2 font-latin text-[0.62rem] font-extrabold leading-5 tracking-[.1em] opacity-100 transition-all duration-200 group-hover:-translate-y-0.5 group-focus-visible:-translate-y-0.5 ${signature.tone}`}>
                       {signature.label}
                     </div>
                     <div className="absolute bottom-4 left-4 flex translate-y-3 items-center gap-2 bg-[#16d5df] px-4 py-3 text-[0.8rem] font-extrabold leading-5 text-[#07164f] opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
