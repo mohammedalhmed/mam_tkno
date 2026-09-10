@@ -7,12 +7,14 @@ import Services from '@/components/Services';
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import InteractiveAtmosphere from '@/components/InteractiveAtmosphere';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f7f3e8] text-[#0b0f14]">
+    <div className="relative min-h-screen bg-[#f7f3e8] text-[#0b0f14]">
+      <InteractiveAtmosphere />
       <Header />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <Projects />
         <Skills />
