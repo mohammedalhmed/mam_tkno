@@ -52,9 +52,9 @@
   --brand-blue: #2145a8;
   --brand-cyan: #16d5df;
   --brand-orange: #ff7a0a;
-  --font-display: 'Noto Kufi Arabic', sans-serif;
-  --font-body: 'Noto Sans Arabic', sans-serif;
-  --font-latin: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'IBM Plex Sans Arabic', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', sans-serif;
+  --font-latin: 'DM Sans', sans-serif;
   --background: oklch(0.965 0.015 93);
   --foreground: oklch(0.145 0.018 252);
   --card: oklch(0.99 0.008 93);
@@ -131,14 +131,14 @@
     @apply bg-background text-foreground antialiased;
     direction: rtl;
     font-family: var(--font-body);
-    font-size: clamp(0.98rem, 0.94rem + 0.18vw, 1.08rem);
+    font-size: clamp(0.98rem, 0.94rem + 0.18vw, 1.06rem);
     font-weight: 400;
     font-kerning: normal;
     font-synthesis: none;
     font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'calt' 1;
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
-    line-height: 1.78;
+    line-height: 1.72;
     overflow-x: hidden;
     background-image:
       radial-gradient(circle at 8% 4%, rgb(22 213 223 / 0.13), transparent 21rem),
@@ -153,9 +153,9 @@
   h5,
   h6 {
     font-family: var(--font-display);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.12;
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    line-height: 1.16;
     text-rendering: optimizeLegibility;
     font-feature-settings: 'kern' 1, 'liga' 1;
     text-wrap: balance;
@@ -845,5 +845,114 @@ main > section:hover::after {
   .tilt-card[data-touch-active='true'] {
     transform: none !important;
     filter: none;
+  }
+}
+
+
+/* Typography and section rhythm refresh: calmer display type, clearer content blocks. */
+main > section {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+main > section::after {
+  content: '';
+  position: absolute;
+  inset-inline: 1.1rem;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(7 22 79 / 0.18), transparent);
+  pointer-events: none;
+}
+
+main > section:nth-child(even)::after {
+  background: linear-gradient(90deg, transparent, rgb(22 213 223 / 0.42), transparent);
+}
+
+h1[class*='font-extrabold'],
+h2[class*='font-extrabold'],
+h3[class*='font-extrabold'] {
+  font-weight: 700 !important;
+}
+
+h1 {
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  max-width: 14ch;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  border-radius: 999px;
+  border: 1px solid rgb(7 22 79 / 0.22);
+  background: rgb(255 255 255 / 0.58);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 24px rgb(7 22 79 / 0.06);
+}
+
+.atelier-note {
+  letter-spacing: 0.14em;
+  opacity: 0.74;
+}
+
+#services article {
+  border-radius: 1.4rem 0.35rem 1.4rem 0.35rem;
+  border-width: 1px;
+  box-shadow: 0 16px 32px rgb(7 22 79 / 0.09);
+  transition: transform 260ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 260ms ease, border-color 260ms ease;
+}
+
+#services article:hover,
+#services article:focus-within {
+  transform: translateY(-5px);
+  border-color: var(--brand-cyan);
+  box-shadow: 0 22px 42px rgb(7 22 79 / 0.15), 0 0 0 4px rgb(22 213 223 / 0.12);
+}
+
+#faq dl {
+  border-radius: 1.5rem 0.35rem 1.5rem 0.35rem;
+  background: rgb(255 255 255 / 0.42);
+  padding-inline: clamp(1rem, 3vw, 2rem);
+  box-shadow: 0 18px 44px rgb(7 22 79 / 0.06);
+}
+
+#faq dl > div {
+  transition: background-color 220ms ease, padding-inline 220ms ease;
+}
+
+#faq dl > div:hover,
+#faq dl > div:focus-within {
+  background: rgb(22 213 223 / 0.08);
+  padding-inline: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  h1 {
+    letter-spacing: -0.018em;
+  }
+
+  h2 {
+    max-width: 16ch;
+  }
+
+  main > section::after {
+    inset-inline: 0.75rem;
+  }
+
+  #services article,
+  #faq dl {
+    border-radius: 1rem 0.3rem 1rem 0.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #services article,
+  #faq dl > div {
+    transition: none;
   }
 }
