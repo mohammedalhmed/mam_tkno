@@ -18,38 +18,37 @@ export default function Hero() {
             <div className="mb-7 flex flex-wrap items-center gap-4">
               <span className="lime-ticket">
                 <span className="h-2 w-2 rounded-full bg-[#0b0f14]" />
-                متاح لمشاريع مختارة
+                MAM_TKNO / DIGITAL AGENCY
               </span>
-              <span className="text-sm font-semibold text-[#0b0f14]/55">مصمم ومطوّر واجهات متاجر</span>
+              <span className="text-sm font-semibold text-[#0b0f14]/55">وكالة تقنية وتصميمية للمنتجات الرقمية</span>
             </div>
 
             <h1 className="max-w-4xl text-[clamp(2.85rem,11vw,7.2rem)] font-extrabold leading-[1.06] text-[#0b0f14] sm:text-[clamp(3.4rem,8vw,7.2rem)] sm:leading-[1.03]">
-              متجرك ليس
+              فكرتك تستحق
                 <span className="relative mx-1.5 inline-block sm:mx-2">
-                قالباً
+                نظاماً
                 <span className="absolute inset-x-0 bottom-[7%] -z-10 h-[22%] -rotate-1 bg-[#16d5df]" />
               </span>
               <br />
-              نبني له نظاماً.
+              جاهزاً للنمو.
             </h1>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <span className="atelier-note">DECISION / 01</span>
-              <span className="text-[0.74rem] font-bold leading-6 text-[#0b0f14]/48 sm:text-xs">الهدف التجاري أولاً، ثم الشكل الذي يخدمه</span>
+              <span className="atelier-note">MISSION / 01</span>
+              <span className="text-[0.74rem] font-bold leading-6 text-[#0b0f14]/48 sm:text-xs">استراتيجية واضحة، تصميم حاد، وتنفيذ قابل للتوسع</span>
             </div>
 
             <p className="mt-7 max-w-2xl text-[1.05rem] leading-[1.95] text-[#0b0f14]/68 sm:text-lg sm:leading-8 md:text-xl md:leading-9">
-              أنا محمد الحضرمي، أحوّل احتياج المتجر التجاري إلى واجهة سلة سريعة وواضحة، من التصميم في Figma إلى الكود
-              القابل للاستيراد عبر GitHub.
+              نحوّل التحديات التجارية إلى تجارب رقمية واضحة وقابلة للقياس؛ من استراتيجية المنتج والهوية، إلى التصميم والتطوير والأداء.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a href="#projects" className="ink-button">
-                شاهد المشاريع الحيّة
+                استكشف أعمالنا
                 <ArrowDownLeft className="h-5 w-5" />
               </a>
               <a href="#services" className="ghost-button">
-                كيف أبني الثيم؟
+                اطلب عرضًا مخصصًا
                 <PanelsTopLeft className="h-5 w-5" />
               </a>
             </div>

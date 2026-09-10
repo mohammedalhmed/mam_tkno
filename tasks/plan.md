@@ -1,0 +1,74 @@
+# MAM_Tkno Development Plan
+
+## Planning Basis
+
+تعتمد الخطة على `CAPABILITY-MAP.md` و`SPEC-MAM_Tkno.md`. التنفيذ gated: لا تبدأ مرحلة الكود الفعلي قبل اعتماد المواصفة والإجابة عن أسئلة البيانات والخدمات الخادمية.
+
+## Release Strategy
+
+### Release 0: Foundation and proof of direction
+
+الهدف هو تثبيت هوية MAM_Tkno، الرسائل، لوحة الألوان، الخطوط، بنية التنقل، ونموذج بيانات الخدمات والمشاريع. معيار الخروج هو أن يستطيع المستخدم مراجعة الاتجاه البصري والتنقل قبل إدخال جميع المحتويات.
+
+### Release 1: Agency information architecture
+
+تُبنى الصفحة الرئيسية وبنية قسمي الخدمات، صفحات/أقسام الخدمات التسعة، وCTAs موحدة لبدء الطلب. تُبقى المحتويات غير المؤكدة كحقول واضحة تحتاج بيانات المستخدم، ولا تُعرض أرقام أو شهادات غير موثقة.
+
+### Release 2: Portfolio and case studies
+
+يُضاف نموذج معرض الأعمال، مرشحات الفئات، وسياق دراسة الحالة. كل مشروع حقيقي يمر عبر قالب المشكلة، الحل، المخرجات، والنتيجة، مع مشاركة الرابط وطلب مشروع مشابه. إذا لم تتوفر وسائط حقيقية، تُستخدم حالة empty state أو محتوى تجريبي موسوم بوضوح لا كعمل منشور.
+
+### Release 3: Lead and quotation experience
+
+يُبنى نموذج متعدد الخطوات مع منطق شرطي، التحقق، حفظ التقدم داخل الجلسة، وملخص قبل الإرسال. في المشروع الثابت يكون الإرسال النهائي mailto أو نجاحًا محليًا معلنًا فقط إلى أن يوافق المستخدم على full-stack أو تكامل خارجي.
+
+### Release 4: SEO, accessibility, performance, and launch gate
+
+تُراجع metadata وSchema والروابط، ثم تُنفذ اختبارات الوصولية والاستجابة والأداء، وتُغلق العيوب قبل checkpoint.
+
+## Technical Sequence
+
+| Order | Module | Main outputs | Depends on | Verification gate |
+|---|---|---|---|---|
+| 1 | brand-foundation | tokens, logo treatment, typography, tone | — | visual review + check |
+| 2 | information-architecture | routes, sticky navigation, mega-menu/mobile menu | brand-foundation | keyboard + responsive review |
+| 3 | service-catalog | department layouts and 9 service entries | information-architecture | content and CTA audit |
+| 4 | portfolio-case-studies | content model, cards, case-study routes | service-catalog | share + similar-project flow |
+| 5 | lead-quotation-flow | multi-step conditional form | service-catalog, portfolio-case-studies | validation and success/error paths |
+| 6 | seo-discoverability | metadata, schema, sitemap, robots | information-architecture, service-catalog | source inspection + validator |
+| 7 | multilingual-rtl | locale-ready content structure | information-architecture, brand-foundation | Arabic RTL review |
+| 8 | accessibility-performance | audit fixes and launch evidence | all modules | check, build, viewport matrix |
+
+## Risks and Mitigations
+
+| Risk | Impact | Mitigation |
+|---|---|---|
+| عدم توفر محتوى حقيقي لكل خدمة أو مشروع | محتوى عام أو غير موثوق | إنشاء content inventory ومطالبة المستخدم بالمواد قبل الإطلاق |
+| نموذج الطلب يحتاج حفظًا أو إرسالًا خادميًا | تجربة وهمية أو فقدان الطلب | بوابة قرار مبكرة للترقية full-stack أو تكامل بريد موثق |
+| كثرة الخدمات في صفحة واحدة | صعوبة الفهم والتنقل | أقسام واضحة، mega-menu، وroutes تدريجية عند الحاجة |
+| الوسائط الكبيرة تؤثر على الأداء | LCP/CLS أسوأ | أصول storage، lazy loading، أحجام متجاوبة، وposter للڤيديو |
+| تغيير الهوية يتعارض مع checkpoint الحالي | إعادة عمل أو فقدان سياق | checkpoints بعد كل release ومراجعة قبل الانتقال |
+
+## Parallel Work
+
+يمكن تنفيذ إعداد محتوى الخدمات، تجهيز content model، ومراجعة metadata بالتوازي بعد اعتماد `brand-foundation` و`information-architecture`. لا يجوز تنفيذ `lead-quotation-flow` قبل تثبيت معرفات الخدمات، ولا تنفيذ Schema النهائي قبل تثبيت الاسم والبيانات الرسمية.
+
+## Verification Checkpoints
+
+بعد كل release تُشغّل:
+
+```bash
+pnpm run check
+pnpm run build
+```
+
+ثم تُجرى معاينة على 390×844 و768×1024 و1280×720، مع اختبار لوحة المفاتيح، الفوكس، menu drawer، form validation، والروابط. يُحفظ checkpoint فقط عندما لا توجد أخطاء TypeScript أو build، وتُوثق أي عناصر معلقة في قائمة المهام.
+
+## Approval Gates
+
+1. اعتماد خريطة القدرات.
+2. اعتماد الاسم والهوية والبيانات الرسمية.
+3. اعتماد قرار static-only مقابل full-stack.
+4. اعتماد بنية الصفحات ونطاق الإصدار الأول.
+5. اعتماد قائمة الأعمال والوسائط وحقوق استخدامها.
+6. اعتماد نتيجة الاختبارات قبل النشر.

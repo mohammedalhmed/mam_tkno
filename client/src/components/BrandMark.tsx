@@ -21,7 +21,7 @@ export default function BrandMark({ size = 'md', className = '', eager = false, 
       />
       <img
         src="/manus-storage/mahmoud-brand-logo_4a650db3.jpg"
-        alt="شعار محمد الحضرمي لمصمم ومطور واجهات وثيمات متاجر سلة"
+        alt="شعار MAM_Tkno لوكالة تقنية وتصميمية للمنتجات الرقمية"
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
         className="relative h-full w-full rounded-full bg-white object-cover p-[2px] shadow-[0_8px_24px_rgba(7,22,79,.22)] transition-transform duration-200 group-hover/mark:-rotate-2"

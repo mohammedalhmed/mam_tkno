@@ -30,12 +30,12 @@ export default function Footer() {
               <span className="h-px w-12 bg-[#16d5df]/60" />
             </div>
             <h2 className="max-w-xl font-display text-[2.4rem] font-extrabold leading-[1.18] tracking-[-.06em] text-white sm:text-[3.5rem] lg:text-[4.25rem]">
-              مشروعك القادم
+              منتجك القادم
               <span className="block text-[#16d5df]">يبدأ من قرار واضح.</span>
             </h2>
-            <p className="mt-6 max-w-md text-[0.98rem] font-semibold leading-8 text-white/58 sm:text-lg">إذا كنت تبحث عن واجهة متجر لها شخصية، ونظام يمكن تطويره بثقة، فلنتحدث عن الخطوة الأولى.</p>
+            <p className="mt-6 max-w-md text-[0.98rem] font-semibold leading-8 text-white/58 sm:text-lg">إذا كنت تبحث عن شريك يحوّل فكرتك إلى تجربة رقمية واضحة ونظام يمكن تطويره بثقة، فلنتحدث عن الخطوة الأولى.</p>
             <a href="#contact" className="group mt-8 inline-flex min-h-14 items-center gap-3 rounded-2xl bg-[#ff7a0a] px-6 text-base font-extrabold text-[#07164f] shadow-[6px_6px_0_#16d5df] transition-all duration-200 hover:-translate-y-1 hover:bg-[#16d5df] hover:shadow-[6px_6px_0_#ff7a0a] active:translate-y-0 active:shadow-[3px_3px_0_#16d5df]">
-              ناقش مشروعك الآن
+              ابدأ مشروعك الآن
               <ArrowUpLeft className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" />
             </a>
           </div>
@@ -76,13 +76,13 @@ export default function Footer() {
           <a href="#home" className="group flex items-center gap-3" aria-label="العودة إلى بداية الصفحة">
             <BrandMark size="sm" onDark />
             <div>
-              <p className="font-display text-lg font-extrabold leading-5 text-white">محمد الحضرمي <span className="text-[#ff7a0a]">/</span></p>
-              <p className="font-latin mt-1 text-[9px] font-bold tracking-[.14em] text-[#16d5df]/65">STORE · UI · SYSTEMS</p>
+              <p className="font-display text-lg font-extrabold leading-5 text-white">MAM_Tkno <span className="text-[#ff7a0a]">/</span></p>
+              <p className="font-latin mt-1 text-[9px] font-bold tracking-[.14em] text-[#16d5df]/65">STRATEGY · DESIGN · BUILD</p>
             </div>
           </a>
           <div className="flex flex-col gap-1 text-[0.7rem] font-semibold leading-6 text-white/35 sm:items-end">
-            <p>© {currentYear} محمد الحضرمي. محتوى البورتفوليو محفوظ.</p>
-            <p className="font-latin tracking-[.13em]">DESIGNED FOR COMMERCE · BUILT FOR SALLA</p>
+            <p>© {currentYear} MAM_Tkno. جميع الحقوق محفوظة.</p>
+            <p className="font-latin tracking-[.13em]">DESIGNED FOR IMPACT · BUILT TO SCALE</p>
           </div>
           <a href="#home" className="group flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/[.04] text-white/70 transition-all duration-200 hover:-translate-y-1 hover:border-[#16d5df] hover:text-[#16d5df] sm:shrink-0" aria-label="العودة إلى الأعلى"><ArrowUpLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" /></a>
         </div>

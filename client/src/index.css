@@ -1,6 +1,6 @@
 /**
- * Product Systems Atelier
- * ورق عاجي + حبر فحمي + Cyan Signal مستمد من الشعار، بطباعة عربية تحريرية وحركة تقنية هادفة.
+ * MAM_Tkno Agency System
+ * حبر داكن + Cyan Signal + Lime Grid، بطابع تقني واضح وحركة هادفة.
  */
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -48,15 +48,18 @@
 
 :root {
   --radius: 0.75rem;
-  --brand-navy: #07164f;
-  --brand-blue: #2145a8;
+  --brand-navy: #0b0f14;
+  --brand-blue: #5d5cff;
   --brand-cyan: #16d5df;
   --brand-orange: #ff7a0a;
+  --brand-lime: #d8ff3e;
+  --brand-purple: #8b5cf6;
+  --brand-grid: rgba(11, 15, 20, .08);
   --font-display: 'IBM Plex Sans Arabic', sans-serif;
   --font-body: 'IBM Plex Sans Arabic', sans-serif;
   --font-latin: 'DM Sans', sans-serif;
   --background: oklch(0.965 0.015 93);
-  --foreground: oklch(0.145 0.018 252);
+  --foreground: oklch(0.13 0.018 252);
   --card: oklch(0.99 0.008 93);
   --card-foreground: oklch(0.145 0.018 252);
   --popover: oklch(0.99 0.008 93);
