@@ -1,4 +1,4 @@
-import { useEffect, useRef, type CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
 import { ArrowUpLeft, CheckCircle2, ExternalLink, Globe2 } from 'lucide-react';
 import { projects } from '@/lib/portfolio-data';
 
@@ -25,6 +25,30 @@ const projectSignatures = {
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const tiltFrame = useRef<number | null>(null);
+
+  const handleTiltMove = (event: ReactPointerEvent<HTMLAnchorElement>) => {
+    if (event.pointerType === 'touch' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const card = event.currentTarget;
+    const bounds = card.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+    if (tiltFrame.current) window.cancelAnimationFrame(tiltFrame.current);
+    tiltFrame.current = window.requestAnimationFrame(() => {
+      card.style.setProperty('--tilt-x', `${(0.5 - y) * 5}deg`);
+      card.style.setProperty('--tilt-y', `${(x - 0.5) * 6}deg`);
+      card.style.setProperty('--glow-x', `${x * 100}%`);
+      card.style.setProperty('--glow-y', `${y * 100}%`);
+    });
+  };
+
+  const resetTilt = (event: { currentTarget: HTMLAnchorElement }) => {
+    const card = event.currentTarget;
+    card.style.setProperty('--tilt-x', '0deg');
+    card.style.setProperty('--tilt-y', '0deg');
+    card.style.setProperty('--glow-x', '50%');
+    card.style.setProperty('--glow-y', '50%');
+  };
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -90,7 +114,10 @@ export default function Projects() {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`case-window group block overflow-hidden transition-[transform,box-shadow] duration-500 hover:-translate-y-1 focus-visible:-translate-y-1 ${signature.frame} ${index % 2 === 1 ? 'lg:order-2 lg:-translate-y-4' : ''} ${isFeatured ? 'lg:scale-[1.02]' : ''}`}
+                  className={`case-window tilt-card group block overflow-hidden transition-[box-shadow] duration-500 focus-visible:-translate-y-1 ${signature.frame} ${index % 2 === 1 ? 'lg:order-2 lg:-translate-y-4' : ''} ${isFeatured ? 'lg:scale-[1.02]' : ''}`}
+                  onPointerMove={handleTiltMove}
+                  onPointerLeave={resetTilt}
+                  onFocus={resetTilt}
                   aria-label={`فتح موقع ${project.arabicTitle}`}
                 >
                   <div className="flex h-11 items-center justify-between border-b border-white/10 px-4 text-white/45">
@@ -107,7 +134,11 @@ export default function Projects() {
                     <div className={`absolute right-4 top-4 border px-3 py-2 font-latin text-[0.62rem] font-extrabold leading-5 tracking-[.1em] opacity-100 transition-all duration-200 group-hover:-translate-y-0.5 group-focus-visible:-translate-y-0.5 ${signature.tone}`}>
                       {signature.label}
                     </div>
-                    <div className="absolute bottom-4 left-4 flex translate-y-3 items-center gap-2 bg-[#16d5df] px-4 py-3 text-[0.8rem] font-extrabold leading-5 text-[#07164f] opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                    <div className="project-detail-pop absolute bottom-4 left-4 max-w-[78%] translate-y-3 border border-white/25 bg-[#0b0f14]/88 px-3 py-2 text-[0.7rem] leading-5 text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                      <span className="block font-latin text-[9px] font-extrabold tracking-[.12em] text-[#16d5df]">DECISION / SCOPE</span>
+                      <span className="mt-0.5 block font-semibold">{project.role}</span>
+                    </div>
+                    <div className="absolute bottom-4 right-4 flex translate-y-3 items-center gap-2 bg-[#16d5df] px-4 py-3 text-[0.8rem] font-extrabold leading-5 text-[#07164f] opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                       فتح الموقع الحي
                       <ArrowUpLeft className="h-4 w-4" />
                     </div>
