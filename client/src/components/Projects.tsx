@@ -26,6 +26,7 @@ const projectSignatures = {
 export default function Projects() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const tiltFrame = useRef<number | null>(null);
+  const touchTimer = useRef<number | null>(null);
 
   const handleTiltMove = (event: ReactPointerEvent<HTMLAnchorElement>) => {
     if (event.pointerType === 'touch' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -40,6 +41,16 @@ export default function Projects() {
       card.style.setProperty('--glow-x', `${x * 100}%`);
       card.style.setProperty('--glow-y', `${y * 100}%`);
     });
+  };
+
+  const handleTouchStart = (event: ReactPointerEvent<HTMLAnchorElement>) => {
+    if (event.pointerType !== 'touch') return;
+    const card = event.currentTarget;
+    card.dataset.touchActive = 'true';
+    if (touchTimer.current) window.clearTimeout(touchTimer.current);
+    touchTimer.current = window.setTimeout(() => {
+      delete card.dataset.touchActive;
+    }, 1600);
   };
 
   const resetTilt = (event: { currentTarget: HTMLAnchorElement }) => {
@@ -116,6 +127,7 @@ export default function Projects() {
                   rel="noopener noreferrer"
                   className={`case-window tilt-card group block overflow-hidden transition-[box-shadow] duration-500 focus-visible:-translate-y-1 ${signature.frame} ${index % 2 === 1 ? 'lg:order-2 lg:-translate-y-4' : ''} ${isFeatured ? 'lg:scale-[1.02]' : ''}`}
                   onPointerMove={handleTiltMove}
+                  onPointerDown={handleTouchStart}
                   onPointerLeave={resetTilt}
                   onFocus={resetTilt}
                   aria-label={`فتح موقع ${project.arabicTitle}`}
