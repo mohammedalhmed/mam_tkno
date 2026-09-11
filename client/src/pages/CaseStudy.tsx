@@ -1,4 +1,5 @@
 import { ArrowRight, CheckCircle2, ExternalLink, MoveUpLeft } from 'lucide-react';
+import { useEffect } from 'react';
 import { Link, useParams } from 'wouter';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,6 +11,33 @@ export default function CaseStudyPage() {
   const { projectId } = useParams<{ projectId: string }>();
   const study = getCaseStudy(projectId);
   const project = projects.find((item) => item.id === projectId);
+
+  useEffect(() => {
+    if (!study || !project || typeof document === 'undefined') return;
+    const canonicalUrl = `${window.location.origin}/case-studies/${study.projectId}`;
+    document.title = `دراسة حالة ${study.arabicTitle} | MAM_Tkno`;
+    const description = `دراسة حالة ${study.arabicTitle}: ${study.summary}`;
+    let descriptionMeta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (!descriptionMeta) {
+      descriptionMeta = document.createElement('meta');
+      descriptionMeta.name = 'description';
+      document.head.appendChild(descriptionMeta);
+    }
+    descriptionMeta.content = description;
+    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+    const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]');
+    if (ogTitle) ogTitle.content = `دراسة حالة ${study.arabicTitle} | MAM_Tkno`;
+    const ogDescription = document.querySelector<HTMLMetaElement>('meta[property="og:description"]');
+    if (ogDescription) ogDescription.content = description;
+    const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+    if (ogUrl) ogUrl.content = canonicalUrl;
+  }, [project, study]);
 
   if (!study || !project) {
     return (
@@ -49,7 +77,7 @@ export default function CaseStudyPage() {
           <div className="overflow-hidden rounded-[1.5rem_.4rem_1.5rem_.4rem] border border-[#16d5df]/50 bg-[#111922] shadow-[0_24px_90px_rgba(22,213,223,.12)]">
             {study.media.map((media) => (
               <figure key={media.label}>
-                {media.type === 'image' && media.src ? <img src={media.src} alt={media.alt} className="aspect-[16/10] h-full w-full object-cover" /> : <div className="flex aspect-[16/10] items-center justify-center bg-white/[.04] text-white/45">الوسيط غير متوفر حاليًا</div>}
+                {media.type === 'image' && media.src ? <img src={media.src} alt={media.alt} loading="lazy" decoding="async" className="aspect-[16/10] h-full w-full object-cover" /> : <div className="flex aspect-[16/10] items-center justify-center bg-white/[.04] text-white/45">الوسيط غير متوفر حاليًا</div>}
                 <figcaption className="border-t border-white/10 px-5 py-3 text-xs text-white/45">{media.label}</figcaption>
               </figure>
             ))}
