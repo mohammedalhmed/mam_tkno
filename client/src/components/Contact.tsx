@@ -20,9 +20,9 @@ export default function Contact() {
           <div>
             <span className="eyebrow text-[#16d5df]">التواصل</span>
             <span className="atelier-note mt-6 text-[#16d5df]">CHANNELS / VERIFIED</span>
-            <h2 className="mt-7 max-w-4xl text-[clamp(2.65rem,10vw,6.4rem)] font-extrabold leading-[1.1] sm:text-[clamp(3rem,7vw,6.4rem)] sm:leading-[1.05]">عندك متجر يحتاج واجهة أقوى؟</h2>
+            <h2 className="mt-7 max-w-4xl text-[clamp(2.65rem,10vw,6.4rem)] font-extrabold leading-[1.1] sm:text-[clamp(3rem,7vw,6.4rem)] sm:leading-[1.05]">عندك فكرة تحتاج تقنية وتصميمًا أوضح؟</h2>
             <p className="mt-7 max-w-2xl text-[1.05rem] leading-[1.95] text-white/62 sm:text-lg sm:leading-8 md:text-xl md:leading-9">
-              أرسل رابط المتجر وما الذي تريد تحسينه. سأبدأ بمراجعة مختصرة تحدد الأولويات قبل الحديث عن التفاصيل.
+              أرسل فكرة المشروع أو رابط المنتج وما الذي تريد تحسينه. سأبدأ بمراجعة مختصرة تحدد الأولويات قبل الحديث عن التفاصيل.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -61,7 +61,7 @@ export default function Contact() {
 
             <div className="mb-6 mt-12 flex items-end justify-between gap-4">
               <div>
-                <p className="text-xs font-bold text-[#16d5df]">الحسابات الشخصية</p>
+                <p className="text-xs font-bold text-[#16d5df]">حسابات MAM_Tkno</p>
                 <h3 className="mt-2 text-2xl font-extrabold">تابع العمل والمحتوى</h3>
               </div>
               <span className="font-latin text-xs font-bold text-white/28">04 LINKS</span>

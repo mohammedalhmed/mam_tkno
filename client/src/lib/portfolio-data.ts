@@ -110,10 +110,14 @@ export const socialLinks = [
 ] as const;
 
 export const contactDetails = {
+  businessName: 'MAM_Tkno',
+  businessDescriptor: 'MAM_Tkno التقنية',
+  businessType: 'مستقل',
   email: 'mohammedalhmedi738@gmail.com',
   phone: '+967738738317',
   phoneDisplay: '+967 738 738 317',
-  whatsapp: 'https://wa.me/qr/HWR572FKMTPEJ1',
-  location: 'اليمن',
+  whatsapp: 'https://wa.me/967738738317',
+  location: 'اليمن، صنعاء',
+  serviceArea: 'العالم العربي',
   map: 'https://maps.app.goo.gl/U9U6FzbXQcTAzpar9',
 };

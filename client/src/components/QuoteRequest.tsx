@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ChangeEvent } from 'react';
-import { AlertCircle, ArrowLeft, ArrowRight, CheckCircle2, ClipboardList, Mail, Send } from 'lucide-react';
+import { AlertCircle, ArrowLeft, ArrowRight, CheckCircle2, ClipboardList, Mail, MessageCircle, Send } from 'lucide-react';
 import { allServices, serviceCategories, type ServiceCategoryKey } from '@/lib/services';
 import { contactDetails } from '@/lib/portfolio-data';
 
@@ -95,6 +95,7 @@ export default function QuoteRequest() {
   const [step, setStep] = useState<QuoteStep>(1);
   const [errors, setErrors] = useState<QuoteErrors>({});
   const [mailtoHref, setMailtoHref] = useState('');
+  const [whatsappHref, setWhatsappHref] = useState('');
 
   const selectedService = useMemo(() => allServices.find((service) => service.id === form.serviceId), [form.serviceId]);
   const selectedCategory = form.category === 'technology' || form.category === 'design' ? serviceCategories[form.category] : null;
@@ -115,12 +116,14 @@ export default function QuoteRequest() {
     setForm((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: undefined }));
     setMailtoHref('');
+    setWhatsappHref('');
   };
 
   const updateCategory = (category: ProjectCategory) => {
     setForm((current) => ({ ...current, category, serviceId: '' }));
     setErrors({});
     setMailtoHref('');
+    setWhatsappHref('');
   };
 
   const validateStep = (currentStep: QuoteStep): QuoteErrors => {
@@ -188,6 +191,21 @@ export default function QuoteRequest() {
     ].join('\n');
 
     setMailtoHref(`mailto:${contactDetails.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    const whatsappMessage = [
+      'مرحبًا MAM_Tkno، أريد طلب عرض سعر.',
+      '',
+      `الاسم أو الجهة: ${form.name.trim()}`,
+      `البريد الإلكتروني: ${form.email.trim()}`,
+      `الهاتف: ${form.phone.trim() || 'لم يُذكر'}`,
+      `المجال: ${categoryLabel(form.category)}`,
+      `الخدمة: ${selectedService?.title || 'أحتاج توجيهًا لاختيار الخدمة'}`,
+      `الرابط: ${form.storeUrl.trim() || 'لم يُذكر'}`,
+      `المدة المتوقعة: ${form.timeline || 'لم تُحدد'}`,
+      '',
+      'تفاصيل الطلب:',
+      form.details.trim(),
+    ].join('\n');
+    setWhatsappHref(`${contactDetails.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`);
     setErrors({});
   };
 
@@ -396,6 +414,7 @@ export default function QuoteRequest() {
           <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#16d5df]" />
           <p>
             تم تجهيز الطلب بنجاح. <a href={mailtoHref} className="font-bold text-[#16d5df] underline decoration-[#16d5df]/50 underline-offset-4"><Mail className="mb-0.5 mr-1 inline h-4 w-4" />افتح برنامج البريد لإرساله</a>.
+            {whatsappHref && <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="mr-3 inline-flex items-center gap-1 font-bold text-[#c8ff2b] underline decoration-[#c8ff2b]/50 underline-offset-4"><MessageCircle className="h-4 w-4" />أرسل عبر واتساب</a>}
           </p>
         </div>
       )}
