@@ -9,8 +9,14 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import InteractiveAtmosphere from '@/components/InteractiveAtmosphere';
 import SectionRevealObserver from '@/components/SectionRevealObserver';
+import { useEffect } from 'react';
+import { HOME_METADATA, setJsonLd, setPageMetadata } from '@/lib/seo';
 
 export default function Home() {
+  useEffect(() => {
+    setPageMetadata(HOME_METADATA);
+    setJsonLd('case-study-jsonld', null);
+  }, []);
   return (
     <div className="relative min-h-screen bg-[#f7f3e8] text-[#0b0f14]">
       <InteractiveAtmosphere />

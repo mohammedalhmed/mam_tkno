@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import CaseStudyActions from '@/components/CaseStudyActions';
 import { getCaseStudy } from '@/lib/case-studies';
 import { projects } from '@/lib/portfolio-data';
+import { setJsonLd, setPageMetadata, SITE_URL } from '@/lib/seo';
 
 export default function CaseStudyPage() {
   const { projectId } = useParams<{ projectId: string }>();
@@ -14,29 +15,48 @@ export default function CaseStudyPage() {
 
   useEffect(() => {
     if (!study || !project || typeof document === 'undefined') return;
-    const canonicalUrl = `${window.location.origin}/case-studies/${study.projectId}`;
-    document.title = `دراسة حالة ${study.arabicTitle} | MAM_Tkno`;
+
+    const title = `دراسة حالة ${study.arabicTitle} | MAM_Tkno`;
     const description = `دراسة حالة ${study.arabicTitle}: ${study.summary}`;
-    let descriptionMeta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (!descriptionMeta) {
-      descriptionMeta = document.createElement('meta');
-      descriptionMeta.name = 'description';
-      document.head.appendChild(descriptionMeta);
-    }
-    descriptionMeta.content = description;
-    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.rel = 'canonical';
-      document.head.appendChild(canonical);
-    }
-    canonical.href = canonicalUrl;
-    const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]');
-    if (ogTitle) ogTitle.content = `دراسة حالة ${study.arabicTitle} | MAM_Tkno`;
-    const ogDescription = document.querySelector<HTMLMetaElement>('meta[property="og:description"]');
-    if (ogDescription) ogDescription.content = description;
-    const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
-    if (ogUrl) ogUrl.content = canonicalUrl;
+    const canonicalPath = `/case-studies/${study.projectId}`;
+    const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+    setPageMetadata({
+      title,
+      description,
+      canonicalPath,
+      ogType: 'article',
+      image: study.media.find((media) => media.src)?.src,
+    });
+    setJsonLd('case-study-jsonld', {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'CreativeWork',
+          '@id': `${canonicalUrl}#case-study`,
+          name: study.arabicTitle,
+          headline: title,
+          description,
+          url: canonicalUrl,
+          image: study.media.find((media) => media.src)?.src,
+          genre: study.category,
+          about: study.problem,
+          abstract: study.solution,
+          keywords: [...study.services, ...study.deliverables].join(', '),
+          creator: { '@type': 'Organization', name: 'MAM_Tkno', url: SITE_URL },
+          isPartOf: { '@type': 'WebSite', name: 'MAM_Tkno', url: SITE_URL },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'البداية', item: `${SITE_URL}/` },
+            { '@type': 'ListItem', position: 2, name: 'المشاريع', item: `${SITE_URL}/#projects` },
+            { '@type': 'ListItem', position: 3, name: study.arabicTitle, item: canonicalUrl },
+          ],
+        },
+      ],
+    });
+
+    return () => setJsonLd('case-study-jsonld', null);
   }, [project, study]);
 
   if (!study || !project) {
