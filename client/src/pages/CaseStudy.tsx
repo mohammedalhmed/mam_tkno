@@ -95,9 +95,9 @@ export default function CaseStudyPage() {
 
         <section className="container grid gap-10 py-16 md:py-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,.8fr)] lg:items-start">
           <div className="overflow-hidden rounded-[1.5rem_.4rem_1.5rem_.4rem] border border-[#16d5df]/50 bg-[#111922] shadow-[0_24px_90px_rgba(22,213,223,.12)]">
-            {study.media.map((media) => (
+            {study.media.map((media, index) => (
               <figure key={media.label}>
-                {media.type === 'image' && media.src ? <img src={media.src} alt={media.alt} loading="lazy" decoding="async" className="aspect-[16/10] h-full w-full object-cover" /> : <div className="flex aspect-[16/10] items-center justify-center bg-white/[.04] text-white/45">الوسيط غير متوفر حاليًا</div>}
+                {media.type === 'image' && media.src ? <img src={media.src} alt={media.alt} loading={index === 0 ? 'eager' : 'lazy'} decoding="async" fetchPriority={index === 0 ? 'high' : 'auto'} sizes="(min-width: 1024px) 58vw, 100vw" className="aspect-[16/10] h-full w-full object-cover" /> : <div className="flex aspect-[16/10] items-center justify-center bg-white/[.04] text-white/45">الوسيط غير متوفر حاليًا</div>}
                 <figcaption className="border-t border-white/10 px-5 py-3 text-xs text-white/45">{media.label}</figcaption>
               </figure>
             ))}
