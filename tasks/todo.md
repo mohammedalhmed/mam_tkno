@@ -106,3 +106,32 @@
   - Verify: `pnpm run check && pnpm run build`.
   - Files: repository state and checkpoint metadata
 
+
+## Continuation after Release 3
+
+- [ ] Task: تحويل بيانات المشاريع الحالية إلى content model موحّد لدراسات الحالة.
+  - Acceptance: يدعم المشكلة والحل والمخرجات والنتيجة الموثقة والخدمات والوسائط وحالة غياب المحتوى دون اختلاق بيانات.
+  - Verify: `pnpm run check` + render لمشروع بوسيط واحد ومتعدد.
+  - Files: `client/src/lib/portfolio-data.ts`, `client/src/lib/case-studies.ts`
+
+- [ ] Task: إضافة route وقالب دراسة حالة قابل لإعادة الاستخدام.
+  - Acceptance: يفتح كل مشروع عبر رابط داخلي، يعرض المشكلة والحل والمخرجات والوسائط والخدمات، ويوفر عودة واضحة.
+  - Verify: فتح routes على 390/768/1280 وفحص عدم وجود تمرير أفقي.
+  - Files: `client/src/App.tsx`, `client/src/pages/CaseStudy.tsx`, `client/src/components/`
+
+- [ ] Task: تنفيذ مشاركة المشروع وطلب مشروع مشابه.
+  - Acceptance: تستخدم المشاركة Web Share API عند توفره مع fallback للرابط، ويفتح طلب المشروع النموذج بسياق المشروع والخدمة.
+  - Verify: اختبار مسار المشاركة ومسار طلب مشروع مشابه في المتصفح.
+  - Files: `client/src/components/CaseStudyActions.tsx`, `client/src/components/QuoteRequest.tsx`, `client/src/hooks/`
+
+- [ ] Task: توثيق حالة release وتحديث content inventory.
+  - Acceptance: توضح حالة كل مشروع والحقول الناقصة والبيانات التي تحتاج اعتمادًا.
+  - Verify: مراجعة `docs/content-inventory.md` وتشغيل `pnpm run check && pnpm run build`.
+  - Files: `docs/content-inventory.md`, `tasks/todo.md`
+
+- [ ] Task: حفظ checkpoint بعد اكتمال دراسات الحالة.
+  - Acceptance: checkpoint برسالة واضحة بعد نجاح الفحص والبناء والمعاينة responsive.
+  - Verify: `pnpm run check`, `pnpm run build`, معاينة 390/768/1280.
+  - Files: repository state and checkpoint metadata
+
+> ملاحظة تنفيذية: مهام الأساس والتنقل والخدمات وتدفق طلب السعر من البنود السابقة لها checkpoints منشورة، وسيتم تدقيق تعليمها في قائمة الإصدار النهائية بعد اكتمال دراسات الحالة.

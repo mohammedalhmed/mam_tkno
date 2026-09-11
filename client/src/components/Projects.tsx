@@ -208,8 +208,12 @@ export default function Projects() {
                   </div>
 
                   <div className="mt-8 flex flex-wrap items-center gap-4">
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="lime-button !min-h-12 text-sm">
-                      زيارة المشروع
+                    <a href={`/case-studies/${project.id}`} className="lime-button !min-h-12 text-sm">
+                      دراسة الحالة
+                      <ArrowUpLeft className="h-4 w-4" />
+                    </a>
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/15 px-4 text-sm font-extrabold text-white/72 transition-colors hover:border-[#16d5df] hover:text-[#16d5df] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df]">
+                      زيارة الموقع
                       <ExternalLink className="h-4 w-4" />
                     </a>
                     <span className="flex items-start gap-2 text-[0.72rem] leading-5 text-white/35 sm:text-xs">

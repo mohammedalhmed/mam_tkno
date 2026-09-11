@@ -6,11 +6,13 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import ServiceCategory from "./pages/ServiceCategory";
+import CaseStudyPage from "./pages/CaseStudy";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/case-studies/:projectId" component={CaseStudyPage} />
       <Route path="/services/technology">
         <ServiceCategory category="technology" />
       </Route>

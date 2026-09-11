@@ -47,12 +47,27 @@ const steps = [
 
 function getSavedForm(): QuoteForm {
   if (typeof window === 'undefined') return initialForm;
+  let savedForm = initialForm;
   try {
     const saved = window.sessionStorage.getItem(STORAGE_KEY);
-    return saved ? { ...initialForm, ...JSON.parse(saved) } : initialForm;
+    savedForm = saved ? { ...initialForm, ...JSON.parse(saved) } : initialForm;
   } catch {
-    return initialForm;
+    savedForm = initialForm;
   }
+
+  const params = new URLSearchParams(window.location.search);
+  const requestedService = params.get('service') || '';
+  const projectId = params.get('project') || '';
+  const serviceCategory = allServices.find((service) => service.id === requestedService)
+    ? serviceCategories.technology.services.some((service) => service.id === requestedService) ? 'technology' : 'design'
+    : savedForm.category;
+
+  return {
+    ...savedForm,
+    category: serviceCategory as ProjectCategory,
+    serviceId: requestedService && allServices.some((service) => service.id === requestedService) ? requestedService : savedForm.serviceId,
+    details: projectId && !savedForm.details ? `أرغب في مشروع مشابه لدراسة الحالة: ${projectId}. ` : savedForm.details,
+  };
 }
 
 function categoryLabel(category: ProjectCategory) {
