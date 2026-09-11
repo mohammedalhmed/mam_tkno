@@ -20,12 +20,14 @@ export default function CaseStudyPage() {
     const description = `دراسة حالة ${study.arabicTitle}: ${study.summary}`;
     const canonicalPath = `/case-studies/${study.projectId}`;
     const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+    const imageSource = study.media.find((media) => media.src)?.src;
+    const imageUrl = imageSource ? new URL(imageSource, SITE_URL).toString() : undefined;
     setPageMetadata({
       title,
       description,
       canonicalPath,
       ogType: 'article',
-      image: study.media.find((media) => media.src)?.src,
+      image: imageUrl,
     });
     setJsonLd('case-study-jsonld', {
       '@context': 'https://schema.org',
@@ -37,7 +39,7 @@ export default function CaseStudyPage() {
           headline: title,
           description,
           url: canonicalUrl,
-          image: study.media.find((media) => media.src)?.src,
+          image: imageUrl,
           genre: study.category,
           about: study.problem,
           abstract: study.solution,

@@ -1,16 +1,19 @@
 import { Toaster } from "@/components/ui/sonner";
+import { lazy, Suspense } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-import ServiceCategory from "./pages/ServiceCategory";
-import CaseStudyPage from "./pages/CaseStudy";
+const ServiceCategory = lazy(() => import("./pages/ServiceCategory"));
+const CaseStudyPage = lazy(() => import("./pages/CaseStudy"));
 
 function Router() {
+  const fallback = <div className="min-h-screen bg-[#f1f5f5]" aria-label="جارٍ تحميل الصفحة" />;
   return (
-    <Switch>
+    <Suspense fallback={fallback}>
+      <Switch>
       <Route path="/" component={Home} />
       <Route path="/case-studies/:projectId" component={CaseStudyPage} />
       <Route path="/services/technology">
@@ -21,7 +24,8 @@ function Router() {
       </Route>
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
-    </Switch>
+      </Switch>
+    </Suspense>
   );
 }
 
