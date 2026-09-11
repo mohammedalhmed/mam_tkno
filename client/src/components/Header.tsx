@@ -163,7 +163,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <a href="/#contact" className="group hidden min-h-11 items-center gap-2 rounded-xl bg-[#ff7a0a] px-4 text-[0.8rem] font-extrabold text-[#07164f] shadow-[4px_4px_0_#07164f] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#16d5df] active:translate-y-0 active:shadow-[2px_2px_0_#07164f] sm:inline-flex">
+            <a href="/#contact" className="group hidden min-h-11 items-center gap-2 rounded-xl bg-[#16d5df] px-4 text-[0.8rem] font-extrabold text-[#07164f] shadow-[4px_4px_0_#07164f] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#73eef3] active:translate-y-0 active:shadow-[2px_2px_0_#07164f] sm:inline-flex">
               اطلب عرضًا
               <ArrowUpLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
             </a>
@@ -216,7 +216,7 @@ export default function Header() {
                   <MoveUpLeft className="h-4 w-4 opacity-45 transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" />
                 </a>
               ))}
-              <a href="/#contact" className="group mt-3 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#ff7a0a] font-extrabold text-[#07164f] shadow-[4px_4px_0_#07164f] transition-all duration-200 hover:bg-[#16d5df] active:translate-y-0.5 active:shadow-[2px_2px_0_#07164f]" onClick={closeMobileMenu}>
+              <a href="/#contact" className="group mt-3 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#16d5df] font-extrabold text-[#07164f] shadow-[4px_4px_0_#07164f] transition-all duration-200 hover:bg-[#73eef3] active:translate-y-0.5 active:shadow-[2px_2px_0_#07164f]" onClick={closeMobileMenu}>
                 ابدأ مشروعك
                 <ArrowUpLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>

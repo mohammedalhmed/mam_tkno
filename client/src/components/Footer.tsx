@@ -34,7 +34,7 @@ export default function Footer() {
               <span className="block text-[#16d5df]">يبدأ من قرار واضح.</span>
             </h2>
             <p className="mt-6 max-w-md text-[0.98rem] font-semibold leading-8 text-white/58 sm:text-lg">إذا كنت تبحث عن شريك يحوّل فكرتك إلى تجربة رقمية واضحة ونظام يمكن تطويره بثقة، فلنتحدث عن الخطوة الأولى.</p>
-            <a href="#contact" className="group mt-8 inline-flex min-h-14 items-center gap-3 rounded-2xl bg-[#ff7a0a] px-6 text-base font-extrabold text-[#07164f] shadow-[6px_6px_0_#16d5df] transition-all duration-200 hover:-translate-y-1 hover:bg-[#16d5df] hover:shadow-[6px_6px_0_#ff7a0a] active:translate-y-0 active:shadow-[3px_3px_0_#16d5df]">
+            <a href="#contact" className="group mt-8 inline-flex min-h-14 items-center gap-3 rounded-2xl bg-[#16d5df] px-6 text-base font-extrabold text-[#07164f] shadow-[6px_6px_0_#0b0f14] transition-all duration-200 hover:-translate-y-1 hover:bg-[#73eef3] hover:shadow-[8px_8px_0_#0b0f14] active:translate-y-0 active:shadow-[3px_3px_0_#0b0f14]">
               ابدأ مشروعك الآن
               <ArrowUpLeft className="h-5 w-5 transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" />
             </a>

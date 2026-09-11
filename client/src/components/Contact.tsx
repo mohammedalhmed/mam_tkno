@@ -22,7 +22,7 @@ export default function Contact() {
             <span className="atelier-note mt-6 text-[#16d5df]">CHANNELS / VERIFIED</span>
             <h2 className="mt-7 max-w-4xl text-[clamp(2.65rem,10vw,6.4rem)] font-extrabold leading-[1.1] sm:text-[clamp(3rem,7vw,6.4rem)] sm:leading-[1.05]">عندك فكرة تحتاج تقنية وتصميمًا أوضح؟</h2>
             <p className="mt-7 max-w-2xl text-[1.05rem] leading-[1.95] text-white/62 sm:text-lg sm:leading-8 md:text-xl md:leading-9">
-              أرسل فكرة المشروع أو رابط المنتج وما الذي تريد تحسينه. سأبدأ بمراجعة مختصرة تحدد الأولويات قبل الحديث عن التفاصيل.
+              أرسل فكرة المشروع أو رابط المنتج وما الذي تريد تحسينه. نبدأ بمراجعة مختصرة تحدد الأولويات قبل الحديث عن التفاصيل.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -92,7 +92,7 @@ export default function Contact() {
               })}
             </div>
             <p className="mt-5 text-xs leading-6 text-white/35">
-              تم التحقق من الروابط العامة الظاهرة في الملف الشخصي وقت تحديث الموقع.
+              تم التحقق من الحسابات العامة الرسمية لـ MAM_Tkno وقت تحديث الموقع.
             </p>
           </div>
         </div>

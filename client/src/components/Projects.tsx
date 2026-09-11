@@ -94,7 +94,7 @@ export default function Projects() {
               <div>
             <span className="eyebrow text-[#16d5df]">المشاريع الحيّة</span>
               <p className="font-latin mt-5 text-[0.68rem] font-bold leading-5 text-white/35 sm:text-xs">SELECTED WORK / 2026</p>
-              <p className="atelier-stamp mt-4 text-[#16d5df]">MAHMOUD / STORE · UI · SYSTEMS</p>
+              <p className="atelier-stamp mt-4 text-[#16d5df]">MAM_TKNO / CODE · DESIGN · SYSTEMS</p>
             <div className="mt-8 border-r-2 border-[#16d5df] pr-4">
               <p className="font-latin text-[0.62rem] font-extrabold leading-5 tracking-[.12em] text-[#16d5df] sm:text-[10px] sm:tracking-[.16em]">EVIDENCE / DECISIONS / LIVE PROOF</p>
               <p className="mt-2 max-w-xs text-[0.9rem] leading-7 text-white/52 sm:text-sm">كل دراسة حالة توضح قراراً مرئياً، لا مجرد لقطة واجهة.</p>
@@ -103,7 +103,7 @@ export default function Projects() {
           <div>
             <h2 className="text-[clamp(2.45rem,9vw,5.7rem)] font-extrabold leading-[1.12] sm:text-[clamp(2.7rem,6vw,5.7rem)] sm:leading-[1.08]">واجهات تتحدث بلغة نشاطها.</h2>
             <p className="mt-5 max-w-2xl text-[1.05rem] leading-[1.95] text-white/60 sm:text-lg sm:leading-8">
-              البيانات أدناه مستخرجة من الصفحات العامة للمشاريع، ومع كل بطاقة رابط مباشر لمراجعة التجربة الحيّة.
+              تجمع البيانات بين ما يظهر في الصفحات العامة ونطاق العمل المعتمد من MAM_Tkno، ومع كل بطاقة رابط مباشر لمراجعة التجربة الحيّة.
             </p>
           </div>
         </div>
@@ -218,7 +218,7 @@ export default function Projects() {
                     </a>
                     <span className="flex items-start gap-2 text-[0.72rem] leading-5 text-white/35 sm:text-xs">
                       <Globe2 className="h-4 w-4" />
-                      تم التحقق من الصفحة العامة · أغسطس 2026
+                      آخر مراجعة للمصدر · سبتمبر 2026
                     </span>
                   </div>
                 </div>

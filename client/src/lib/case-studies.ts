@@ -17,7 +17,8 @@ export type CaseStudy = {
   solution: string;
   deliverables: string[];
   outcome: string;
-  outcomeStatus: 'documented' | 'pending-approval';
+  outcomeStatus: 'descriptive' | 'pending-approval';
+  evidenceNote: string;
   services: string[];
   media: CaseStudyMedia[];
   similarServiceId: string;
@@ -30,8 +31,9 @@ const caseStudyDetails: Record<Project['id'], Omit<CaseStudy, 'projectId' | 'tit
     solution: 'إعادة ترتيب نقاط الدخول، وتوضيح العلاقة بين الفئات والعلامات والمحتوى، مع تحسين الواجهة والأداء والظهور في البحث ضمن نطاق العمل المتاح.',
     deliverables: ['تحسين تجربة المستخدم', 'تنظيم الفئات والعلامات', 'مراجعة الأداء والظهور في البحث'],
     outcome: 'المخرجات المتاحة للمراجعة هي واجهة المتجر العامة، بنية الفئات، والمحتوى الموسمي الظاهر في الموقع. لا نعرض أرقام أداء غير منشورة.',
-    outcomeStatus: 'documented',
-    services: ['تحسين واجهات المتاجر', 'SEO والأداء'],
+    outcomeStatus: 'descriptive',
+    evidenceNote: 'تستند تفاصيل الفئات والعلامات إلى الموقع العام، بينما يعبّر نطاق التحسينات وقرارات الواجهة عن سجل المشروع المعتمد لدى MAM_Tkno.',
+    services: ['تطوير المواقع والمتاجر', 'UI/UX والتدقيق'],
     similarServiceId: 'web-commerce',
   },
   nerfona: {
@@ -40,8 +42,9 @@ const caseStudyDetails: Record<Project['id'], Omit<CaseStudy, 'projectId' | 'tit
     solution: 'ربط تصفح المنتجات بالمحتوى التثقيفي والأسئلة الشائعة، مع بناء واجهات واضحة ودعم البنية التقنية والظهور في محركات البحث.',
     deliverables: ['تطوير الواجهات', 'تنظيم المحتوى والأسئلة الشائعة', 'تحسين SEO والبنية التقنية'],
     outcome: 'المخرجات القابلة للمراجعة هي تجربة المتجر العامة، صفحات المحتوى، والأسئلة الشائعة المنشورة. النتائج الرقمية التفصيلية تحتاج اعتمادًا منفصلًا.',
-    outcomeStatus: 'documented',
-    services: ['تطوير المواقع', 'SEO وحلول الذكاء الاصطناعي'],
+    outcomeStatus: 'descriptive',
+    evidenceNote: 'تستند فئات المنتجات والمحتوى التثقيفي إلى الموقع العام، بينما يعبّر نطاق تطوير الواجهات وSEO عن سجل المشروع المعتمد لدى MAM_Tkno.',
+    services: ['تطوير المواقع والمتاجر', 'UI/UX والتدقيق'],
     similarServiceId: 'web-commerce',
   },
   altaj: {
@@ -50,8 +53,9 @@ const caseStudyDetails: Record<Project['id'], Omit<CaseStudy, 'projectId' | 'tit
     solution: 'تجميع الخدمات في بنية قابلة للمسح، إبراز معرض الأعمال، وجعل طلب عرض السعر نقطة نهاية واضحة لمسار المستخدم.',
     deliverables: ['تصميم واجهة الخدمات', 'تنظيم المحتوى ومسارات التواصل', 'تجهيز تجربة متجاوبة لطلب السعر'],
     outcome: 'المراجعة الحالية تغطي صفحات الموقع العامة ومسارات الخدمات وطلب العرض. لا تُضاف تحويلات أو أرقام عملاء قبل توفير مصدر موثق.',
-    outcomeStatus: 'documented',
-    services: ['تصميم مواقع الخدمات', 'توليد العملاء المحتملين'],
+    outcomeStatus: 'descriptive',
+    evidenceNote: 'تستند قائمة الخدمات ومسارات طلب السعر إلى الموقع العام، بينما يعبّر نطاق التصميم وتنظيم المحتوى عن سجل المشروع المعتمد لدى MAM_Tkno.',
+    services: ['تطوير المواقع والمتاجر', 'UI/UX والتدقيق'],
     similarServiceId: 'web-commerce',
   },
 };
