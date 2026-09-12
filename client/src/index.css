@@ -48,16 +48,19 @@
 
 :root {
   --radius: 0.75rem;
-  --brand-navy: #0b0f14;
-  --brand-blue: #5d5cff;
+  --brand-ink: #07101c;
+  --brand-navy: #102357;
+  --brand-blue: #2145a8;
   --brand-cyan: #16d5df;
-  --brand-orange: #ff7a0a;
-  --brand-lime: #d8ff3e;
+  --brand-orange: #f57419;
+  --brand-paper: #f4f0e6;
+  --brand-surface: #fbf8f0;
+  --brand-line: rgb(7 16 28 / 0.14);
   --brand-purple: #8b5cf6;
-  --brand-grid: rgba(11, 15, 20, .08);
-  --font-display: 'IBM Plex Sans Arabic', sans-serif;
+  --brand-grid: rgb(7 16 28 / 0.065);
+  --font-display: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
   --font-body: 'IBM Plex Sans Arabic', sans-serif;
-  --font-latin: 'DM Sans', sans-serif;
+  --font-latin: 'Manrope', sans-serif;
   --background: oklch(0.965 0.015 93);
   --foreground: oklch(0.13 0.018 252);
   --card: oklch(0.99 0.008 93);
@@ -143,10 +146,10 @@
     text-rendering: optimizeLegibility;
     line-height: 1.72;
     overflow-x: hidden;
+    background-color: var(--brand-paper);
     background-image:
-      radial-gradient(circle at 8% 4%, rgb(22 213 223 / 0.13), transparent 21rem),
-      radial-gradient(circle at 98% 30%, rgb(255 122 10 / 0.07), transparent 25rem),
-      radial-gradient(circle at 72% 64%, rgb(33 69 168 / 0.045), transparent 28rem);
+      radial-gradient(circle at 8% 4%, rgb(22 213 223 / 0.1), transparent 24rem),
+      radial-gradient(circle at 94% 38%, rgb(245 116 25 / 0.05), transparent 26rem);
   }
 
   h1,
@@ -962,6 +965,7 @@ h2 {
 
 
 /* Bold technical visual direction: electric accents, dark surfaces, and system-like framing. */
+@media (max-width: 0px) {
 :root {
   --tech-ink: #050914;
   --tech-panel: #0a1224;
@@ -1174,5 +1178,179 @@ main > section::before {
   #services article,
   #projects .case-window {
     box-shadow: none !important;
+  }
+}
+}
+
+@layer components {
+  .site-shell {
+    min-height: 100vh;
+    background: var(--brand-paper);
+    color: var(--brand-ink);
+  }
+
+  .section-pad {
+    position: relative;
+    padding-block: clamp(5rem, 9vw, 8.5rem);
+  }
+
+  .section-rule-soft {
+    border-top: 1px solid var(--brand-line);
+  }
+
+  .surface-paper {
+    background: var(--brand-paper);
+    color: var(--brand-ink);
+  }
+
+  .surface-warm {
+    background: var(--brand-surface);
+    color: var(--brand-ink);
+  }
+
+  .surface-ink {
+    background: var(--brand-ink);
+    color: #f8f5ec;
+  }
+
+  .editorial-card {
+    border: 1px solid var(--brand-line);
+    border-radius: 1.25rem;
+    background: rgb(251 248 240 / 0.9);
+    box-shadow: 0 1.25rem 3.5rem rgb(7 16 28 / 0.08);
+  }
+
+  .ui-chip {
+    display: inline-flex;
+    min-height: 2rem;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid var(--brand-line);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.58);
+    padding-inline: 0.75rem;
+    color: rgb(7 16 28 / 0.72);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .section-number {
+    color: var(--brand-blue);
+    font-family: var(--font-latin);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    direction: ltr;
+  }
+
+  .editorial-heading {
+    color: var(--brand-ink);
+    font-size: clamp(2.35rem, 6.5vw, 5.5rem);
+    font-weight: 750;
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+  }
+
+  .editorial-copy {
+    max-width: 42rem;
+    color: rgb(7 16 28 / 0.68);
+    font-size: clamp(1rem, 0.94rem + 0.22vw, 1.16rem);
+    line-height: 1.9;
+  }
+
+  .focus-card {
+    transition:
+      transform 200ms cubic-bezier(0.23, 1, 0.32, 1),
+      border-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
+      box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .focus-card:hover,
+  .focus-card:focus-within {
+    transform: translateY(-4px);
+    border-color: rgb(22 213 223 / 0.75);
+    box-shadow: 0 1.5rem 4rem rgb(7 16 28 / 0.12);
+  }
+
+  .mobile-cta-dock {
+    position: fixed;
+    inset-inline: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 45;
+    display: none;
+    min-height: 3.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    border: 1px solid rgb(7 16 28 / 0.16);
+    border-radius: 1rem;
+    background: rgb(7 16 28 / 0.94);
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 1rem 3rem rgb(7 16 28 / 0.26);
+    backdrop-filter: blur(16px);
+  }
+
+  @media (max-width: 767px) {
+    .mobile-cta-dock {
+      display: inline-flex;
+    }
+
+    .site-shell {
+      padding-bottom: 5rem;
+    }
+  }
+}
+
+/* UX refinement layer: clear focus, controlled motion, and low-friction touch behavior. */
+section[id] {
+  scroll-margin-top: 7.5rem;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.tilt-card:focus-visible {
+  outline-color: var(--brand-cyan);
+}
+
+.interactive-atmosphere__orb--orange {
+  background: rgb(33 69 168 / 0.08);
+}
+
+.interactive-atmosphere__cursor::after {
+  border-color: rgb(33 69 168 / 0.16);
+}
+
+#faq details[open] > summary {
+  background: rgb(22 213 223 / 0.07);
+}
+
+#faq details > summary {
+  transition: background-color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #faq details > summary:hover {
+    background: rgb(7 16 28 / 0.035);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  button,
+  a,
+  summary {
+    touch-action: manipulation;
+  }
+
+  main > section:hover::after {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #faq details > summary {
+    transition: none;
   }
 }

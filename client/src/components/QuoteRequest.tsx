@@ -77,7 +77,7 @@ function categoryLabel(category: ProjectCategory) {
 }
 
 function fieldClass(hasError = false) {
-  return `mt-2 w-full rounded-xl border bg-white/[.04] px-4 py-3 text-[0.95rem] text-white outline-none transition-all placeholder:text-white/28 focus:border-[#16d5df] focus:bg-white/[.08] focus:ring-2 focus:ring-[#16d5df]/15 ${hasError ? 'border-red-300/80' : 'border-white/15'}`;
+  return `mt-2 w-full rounded-none border bg-white/[.045] px-4 py-3 text-[0.95rem] text-white outline-none transition-colors placeholder:text-white/28 focus:border-[#16d5df] focus:bg-white/[.085] focus:ring-2 focus:ring-[#16d5df]/20 ${hasError ? 'border-red-300/90' : 'border-white/16'}`;
 }
 
 function ErrorMessage({ id, message }: { id: string; message?: string }) {
@@ -216,14 +216,14 @@ export default function QuoteRequest() {
       : 'هل لديك رابط حالي نراجعه؟';
 
   return (
-    <div className="rounded-[1.25rem_.3rem_1.25rem_.3rem] border border-white/15 bg-white/[.035] p-5 sm:p-6">
-      <div className="mb-7 flex items-start justify-between gap-4">
+    <div className="border border-white/16 bg-[#0b1420]/82 p-5 shadow-[12px_12px_0_rgba(22,213,223,.12)] backdrop-blur-sm sm:p-7">
+      <div className="mb-7 flex items-start justify-between gap-4 border-b border-white/12 pb-5">
         <div>
-          <p className="atelier-stamp mb-3 text-[#16d5df]">MAM_TKNO / QUOTE FLOW</p>
-          <p className="text-xs font-bold text-[#16d5df]">طلب عرض سعر</p>
-          <h3 className="mt-2 text-2xl font-extrabold">خلّنا نحدد نقطة البداية</h3>
+          <p className="font-latin text-[10px] font-extrabold tracking-[.15em] text-[#16d5df]">MAM_TKNO / PROJECT BRIEF</p>
+          <h3 className="mt-3 font-display text-2xl font-bold leading-tight text-white">لنحدّد نقطة البداية.</h3>
+          <p className="mt-2 text-xs leading-6 text-white/45">احفظ ما كتبته داخل هذه الجلسة، ثم أرسل الملخص بالطريقة التي تناسبك.</p>
         </div>
-        <span className="font-latin text-xs font-bold text-white/28">0{step} / 04</span>
+        <span className="font-latin shrink-0 border border-[#16d5df]/30 px-2.5 py-1.5 text-xs font-bold text-[#16d5df]">0{step} / 04</span>
       </div>
 
       <ol className="mb-8 grid grid-cols-4 gap-1" aria-label="مراحل طلب عرض السعر">
@@ -232,7 +232,7 @@ export default function QuoteRequest() {
           const isComplete = item.number < step;
           return (
             <li key={item.number} className="min-w-0">
-              <div className={`h-1.5 rounded-full transition-colors ${isComplete || isActive ? 'bg-[#16d5df]' : 'bg-white/12'}`} />
+              <div className={`h-1.5 transition-colors ${isComplete || isActive ? 'bg-[#16d5df]' : 'bg-white/12'}`} />
               <p className={`mt-2 truncate text-[0.68rem] font-bold sm:text-xs ${isActive ? 'text-[#16d5df]' : 'text-white/42'}`}>{item.label}</p>
               <span className="hidden text-[0.65rem] text-white/25 sm:block">{item.note}</span>
             </li>
@@ -255,7 +255,7 @@ export default function QuoteRequest() {
                   key={option.key}
                   type="button"
                   onClick={() => updateCategory(option.key)}
-                  className={`group min-h-32 rounded-xl border p-4 text-right transition-all duration-200 hover:-translate-y-1 hover:bg-white/[.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df] ${selected ? 'border-[#16d5df] bg-[#16d5df]/10 shadow-[0_0_0_1px_rgba(22,213,223,.25),0_0_30px_rgba(22,213,223,.12)]' : 'border-white/15 bg-white/[.025]'}`}
+                  className={`group min-h-32 border p-4 text-right transition-all duration-200 hover:-translate-y-1 hover:bg-white/[.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df] ${selected ? 'border-[#16d5df] bg-[#16d5df]/10 shadow-[0_0_0_1px_rgba(22,213,223,.25),0_0_30px_rgba(22,213,223,.12)]' : 'border-white/15 bg-white/[.025]'}`}
                   aria-pressed={selected}
                 >
                   <span className="block text-[0.65rem] font-bold" style={{ color: option.accent }}>{option.code}</span>
@@ -281,7 +281,7 @@ export default function QuoteRequest() {
           </div>
 
           {form.serviceId && (
-            <div className="rounded-xl border border-[#16d5df]/25 bg-[#16d5df]/[.06] p-4 text-sm leading-7 text-white/65">
+            <div className="border-r-2 border-[#16d5df] bg-[#16d5df]/[.06] p-4 text-sm leading-7 text-white/65">
               <p className="font-bold text-[#16d5df]">{selectedService?.title}</p>
               <p className="mt-1">{selectedService?.summary}</p>
             </div>
@@ -375,11 +375,11 @@ export default function QuoteRequest() {
 
       {step === 4 && (
         <div>
-          <div className="flex items-start gap-3 rounded-xl border border-[#c8ff2b]/25 bg-[#c8ff2b]/[.05] p-4 text-sm leading-7 text-white/72">
-            <ClipboardList className="mt-1 h-5 w-5 shrink-0 text-[#c8ff2b]" />
-            <p>راجع التفاصيل قبل تجهيز الرسالة. لن تُرسل البيانات إلى خادم؛ سيُجهّز بريد إلكتروني يمكنك مراجعته وإرساله بنفسك.</p>
+          <div className="flex items-start gap-3 border-r-2 border-[#16d5df] bg-[#16d5df]/[.06] p-4 text-sm leading-7 text-white/72">
+            <ClipboardList className="mt-1 h-5 w-5 shrink-0 text-[#16d5df]" />
+            <p>راجع التفاصيل قبل تجهيز الرسالة. لن تُرسل البيانات إلى خادم؛ ستجهز لك رسالة منظمة لتراجعها ثم ترسلها عبر واتساب أو البريد.</p>
           </div>
-          <dl className="mt-5 divide-y divide-white/10 rounded-xl border border-white/12 bg-white/[.025]">
+          <dl className="mt-5 divide-y divide-white/10 border border-white/12 bg-white/[.025]">
             <div className="grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="text-xs font-bold text-white/38">المجال</dt><dd className="text-sm font-bold text-white/82">{categoryLabel(form.category)}</dd></div>
             <div className="grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="text-xs font-bold text-white/38">الخدمة</dt><dd className="text-sm font-bold text-white/82">{selectedService?.title || 'توجيه لاختيار الخدمة'}</dd></div>
             <div className="grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="text-xs font-bold text-white/38">البداية</dt><dd className="text-sm text-white/72">{form.timeline || 'لم تُحدد'} · {form.budget || 'نطاق غير محدد'}</dd></div>
@@ -391,7 +391,7 @@ export default function QuoteRequest() {
 
       <div className="mt-7 flex flex-col-reverse gap-3 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
         {step > 1 ? (
-          <button type="button" onClick={goBack} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/18 px-5 text-sm font-bold text-white/72 transition-colors hover:border-white/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df]">
+          <button type="button" onClick={goBack} className="inline-flex min-h-12 items-center justify-center gap-2 border border-white/18 px-5 text-sm font-bold text-white/72 transition-colors hover:border-white/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df]">
             <ArrowRight className="h-4 w-4" /> العودة
           </button>
         ) : <span className="hidden sm:block" />}
@@ -410,7 +410,7 @@ export default function QuoteRequest() {
       </div>
 
       {mailtoHref && (
-        <div className="mt-5 flex items-start gap-3 rounded-xl border border-[#16d5df]/45 bg-[#16d5df]/10 p-4 text-sm leading-7 text-white/80" role="status" aria-live="polite">
+        <div className="mt-5 flex items-start gap-3 border border-[#16d5df]/45 bg-[#16d5df]/10 p-4 text-sm leading-7 text-white/80" role="status" aria-live="polite">
           <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#16d5df]" />
           <p>
             تم تجهيز الطلب بنجاح. <a href={mailtoHref} className="font-bold text-[#16d5df] underline decoration-[#16d5df]/50 underline-offset-4"><Mail className="mb-0.5 mr-1 inline h-4 w-4" />افتح برنامج البريد لإرساله</a>.

@@ -18,7 +18,7 @@ export default function Home() {
     setJsonLd('case-study-jsonld', null);
   }, []);
   return (
-    <div className="relative min-h-screen bg-[#f7f3e8] text-[#0b0f14]">
+    <div className="site-shell relative">
       <Suspense fallback={null}>
         <InteractiveAtmosphere />
         <SectionRevealObserver />
@@ -26,9 +26,9 @@ export default function Home() {
       <Header />
       <main className="relative z-10">
         <Hero />
+        <Services />
         <Projects />
         <Skills />
-        <Services />
         <FAQ />
         <Contact />
       </main>

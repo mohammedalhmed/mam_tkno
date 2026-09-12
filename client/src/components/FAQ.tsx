@@ -1,3 +1,5 @@
+import { ArrowUpLeft, Plus } from 'lucide-react';
+
 const questions = [
   {
     question: 'ما الذي تقدمه MAM_Tkno للمنتجات والمتاجر الرقمية؟',
@@ -28,33 +30,36 @@ const questions = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="relative overflow-hidden bg-[#f7f3e8] py-24 text-[#0b0f14] md:py-32" aria-labelledby="faq-title">
-      <div className="absolute inset-x-0 top-0 h-px bg-[#0b0f14]/15" aria-hidden="true" />
-      <div className="pointer-events-none absolute -right-40 top-16 h-80 w-80 rounded-full bg-[#16d5df]/10 blur-3xl" aria-hidden="true" />
+    <section id="faq" className="surface-warm section-pad section-rule-soft relative overflow-hidden" aria-labelledby="faq-title">
+      <div className="pointer-events-none absolute inset-0 atelier-grid opacity-25" aria-hidden="true" />
       <div className="container relative">
         <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <span className="eyebrow">أسئلة شائعة</span>
-            <span className="atelier-note mt-6">CLARITY / BEFORE BUILD</span>
-            <h2 id="faq-title" className="mt-7 text-[clamp(2.45rem,9vw,5rem)] font-extrabold leading-[1.12] sm:text-[clamp(2.7rem,5vw,5rem)] sm:leading-[1.08]">
-              قبل أن يبدأ الكود، يجب أن تكون الصورة واضحة.
+            <span className="section-number">04 / QUESTIONS</span>
+            <h2 id="faq-title" className="editorial-heading mt-5">
+              وضوح قبل البناء.
             </h2>
-            <p className="mt-6 max-w-lg text-[1.05rem] leading-[1.95] text-[#0b0f14]/70 sm:text-lg sm:leading-8">
-              إجابات مختصرة عن طريقة العمل، مخرجات المشاريع التقنية والتصميمية، وما نحتاجه حتى تتحول المراجعة الأولى إلى قرار عملي.
+            <p className="editorial-copy mt-6 max-w-lg">
+              إجابات قصيرة تساعدك على معرفة ما سنحتاجه في البداية، وكيف يتحول النقاش الأول إلى نطاق عملي.
             </p>
+            <a href="#contact" className="mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#2145a8] underline decoration-[#16d5df] decoration-2 underline-offset-8">
+              ما زال لديك سؤال؟ تواصل معنا
+              <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />
+            </a>
           </div>
 
-          <dl className="divide-y-2 divide-[#07164f]/12 border-y-2 border-[#07164f]">
+          <div className="border-t border-[#07101c]/16">
             {questions.map((item, index) => (
-              <div key={item.question} className="grid gap-4 py-7 md:grid-cols-[76px_1fr] md:gap-8 md:py-9">
-                <dt className="font-latin text-sm font-extrabold text-[#2145a8]/55">0{index + 1}</dt>
-                <div>
-                  <dt className="text-[1.18rem] font-extrabold leading-[1.75] sm:text-xl sm:leading-9 md:text-2xl">{item.question}</dt>
-                  <dd className="mt-3 max-w-2xl text-[1rem] leading-[1.95] text-[#0b0f14]/68 sm:text-base sm:leading-8 md:text-lg">{item.answer}</dd>
-                </div>
-              </div>
+              <details key={item.question} className="group border-b border-[#07101c]/16" open={index === 0}>
+                <summary className="flex min-h-20 cursor-pointer list-none items-center gap-4 py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df] focus-visible:ring-inset sm:gap-6">
+                  <span className="font-latin w-8 text-xs font-extrabold text-[#2145a8]/60">0{index + 1}</span>
+                  <span className="flex-1 font-display text-lg font-bold leading-8 text-[#07101c] sm:text-xl">{item.question}</span>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#07101c]/18 text-[#2145a8] transition-transform duration-200 group-open:rotate-45"><Plus className="h-4 w-4" aria-hidden="true" /></span>
+                </summary>
+                <p className="mr-12 max-w-2xl pb-7 text-base leading-8 text-[#07101c]/65 sm:mr-14">{item.answer}</p>
+              </details>
             ))}
-          </dl>
+          </div>
         </div>
       </div>
     </section>

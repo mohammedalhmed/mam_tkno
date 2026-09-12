@@ -6,7 +6,10 @@ export default function SectionRevealObserver() {
     root.classList.add('js-motion');
 
     const sections = Array.from(document.querySelectorAll<HTMLElement>('main > section:not(#home)'));
-    if (!sections.length) return;
+    if (!sections.length) {
+      root.classList.remove('js-motion');
+      return;
+    }
 
     if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       sections.forEach((section) => section.classList.add('section-is-visible'));

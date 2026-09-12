@@ -5,21 +5,21 @@ import { projects } from '@/lib/portfolio-data';
 const projectSignatures = {
   bellabox: {
     label: 'SOFT COMMERCE',
-    note: 'اللون هنا يترجم هدوء العناية قبل لحظة الاختيار.',
+    note: 'هدوء العناية يتحول إلى مسار شراء واضح وسهل.',
     tone: 'border-[#d8b8c4] bg-[#f2dfe5] text-[#8f3754]',
-    frame: 'border-[#d8b8c4]/75 shadow-[0_24px_80px_rgba(216,184,196,.16)]',
+    line: '#d8b8c4',
   },
   nerfona: {
     label: 'CARE / EDUCATION',
-    note: 'مسار المحتوى يسبق الشراء عندما يحتاج المنتج إلى شرح.',
+    note: 'المحتوى يشرح القيمة قبل أن يطلب من الزائر الشراء.',
     tone: 'border-[#bfd0b3] bg-[#e1ead8] text-[#42623b]',
-    frame: 'border-[#bfd0b3]/75 shadow-[0_24px_80px_rgba(191,208,179,.16)]',
+    line: '#bfd0b3',
   },
   altaj: {
     label: 'SPACE / LEAD',
-    note: 'الخدمات المتعددة تحتاج نقطة وصول واحدة ومفهومة.',
+    note: 'خدمات متعددة تجتمع حول نقطة تواصل واحدة ومباشرة.',
     tone: 'border-[#cfb6c9] bg-[#eadde7] text-[#6f315d]',
-    frame: 'border-[#cfb6c9]/75 shadow-[0_24px_80px_rgba(207,182,201,.16)]',
+    line: '#cfb6c9',
   },
 } as const;
 
@@ -36,8 +36,8 @@ export default function Projects() {
     const y = (event.clientY - bounds.top) / bounds.height;
     if (tiltFrame.current) window.cancelAnimationFrame(tiltFrame.current);
     tiltFrame.current = window.requestAnimationFrame(() => {
-      card.style.setProperty('--tilt-x', `${(0.5 - y) * 5}deg`);
-      card.style.setProperty('--tilt-y', `${(x - 0.5) * 6}deg`);
+      card.style.setProperty('--tilt-x', `${(0.5 - y) * 3}deg`);
+      card.style.setProperty('--tilt-y', `${(x - 0.5) * 4}deg`);
       card.style.setProperty('--glow-x', `${x * 100}%`);
       card.style.setProperty('--glow-y', `${y * 100}%`);
     });
@@ -48,9 +48,7 @@ export default function Projects() {
     const card = event.currentTarget;
     card.dataset.touchActive = 'true';
     if (touchTimer.current) window.clearTimeout(touchTimer.current);
-    touchTimer.current = window.setTimeout(() => {
-      delete card.dataset.touchActive;
-    }, 1600);
+    touchTimer.current = window.setTimeout(() => delete card.dataset.touchActive, 1200);
   };
 
   const resetTilt = (event: { currentTarget: HTMLAnchorElement }) => {
@@ -64,167 +62,128 @@ export default function Projects() {
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
-
     const revealItems = Array.from(section.querySelectorAll<HTMLElement>('[data-reveal]'));
     if (!('IntersectionObserver' in window)) {
       revealItems.forEach((item) => item.classList.add('is-visible'));
       return;
     }
-
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.12 },
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      }),
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.1 },
     );
-
     revealItems.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section ref={sectionRef} id="projects" className="bg-[#0b0f14] py-24 text-[#f7f3e8] md:py-32">
-      <div className="container">
-        <div className="grid gap-8 border-b border-white/15 pb-10 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
-              <div>
-            <span className="eyebrow text-[#16d5df]">المشاريع الحيّة</span>
-              <p className="font-latin mt-5 text-[0.68rem] font-bold leading-5 text-white/35 sm:text-xs">SELECTED WORK / 2026</p>
-              <p className="atelier-stamp mt-4 text-[#16d5df]">MAM_TKNO / CODE · DESIGN · SYSTEMS</p>
-            <div className="mt-8 border-r-2 border-[#16d5df] pr-4">
-              <p className="font-latin text-[0.62rem] font-extrabold leading-5 tracking-[.12em] text-[#16d5df] sm:text-[10px] sm:tracking-[.16em]">EVIDENCE / DECISIONS / LIVE PROOF</p>
-              <p className="mt-2 max-w-xs text-[0.9rem] leading-7 text-white/52 sm:text-sm">كل دراسة حالة توضح قراراً مرئياً، لا مجرد لقطة واجهة.</p>
-            </div>
+    <section ref={sectionRef} id="projects" className="surface-ink section-pad overflow-hidden" aria-labelledby="projects-title">
+      <div className="pointer-events-none absolute inset-0 opacity-20 tech-grid" aria-hidden="true" />
+      <div className="container relative">
+        <header className="grid gap-8 border-b border-white/14 pb-10 lg:grid-cols-[.68fr_1.32fr] lg:items-end">
+          <div>
+            <span className="font-latin text-[10px] font-extrabold tracking-[.14em] text-[#16d5df]">03 / SELECTED WORK</span>
+            <p className="mt-4 max-w-xs text-sm leading-7 text-white/52">دليل مرئي على القرارات والنطاق، لا معرض صور منفصل عن سياق العمل.</p>
           </div>
           <div>
-            <h2 className="text-[clamp(2.45rem,9vw,5.7rem)] font-extrabold leading-[1.12] sm:text-[clamp(2.7rem,6vw,5.7rem)] sm:leading-[1.08]">واجهات تتحدث بلغة نشاطها.</h2>
-            <p className="mt-5 max-w-2xl text-[1.05rem] leading-[1.95] text-white/60 sm:text-lg sm:leading-8">
-              تجمع البيانات بين ما يظهر في الصفحات العامة ونطاق العمل المعتمد من MAM_Tkno، ومع كل بطاقة رابط مباشر لمراجعة التجربة الحيّة.
-            </p>
+            <h2 id="projects-title" className="font-display text-[clamp(2.5rem,7vw,5.6rem)] font-[750] leading-[1.08] tracking-[-.045em] text-[#f8f5ec]">واجهات تتحدث بلغة نشاطها.</h2>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-white/62 sm:text-lg">كل مشروع يعرض المشكلة والقرار والمخرجات المتاحة، مع رابط مباشر للتجربة الحية ودراسة حالة موثقة.</p>
           </div>
-        </div>
+        </header>
 
-        <div className="divide-y divide-white/15">
+        <div>
           {projects.map((project, index) => {
             const signature = projectSignatures[project.id as keyof typeof projectSignatures];
-            const isFeatured = index === 0;
-            const isCompact = index === 1;
+            const reverse = index % 2 === 1;
 
             return (
               <article
                 key={project.id}
                 data-reveal
-                style={{ '--reveal-delay': `${Math.min(index * 90, 180)}ms` } as CSSProperties}
-                className={`reveal-card grid gap-10 py-16 lg:grid-cols-[minmax(0,1.2fr)_minmax(340px,.8fr)] lg:items-center lg:gap-14 ${isFeatured ? 'lg:py-28' : isCompact ? 'lg:py-20' : 'lg:py-24'}`}
+                style={{ '--reveal-delay': `${Math.min(index * 70, 140)}ms` } as CSSProperties}
+                className="reveal-card grid gap-9 border-b border-white/12 py-14 sm:py-18 lg:grid-cols-[minmax(0,1.12fr)_minmax(20rem,.88fr)] lg:items-center lg:gap-16 lg:py-24"
               >
                 <a
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`case-window tilt-card group block overflow-hidden transition-[box-shadow] duration-500 focus-visible:-translate-y-1 ${signature.frame} ${index % 2 === 1 ? 'lg:order-2 lg:-translate-y-4' : ''} ${isFeatured ? 'lg:scale-[1.02]' : ''}`}
+                  className={`case-window tilt-card group block overflow-hidden border border-white/16 bg-[#111827] shadow-[0_26px_70px_rgba(0,0,0,.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df] ${reverse ? 'lg:order-2' : ''}`}
                   onPointerMove={handleTiltMove}
                   onPointerDown={handleTouchStart}
                   onPointerLeave={resetTilt}
                   onFocus={resetTilt}
                   aria-label={`فتح موقع ${project.arabicTitle}`}
                 >
-                  <div className="flex h-11 items-center justify-between border-b border-white/10 px-4 text-white/45">
-                    <div className="flex gap-1.5" aria-hidden="true">
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#ff7a0a]" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#16d5df]" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-                    </div>
-                    <span className="font-latin text-[0.62rem] leading-5 sm:text-[10px]">{project.url.replace('https://', '')}</span>
+                  <div className="flex min-h-11 items-center justify-between border-b border-white/10 px-4 text-white/42">
+                    <span className="flex items-center gap-2 text-[10px] font-bold">
+                      <span className="h-2 w-2 rounded-full" style={{ backgroundColor: signature.line }} />
+                      LIVE EXPERIENCE
+                    </span>
+                    <span className="font-latin max-w-[62%] truncate text-[9px] sm:text-[10px]">{project.url.replace('https://', '')}</span>
                   </div>
-                  <div className="relative aspect-[16/9] overflow-hidden">
-                    <img src={project.image} alt={`معاينة تحريرية لمشروع ${project.arabicTitle}`} loading="lazy" decoding="async" sizes="(min-width: 1024px) 60vw, 100vw" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]" />
-                    <div className="absolute inset-0 bg-[#0b0f14]/0 transition-colors duration-200 group-hover:bg-[#0b0f14]/25" />
-                    <div className={`absolute right-4 top-4 border px-3 py-2 font-latin text-[0.62rem] font-extrabold leading-5 tracking-[.1em] opacity-100 transition-all duration-200 group-hover:-translate-y-0.5 group-focus-visible:-translate-y-0.5 ${signature.tone}`}>
-                      {signature.label}
-                    </div>
-                    <div className="project-detail-pop absolute bottom-4 left-4 max-w-[78%] translate-y-3 border border-white/25 bg-[#0b0f14]/88 px-3 py-2 text-[0.7rem] leading-5 text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
-                      <span className="block font-latin text-[9px] font-extrabold tracking-[.12em] text-[#16d5df]">DECISION / SCOPE</span>
-                      <span className="mt-0.5 block font-semibold">{project.role}</span>
-                    </div>
-                    <div className="absolute bottom-4 right-4 flex translate-y-3 items-center gap-2 bg-[#16d5df] px-4 py-3 text-[0.8rem] font-extrabold leading-5 text-[#07164f] opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
-                      فتح الموقع الحي
-                      <ArrowUpLeft className="h-4 w-4" />
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img src={project.image} alt={`معاينة مشروع ${project.arabicTitle}`} loading="lazy" decoding="async" sizes="(min-width: 1024px) 58vw, 100vw" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-[#07101c]/88 p-4 text-white sm:p-5">
+                      <div>
+                        <span className="font-latin text-[9px] font-extrabold tracking-[.12em] text-[#16d5df]">ROLE / SCOPE</span>
+                        <p className="mt-1 text-xs font-bold leading-6 text-white/82 sm:text-sm">{project.role}</p>
+                      </div>
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#16d5df] text-[#07101c] transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1">
+                        <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                      </span>
                     </div>
                   </div>
                 </a>
 
-                <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+                <div className={reverse ? 'lg:order-1' : ''}>
                   <div className="flex items-center justify-between gap-4">
-                    <span className={`rounded-full border px-3 py-1.5 text-xs font-bold ${project.accentSoft} ${project.accent} ${project.accentBorder}`}>
-                      {project.eyebrow}
-                    </span>
-                    <span className="font-latin text-3xl font-extrabold text-white/20">0{index + 1}</span>
+                    <span className={`border px-3 py-1.5 text-[10px] font-extrabold tracking-[.1em] ${signature.tone}`}>{signature.label}</span>
+                    <span className="font-latin text-5xl font-extrabold text-white/10">0{index + 1}</span>
+                  </div>
+                  <div className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-2">
+                    <h3 className="font-display text-[clamp(2.2rem,7vw,4.25rem)] font-[750] leading-[1.12] tracking-[-.045em] text-white">{project.arabicTitle}</h3>
+                    <span className="font-latin text-xs font-bold text-[#16d5df]">{project.title}</span>
+                  </div>
+                  <p className="mt-5 text-base leading-8 text-white/65 sm:text-lg">{project.description}</p>
+
+                  <div className="mt-7 border-r-2 pr-4" style={{ borderColor: signature.line }}>
+                    <span className="font-latin text-[9px] font-extrabold tracking-[.13em] text-white/38">DESIGN DECISION</span>
+                    <p className="mt-2 text-sm leading-7 text-white/78">{project.decision}</p>
+                    <p className="mt-3 text-xs leading-6 text-white/42">{signature.note}</p>
                   </div>
 
-                  <div className="mt-7 flex flex-wrap items-baseline gap-x-4 gap-y-2">
-                    <h3 className="text-[clamp(2rem,8vw,3rem)] font-extrabold leading-[1.28] sm:text-4xl md:text-5xl">{project.arabicTitle}</h3>
-                    <p className="font-latin text-sm font-bold text-[#16d5df]">{project.title}</p>
-                  </div>
-                  <p className="mt-6 text-[1rem] leading-[1.95] text-white/68 sm:text-lg sm:leading-9">{project.description}</p>
-
-                  <div className={`mt-7 border-r-2 pr-4 ${project.accentBorder.replace('border-', 'border-r-')}`}>
-                    <p className="font-latin text-[10px] font-extrabold tracking-[.16em] text-white/40">ROLE / PROJECT SCOPE</p>
-                    <p className="mt-2 text-xs font-bold text-white/40">الدور في المشروع</p>
-                    <p className="mt-1.5 font-semibold leading-7 text-white/90">{project.role}</p>
-                  </div>
-
-                  <div className="mt-5 grid gap-3 border border-white/15 bg-white/[.035] p-4 md:grid-cols-[auto_1fr] md:items-start md:gap-5">
-                    <span className={`inline-flex w-fit items-center border px-2.5 py-1.5 font-latin text-[10px] font-extrabold tracking-[.14em] ${signature.tone}`}>DECISION / 0{index + 1}</span>
-                    <div>
-                      <p className="text-xs font-bold text-white/40">قرار الواجهة</p>
-                      <p className="mt-2 text-[0.98rem] leading-[1.9] text-white/72 sm:text-base sm:leading-7">{project.decision}</p>
-                    </div>
-                  </div>
-
-                  <div className={`mt-4 border-r-2 pr-4 ${project.accentBorder.replace('border-', 'border-r-')}`}>
-                    <p className="font-latin text-[10px] font-extrabold tracking-[.14em] text-white/38">EDITORIAL TRACE / {signature.label}</p>
-                    <p className="mt-2 text-sm leading-7 text-white/58">{signature.note}</p>
-                  </div>
-
-                  <ul className="mt-7 grid gap-2.5 sm:grid-cols-2" aria-label="بيانات ظاهرة في الموقع">
-                    {project.facts.map((fact) => (
-                      <li key={fact} className="flex items-start gap-2 text-[0.88rem] leading-6 text-white/62 sm:text-sm">
-                        <CheckCircle2 className="h-4 w-4 shrink-0 text-[#16d5df]" />
+                  <ul className="mt-7 grid gap-2 sm:grid-cols-2" aria-label="بيانات المشروع">
+                    {project.facts.slice(0, 4).map((fact) => (
+                      <li key={fact} className="flex items-start gap-2 text-xs leading-6 text-white/58">
+                        <CheckCircle2 className="mt-1 h-3.5 w-3.5 shrink-0 text-[#16d5df]" aria-hidden="true" />
                         {fact}
                       </li>
                     ))}
                   </ul>
 
-                  <div className="mt-7 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="font-latin rounded-sm border border-white/15 px-2.5 py-1.5 text-[0.65rem] font-bold leading-5 text-white/55 sm:text-[10px]">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                     <a href={`/case-studies/${project.id}`} className="lime-button !min-h-12 text-sm">
-                      دراسة الحالة
-                      <ArrowUpLeft className="h-4 w-4" />
+                      اقرأ دراسة الحالة
+                      <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />
                     </a>
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/15 px-4 text-sm font-extrabold text-white/72 transition-colors hover:border-[#16d5df] hover:text-[#16d5df] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df]">
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 border border-white/18 px-4 text-sm font-bold text-white/74 transition-colors hover:border-[#16d5df] hover:text-[#16d5df]">
                       زيارة الموقع
-                      <ExternalLink className="h-4 w-4" />
+                      <Globe2 className="h-4 w-4" aria-hidden="true" />
                     </a>
-                    <span className="flex items-start gap-2 text-[0.72rem] leading-5 text-white/35 sm:text-xs">
-                      <Globe2 className="h-4 w-4" />
-                      آخر مراجعة للمصدر · سبتمبر 2026
-                    </span>
                   </div>
                 </div>
               </article>
             );
           })}
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 text-xs leading-6 text-white/38 sm:flex-row sm:items-center sm:justify-between">
+          <span>المحتوى يعكس النطاق المعتمد والبيانات العامة المتاحة حتى سبتمبر 2026.</span>
+          <span className="font-latin text-[#16d5df]">MAM_TKNO / EVIDENCE BEFORE CLAIMS</span>
         </div>
       </div>
     </section>

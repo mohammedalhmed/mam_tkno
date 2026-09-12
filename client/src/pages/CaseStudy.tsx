@@ -93,11 +93,11 @@ export default function CaseStudyPage() {
 
   if (!study || !project) {
     return (
-      <div className="min-h-screen bg-[#f1f5f5] text-[#07164f]">
+      <div className="site-shell">
         <Header />
         <main className="container flex min-h-[70vh] flex-col items-start justify-center py-24">
-          <p className="font-latin text-xs font-extrabold tracking-[.18em] text-[#147e87]">CASE STUDY / 404</p>
-          <h1 className="mt-5 max-w-2xl text-4xl font-extrabold leading-tight sm:text-6xl">لم نعثر على دراسة الحالة المطلوبة.</h1>
+          <p className="section-number">CASE STUDY / 404</p>
+          <h1 className="mt-5 max-w-2xl font-display text-4xl font-[750] leading-tight sm:text-6xl">لم نعثر على دراسة الحالة المطلوبة.</h1>
           <Link href="/#projects" className="ink-button mt-8">العودة إلى المشاريع <ArrowRight className="h-4 w-4" /></Link>
         </main>
       </div>
@@ -112,32 +112,40 @@ export default function CaseStudyPage() {
   } as CSSProperties;
 
   return (
-    <div className="min-h-screen bg-[#f7f3e8] text-[#0b0f14]" style={themeStyle}>
+    <div className="site-shell" style={themeStyle}>
       <Header />
       <main>
-        <section className="relative overflow-hidden border-b border-white/10 bg-[#07164f] pb-16 pt-32 text-[#f7f3e8] md:pb-24 md:pt-44">
-          <div className="pointer-events-none absolute -left-24 top-20 h-80 w-80 rounded-full bg-[#16d5df]/20 blur-3xl" />
-          <div className="pointer-events-none absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-[#ff7a0a]/15 blur-3xl" />
+        <section className="surface-ink relative overflow-hidden border-b border-white/10 pb-16 pt-32 md:pb-24 md:pt-44">
+          <div className="pointer-events-none absolute inset-0 tech-grid opacity-20" aria-hidden="true" />
           <div className="container relative">
             <Link href="/#projects" className="inline-flex items-center gap-2 text-sm font-bold text-white/65 transition-colors hover:text-[#16d5df] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df]">
               <MoveUpLeft className="h-4 w-4" aria-hidden="true" /> العودة إلى المشاريع
             </Link>
             <div className="mt-12 max-w-5xl">
               <p className="font-latin text-xs font-extrabold tracking-[.18em] text-[#16d5df]">CASE STUDY / {study.projectId.toUpperCase()}</p>
-              <p className="mt-5 text-sm font-bold text-[#c8ff2b]">{study.category}</p>
-              <h1 className="mt-4 text-[clamp(3rem,10vw,8.5rem)] font-extrabold leading-[1.02] tracking-[-.05em]">{study.arabicTitle}</h1>
+              <p className="mt-5 text-sm font-bold text-[var(--case-line)]">{study.category}</p>
+              <h1 className="mt-4 font-display text-[clamp(3rem,10vw,8.5rem)] font-[750] leading-[1.02] tracking-[-.05em]">{study.arabicTitle}</h1>
               <p className="mt-7 max-w-3xl text-xl leading-[1.8] text-white/72 sm:text-2xl">{study.summary}</p>
               <div className="mt-7 max-w-3xl border-r-2 border-[var(--case-line)] pr-4">
                 <p className="font-latin text-[9px] font-extrabold tracking-[.16em] text-[#16d5df]">PROJECT PRINCIPLE</p>
                 <p className="mt-2 text-sm font-semibold leading-7 text-white/70 sm:text-base">{theme.signature}</p>
               </div>
               <div className="mt-9"><CaseStudyActions study={study} /></div>
+              <div className="mt-5 flex items-center gap-3 text-xs font-semibold text-white/52"><span className="h-px w-10 bg-[#16d5df]" aria-hidden="true" /><span className="font-latin text-[9px] tracking-[.16em] text-[#16d5df]">NEXT / SHARE OR START A SIMILAR PROJECT</span></div>
             </div>
           </div>
         </section>
 
+        <section className="surface-paper border-b border-[#07101c]/12 py-5" aria-label="طبقات مراجعة المشروع">
+          <div className="container grid overflow-hidden rounded-[1rem_.25rem_1rem_.25rem] border border-[#07101c]/14 sm:grid-cols-3">
+            <div className="border-b border-[#07101c]/14 px-5 py-4 sm:border-b-0 sm:border-l"><p className="font-latin text-[9px] font-extrabold tracking-[.16em] text-[#147e87]">DECISION / 01</p><p className="mt-1 text-sm font-bold text-[#07101c]">{theme.signature}</p></div>
+            <div className="border-b border-[#07101c]/14 px-5 py-4 sm:border-b-0 sm:border-l"><p className="font-latin text-[9px] font-extrabold tracking-[.16em] text-[var(--case-accent)]">EVIDENCE / 02</p><p className="mt-1 text-sm font-bold text-[#07101c]">مراجعة وصفية لما يظهر في المشروع.</p></div>
+            <div className="px-5 py-4"><p className="font-latin text-[9px] font-extrabold tracking-[.16em] text-[#2145a8]">SCOPE / 03</p><p className="mt-1 text-sm font-bold text-[#07101c]">{study.deliverables.length} مخرجات موثقة ضمن النطاق.</p></div>
+          </div>
+        </section>
+
         <section className={`container grid gap-10 py-16 md:py-24 lg:items-start ${theme.grid}`}>
-          <div className={`overflow-hidden rounded-[1.5rem_.4rem_1.5rem_.4rem] border border-[var(--case-line)] bg-[#111922] shadow-[0_24px_70px_rgba(7,22,79,.12)] ${theme.mediaOrder}`}>
+          <div className={`overflow-hidden rounded-[1.5rem_.4rem_1.5rem_.4rem] border border-t-4 border-[var(--case-line)] border-t-[var(--case-accent)] bg-[#111922] shadow-[0_24px_70px_rgba(7,22,79,.12)] ${theme.mediaOrder}`}>
             {study.media.map((media, index) => (
               <figure key={media.label}>
                 {media.type === 'image' && media.src ? <img src={media.src} alt={media.alt} loading={index === 0 ? 'eager' : 'lazy'} decoding="async" fetchPriority={index === 0 ? 'high' : 'auto'} sizes="(min-width: 1024px) 58vw, 100vw" className="aspect-[16/10] h-full w-full object-cover" /> : <div className="flex aspect-[16/10] items-center justify-center bg-white/[.04] text-white/45">الوسيط غير متوفر حاليًا</div>}
@@ -147,27 +155,27 @@ export default function CaseStudyPage() {
           </div>
           <aside className={`border-r-2 border-[var(--case-accent)] pr-5 ${theme.asideOrder}`}>
             <span className="inline-flex bg-[var(--case-soft)] px-3 py-2 font-latin text-[10px] font-extrabold tracking-[.16em] text-[var(--case-accent)]">PROJECT SIGNALS / {study.projectId.toUpperCase()}</span>
-            <h2 className="mt-4 text-2xl font-extrabold">ماذا نراجع هنا؟</h2>
-            <p className="mt-4 text-base leading-8 text-[#0b0f14]/68">تجمع هذه الصفحة بين المعلومات الظاهرة في المشروع ونطاق العمل المعتمد لدى MAM_Tkno، وتفصل المخرجات الوصفية عن أي نتائج رقمية غير منشورة.</p>
-            <div className="mt-6 border border-[#07164f]/12 bg-white/60 p-4 shadow-[5px_5px_0_var(--case-soft)]">
+            <h2 className="mt-4 font-display text-2xl font-bold">ماذا نراجع هنا؟</h2>
+            <p className="mt-4 text-base leading-8 text-[#07101c]/68">تجمع هذه الصفحة بين المعلومات الظاهرة في المشروع ونطاق العمل المعتمد لدى MAM_Tkno، وتفصل المخرجات الوصفية عن أي نتائج رقمية غير منشورة.</p>
+            <div className="editorial-card mt-6 p-4 shadow-[5px_5px_0_var(--case-soft)]">
               <p className="font-latin text-[9px] font-extrabold tracking-[.14em] text-[var(--case-accent)]">EVIDENCE NOTE</p>
-              <p className="mt-2 text-sm leading-7 text-[#0b0f14]/62">{study.evidenceNote}</p>
+              <p className="mt-2 text-sm leading-7 text-[#07101c]/62">{study.evidenceNote}</p>
             </div>
-            <a href={project.url} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center gap-2 border-b border-[#07164f]/25 pb-1 text-sm font-extrabold text-[#07164f] transition-colors hover:border-[#16d5df] hover:text-[#147e87] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df]">زيارة الموقع الحي <ExternalLink className="h-4 w-4" aria-hidden="true" /></a>
+            <a href={project.url} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-11 items-center gap-2 border-b border-[#07101c]/25 pb-1 text-sm font-extrabold text-[#07101c] transition-colors hover:border-[#16d5df] hover:text-[#2145a8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df]">زيارة الموقع الحي <ExternalLink className="h-4 w-4" aria-hidden="true" /></a>
           </aside>
         </section>
 
-        <section className="border-y border-[#07164f]/10 bg-[#e8f1ef] py-16 text-[#0b0f14] md:py-24">
-          <div className="container grid gap-10 md:grid-cols-3">
-            <article className="border-t-2 border-[#ff7a0a] bg-white/50 p-6"><p className="font-latin text-[10px] font-extrabold tracking-[.18em] text-[#bd5400]">01 / PROBLEM</p><h2 className="mt-4 text-2xl font-extrabold">المشكلة</h2><p className="mt-4 leading-8 text-[#0b0f14]/68">{study.problem}</p></article>
-            <article className="border-t-2 border-[#16d5df] bg-white/50 p-6"><p className="font-latin text-[10px] font-extrabold tracking-[.18em] text-[#147e87]">02 / SOLUTION</p><h2 className="mt-4 text-2xl font-extrabold">الحل</h2><p className="mt-4 leading-8 text-[#0b0f14]/68">{study.solution}</p></article>
-            <article className="border-t-2 border-[var(--case-accent)] bg-white/50 p-6"><p className="font-latin text-[10px] font-extrabold tracking-[.18em] text-[var(--case-accent)]">03 / OUTCOME</p><h2 className="mt-4 text-2xl font-extrabold">المخرجات والنتيجة</h2><span className="mt-4 inline-flex border border-[var(--case-line)] bg-[var(--case-soft)] px-3 py-1.5 text-xs font-bold text-[var(--case-accent)]">{study.outcomeStatus === 'descriptive' ? 'توثيق وصفي دون أرقام' : 'بانتظار اعتماد النتائج'}</span><p className="mt-4 leading-8 text-[#0b0f14]/68">{study.outcome}</p></article>
+        <section className="section-rule-soft bg-[#fbf8f0] py-16 text-[#07101c] md:py-24">
+          <div className="container grid gap-5 md:grid-cols-2 md:grid-rows-[auto_auto]">
+            <article className="editorial-card border-t-4 border-t-[#f57419] p-7 md:row-span-2 md:flex md:min-h-[25rem] md:flex-col md:justify-end"><p className="font-latin text-[10px] font-extrabold tracking-[.18em] text-[#b94f0c]">01 / PROBLEM</p><h2 className="mt-4 font-display text-[clamp(2rem,3vw,3rem)] font-bold">المشكلة</h2><p className="mt-5 max-w-xl leading-8 text-[#07101c]/68">{study.problem}</p></article>
+            <article className="editorial-card border-t-4 border-t-[#16d5df] p-6"><p className="font-latin text-[10px] font-extrabold tracking-[.18em] text-[#147e87]">02 / SOLUTION</p><h2 className="mt-4 font-display text-2xl font-bold">الحل</h2><p className="mt-4 leading-8 text-[#07101c]/68">{study.solution}</p></article>
+            <article className="editorial-card border-t-4 border-t-[var(--case-accent)] p-6"><p className="font-latin text-[10px] font-extrabold tracking-[.18em] text-[var(--case-accent)]">03 / OUTCOME</p><div className="mt-4 flex flex-wrap items-center justify-between gap-3"><h2 className="font-display text-2xl font-bold">المخرجات والنتيجة</h2><span className="inline-flex border border-[var(--case-line)] bg-[var(--case-soft)] px-3 py-1.5 text-xs font-bold text-[var(--case-accent)]">{study.outcomeStatus === 'descriptive' ? 'توثيق وصفي دون أرقام' : 'بانتظار اعتماد النتائج'}</span></div><p className="mt-4 leading-8 text-[#07101c]/68">{study.outcome}</p></article>
           </div>
         </section>
 
         <section className="container grid gap-10 py-16 md:py-24 lg:grid-cols-[.8fr_1.2fr]">
-          <div><p className="font-latin text-[10px] font-extrabold tracking-[.18em] text-[#147e87]">DELIVERABLES / SCOPE</p><h2 className="mt-4 text-3xl font-extrabold">ما الذي دخل في النطاق؟</h2><p className="mt-5 max-w-sm text-sm leading-7 text-[#0b0f14]/55">مخرجات محددة يمكن مراجعتها داخل الواجهة، وليست قائمة ادعاءات عامة.</p></div>
-          <div><ul className="grid gap-3 sm:grid-cols-2">{study.deliverables.map((item) => <li key={item} className="flex items-start gap-3 border border-[#07164f]/12 bg-white/65 p-4 text-sm leading-7 text-[#0b0f14]/72"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#147e87]" aria-hidden="true" />{item}</li>)}</ul><div className="mt-8 flex flex-wrap gap-2">{study.services.map((service) => <span key={service} className="rounded-full border border-[var(--case-line)] bg-[var(--case-soft)] px-3 py-2 text-xs font-bold text-[var(--case-accent)]">{service}</span>)}</div></div>
+          <div><p className="section-number">DELIVERABLES / SCOPE</p><h2 className="mt-4 font-display text-3xl font-bold">ما الذي دخل في النطاق؟</h2><p className="mt-5 max-w-sm text-sm leading-7 text-[#07101c]/55">مخرجات محددة يمكن مراجعتها داخل الواجهة، وليست قائمة ادعاءات عامة.</p></div>
+          <div><ul className="grid gap-3 sm:grid-cols-2">{study.deliverables.map((item) => <li key={item} className="editorial-card flex items-start gap-3 p-4 text-sm leading-7 text-[#07101c]/72"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#2145a8]" aria-hidden="true" />{item}</li>)}</ul><div className="mt-8 flex flex-wrap gap-2">{study.services.map((service) => <span key={service} className="rounded-full border border-[var(--case-line)] bg-[var(--case-soft)] px-3 py-2 text-xs font-bold text-[var(--case-accent)]">{service}</span>)}</div></div>
         </section>
       </main>
       <Footer />
