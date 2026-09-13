@@ -183,6 +183,21 @@
 
 ## Case study publication updates
 
+- [x] Task: إضافة وسم تحقق Google Search Console إلى رأس الموقع.
+  - Acceptance: يظهر وسم `google-site-verification` بالقيمة المعتمدة في `<head>` ضمن الإنتاج.
+  - Verify: فحص القيمة حرفيًا مع نجاح `verify:seo` وTypeScript وبناء الإنتاج.
+  - Files: `client/index.html`
+
+- [ ] Task: استكمال معرض وسائط موثقة لدراسات الحالة.
+  - Acceptance: لا تُعرض إلا صور أصلية أو مسموح استخدامها صراحة، ولكل وسيط وصف بديل ومصدر واضح.
+  - Verify: مراجعة المصدر وحق الاستخدام، ثم اختبار العرض على الهاتف وسطح المكتب.
+  - Files: `client/src/lib/case-studies.ts`, `client/src/pages/CaseStudy.tsx`, `docs/content-inventory.md`
+
+- [x] Task: إضافة تجربة معاينة وتشغيل للمشاريع الحية.
+  - Acceptance: لكل مشروع نافذة معاينة واضحة مع خيار تشغيل المصدر الأصلي، ولا يظهر إطار مكسور عندما يمنع الموقع التضمين.
+  - Verify: فحص سياسات التضمين، معاينة 390 و1280، اختبار النافذة وEscape، ونجاح `verify:seo` وTypeScript والبناء.
+  - Files: `client/src/components/LiveProjectPreview.tsx`, `client/src/components/Projects.tsx`, `client/src/pages/CaseStudy.tsx`, `docs/live-project-preview-source-check-2026-09-13.md`
+
 - [ ] Task: تطبيق التحسينات التحريرية المعتمدة على بيانات المشاريع ودراسات الحالة.
   - Acceptance: إزالة بقايا الهوية الشخصية، توضيح مصادر المعلومات، وضبط صياغة NERFONA وALTAJ PLUS دون أرقام أو شهادات جديدة.
   - Verify: مراجعة `portfolio-data.ts` و`case-studies.ts` وصفحات العرض.

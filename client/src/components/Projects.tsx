@@ -1,6 +1,7 @@
 import { useEffect, useRef, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
 import { ArrowUpLeft, CheckCircle2, ExternalLink, Globe2 } from 'lucide-react';
 import { projects } from '@/lib/portfolio-data';
+import LiveProjectPreview from '@/components/LiveProjectPreview';
 
 const projectSignatures = {
   bellabox: {
@@ -165,11 +166,12 @@ export default function Projects() {
                     ))}
                   </ul>
 
-                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                     <a href={`/case-studies/${project.id}`} className="lime-button !min-h-12 text-sm">
                       اقرأ دراسة الحالة
                       <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />
                     </a>
+                    <LiveProjectPreview project={project} className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#16d5df] bg-[#16d5df] px-4 text-sm font-extrabold text-[#07101c] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#7ee8ee] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#07101c] active:translate-y-0" />
                     <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 border border-white/18 px-4 text-sm font-bold text-white/74 transition-colors hover:border-[#16d5df] hover:text-[#16d5df]">
                       زيارة الموقع
                       <Globe2 className="h-4 w-4" aria-hidden="true" />

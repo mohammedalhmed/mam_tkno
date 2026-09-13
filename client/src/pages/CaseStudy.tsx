@@ -4,6 +4,7 @@ import { Link, useParams } from 'wouter';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CaseStudyActions from '@/components/CaseStudyActions';
+import LiveProjectPreview from '@/components/LiveProjectPreview';
 import { getCaseStudy } from '@/lib/case-studies';
 import { projects } from '@/lib/portfolio-data';
 import { setJsonLd, setPageMetadata, SITE_URL } from '@/lib/seo';
@@ -161,7 +162,10 @@ export default function CaseStudyPage() {
               <p className="font-latin text-[9px] font-extrabold tracking-[.14em] text-[var(--case-accent)]">EVIDENCE NOTE</p>
               <p className="mt-2 text-sm leading-7 text-[#07101c]/62">{study.evidenceNote}</p>
             </div>
-            <a href={project.url} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-11 items-center gap-2 border-b border-[#07101c]/25 pb-1 text-sm font-extrabold text-[#07101c] transition-colors hover:border-[#16d5df] hover:text-[#2145a8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df]">زيارة الموقع الحي <ExternalLink className="h-4 w-4" aria-hidden="true" /></a>
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <LiveProjectPreview project={project} className="inline-flex min-h-11 items-center gap-2 bg-[#16d5df] px-4 text-sm font-extrabold text-[#07101c] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#7ee8ee] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#147e87] active:translate-y-0" />
+              <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 border-b border-[#07101c]/25 pb-1 text-sm font-extrabold text-[#07101c] transition-colors hover:border-[#16d5df] hover:text-[#2145a8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df]">زيارة الموقع الحي <ExternalLink className="h-4 w-4" aria-hidden="true" /></a>
+            </div>
           </aside>
         </section>
 
