@@ -8,22 +8,24 @@ const proofPoints = [
 
 export default function Hero() {
   return (
-    <section id="home" className="surface-paper relative overflow-hidden pb-20 pt-32 sm:pt-36 lg:min-h-[94svh] lg:pb-28" aria-labelledby="hero-title">
-      <div className="pointer-events-none absolute inset-0 atelier-grid opacity-65" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-y-0 left-[8%] hidden w-px bg-[#07101c]/8 lg:block" aria-hidden="true" />
+    <section id="home" className="relative overflow-hidden bg-[#061437] pb-20 pt-32 text-white sm:pt-36 lg:min-h-[94svh] lg:pb-28" aria-labelledby="hero-title">
+      <div className="canva-page-grid pointer-events-none absolute inset-0" aria-hidden="true" />
+      <div className="pointer-events-none absolute -right-32 top-16 h-[28rem] w-[28rem] rounded-full bg-[#2d72d8]/25 blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute -left-40 bottom-0 h-80 w-80 rounded-full bg-[#16d5df]/10 blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-y-0 left-[8%] hidden w-px bg-white/10 lg:block" aria-hidden="true" />
 
       <div className="container relative">
         <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,.9fr)_minmax(32rem,1.1fr)] lg:gap-14">
           <div className="reveal max-w-3xl">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="ui-chip border-[#16d5df]/45 bg-[#16d5df]/10 text-[#07101c]">
+              <span className="canva-chip">
                 <span className="h-2 w-2 rounded-full bg-[#16d5df]" />
                 وكالة عربية للبرمجة والتصميم
               </span>
-              <span className="section-number">MAM_TKNO / STUDIO 01</span>
+              <span className="canva-kicker">MAM_TKNO / STUDIO 01</span>
             </div>
 
-            <h1 id="hero-title" className="mt-7 max-w-4xl font-display text-[clamp(3rem,9vw,7rem)] font-[750] leading-[1.05] tracking-[-.055em] text-[#07101c]">
+            <h1 id="hero-title" className="mt-7 max-w-4xl font-display text-[clamp(3rem,9vw,7rem)] font-[750] leading-[1.05] tracking-[-.055em] text-white">
               نبني حضورك
               <span className="relative mx-2 inline-block">
                 الرقمي
@@ -32,30 +34,30 @@ export default function Hero() {
               <br />كنظام متكامل.
             </h1>
 
-            <p className="editorial-copy mt-7">
+            <p className="mt-7 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">
               نحوّل الاحتياج التجاري إلى منتج رقمي أو نظام بصري عربي واضح؛ من الاستراتيجية وتجربة المستخدم إلى التطوير والإطلاق.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a href="#contact" className="ink-button bg-[#07101c] text-white">
+              <a href="#contact" className="lime-button bg-[#16d5df] text-[#061437] shadow-[5px_5px_0_#285fbe]">
                 ابدأ طلب مشروعك
-                <ArrowUpLeft className="h-5 w-5 text-[#16d5df]" aria-hidden="true" />
+                <ArrowUpLeft className="h-5 w-5" aria-hidden="true" />
               </a>
-              <a href="#projects" className="ghost-button border-[#07101c]/18 bg-white/55 text-[#07101c]">
+              <a href="#projects" className="canva-ghost-button ghost-button">
                 شاهد الأعمال المختارة
                 <ArrowDownLeft className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>
 
-            <div className="mt-12 grid gap-3 border-t border-[#07101c]/14 pt-6 sm:grid-cols-3">
+            <div className="mt-12 grid gap-3 pt-6 sm:grid-cols-3">
               {proofPoints.map(({ icon: Icon, label, detail }) => (
-                <div key={label} className="group grid grid-cols-[auto_1fr] gap-x-3">
-                  <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full border border-[#07101c]/14 bg-white/60 text-[#2145a8]">
+                <div key={label} className="canva-proof-card group grid grid-cols-[auto_1fr] gap-x-3 pt-4">
+                  <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full border">
                     <Icon className="h-4 w-4" aria-hidden="true" />
                   </span>
                   <div>
-                    <p className="text-sm font-bold text-[#07101c]">{label}</p>
-                    <p className="mt-1 text-xs leading-5 text-[#07101c]/55">{detail}</p>
+                    <p className="text-sm font-bold text-white">{label}</p>
+                    <p className="mt-1 text-xs leading-5 text-white/56">{detail}</p>
                   </div>
                 </div>
               ))}
@@ -63,11 +65,11 @@ export default function Hero() {
           </div>
 
           <div className="reveal-delayed relative mx-auto w-full max-w-3xl lg:mx-0">
-            <div className="absolute -right-3 top-10 z-20 hidden border border-[#07101c] bg-[#f57419] px-4 py-2 text-xs font-bold text-white shadow-[4px_4px_0_#07101c] sm:block">
+            <div className="absolute -right-3 top-10 z-20 hidden border border-white/25 bg-[#1f5dbc] px-4 py-2 text-xs font-bold text-white shadow-[4px_4px_0_#16d5df] sm:block">
               PRODUCT / UI / CODE
             </div>
 
-            <figure className="case-window border-[#07101c]/16 bg-[#07101c] p-2.5 shadow-[0_28px_80px_rgba(7,16,28,.22)]">
+            <figure className="case-window border-white/14 bg-[#091b45] p-2.5 shadow-[0_28px_80px_rgba(0,7,30,.42)]">
               <figcaption className="mb-2.5 flex items-center justify-between px-2 py-1 text-white/55">
                 <span className="font-latin text-[10px]">PROJECT LAB / RTL</span>
                 <span className="flex items-center gap-2 text-[10px] font-bold">
@@ -75,25 +77,25 @@ export default function Hero() {
                   تصميم · تنفيذ · تحسين
                 </span>
               </figcaption>
-              <div className="relative aspect-[16/11] overflow-hidden rounded-[1rem_.2rem_1rem_.2rem] bg-[#111827]">
+              <div className="relative aspect-[16/11] overflow-hidden rounded-[1rem_.2rem_1rem_.2rem] bg-[#102657]">
                 <img
                   src="/manus-storage/portfolio-hero-atelier_61d8db81.png"
                   alt="تصور لنظام واجهة متجر إلكتروني عربي متجاوب"
                   className="h-full w-full object-cover"
                   fetchPriority="high"
                 />
-                <div className="absolute inset-x-0 bottom-0 bg-[#07101c]/88 px-5 py-4 text-white sm:px-6 sm:py-5">
+                <div className="absolute inset-x-0 bottom-0 bg-[#061437]/90 px-5 py-4 text-white sm:px-6 sm:py-5">
                   <span className="font-latin text-[9px] font-extrabold tracking-[.12em] text-[#16d5df]">DESIGN SYSTEM / COMMERCE</span>
                   <p className="mt-1 font-display text-base font-bold sm:text-xl">واجهة واحدة. قرارات متسقة في كل نقطة بيع.</p>
                 </div>
               </div>
             </figure>
 
-            <div className="relative -mt-6 mr-auto grid w-[92%] grid-cols-3 border border-[#07101c]/14 bg-[#fbf8f0] p-3 shadow-[8px_8px_0_#16d5df] sm:w-[78%] sm:p-4">
+            <div className="canva-shell-panel relative -mt-6 mr-auto grid w-[92%] grid-cols-3 p-3 shadow-[8px_8px_0_#16d5df] sm:w-[78%] sm:p-4">
               {['فهم الاحتياج', 'تصميم النظام', 'تنفيذ المنتج'].map((item, index) => (
-                <div key={item} className="border-l border-[#07101c]/12 px-2 last:border-l-0 sm:px-3">
-                  <span className="font-latin text-[9px] font-extrabold text-[#2145a8]/55">0{index + 1}</span>
-                  <p className="mt-1 text-[10px] font-bold leading-5 text-[#07101c] sm:text-xs">{item}</p>
+                <div key={item} className="border-l border-white/15 px-2 last:border-l-0 sm:px-3">
+                  <span className="font-latin text-[9px] font-extrabold text-[#83cfff]">0{index + 1}</span>
+                  <p className="mt-1 text-[10px] font-bold leading-5 text-white sm:text-xs">{item}</p>
                 </div>
               ))}
             </div>

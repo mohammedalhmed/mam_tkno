@@ -30,33 +30,34 @@ const questions = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="surface-warm section-pad section-rule-soft relative overflow-hidden" aria-labelledby="faq-title">
-      <div className="pointer-events-none absolute inset-0 atelier-grid opacity-25" aria-hidden="true" />
+    <section id="faq" className="relative overflow-hidden border-y border-white/10 bg-[#061437] py-20 text-white sm:py-28" aria-labelledby="faq-title">
+      <div className="canva-page-grid pointer-events-none absolute inset-0 opacity-70" aria-hidden="true" />
+      <div className="pointer-events-none absolute -right-32 top-8 h-80 w-80 rounded-full bg-[#1f63e8]/20 blur-3xl" aria-hidden="true" />
       <div className="container relative">
         <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <span className="section-number">04 / QUESTIONS</span>
-            <h2 id="faq-title" className="editorial-heading mt-5">
+            <span className="canva-kicker">04 / QUESTIONS</span>
+            <h2 id="faq-title" className="mt-5 font-display text-[clamp(2.6rem,6vw,5rem)] font-bold leading-[1.05] tracking-[-.055em] text-white">
               وضوح قبل البناء.
             </h2>
-            <p className="editorial-copy mt-6 max-w-lg">
+            <p className="mt-6 max-w-lg text-base leading-8 text-white/65 sm:text-lg">
               إجابات قصيرة تساعدك على معرفة ما سنحتاجه في البداية، وكيف يتحول النقاش الأول إلى نطاق عملي.
             </p>
-            <a href="#contact" className="mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#2145a8] underline decoration-[#16d5df] decoration-2 underline-offset-8">
+            <a href="#contact" className="mt-7 inline-flex min-h-11 items-center gap-2 border-b border-[#16d5df]/70 pb-1 text-sm font-bold text-[#16d5df] transition-colors hover:border-white hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df]">
               ما زال لديك سؤال؟ تواصل معنا
               <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
 
-          <div className="border-t border-[#07101c]/16">
+          <div className="border-t border-white/14">
             {questions.map((item, index) => (
-              <details key={item.question} className="group border-b border-[#07101c]/16" open={index === 0}>
+              <details key={item.question} className="group border-b border-white/14 bg-white/[.02] transition-colors open:bg-white/[.055]" open={index === 0}>
                 <summary className="flex min-h-20 cursor-pointer list-none items-center gap-4 py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df] focus-visible:ring-inset sm:gap-6">
-                  <span className="font-latin w-8 text-xs font-extrabold text-[#2145a8]/60">0{index + 1}</span>
-                  <span className="flex-1 font-display text-lg font-bold leading-8 text-[#07101c] sm:text-xl">{item.question}</span>
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-[#07101c]/18 text-[#2145a8] transition-transform duration-200 group-open:rotate-45"><Plus className="h-4 w-4" aria-hidden="true" /></span>
+                  <span className="font-latin w-8 text-xs font-extrabold text-[#16d5df]/70">0{index + 1}</span>
+                  <span className="flex-1 font-display text-lg font-bold leading-8 text-white sm:text-xl">{item.question}</span>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center border border-white/18 bg-[#0b2459] text-[#16d5df] transition-transform duration-200 group-open:rotate-45"><Plus className="h-4 w-4" aria-hidden="true" /></span>
                 </summary>
-                <p className="mr-12 max-w-2xl pb-7 text-base leading-8 text-[#07101c]/65 sm:mr-14">{item.answer}</p>
+                <p className="mr-12 max-w-2xl pb-7 text-base leading-8 text-white/65 sm:mr-14">{item.answer}</p>
               </details>
             ))}
           </div>

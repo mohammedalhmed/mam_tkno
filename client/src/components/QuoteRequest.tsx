@@ -216,7 +216,7 @@ export default function QuoteRequest() {
       : 'هل لديك رابط حالي نراجعه؟';
 
   return (
-    <div className="border border-white/16 bg-[#0b1420]/82 p-5 shadow-[12px_12px_0_rgba(22,213,223,.12)] backdrop-blur-sm sm:p-7">
+    <div className="border border-white/16 bg-[#061437]/92 p-5 shadow-[12px_12px_0_rgba(22,213,223,.12)] backdrop-blur-sm sm:p-7">
       <div className="mb-7 flex items-start justify-between gap-4 border-b border-white/12 pb-5">
         <div>
           <p className="font-latin text-[10px] font-extrabold tracking-[.15em] text-[#16d5df]">MAM_TKNO / PROJECT BRIEF</p>
@@ -246,8 +246,8 @@ export default function QuoteRequest() {
           <div className="mt-4 grid gap-3 sm:grid-cols-3">
             {([
               { key: 'technology' as const, label: 'البرمجة والحلول التقنية', code: 'DEV / 06 SERVICES', accent: '#16d5df' },
-              { key: 'design' as const, label: 'الجرافيكس والتصميم', code: 'GRAPHICS / 03 SERVICES', accent: '#ff7a0a' },
-              { key: 'unsure' as const, label: 'أحتاج توجيهًا', code: 'DISCOVERY / OPEN', accent: '#c8ff2b' },
+              { key: 'design' as const, label: 'الجرافيكس والتصميم', code: 'GRAPHICS / 03 SERVICES', accent: '#83cfff' },
+              { key: 'unsure' as const, label: 'أحتاج توجيهًا', code: 'DISCOVERY / OPEN', accent: '#ffffff' },
             ]).map((option) => {
               const selected = form.category === option.key;
               return (

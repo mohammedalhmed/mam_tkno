@@ -1354,3 +1354,92 @@ summary::-webkit-details-marker {
     transition: none;
   }
 }
+
+/* Canva reference adaptation: dark, layered product-studio surfaces. */
+:root {
+  --canva-night: #061437;
+  --canva-deep: #081b46;
+  --canva-panel: #0b2459;
+  --canva-panel-strong: #123477;
+  --canva-ink: #eff7ff;
+  --canva-muted: rgb(223 237 255 / 0.7);
+  --canva-line: rgb(212 231 255 / 0.16);
+}
+
+html,
+body {
+  background: var(--canva-night);
+}
+
+.site-shell {
+  background:
+    radial-gradient(circle at 86% 9%, rgb(73 137 255 / 0.19), transparent 29rem),
+    radial-gradient(circle at 4% 42%, rgb(22 213 223 / 0.11), transparent 24rem),
+    linear-gradient(180deg, #061437 0%, #071a43 42%, #061437 100%);
+  color: var(--canva-ink);
+}
+
+.canva-page-grid {
+  background-image:
+    linear-gradient(rgb(210 231 255 / 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(210 231 255 / 0.065) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: linear-gradient(to bottom, black, transparent 86%);
+}
+
+.canva-shell-panel {
+  border: 1px solid var(--canva-line);
+  background: linear-gradient(145deg, rgb(18 52 119 / 0.88), rgb(7 24 62 / 0.9));
+  box-shadow: 0 1.6rem 4.6rem rgb(0 5 24 / 0.34);
+}
+
+.canva-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2rem;
+  border: 1px solid rgb(22 213 223 / 0.52);
+  border-radius: 999px;
+  background: rgb(22 213 223 / 0.1);
+  padding-inline: 0.8rem;
+  color: #dffbff;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.canva-kicker {
+  color: rgb(190 216 255 / 0.7);
+  font-family: var(--font-latin);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  direction: ltr;
+}
+
+.canva-ghost-button {
+  border: 1px solid rgb(229 240 255 / 0.22);
+  background: rgb(255 255 255 / 0.06);
+  color: #f5f9ff;
+}
+
+.canva-ghost-button:hover {
+  border-color: rgb(22 213 223 / 0.74);
+  background: rgb(22 213 223 / 0.12);
+}
+
+.canva-proof-card {
+  border-top: 1px solid rgb(224 239 255 / 0.16);
+}
+
+.canva-proof-card span {
+  border-color: rgb(224 239 255 / 0.2);
+  background: rgb(255 255 255 / 0.07);
+  color: #8bdcff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canva-shell-panel,
+  .canva-ghost-button {
+    transition: none;
+  }
+}

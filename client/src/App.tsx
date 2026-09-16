@@ -10,7 +10,7 @@ const ServiceCategory = lazy(() => import("./pages/ServiceCategory"));
 const CaseStudyPage = lazy(() => import("./pages/CaseStudy"));
 
 function Router() {
-  const fallback = <div className="min-h-screen bg-[#f1f5f5]" aria-label="جارٍ تحميل الصفحة" />;
+  const fallback = <div className="min-h-screen bg-[#061437]" aria-label="جارٍ تحميل الصفحة" />;
   return (
     <Suspense fallback={fallback}>
       <Switch>

@@ -71,63 +71,63 @@ export default function ServiceCategory({ category }: { category: ServiceCategor
           </div>
         </section>
 
-        <section className="surface-paper section-rule-soft py-10 md:py-14" aria-labelledby="method-board-title">
+        <section className="surface-ink section-rule-soft py-10 md:py-14" aria-labelledby="method-board-title">
           <div className="container">
-            <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#07101c]/14 pb-5">
+            <div className="flex flex-wrap items-end justify-between gap-4 border-b border-white/14 pb-5">
               <div>
                 <p className="section-number">METHOD BOARD / {category === 'technology' ? '01' : '02'}</p>
-                <h2 id="method-board-title" className="mt-2 font-display text-2xl font-bold tracking-[-.035em] text-[#07101c]">قرار واضح قبل قائمة الخدمات.</h2>
+                <h2 id="method-board-title" className="mt-2 font-display text-2xl font-bold tracking-[-.035em] text-white">قرار واضح قبل قائمة الخدمات.</h2>
               </div>
-              <p className="max-w-md text-sm leading-7 text-[#07101c]/58">لوحة مختصرة توضّح كيف يتحول الاحتياج إلى نطاق يمكن مراجعته قبل فتح نموذج الطلب.</p>
+              <p className="max-w-md text-sm leading-7 text-white/58">لوحة مختصرة توضّح كيف يتحول الاحتياج إلى نطاق يمكن مراجعته قبل فتح نموذج الطلب.</p>
             </div>
             <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-[1.2fr_.8fr_.8fr]">
-              <article className="border border-[#07101c]/14 bg-[#07101c] p-6 text-white shadow-[8px_8px_0_rgba(22,213,223,.16)] md:row-span-2">
+              <article className="border border-[#16d5df]/38 bg-[#061935] p-6 text-white shadow-[8px_8px_0_rgba(22,213,223,.16)] md:row-span-2">
                 <div className="flex items-center justify-between gap-4"><span className="font-latin text-[10px] font-extrabold tracking-[.16em] text-[#16d5df]">01 / DECISION</span><Route className="h-5 w-5 text-[#16d5df]" aria-hidden="true" /></div>
                 <h3 className="mt-10 max-w-md font-display text-3xl font-bold leading-tight">نبدأ من موضع الاحتكاك، لا من اسم الخدمة.</h3>
                 <p className="mt-5 max-w-lg text-sm leading-8 text-white/62">{config.prompt}</p>
               </article>
-              <article className="border border-[#07101c]/14 bg-white/55 p-6">
-                <div className="flex items-center justify-between gap-4"><span className="font-latin text-[10px] font-extrabold tracking-[.16em] text-[#2145a8]">02 / EVIDENCE</span><FileCheck2 className="h-5 w-5 text-[#2145a8]" aria-hidden="true" /></div>
-                <h3 className="mt-7 font-display text-xl font-bold text-[#07101c]">نراجع ما يمكن رؤيته واختباره.</h3>
-                <p className="mt-3 text-sm leading-7 text-[#07101c]/62">مخرجات واضحة ومسارات استخدام قابلة للمراجعة، من دون وعود رقمية غير منشورة.</p>
+              <article className="border border-white/14 bg-white/[.055] p-6 backdrop-blur-sm">
+                <div className="flex items-center justify-between gap-4"><span className="font-latin text-[10px] font-extrabold tracking-[.16em] text-[#16d5df]">02 / EVIDENCE</span><FileCheck2 className="h-5 w-5 text-[#16d5df]" aria-hidden="true" /></div>
+                <h3 className="mt-7 font-display text-xl font-bold text-white">نراجع ما يمكن رؤيته واختباره.</h3>
+                <p className="mt-3 text-sm leading-7 text-white/62">مخرجات واضحة ومسارات استخدام قابلة للمراجعة، من دون وعود رقمية غير منشورة.</p>
               </article>
-              <article className="border border-[#07101c]/14 bg-[var(--brand-surface)] p-6">
-                <p className="font-latin text-[10px] font-extrabold tracking-[.16em] text-[#147e87]">03 / SCOPE</p>
-                <h3 className="mt-7 font-display text-xl font-bold text-[#07101c]">نحوّل القرار إلى نطاق مرحلي.</h3>
+              <article className="border border-white/14 bg-[#0a2652]/82 p-6">
+                <p className="font-latin text-[10px] font-extrabold tracking-[.16em] text-[#16d5df]">03 / SCOPE</p>
+                <h3 className="mt-7 font-display text-xl font-bold text-white">نحوّل القرار إلى نطاق مرحلي.</h3>
                 <div className="mt-4 flex flex-wrap gap-2">{config.services.map((service) => <span key={service.code} className="ui-chip !min-h-7 !px-2.5 !text-[10px]">{service.code}</span>)}</div>
               </article>
             </div>
           </div>
         </section>
 
-        <section className="surface-warm section-pad section-rule-soft" aria-labelledby="category-services-title">
+        <section className="surface-ink section-pad section-rule-soft" aria-labelledby="category-services-title">
           <div className="container">
-            <header className="grid gap-6 border-b border-[#07101c]/14 pb-9 lg:grid-cols-[.55fr_1fr] lg:items-end">
+            <header className="grid gap-6 border-b border-white/14 pb-9 lg:grid-cols-[.55fr_1fr] lg:items-end">
               <span className="section-number">CATALOG / {category === 'technology' ? '01' : '02'}</span>
               <div>
-                <h2 id="category-services-title" className="editorial-heading !text-[clamp(2.2rem,5vw,4.2rem)]">مخرجات واضحة قبل بدء التنفيذ.</h2>
-                <p className="editorial-copy mt-4">راجع ما يقدمه كل مسار، ثم افتح نموذج الطلب مع توضيح ما تريد تحقيقه.</p>
+                <h2 id="category-services-title" className="font-display text-[clamp(2.2rem,5vw,4.2rem)] font-[750] leading-[1.05] tracking-[-.055em] text-white">مخرجات واضحة قبل بدء التنفيذ.</h2>
+                <p className="mt-4 max-w-xl text-base leading-8 text-white/62">راجع ما يقدمه كل مسار، ثم افتح نموذج الطلب مع توضيح ما تريد تحقيقه.</p>
               </div>
             </header>
 
-            <div className="mt-10 border-t border-[#07101c]/14">
+            <div className="mt-10 border-t border-white/14">
               {config.services.map((service, index) => (
-                <article key={service.code} className="focus-card grid gap-6 border-b border-[#07101c]/14 py-8 md:grid-cols-[6rem_minmax(0,1fr)_minmax(13rem,.55fr)] md:items-start md:py-10">
+                <article key={service.code} className="focus-card grid gap-6 border-b border-white/14 py-8 md:grid-cols-[6rem_minmax(0,1fr)_minmax(13rem,.55fr)] md:items-start md:py-10">
                   <div className="flex items-center gap-3 md:block">
-                    <span className="font-latin text-4xl font-extrabold text-[#07101c]/10">0{index + 1}</span>
+                    <span className="font-latin text-4xl font-extrabold text-white/12">0{index + 1}</span>
                     <span className="section-number md:mt-2 md:block">{service.code}</span>
                   </div>
                   <div>
-                    <h3 className="font-display text-2xl font-bold leading-tight text-[#07101c] sm:text-3xl">{service.title}</h3>
-                    <p className="mt-4 max-w-2xl text-base leading-8 text-[#07101c]/64">{service.summary}</p>
-                    <a href="/#contact" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#2145a8] underline decoration-[#16d5df] decoration-2 underline-offset-8">
+                    <h3 className="font-display text-2xl font-bold leading-tight text-white sm:text-3xl">{service.title}</h3>
+                    <p className="mt-4 max-w-2xl text-base leading-8 text-white/64">{service.summary}</p>
+                    <a href="/#contact" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#16d5df] underline decoration-[#16d5df] decoration-2 underline-offset-8">
                       اطلب تفاصيل الخدمة <span className="font-latin text-[9px] tracking-[.14em] text-[#147e87]">NEXT</span>
                       <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />
                     </a>
                   </div>
-                  <ul className="space-y-3 border-r border-[#07101c]/12 pr-5">
+                  <ul className="space-y-3 border-r border-white/14 pr-5">
                     {service.outputs.map((output) => (
-                      <li key={output} className="flex items-start gap-2 text-sm font-semibold leading-6 text-[#07101c]/68">
+                      <li key={output} className="flex items-start gap-2 text-sm font-semibold leading-6 text-white/68">
                         <Check className="mt-1 h-4 w-4 shrink-0" style={{ color: config.accent }} aria-hidden="true" />
                         {output}
                       </li>

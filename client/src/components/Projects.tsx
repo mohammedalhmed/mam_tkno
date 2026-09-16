@@ -7,20 +7,20 @@ const projectSignatures = {
   bellabox: {
     label: 'SOFT COMMERCE',
     note: 'هدوء العناية يتحول إلى مسار شراء واضح وسهل.',
-    tone: 'border-[#d8b8c4] bg-[#f2dfe5] text-[#8f3754]',
-    line: '#d8b8c4',
+    tone: 'border-[#f3b8d5]/55 bg-[#f3b8d5]/12 text-[#ffd9e8]',
+    line: '#f3b8d5',
   },
   nerfona: {
     label: 'CARE / EDUCATION',
     note: 'المحتوى يشرح القيمة قبل أن يطلب من الزائر الشراء.',
-    tone: 'border-[#bfd0b3] bg-[#e1ead8] text-[#42623b]',
-    line: '#bfd0b3',
+    tone: 'border-[#a9e4c4]/48 bg-[#a9e4c4]/10 text-[#d8ffe7]',
+    line: '#a9e4c4',
   },
   altaj: {
     label: 'SPACE / LEAD',
     note: 'خدمات متعددة تجتمع حول نقطة تواصل واحدة ومباشرة.',
-    tone: 'border-[#cfb6c9] bg-[#eadde7] text-[#6f315d]',
-    line: '#cfb6c9',
+    tone: 'border-[#d7baff]/50 bg-[#d7baff]/10 text-[#eadfff]',
+    line: '#d7baff',
   },
 } as const;
 
@@ -82,12 +82,13 @@ export default function Projects() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="projects" className="surface-ink section-pad overflow-hidden" aria-labelledby="projects-title">
-      <div className="pointer-events-none absolute inset-0 opacity-20 tech-grid" aria-hidden="true" />
+    <section ref={sectionRef} id="projects" className="relative overflow-hidden bg-[#061437] py-20 sm:py-28" aria-labelledby="projects-title">
+      <div className="canva-page-grid pointer-events-none absolute inset-0 opacity-80" aria-hidden="true" />
+      <div className="pointer-events-none absolute -right-40 top-1/4 h-96 w-96 rounded-full bg-[#245eb9]/20 blur-3xl" aria-hidden="true" />
       <div className="container relative">
         <header className="grid gap-8 border-b border-white/14 pb-10 lg:grid-cols-[.68fr_1.32fr] lg:items-end">
           <div>
-            <span className="font-latin text-[10px] font-extrabold tracking-[.14em] text-[#16d5df]">03 / SELECTED WORK</span>
+            <span className="canva-chip">03 / SELECTED WORK</span>
             <p className="mt-4 max-w-xs text-sm leading-7 text-white/52">دليل مرئي على القرارات والنطاق، لا معرض صور منفصل عن سياق العمل.</p>
           </div>
           <div>
@@ -102,7 +103,7 @@ export default function Projects() {
             const reverse = index % 2 === 1;
 
             return (
-              <article
+          <article
                 key={project.id}
                 data-reveal
                 style={{ '--reveal-delay': `${Math.min(index * 70, 140)}ms` } as CSSProperties}
@@ -112,7 +113,7 @@ export default function Projects() {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`case-window tilt-card group block overflow-hidden border border-white/16 bg-[#111827] shadow-[0_26px_70px_rgba(0,0,0,.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df] ${reverse ? 'lg:order-2' : ''}`}
+                  className={`case-window tilt-card group block overflow-hidden border border-white/16 bg-[#0b2459] shadow-[0_26px_70px_rgba(0,7,30,.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df] ${reverse ? 'lg:order-2' : ''}`}
                   onPointerMove={handleTiltMove}
                   onPointerDown={handleTouchStart}
                   onPointerLeave={resetTilt}
@@ -128,7 +129,7 @@ export default function Projects() {
                   </div>
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img src={project.image} alt={`معاينة مشروع ${project.arabicTitle}`} loading="lazy" decoding="async" sizes="(min-width: 1024px) 58vw, 100vw" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
-                    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-[#07101c]/88 p-4 text-white sm:p-5">
+                    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-[#061437]/90 p-4 text-white sm:p-5">
                       <div>
                         <span className="font-latin text-[9px] font-extrabold tracking-[.12em] text-[#16d5df]">ROLE / SCOPE</span>
                         <p className="mt-1 text-xs font-bold leading-6 text-white/82 sm:text-sm">{project.role}</p>
@@ -167,7 +168,7 @@ export default function Projects() {
                   </ul>
 
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                    <a href={`/case-studies/${project.id}`} className="lime-button !min-h-12 text-sm">
+                    <a href={`/case-studies/${project.id}`} className="inline-flex min-h-12 items-center justify-center gap-2 bg-[#16d5df] px-4 text-sm font-extrabold text-[#061437] shadow-[3px_3px_0_#285fbe] transition-transform hover:-translate-y-0.5 active:translate-y-0">
                       اقرأ دراسة الحالة
                       <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />
                     </a>
