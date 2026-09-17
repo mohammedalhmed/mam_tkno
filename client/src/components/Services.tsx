@@ -20,11 +20,11 @@ const categoryMeta = {
 
 export default function Services() {
   return (
-    <section id="services" className="relative overflow-hidden bg-[#071a43] py-20 text-white sm:py-28" aria-labelledby="services-title">
+    <section id="services" className="service-system relative overflow-hidden bg-[#071a43] py-20 text-white sm:py-28" aria-labelledby="services-title">
       <div className="canva-page-grid pointer-events-none absolute inset-0 opacity-80" aria-hidden="true" />
       <div className="pointer-events-none absolute -left-40 top-1/3 h-80 w-80 rounded-full bg-[#16d5df]/10 blur-3xl" aria-hidden="true" />
       <div className="container relative">
-        <header className="grid gap-8 border-b border-white/14 pb-10 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
+        <header className="service-system__header grid gap-8 border-b border-white/14 pb-10 lg:grid-cols-[.7fr_1.3fr] lg:items-end">
           <div>
             <span className="canva-chip">02 / SERVICE SYSTEM</span>
             <p className="mt-4 text-sm font-bold text-[#83cfff]">ما الذي تحتاجه الآن؟</p>
@@ -42,8 +42,8 @@ export default function Services() {
             const Icon = meta.icon;
 
             return (
-              <section key={category.key} className="grid gap-8 lg:grid-cols-[minmax(16rem,.36fr)_minmax(0,.64fr)] lg:gap-14" aria-labelledby={`${category.key}-services-title`}>
-                <aside className="lg:sticky lg:top-28 lg:self-start">
+              <section key={category.key} className="service-system__category grid gap-8 lg:grid-cols-[minmax(16rem,.36fr)_minmax(0,.64fr)] lg:gap-14" aria-labelledby={`${category.key}-services-title`}>
+                <aside className="service-system__category-info lg:sticky lg:top-28 lg:self-start">
                   <div className="flex items-center gap-4">
                     <span className="font-latin text-6xl font-extrabold leading-none text-white/10">{meta.index}</span>
                     <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/16 bg-white/8" style={{ color: meta.accent }}>
@@ -60,18 +60,18 @@ export default function Services() {
                   </a>
                 </aside>
 
-                <div className="border-t border-white/16">
+                <div className="service-system__list border-t border-white/16">
                   {category.services.map((service, index) => (
-                    <article key={service.id} className="focus-card group grid gap-5 border-b border-white/14 py-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:py-9">
-                      <div>
-                        <div className="flex flex-wrap items-center gap-3">
+                    <article key={service.id} className="service-card focus-card group grid gap-5 border-b border-white/14 py-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:py-9">
+                      <div className="service-card__body">
+                        <div className="service-card__meta flex flex-wrap items-center gap-3">
                           <span className="font-latin text-[10px] font-extrabold tracking-[.12em] text-[#a9c8ff]">{service.code}</span>
                           <span className="h-px w-8" style={{ backgroundColor: meta.accent }} aria-hidden="true" />
                           <span className="text-xs font-bold text-white/46">0{index + 1}</span>
                         </div>
-                        <h4 className="mt-3 font-display text-xl font-bold leading-tight text-white sm:text-2xl">{service.title}</h4>
-                        <p className="mt-3 max-w-2xl text-sm leading-7 text-white/64 sm:text-base">{service.summary}</p>
-                        <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2" aria-label="المخرجات الأساسية">
+                        <h4 className="service-card__title mt-3 font-display text-xl font-bold leading-tight text-white sm:text-2xl">{service.title}</h4>
+                        <p className="service-card__summary mt-3 max-w-2xl text-sm leading-7 text-white/64 sm:text-base">{service.summary}</p>
+                        <ul className="service-card__outputs mt-5 flex flex-wrap gap-x-5 gap-y-2" aria-label="المخرجات الأساسية">
                           {service.outputs.slice(0, 3).map((output) => (
                             <li key={output} className="flex items-center gap-2 text-xs font-semibold text-white/70">
                               <Check className="h-3.5 w-3.5" style={{ color: meta.accent }} aria-hidden="true" />
@@ -80,7 +80,7 @@ export default function Services() {
                           ))}
                         </ul>
                       </div>
-                      <a href={`/?service=${service.id}#contact`} className="flex h-12 w-full items-center justify-center gap-2 border border-[#16d5df]/60 bg-[#16d5df] px-4 text-sm font-bold text-[#061437] transition-all hover:-translate-y-0.5 hover:bg-[#8cf3fa] sm:w-auto" aria-label={`طلب عرض سعر لخدمة ${service.title}`}>
+                      <a href={`/?service=${service.id}#contact`} className="service-card__cta flex h-12 w-full items-center justify-center gap-2 border border-[#16d5df]/60 bg-[#16d5df] px-4 text-sm font-bold text-[#061437] transition-all hover:-translate-y-0.5 hover:bg-[#8cf3fa] sm:w-auto" aria-label={`طلب عرض سعر لخدمة ${service.title}`}>
                         اطلب الخدمة
                         <ArrowUpLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" aria-hidden="true" />
                       </a>
