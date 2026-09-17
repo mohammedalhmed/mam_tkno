@@ -58,9 +58,9 @@
   --brand-line: rgb(7 16 28 / 0.14);
   --brand-purple: #8b5cf6;
   --brand-grid: rgb(7 16 28 / 0.065);
-  --font-display: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
-  --font-body: 'IBM Plex Sans Arabic', sans-serif;
-  --font-latin: 'Manrope', sans-serif;
+  --font-display: 'Zain', 'Tajawal', sans-serif;
+  --font-body: 'Tajawal', sans-serif;
+  --font-latin: 'Tajawal', sans-serif;
   --background: oklch(0.965 0.015 93);
   --foreground: oklch(0.13 0.018 252);
   --card: oklch(0.99 0.008 93);
@@ -2004,5 +2004,129 @@ body {
   .hero-reference__primary-action,
   .hero-reference__secondary-action {
     transition: none;
+  }
+}
+
+
+/* Hero entrance motion: soft staggered arrival for the focal image and decorative layers. */
+.hero-reference-enter {
+  opacity: 0;
+  animation: hero-reference-enter 720ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.hero-reference-enter--image {
+  animation-delay: 120ms;
+}
+
+.hero-reference-enter--label {
+  animation-delay: 220ms;
+}
+
+.hero-reference-enter--orbit {
+  animation-delay: 300ms;
+}
+
+.hero-reference-enter--shape-right {
+  animation-delay: 360ms;
+}
+
+.hero-reference-enter--shape-left {
+  animation-delay: 430ms;
+}
+
+.hero-reference-enter--card {
+  animation: hero-reference-card-enter 780ms 520ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes hero-reference-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.97) rotate(-1.2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(-1.2deg);
+  }
+}
+
+@keyframes hero-reference-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-reference__orbit.hero-reference-enter {
+  animation-name: hero-reference-orbit-enter;
+}
+
+.hero-reference__shape--right.hero-reference-enter {
+  animation-name: hero-reference-shape-right-enter;
+}
+
+.hero-reference__shape--left.hero-reference-enter {
+  animation-name: hero-reference-shape-left-enter;
+}
+
+@keyframes hero-reference-orbit-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.92) rotate(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(-18deg);
+  }
+}
+
+@keyframes hero-reference-shape-right-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.92) rotate(-14deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(-9deg);
+  }
+}
+
+@keyframes hero-reference-shape-left-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.92) rotate(7deg);
+  }
+  to {
+    opacity: 0.75;
+    transform: translateY(0) scale(1) rotate(12deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reference-enter,
+  .hero-reference-enter--card {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+
+  .hero-reference__image-frame {
+    transform: rotate(-1.2deg);
+  }
+
+  .hero-reference__orbit.hero-reference-enter {
+    transform: rotate(-18deg);
+  }
+
+  .hero-reference__shape--right.hero-reference-enter {
+    transform: rotate(-9deg);
+  }
+
+  .hero-reference__shape--left.hero-reference-enter {
+    opacity: 0.75;
+    transform: rotate(12deg);
   }
 }

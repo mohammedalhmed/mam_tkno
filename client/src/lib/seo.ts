@@ -13,7 +13,7 @@ export const HOME_METADATA: PageMetadata = {
   description: 'MAM_Tkno وكالة تقنية وتصميمية تبني مواقع ومنتجات رقمية وهويات بصرية واضحة، سريعة، ومتجاوبة للعلامات التجارية.',
   canonicalPath: '/',
   ogType: 'website',
-  image: `${SITE_URL}/manus-storage/portfolio-hero-atelier_61d8db81.png`,
+  image: `${SITE_URL}/manus-storage/mam-tkno-hero-tech-01_58bcbb7a.jpg`,
 };
 
 function upsertMeta(attribute: 'name' | 'property', key: string, content: string) {

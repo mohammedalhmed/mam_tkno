@@ -16,24 +16,24 @@ export default function Hero() {
       <div className="container relative z-10">
         <div className="hero-reference__layout">
           <div className="hero-reference__visual reveal-delayed">
-            <div className="hero-reference__visual-label" aria-hidden="true">
+            <div className="hero-reference__visual-label hero-reference-enter hero-reference-enter--label" aria-hidden="true">
               <span className="hero-reference__label-dot" />
               MAM_TKNO / DIGITAL LAB
             </div>
 
-            <div className="hero-reference__orbit hero-reference__orbit--top" aria-hidden="true" />
-            <div className="hero-reference__shape hero-reference__shape--right" aria-hidden="true">
+            <div className="hero-reference__orbit hero-reference__orbit--top hero-reference-enter hero-reference-enter--orbit" aria-hidden="true" />
+            <div className="hero-reference__shape hero-reference__shape--right hero-reference-enter hero-reference-enter--shape-right" aria-hidden="true">
               <span />
             </div>
-            <div className="hero-reference__shape hero-reference__shape--left" aria-hidden="true">
+            <div className="hero-reference__shape hero-reference__shape--left hero-reference-enter hero-reference-enter--shape-left" aria-hidden="true">
               <span />
             </div>
 
-            <figure className="hero-reference__image-frame">
+            <figure className="hero-reference__image-frame hero-reference-enter hero-reference-enter--image">
               <div className="hero-reference__image-mask">
                 <img
-                  src="/manus-storage/portfolio-hero-atelier_61d8db81.png"
-                  alt="تصور لنظام واجهة متجر إلكتروني عربي متجاوب من MAM_Tkno"
+                  src="/manus-storage/mam-tkno-hero-tech-01_58bcbb7a.jpg"
+                  alt="مشهد تقني يوضح واجهات متجر إلكتروني على حاسوب محمول وهاتف من خدمات MAM_Tkno"
                   fetchPriority="high"
                 />
                 <div className="hero-reference__image-overlay" aria-hidden="true" />
@@ -44,7 +44,7 @@ export default function Hero() {
               </figcaption>
             </figure>
 
-            <div className="hero-reference__floating-card" aria-hidden="true">
+            <div className="hero-reference__floating-card hero-reference-enter hero-reference-enter--card" aria-hidden="true">
               <span className="font-latin">01 — 03</span>
               <strong>نظام رقمي واضح</strong>
             </div>
