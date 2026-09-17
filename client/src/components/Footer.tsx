@@ -15,12 +15,12 @@ export default function Footer() {
   const telegram = socialLinks.find((social) => social.platform === 'telegram');
 
   return (
-    <footer className="surface-ink relative overflow-hidden pb-6 pt-16 sm:pt-20">
+    <footer className="footer-system surface-ink relative overflow-hidden pb-6 pt-16 sm:pt-20">
       <div className="pointer-events-none absolute inset-0 tech-grid opacity-15" aria-hidden="true" />
 
       <div className="container relative">
-        <div className="grid gap-12 border-b border-white/15 pb-14 lg:grid-cols-[1.35fr_.7fr_.9fr] lg:gap-16">
-          <div className="max-w-2xl">
+        <div className="footer-system__grid grid gap-12 border-b border-white/15 pb-14 lg:grid-cols-[1.35fr_.7fr_.9fr] lg:gap-16">
+          <div className="footer-system__lead max-w-2xl">
             <div className="mb-7 flex items-center gap-3">
               <span className="font-latin text-[10px] font-bold tracking-[.22em] text-[#16d5df]">NEXT / MOVE</span>
               <span className="h-px w-12 bg-[#16d5df]/60" />
@@ -36,7 +36,7 @@ export default function Footer() {
             </a>
           </div>
 
-          <div>
+          <div className="footer-system__nav">
             <p className="font-latin text-[10px] font-bold tracking-[.2em] text-[#16d5df]">EXPLORE / 02</p>
             <nav className="mt-5 space-y-1" aria-label="روابط الفوتر">
               {footerNav.map((item, index) => (
@@ -48,7 +48,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          <div>
+          <div className="footer-system__connect">
             <p className="font-latin text-[10px] font-bold tracking-[.2em] text-[#16d5df]">CONNECT / 03</p>
             <div className="mt-5 border border-white/13 bg-white/[.04] p-4">
               <a href={`mailto:${contactDetails.email}`} className="group flex items-start gap-3 p-2 transition-colors hover:bg-white/[.07]">
@@ -68,7 +68,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-7 pt-8 sm:flex-row sm:items-end sm:justify-between">
+        <div className="footer-system__bottom flex flex-col gap-7 pt-8 sm:flex-row sm:items-end sm:justify-between">
           <a href="#home" className="group flex items-center gap-3" aria-label="العودة إلى بداية الصفحة">
             <BrandMark size="sm" onDark />
             <div>

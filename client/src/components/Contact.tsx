@@ -12,18 +12,18 @@ const iconMap = {
 
 export default function Contact() {
   return (
-    <section id="contact" className="surface-ink section-pad relative overflow-hidden">
+    <section id="contact" className="contact-system surface-ink section-pad relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 tech-grid opacity-20" aria-hidden="true" />
       <div className="container relative">
         <div className="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
-          <div>
+          <div className="contact-system__intro">
             <span className="font-latin text-[10px] font-extrabold tracking-[.14em] text-[#16d5df]">05 / START A CONVERSATION</span>
             <h2 className="mt-6 max-w-3xl font-display text-[clamp(3rem,8vw,6.7rem)] font-[750] leading-[1.04] tracking-[-.05em] text-white">فكرة واضحة،<br /><span className="text-[#16d5df]">خطوة تالية بسيطة.</span></h2>
             <p className="mt-7 max-w-xl text-base leading-8 text-white/62 sm:text-lg">
               أرسل رابطًا، وصفًا مختصرًا، أو حتى سؤالًا أوليًا. سنرتب الفكرة في مسار يمكن البدء منه، دون وعود أو نطاقات مبهمة.
             </p>
 
-            <div className="mt-9 grid gap-3 sm:grid-cols-2">
+            <div className="contact-system__actions mt-9 grid gap-3 sm:grid-cols-2">
               <a href={contactDetails.whatsapp} target="_blank" rel="noopener noreferrer" className="lime-button">
                 <MessageCircle className="h-5 w-5" />
                 ابدأ عبر واتساب
@@ -35,7 +35,7 @@ export default function Contact() {
               </a>
             </div>
 
-            <div className="mt-12 border-y border-white/14">
+            <div className="contact-system__channels mt-12 border-y border-white/14">
               <div className="grid gap-px bg-white/14 sm:grid-cols-3">
                 <a href={`mailto:${contactDetails.email}`} className="group bg-[#07101c] p-4 text-sm text-white/58 transition-colors hover:bg-white/[.05] hover:text-white">
                   <Mail className="mb-5 h-5 w-5 text-[#16d5df]" />
@@ -56,10 +56,10 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="lg:border-r lg:border-white/15 lg:pr-10">
+          <div className="contact-system__form lg:border-r lg:border-white/15 lg:pr-10">
             <QuoteRequest />
 
-            <div className="mb-5 mt-12 flex items-end justify-between gap-4 border-b border-white/14 pb-5">
+            <div className="contact-system__social-heading mb-5 mt-12 flex items-end justify-between gap-4 border-b border-white/14 pb-5">
               <div>
                 <p className="font-latin text-[10px] font-extrabold tracking-[.14em] text-[#16d5df]">PUBLIC CHANNELS</p>
                 <h3 className="mt-2 font-display text-2xl font-bold">تابع العمل والمحتوى</h3>
@@ -67,7 +67,7 @@ export default function Contact() {
               <span className="font-latin text-xs font-bold text-white/28">04 LINKS</span>
             </div>
 
-            <div className="grid gap-px border border-white/14 bg-white/14 sm:grid-cols-2">
+            <div className="contact-system__social-grid grid gap-px border border-white/14 bg-white/14 sm:grid-cols-2">
               {socialLinks.map((social) => {
                 const Icon = iconMap[social.platform];
                 return (

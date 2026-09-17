@@ -82,7 +82,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="projects" className="relative overflow-hidden bg-[#061437] py-20 sm:py-28" aria-labelledby="projects-title">
+    <section ref={sectionRef} id="projects" className="projects-system relative overflow-hidden bg-[#061437] py-20 sm:py-28" aria-labelledby="projects-title">
       <div className="canva-page-grid pointer-events-none absolute inset-0 opacity-80" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-40 top-1/4 h-96 w-96 rounded-full bg-[#245eb9]/20 blur-3xl" aria-hidden="true" />
       <div className="container relative">
@@ -107,13 +107,13 @@ export default function Projects() {
                 key={project.id}
                 data-reveal
                 style={{ '--reveal-delay': `${Math.min(index * 70, 140)}ms` } as CSSProperties}
-                className="reveal-card grid gap-9 border-b border-white/12 py-14 sm:py-18 lg:grid-cols-[minmax(0,1.12fr)_minmax(20rem,.88fr)] lg:items-center lg:gap-16 lg:py-24"
+                className="project-entry reveal-card grid gap-9 border-b border-white/12 py-14 sm:py-18 lg:grid-cols-[minmax(0,1.12fr)_minmax(20rem,.88fr)] lg:items-center lg:gap-16 lg:py-24"
               >
                 <a
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`case-window tilt-card group block overflow-hidden border border-white/16 bg-[#0b2459] shadow-[0_26px_70px_rgba(0,7,30,.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df] ${reverse ? 'lg:order-2' : ''}`}
+                  className={`project-media case-window tilt-card group block overflow-hidden border border-white/16 bg-[#0b2459] shadow-[0_26px_70px_rgba(0,7,30,.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16d5df] ${reverse ? 'lg:order-2' : ''}`}
                   onPointerMove={handleTiltMove}
                   onPointerDown={handleTouchStart}
                   onPointerLeave={resetTilt}
@@ -141,7 +141,7 @@ export default function Projects() {
                   </div>
                 </a>
 
-                <div className={reverse ? 'lg:order-1' : ''}>
+                <div className={`project-copy ${reverse ? 'lg:order-1' : ''}`}>
                   <div className="flex items-center justify-between gap-4">
                     <span className={`border px-3 py-1.5 text-[10px] font-extrabold tracking-[.1em] ${signature.tone}`}>{signature.label}</span>
                     <span className="font-latin text-5xl font-extrabold text-white/10">0{index + 1}</span>
@@ -167,7 +167,7 @@ export default function Projects() {
                     ))}
                   </ul>
 
-                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                  <div className="project-actions mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                     <a href={`/case-studies/${project.id}`} className="inline-flex min-h-12 items-center justify-center gap-2 bg-[#16d5df] px-4 text-sm font-extrabold text-[#061437] shadow-[3px_3px_0_#285fbe] transition-transform hover:-translate-y-0.5 active:translate-y-0">
                       اقرأ دراسة الحالة
                       <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />
