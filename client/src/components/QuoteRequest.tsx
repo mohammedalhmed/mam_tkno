@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ChangeEvent } from 'react';
-import { AlertCircle, ArrowLeft, ArrowRight, CheckCircle2, ClipboardList, Mail, MessageCircle, Send } from 'lucide-react';
+import { AlertCircle, ArrowLeft, ArrowRight, CheckCircle2, ClipboardList, LoaderCircle, Mail, MessageCircle, Send } from 'lucide-react';
 import { allServices, serviceCategories, type ServiceCategoryKey } from '@/lib/services';
 import { contactDetails } from '@/lib/portfolio-data';
 
@@ -96,6 +96,7 @@ export default function QuoteRequest() {
   const [errors, setErrors] = useState<QuoteErrors>({});
   const [mailtoHref, setMailtoHref] = useState('');
   const [whatsappHref, setWhatsappHref] = useState('');
+  const [submissionState, setSubmissionState] = useState<'idle' | 'preparing' | 'ready' | 'error'>('idle');
 
   const selectedService = useMemo(() => allServices.find((service) => service.id === form.serviceId), [form.serviceId]);
   const selectedCategory = form.category === 'technology' || form.category === 'design' ? serviceCategories[form.category] : null;
@@ -117,6 +118,7 @@ export default function QuoteRequest() {
     setErrors((current) => ({ ...current, [field]: undefined }));
     setMailtoHref('');
     setWhatsappHref('');
+    setSubmissionState('idle');
   };
 
   const updateCategory = (category: ProjectCategory) => {
@@ -124,6 +126,7 @@ export default function QuoteRequest() {
     setErrors({});
     setMailtoHref('');
     setWhatsappHref('');
+    setSubmissionState('idle');
   };
 
   const validateStep = (currentStep: QuoteStep): QuoteErrors => {
@@ -154,6 +157,7 @@ export default function QuoteRequest() {
     const nextErrors = validateStep(step);
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
+      setSubmissionState('error');
       return;
     }
     setErrors({});
@@ -162,6 +166,7 @@ export default function QuoteRequest() {
 
   const goBack = () => {
     setErrors({});
+    setSubmissionState('idle');
     setStep((current) => Math.max(1, current - 1) as QuoteStep);
   };
 
@@ -170,43 +175,52 @@ export default function QuoteRequest() {
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
       setStep(3);
+      setSubmissionState('error');
       return;
     }
 
-    const subject = `طلب عرض سعر من ${form.name.trim()}`;
-    const body = [
-      `الاسم أو الجهة: ${form.name.trim()}`,
-      `البريد الإلكتروني: ${form.email.trim()}`,
-      `الهاتف: ${form.phone.trim() || 'لم يُذكر'}`,
-      `المجال: ${categoryLabel(form.category)}`,
-      `الخدمة: ${selectedService?.title || 'أحتاج توجيهًا لاختيار الخدمة'}`,
-      `الرابط: ${form.storeUrl.trim() || 'لم يُذكر'}`,
-      `المنصة: ${form.platform || 'لم تُحدد'}`,
-      `مرحلة العلامة: ${form.brandStage || 'لم تُحدد'}`,
-      `المدة المتوقعة: ${form.timeline || 'لم تُحدد'}`,
-      `النطاق التقريبي: ${form.budget || 'لم يُحدد'}`,
-      '',
-      'تفاصيل الطلب:',
-      form.details.trim(),
-    ].join('\n');
+    setSubmissionState('preparing');
+    window.setTimeout(() => {
+      try {
+        const subject = `طلب عرض سعر من ${form.name.trim()}`;
+        const body = [
+          `الاسم أو الجهة: ${form.name.trim()}`,
+          `البريد الإلكتروني: ${form.email.trim()}`,
+          `الهاتف: ${form.phone.trim() || 'لم يُذكر'}`,
+          `المجال: ${categoryLabel(form.category)}`,
+          `الخدمة: ${selectedService?.title || 'أحتاج توجيهًا لاختيار الخدمة'}`,
+          `الرابط: ${form.storeUrl.trim() || 'لم يُذكر'}`,
+          `المنصة: ${form.platform || 'لم تُحدد'}`,
+          `مرحلة العلامة: ${form.brandStage || 'لم تُحدد'}`,
+          `المدة المتوقعة: ${form.timeline || 'لم تُحدد'}`,
+          `النطاق التقريبي: ${form.budget || 'لم يُحدد'}`,
+          '',
+          'تفاصيل الطلب:',
+          form.details.trim(),
+        ].join('\n');
 
-    setMailtoHref(`mailto:${contactDetails.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
-    const whatsappMessage = [
-      'مرحبًا MAM_Tkno، أريد طلب عرض سعر.',
-      '',
-      `الاسم أو الجهة: ${form.name.trim()}`,
-      `البريد الإلكتروني: ${form.email.trim()}`,
-      `الهاتف: ${form.phone.trim() || 'لم يُذكر'}`,
-      `المجال: ${categoryLabel(form.category)}`,
-      `الخدمة: ${selectedService?.title || 'أحتاج توجيهًا لاختيار الخدمة'}`,
-      `الرابط: ${form.storeUrl.trim() || 'لم يُذكر'}`,
-      `المدة المتوقعة: ${form.timeline || 'لم تُحدد'}`,
-      '',
-      'تفاصيل الطلب:',
-      form.details.trim(),
-    ].join('\n');
-    setWhatsappHref(`${contactDetails.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`);
-    setErrors({});
+        setMailtoHref(`mailto:${contactDetails.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        const whatsappMessage = [
+          'مرحبًا MAM_Tkno، أريد طلب عرض سعر.',
+          '',
+          `الاسم أو الجهة: ${form.name.trim()}`,
+          `البريد الإلكتروني: ${form.email.trim()}`,
+          `الهاتف: ${form.phone.trim() || 'لم يُذكر'}`,
+          `المجال: ${categoryLabel(form.category)}`,
+          `الخدمة: ${selectedService?.title || 'أحتاج توجيهًا لاختيار الخدمة'}`,
+          `الرابط: ${form.storeUrl.trim() || 'لم يُذكر'}`,
+          `المدة المتوقعة: ${form.timeline || 'لم تُحدد'}`,
+          '',
+          'تفاصيل الطلب:',
+          form.details.trim(),
+        ].join('\n');
+        setWhatsappHref(`${contactDetails.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`);
+        setErrors({});
+        setSubmissionState('ready');
+      } catch {
+        setSubmissionState('error');
+      }
+    }, 450);
   };
 
   const conditionalLabel = form.serviceId === 'mobile-apps'
@@ -402,15 +416,22 @@ export default function QuoteRequest() {
             <ArrowLeft className="h-4 w-4" />
           </button>
         ) : (
-          <button type="button" onClick={handleSubmit} className="lime-button min-h-12 w-full text-sm sm:w-auto">
-            جهّز رسالة الطلب
-            <Send className="h-4 w-4" />
+          <button type="button" onClick={handleSubmit} disabled={submissionState === 'preparing'} aria-busy={submissionState === 'preparing'} className="lime-button min-h-12 w-full text-sm disabled:cursor-wait disabled:opacity-70 sm:w-auto">
+            {submissionState === 'preparing' ? 'جارٍ تجهيز الطلب…' : 'جهّز رسالة الطلب'}
+            {submissionState === 'preparing' ? <LoaderCircle className="quote-spinner h-4 w-4" aria-hidden="true" /> : <Send className="h-4 w-4" />}
           </button>
         )}
       </div>
 
-      {mailtoHref && (
-        <div className="mt-5 flex items-start gap-3 border border-[#16d5df]/45 bg-[#16d5df]/10 p-4 text-sm leading-7 text-white/80" role="status" aria-live="polite">
+      {submissionState === 'error' && !mailtoHref && (
+        <div className="quote-alert quote-alert--error mt-5 flex items-start gap-3 border border-red-300/45 bg-red-300/10 p-4 text-sm leading-7 text-red-100" role="alert" aria-live="assertive">
+          <AlertCircle className="mt-1 h-5 w-5 shrink-0" />
+          <p>لم تكتمل الخطوة بعد. راجع الحقول المعلّمة وأكمل البيانات المطلوبة، ثم حاول تجهيز الرسالة مرة أخرى.</p>
+        </div>
+      )}
+
+      {submissionState === 'ready' && mailtoHref && (
+        <div className="quote-alert quote-alert--success mt-5 flex items-start gap-3 border border-[#16d5df]/45 bg-[#16d5df]/10 p-4 text-sm leading-7 text-white/80" role="status" aria-live="polite">
           <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#16d5df]" />
           <p>
             تم تجهيز الطلب بنجاح. <a href={mailtoHref} className="font-bold text-[#16d5df] underline decoration-[#16d5df]/50 underline-offset-4"><Mail className="mb-0.5 mr-1 inline h-4 w-4" />افتح برنامج البريد لإرساله</a>.
