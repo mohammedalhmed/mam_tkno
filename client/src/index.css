@@ -3631,3 +3631,111 @@ body {
     transition: none;
   }
 }
+
+
+/* Hero mobile repair: force a single readable column and keep decorative layers inside their visual block. */
+@media (max-width: 767px) {
+  .hero-reference {
+    min-height: auto !important;
+  }
+
+  .hero-reference__layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-auto-rows: auto;
+    align-items: start;
+    min-height: auto !important;
+    gap: 2.25rem;
+    padding-block: 5.4rem 3.25rem;
+  }
+
+  .hero-reference__content,
+  .hero-reference__visual {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    width: 100%;
+  }
+
+  .hero-reference__content {
+    order: 1;
+  }
+
+  .hero-reference__visual {
+    order: 2;
+    max-width: 24rem;
+    margin-inline: auto;
+    padding: 1rem 0 0;
+  }
+
+  .hero-reference__orbit,
+  .hero-reference__shape {
+    display: none;
+  }
+
+  .hero-reference__visual-label {
+    top: 0;
+    right: auto;
+    left: 0;
+    padding: 0.42rem 0.58rem;
+    font-size: 0.48rem;
+  }
+
+  .hero-reference__image-frame {
+    transform: none;
+    border-radius: 1.1rem 0.2rem 1.1rem 0.2rem;
+    box-shadow: 0 1.5rem 3rem rgb(0 8 32 / 0.3), 0 0 0 0.55rem rgb(255 255 255 / 0.04);
+  }
+
+  .hero-reference__image-mask {
+    aspect-ratio: 1.25 / 1;
+    border-radius: 0.85rem 0.12rem 0.85rem 0.12rem;
+  }
+
+  .hero-reference__floating-card {
+    width: 100%;
+    margin-top: 0.7rem;
+    margin-inline-start: 0;
+    padding: 0.7rem 0.8rem;
+    box-shadow: 0.3rem 0.3rem 0 #16d5df;
+  }
+
+  .hero-reference__floating-card strong {
+    font-size: 0.72rem;
+  }
+
+  .hero-reference__content h1 {
+    max-width: 12ch;
+    font-size: clamp(2.2rem, 10vw, 3.25rem);
+    line-height: 1.05;
+  }
+
+  .hero-reference__description {
+    max-width: 34rem;
+    font-size: 0.86rem;
+    line-height: 1.85;
+  }
+
+  .hero-reference__actions > a {
+    width: 100%;
+  }
+
+  .hero-reference__proof-grid {
+    margin-top: 1.4rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-reference__layout {
+    gap: 1.8rem;
+    padding-block: 5rem 2.75rem;
+  }
+
+  .hero-reference__content h1 {
+    max-width: 13ch;
+    font-size: 2.08rem;
+  }
+
+  .hero-reference__description {
+    font-size: 0.78rem;
+  }
+}
