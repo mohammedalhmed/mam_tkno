@@ -4569,3 +4569,243 @@ body {
     color: rgb(239 247 255 / 0.84);
   }
 }
+
+
+/* Mobile alignment correction: center section headings only; keep supporting content in an RTL reading flow. */
+@media (max-width: 767px) {
+  .hero-reference__content {
+    align-items: stretch;
+    text-align: right;
+  }
+
+  .hero-reference__eyebrow {
+    justify-content: space-between;
+    text-align: right;
+  }
+
+  .hero-reference__content h1 {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-reference__description {
+    margin-inline: 0;
+    text-align: right;
+  }
+
+  .hero-reference__actions {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .hero-reference__proof-grid {
+    width: 100%;
+  }
+
+  .hero-reference__proof-item {
+    justify-items: start;
+    text-align: right;
+  }
+
+  .hero-reference__proof-item > span:last-child {
+    width: 100%;
+    text-align: right;
+  }
+
+  .hero-reference__proof-item small {
+    margin-inline: 0;
+  }
+
+  .service-system__header,
+  .projects-system > .container > header,
+  .skills-system > .container > .grid,
+  .faq-system > .container > .grid,
+  .contact-system__intro,
+  .footer-system__lead {
+    text-align: right;
+  }
+
+  .service-system__header > div,
+  .projects-system > .container > header > div,
+  .skills-system > .container > .grid > div,
+  .faq-system > .container > .grid > div:first-child,
+  .contact-system__intro,
+  .footer-system__lead {
+    align-items: flex-start;
+  }
+
+  .service-system__header h2,
+  .projects-system > .container > header h2,
+  .skills-system h2,
+  .faq-system > .container > .grid > div:first-child h2,
+  .contact-system__intro h2,
+  .footer-system__lead h2 {
+    width: 100%;
+    margin-inline: 0;
+    text-align: center;
+  }
+
+  .service-system__header p,
+  .projects-system > .container > header p,
+  .skills-system > .container > .grid p,
+  .faq-system > .container > .grid > div:first-child p,
+  .contact-system__intro > p,
+  .footer-system__lead p {
+    margin-inline: 0;
+    text-align: right;
+  }
+
+  .service-system__category-info {
+    text-align: right;
+  }
+
+  .service-system__category-info > div:first-child {
+    justify-content: flex-start;
+  }
+
+  .service-system__category-info > a {
+    justify-content: flex-start;
+  }
+
+  .service-card {
+    text-align: right;
+  }
+
+  .service-card__body {
+    align-items: flex-start;
+  }
+
+  .service-card__meta,
+  .service-card__outputs {
+    justify-content: flex-start;
+  }
+
+  .service-card__outputs li {
+    justify-content: flex-start;
+    text-align: right;
+  }
+
+  .service-card__cta {
+    align-self: stretch;
+  }
+
+  .project-media > div:nth-child(2) > div:last-child {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    text-align: right;
+  }
+
+  .project-media > div:nth-child(2) > div:last-child p {
+    text-align: right;
+  }
+
+  .project-copy {
+    text-align: right;
+  }
+
+  .project-copy > div:first-child {
+    justify-content: space-between;
+  }
+
+  .project-copy > div:first-child > span:last-child {
+    position: static;
+  }
+
+  .project-copy > div:nth-of-type(2) {
+    margin-inline: 0;
+    text-align: right;
+  }
+
+  .project-copy > div:nth-of-type(2) p {
+    margin-inline: 0;
+    text-align: right;
+  }
+
+  .project-copy ul {
+    justify-items: stretch;
+    margin-inline: 0;
+  }
+
+  .project-copy li {
+    justify-content: flex-start;
+    max-width: none;
+    text-align: right;
+  }
+
+  .project-actions {
+    margin-inline: 0;
+    align-items: stretch;
+  }
+
+  .faq-card__summary,
+  .faq-card__summary > span:nth-child(2) {
+    text-align: right;
+  }
+
+  .faq-card__answer {
+    margin-inline-start: 2.35rem;
+    margin-inline-end: 0.75rem;
+    text-align: right;
+  }
+
+  .contact-system__actions {
+    margin-inline: 0;
+  }
+
+  .contact-system__channels > div > a {
+    align-items: flex-start;
+    text-align: right;
+  }
+
+  .contact-system__social-heading {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .contact-system__social-heading > div {
+    margin-inline: 0;
+  }
+
+  .contact-system__social-grid > a {
+    text-align: right;
+  }
+
+  .contact-system__social-grid > a > div {
+    justify-content: space-between;
+  }
+
+  .footer-system__lead p,
+  .footer-system__nav,
+  .footer-system__connect {
+    text-align: right;
+  }
+
+  .footer-system__nav nav a {
+    justify-content: space-between;
+  }
+
+  .footer-system__connect > div:first-of-type a {
+    justify-content: flex-start;
+    text-align: right;
+  }
+
+  .footer-system__connect > div:last-of-type {
+    justify-content: flex-start;
+  }
+
+  .footer-system__bottom {
+    align-items: flex-start;
+    text-align: right;
+  }
+
+  .footer-system__bottom > a:first-child,
+  .footer-system__bottom > div {
+    margin-inline: 0;
+  }
+
+  .footer-system__bottom > a:last-child {
+    align-self: flex-end;
+    margin-inline: 0;
+  }
+}
