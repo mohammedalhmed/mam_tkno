@@ -4809,3 +4809,39 @@ body {
     margin-inline: 0;
   }
 }
+
+
+/* Mobile title alignment: center service/project headings while preserving RTL body copy and metadata. */
+@media (max-width: 767px) {
+  .service-system__header h2,
+  .service-system__category-info h3,
+  .service-card__title,
+  .projects-system > .container > header h2,
+  .project-copy h3 {
+    text-align: center;
+  }
+
+  .service-system__category-info > div:first-child {
+    justify-content: center;
+  }
+
+  .service-system__category-info h3,
+  .service-card__title {
+    width: 100%;
+    margin-inline: 0;
+  }
+
+  .project-copy > div:nth-of-type(1) {
+    text-align: right;
+  }
+
+  .project-copy > div:nth-of-type(2) {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .project-copy > div:nth-of-type(2) h3,
+  .project-copy > div:nth-of-type(2) > span {
+    text-align: center;
+  }
+}
