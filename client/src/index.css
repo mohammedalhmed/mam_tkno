@@ -4061,3 +4061,511 @@ body {
     margin-inline: auto;
   }
 }
+
+
+/* Mobile content reflow: one consistent reading rhythm across the complete landing page. */
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    font-size: 0.92rem;
+    line-height: 1.72;
+  }
+
+  .container {
+    padding-inline: 1rem;
+  }
+
+  .site-shell {
+    padding-bottom: 5.75rem;
+  }
+
+  main > section::after {
+    inset: 0.7rem 0.6rem;
+  }
+
+  .canva-chip,
+  .canva-kicker,
+  .eyebrow,
+  .atelier-note {
+    font-size: 0.58rem;
+  }
+
+  .service-system,
+  .projects-system,
+  .skills-system,
+  .faq-system,
+  .contact-system {
+    padding-block: 3.25rem;
+  }
+
+  .service-system__header,
+  .projects-system > .container > header,
+  .skills-system > .container > .grid,
+  .faq-system > .container > .grid {
+    gap: 1rem;
+    padding-bottom: 1.4rem;
+  }
+
+  .service-system__header h2,
+  .projects-system > .container > header h2,
+  .skills-system h2,
+  .faq-system > .container > .grid > div:first-child h2 {
+    max-width: 18ch;
+    font-size: clamp(1.8rem, 7.4vw, 2.45rem);
+    line-height: 1.16;
+    letter-spacing: -0.03em;
+  }
+
+  .service-system__header p,
+  .projects-system > .container > header p,
+  .skills-system > .container > .grid p,
+  .faq-system > .container > .grid > div:first-child p {
+    max-width: 32rem;
+    margin-top: 0.65rem;
+    font-size: 0.8rem;
+    line-height: 1.85;
+  }
+
+  .service-system__header > div:first-child > p {
+    margin-top: 0.55rem;
+    font-size: 0.72rem;
+  }
+
+  .service-system > .container > div.mt-16 {
+    margin-top: 2.75rem;
+    gap: 3rem;
+  }
+
+  .service-system__category {
+    gap: 1.25rem;
+  }
+
+  .service-system__category-info h3 {
+    max-width: 16ch;
+    font-size: clamp(1.5rem, 6.8vw, 2rem);
+  }
+
+  .service-system__category-info > p {
+    max-width: 29rem;
+    font-size: 0.78rem;
+    line-height: 1.85;
+  }
+
+  .service-system__category-info > p:last-of-type {
+    max-width: 25rem;
+    padding-inline: 0.75rem;
+    font-size: 0.72rem;
+  }
+
+  .service-system__list {
+    gap: 0.42rem;
+  }
+
+  .service-card {
+    gap: 0.65rem;
+    padding: 0.85rem 0.75rem 0.9rem;
+  }
+
+  .service-card__title {
+    max-width: 24ch;
+    margin-top: 0.35rem;
+    font-size: 0.98rem;
+  }
+
+  .service-card__summary {
+    max-width: 29rem;
+    margin-top: 0.3rem;
+    font-size: 0.72rem;
+    line-height: 1.8;
+  }
+
+  .service-card__outputs {
+    max-width: 29rem;
+    margin-top: 0.5rem;
+    gap: 0.2rem 0.55rem;
+  }
+
+  .service-card__outputs li {
+    font-size: 0.59rem;
+  }
+
+  .service-card__cta {
+    min-height: 2.6rem;
+    font-size: 0.7rem;
+  }
+
+  .project-entry {
+    gap: 1.25rem;
+    padding-block: 2.1rem;
+  }
+
+  .project-media > div:first-child {
+    min-height: 2.35rem;
+    font-size: 0.55rem;
+  }
+
+  .project-media > div:nth-child(2) {
+    height: clamp(13.5rem, 54vw, 16rem);
+  }
+
+  .project-media > div:nth-child(2) > div:last-child p {
+    max-width: 25rem;
+    font-size: 0.62rem;
+  }
+
+  .project-copy > div:first-child > span:last-child {
+    font-size: 1.95rem;
+  }
+
+  .project-copy h3 {
+    max-width: 15ch;
+    font-size: clamp(1.65rem, 7.8vw, 2.3rem);
+  }
+
+  .project-copy > p {
+    max-width: 31rem;
+    margin-top: 0.6rem;
+    font-size: 0.74rem;
+    line-height: 1.85;
+  }
+
+  .project-copy > div:nth-of-type(2) {
+    max-width: 30rem;
+    margin-inline: auto;
+    margin-top: 0.9rem;
+  }
+
+  .project-copy > div:nth-of-type(2) p {
+    max-width: 28rem;
+    font-size: 0.68rem;
+  }
+
+  .project-copy ul {
+    max-width: 30rem;
+    margin-inline: auto;
+    margin-top: 0.85rem;
+  }
+
+  .project-copy li {
+    max-width: 16rem;
+    font-size: 0.61rem;
+  }
+
+  .project-actions {
+    width: min(100%, 24rem);
+    margin-inline: auto;
+    margin-top: 1.05rem;
+  }
+
+  .project-actions > a,
+  .project-actions > button {
+    min-height: 2.65rem;
+    font-size: 0.68rem;
+  }
+
+  .skills-system {
+    text-align: center;
+  }
+
+  .skills-system > .container > .grid > div,
+  .skills-system > .container > .grid > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skills-system > .container > .grid > div:first-child > .atelier-measure {
+    margin-inline: auto;
+  }
+
+  .skills-system > .container > .grid > div:last-child p {
+    max-width: 30rem;
+  }
+
+  .skills-system > .container > div.mt-16 {
+    margin-top: 2.25rem;
+  }
+
+  .skills-system article {
+    gap: 0.85rem;
+    padding-block: 1.4rem;
+    text-align: center;
+  }
+
+  .skills-system article > div:first-child {
+    justify-content: center;
+  }
+
+  .skills-system article > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skills-system article h3 {
+    font-size: 1.12rem;
+    line-height: 1.35;
+  }
+
+  .skills-system article p {
+    max-width: 29rem;
+    margin-top: 0.45rem;
+    font-size: 0.76rem;
+    line-height: 1.8;
+  }
+
+  .skills-system article .atelier-measure {
+    margin-inline: auto;
+    font-size: 0.55rem;
+  }
+
+  .skills-system article > div:last-child {
+    justify-content: center;
+    gap: 0.35rem;
+  }
+
+  .skills-system article > div:last-child span {
+    padding: 0.38rem 0.55rem;
+    font-size: 0.58rem;
+  }
+
+  .faq-system > .container > .grid {
+    gap: 1.6rem;
+  }
+
+  .faq-system__list {
+    gap: 0.5rem;
+  }
+
+  .faq-card__summary {
+    min-height: 4rem;
+    gap: 0.5rem;
+    padding: 0.8rem 0.75rem;
+  }
+
+  .faq-card__summary > span:first-child {
+    width: 1.35rem;
+    font-size: 0.55rem;
+  }
+
+  .faq-card__summary > span:nth-child(2) {
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  .faq-card__summary > span:last-child {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .faq-card__answer {
+    max-width: 26rem;
+    padding-inline: 0.8rem;
+    padding-bottom: 0.95rem;
+    font-size: 0.7rem;
+    line-height: 1.8;
+  }
+
+  .contact-system > .container > .grid {
+    gap: 1.8rem;
+  }
+
+  .contact-system__intro h2 {
+    max-width: 15ch;
+    font-size: clamp(1.95rem, 8.2vw, 2.8rem);
+  }
+
+  .contact-system__intro > p {
+    max-width: 30rem;
+    font-size: 0.76rem;
+  }
+
+  .contact-system__actions {
+    width: min(100%, 24rem);
+  }
+
+  .contact-system__channels > div > a {
+    min-height: 5.45rem;
+    padding: 0.7rem;
+  }
+
+  .contact-system__form > div:first-child {
+    padding: 0.75rem;
+  }
+
+  .contact-system__form > div:first-child > div:first-child {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .contact-system__form > div:first-child > div:first-child h3 {
+    margin-top: 0.45rem;
+    font-size: 1.25rem;
+  }
+
+  .contact-system__form > div:first-child > div:first-child p {
+    font-size: 0.68rem;
+    line-height: 1.7;
+  }
+
+  .contact-system__form > div:first-child ol {
+    margin-bottom: 1.4rem;
+  }
+
+  .contact-system__form > div:first-child ol p {
+    font-size: 0.58rem;
+    text-align: center;
+  }
+
+  .contact-system__form > div:first-child input,
+  .contact-system__form > div:first-child select,
+  .contact-system__form > div:first-child textarea {
+    min-height: 2.75rem;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.76rem;
+  }
+
+  .footer-system {
+    padding-block: 3.25rem 1.25rem;
+  }
+
+  .footer-system__grid {
+    gap: 1.75rem;
+    padding-bottom: 1.9rem;
+  }
+
+  .footer-system__lead h2 {
+    max-width: 15ch;
+    font-size: clamp(1.85rem, 8vw, 2.55rem);
+  }
+
+  .footer-system__lead p {
+    max-width: 30rem;
+    font-size: 0.74rem;
+  }
+
+  .footer-system__bottom {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-system__bottom > a:first-child,
+  .footer-system__bottom > div,
+  .footer-system__bottom > a:last-child {
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    padding-inline: 0.85rem;
+  }
+
+  .service-system,
+  .projects-system,
+  .skills-system,
+  .faq-system,
+  .contact-system {
+    padding-block: 3rem;
+  }
+
+  .hero-reference__content h1 {
+    font-size: 2rem;
+  }
+
+  .service-card__outputs {
+    grid-template-columns: 1fr;
+  }
+
+  .project-media > div:nth-child(2) {
+    height: 13rem;
+  }
+
+  .faq-card__summary > span:nth-child(2) {
+    font-size: 0.74rem;
+  }
+}
+
+
+/* Skills mobile contrast repair: the capability content needs an explicit dark surface. */
+@media (max-width: 767px) {
+  .skills-system {
+    background:
+      radial-gradient(circle at 50% 0%, rgb(22 213 223 / 0.12), transparent 20rem),
+      linear-gradient(180deg, #071a43 0%, #061437 100%);
+    color: #fff;
+  }
+
+  .skills-system .eyebrow,
+  .skills-system .atelier-note,
+  .skills-system .atelier-measure {
+    color: rgb(198 235 255 / 0.78);
+  }
+
+  .skills-system .eyebrow::before,
+  .skills-system .atelier-measure::before,
+  .skills-system .atelier-measure::after {
+    background: currentColor;
+  }
+
+  .skills-system h2 {
+    color: #fff;
+  }
+
+  .skills-system > .container > .grid > div:last-child p {
+    color: rgb(239 247 255 / 0.7);
+  }
+
+  .skills-system > .container > .grid > div:first-child > p {
+    color: rgb(157 239 255 / 0.62);
+  }
+
+  .skills-system > .container > div.mt-16 {
+    display: grid;
+    gap: 0.65rem;
+    border: 0;
+  }
+
+  .skills-system article {
+    gap: 0.65rem;
+    border: 1px solid rgb(212 231 255 / 0.15);
+    border-radius: 0.9rem 0.2rem 0.9rem 0.2rem;
+    background: linear-gradient(145deg, rgb(18 52 119 / 0.55), rgb(7 24 62 / 0.55));
+    padding: 0.95rem 0.8rem 1rem;
+    box-shadow: 0 0.7rem 1.8rem rgb(0 5 24 / 0.12);
+  }
+
+  .skills-system article > div:first-child {
+    gap: 0.6rem;
+  }
+
+  .skills-system article > div:first-child > span:first-child {
+    color: rgb(157 239 255 / 0.52);
+    font-size: 0.72rem;
+  }
+
+  .skills-system article > div:first-child > span:last-child {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 0.6rem 0.12rem 0.6rem 0.12rem;
+    background: rgb(22 213 223 / 0.11);
+    color: #16d5df;
+  }
+
+  .skills-system article h3 {
+    color: #fff;
+  }
+
+  .skills-system article p {
+    color: rgb(239 247 255 / 0.67);
+  }
+
+  .skills-system article > div:last-child span {
+    border-color: rgb(212 231 255 / 0.18);
+    background: rgb(255 255 255 / 0.06);
+    color: rgb(239 247 255 / 0.84);
+  }
+}

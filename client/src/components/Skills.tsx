@@ -34,7 +34,7 @@ const capabilities = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="atelier-grid py-24 md:py-32">
+    <section id="skills" className="skills-system atelier-grid py-24 md:py-32">
       <div className="container">
         <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
           <div>
