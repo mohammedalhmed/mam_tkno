@@ -173,12 +173,17 @@ export default function Header() {
       </header>
 
       {isOpen && (
-        <div id="mobile-navigation" className="fixed inset-0 z-40 pt-[5.8rem] lg:hidden">
+        <div id="mobile-navigation" className="mobile-navigation fixed inset-0 z-40 pt-[5.8rem] lg:hidden" role="dialog" aria-modal="true" aria-label="قائمة التنقل الجوالة">
           <button type="button" className="absolute inset-0 bg-[#020817]/72 backdrop-blur-sm" onClick={closeMobileMenu} aria-label="إغلاق القائمة" />
-          <nav className="relative mr-auto flex h-full w-[min(92vw,30rem)] flex-col overflow-y-auto border-r border-white/12 bg-[#071a43] p-5 shadow-[-24px_0_70px_rgba(0,7,30,.42)]" aria-label="قائمة الجوال">
-            <div className="border-b border-white/12 pb-5">
-              <span className="text-xs font-bold text-[#83cfff]">MAM_TKNO / NAVIGATION</span>
-              <p className="mt-2 font-display text-2xl font-bold text-white">أين تريد أن نبدأ؟</p>
+          <nav className="mobile-navigation__panel relative ml-auto flex h-full w-[min(92vw,30rem)] flex-col overflow-y-auto border-l border-white/12 bg-[#071a43] p-5 shadow-[-24px_0_70px_rgba(0,7,30,.42)]" aria-label="قائمة الجوال">
+            <div className="mobile-navigation__header flex items-start justify-between gap-4 border-b border-white/12 pb-5">
+              <div>
+                <span className="text-xs font-bold text-[#83cfff]">MAM_TKNO / NAVIGATION</span>
+                <p className="mt-2 font-display text-2xl font-bold text-white">أين تريد أن نبدأ؟</p>
+              </div>
+              <button type="button" className="mobile-navigation__close flex h-10 w-10 shrink-0 items-center justify-center border border-white/16 bg-white/[.07] text-white" onClick={closeMobileMenu} aria-label="إغلاق القائمة">
+                <X className="h-5 w-5" aria-hidden="true" />
+              </button>
             </div>
             <div className="mt-4 space-y-1">
               {navItems.map((item, index) => (
