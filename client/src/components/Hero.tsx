@@ -76,19 +76,20 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="hero-reference__proof-grid" aria-label="مجالات MAM_Tkno">
-              {proofPoints.map(({ icon: Icon, label, detail }) => (
-                <div key={label} className="hero-reference__proof-item">
-                  <span className="hero-reference__proof-icon">
-                    <Icon className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                  <span>
-                    <strong>{label}</strong>
-                    <small>{detail}</small>
-                  </span>
-                </div>
-              ))}
-            </div>
+          </div>
+
+          <div className="hero-reference__proof-grid" aria-label="مجالات MAM_Tkno">
+            {proofPoints.map(({ icon: Icon, label, detail }) => (
+              <div key={label} className="hero-reference__proof-item">
+                <span className="hero-reference__proof-icon">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <span>
+                  <strong>{label}</strong>
+                  <small>{detail}</small>
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

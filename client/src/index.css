@@ -4845,3 +4845,405 @@ body {
     text-align: center;
   }
 }
+
+
+/* Responsive Hero redesign: a distinct composition for phones and tablets, preserving content and CTAs. */
+.hero-reference__layout {
+  grid-template-areas:
+    "visual content"
+    "visual proof";
+  direction: ltr;
+}
+
+.hero-reference__visual {
+  grid-area: visual;
+}
+
+.hero-reference__content {
+  grid-area: content;
+  direction: rtl;
+}
+
+.hero-reference__proof-grid {
+  grid-area: proof;
+  direction: rtl;
+}
+
+@media (min-width: 1024px) {
+  .hero-reference__layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(28rem, 0.95fr);
+    gap: 2.75rem 5rem;
+  }
+
+  .hero-reference__visual {
+    align-self: center;
+  }
+
+  .hero-reference__proof-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-reference {
+    min-height: 0;
+    background:
+      radial-gradient(circle at 85% 7%, rgb(105 180 255 / 0.2), transparent 19rem),
+      radial-gradient(circle at 7% 63%, rgb(22 213 223 / 0.11), transparent 20rem),
+      linear-gradient(155deg, #0b2459 0%, #071a43 48%, #061437 100%);
+  }
+
+  .hero-reference__layout {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    grid-template-areas:
+      "visual content"
+      "proof proof";
+    align-items: center;
+    min-height: 0;
+    gap: 2.35rem 2.5rem;
+    padding-block: 7.25rem 3.75rem;
+  }
+
+  .hero-reference__visual {
+    width: 100%;
+    max-width: 28rem;
+    padding: 1.75rem 0 0;
+  }
+
+  .hero-reference__orbit,
+  .hero-reference__shape {
+    display: none;
+  }
+
+  .hero-reference__visual-label {
+    top: 0;
+    right: auto;
+    left: 0.35rem;
+    font-size: 0.52rem;
+  }
+
+  .hero-reference__image-frame {
+    padding: 0.42rem;
+    border-radius: 1.15rem 0.24rem 1.15rem 0.24rem;
+    box-shadow: 0 1.5rem 3.25rem rgb(0 7 30 / 0.34);
+    transform: none;
+  }
+
+  .hero-reference__image-mask {
+    aspect-ratio: 1.14 / 1;
+    border-radius: 0.85rem 0.12rem 0.85rem 0.12rem;
+  }
+
+  .hero-reference__floating-card {
+    width: calc(100% - 1rem);
+    margin-top: 0.55rem;
+    margin-inline-start: auto;
+    padding: 0.7rem 0.8rem;
+    box-shadow: 0.35rem 0.35rem 0 #16d5df;
+  }
+
+  .hero-reference__content {
+    max-width: 33rem;
+    align-self: center;
+  }
+
+  .hero-reference__eyebrow {
+    width: 100%;
+    min-height: 2rem;
+    justify-content: center;
+    gap: 0.75rem;
+    padding-bottom: 0.65rem;
+    font-size: 0.68rem;
+  }
+
+  .hero-reference__content h1 {
+    max-width: 12ch;
+    margin-inline: auto;
+    margin-top: 1.05rem;
+    text-align: center;
+    font-size: clamp(2.55rem, 5.6vw, 3.8rem);
+    line-height: 1.05;
+  }
+
+  .hero-reference__description {
+    max-width: 30rem;
+    margin-top: 1rem;
+    font-size: 0.87rem;
+    line-height: 1.85;
+  }
+
+  .hero-reference__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin-top: 1.3rem;
+  }
+
+  .hero-reference__primary-action,
+  .hero-reference__secondary-action {
+    min-height: 2.9rem;
+    padding-inline: 0.65rem;
+    font-size: 0.75rem;
+  }
+
+  .hero-reference__proof-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .hero-reference__proof-item {
+    min-height: 6.8rem;
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 0.45rem;
+    padding: 0.85rem 0.75rem;
+    border: 1px solid rgb(212 231 255 / 0.15);
+    border-radius: 0.75rem 0.15rem 0.75rem 0.15rem;
+    background: rgb(7 24 62 / 0.54);
+  }
+
+  .hero-reference__proof-icon {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+
+  .hero-reference__proof-item strong {
+    font-size: 0.66rem;
+  }
+
+  .hero-reference__proof-item small {
+    max-width: 100%;
+    font-size: 0.58rem;
+    line-height: 1.55;
+  }
+
+  .hero-reference__scroll-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-reference {
+    min-height: 0 !important;
+    background:
+      radial-gradient(circle at 74% 4%, rgb(105 180 255 / 0.18), transparent 15rem),
+      linear-gradient(160deg, #0b2459 0%, #071a43 42%, #061437 100%);
+  }
+
+  .hero-reference__grid {
+    opacity: 0.2;
+    background-size: 34px 34px;
+  }
+
+  .hero-reference__glow--top {
+    top: 1rem;
+    left: auto;
+    right: -5rem;
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .hero-reference__glow--bottom {
+    right: -8rem;
+    bottom: 14rem;
+    width: 16rem;
+    height: 16rem;
+  }
+
+  .hero-reference__layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-areas:
+      "content"
+      "visual"
+      "proof";
+    align-items: start;
+    min-height: 0 !important;
+    gap: 1.45rem;
+    padding-block: 5.35rem 2.5rem !important;
+  }
+
+  .hero-reference__content,
+  .hero-reference__visual,
+  .hero-reference__proof-grid {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero-reference__content {
+    align-items: stretch;
+  }
+
+  .hero-reference__eyebrow {
+    min-height: 1.8rem;
+    justify-content: center;
+    gap: 0.6rem;
+    padding-bottom: 0.55rem;
+    font-size: 0.62rem;
+  }
+
+  .hero-reference__eyebrow > span:last-child {
+    font-size: 0.48rem;
+  }
+
+  .hero-reference__content h1 {
+    max-width: 11ch;
+    margin: 0.9rem auto 0;
+    text-align: center;
+    font-size: clamp(2.15rem, 10.5vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.042em;
+  }
+
+  .hero-reference__description {
+    max-width: 31rem;
+    margin: 0.85rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.85;
+    text-align: right;
+  }
+
+  .hero-reference__actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-top: 1.05rem;
+  }
+
+  .hero-reference__primary-action,
+  .hero-reference__secondary-action {
+    min-height: 2.85rem;
+    padding-inline: 0.85rem;
+    font-size: 0.74rem;
+  }
+
+  .hero-reference__visual {
+    padding: 1.4rem 0 0;
+  }
+
+  .hero-reference__orbit,
+  .hero-reference__shape {
+    display: none;
+  }
+
+  .hero-reference__visual-label {
+    top: 0;
+    right: auto;
+    left: 0.55rem;
+    padding: 0.36rem 0.5rem;
+    font-size: 0.43rem;
+  }
+
+  .hero-reference__image-frame {
+    padding: 0.36rem;
+    border-radius: 1rem 0.18rem 1rem 0.18rem;
+    box-shadow: 0 1.25rem 2.8rem rgb(0 7 30 / 0.34);
+    transform: none;
+  }
+
+  .hero-reference__image-mask {
+    aspect-ratio: 1.42 / 1;
+    border-radius: 0.75rem 0.12rem 0.75rem 0.12rem;
+  }
+
+  .hero-reference__image-caption {
+    inset-inline: 0.9rem;
+    bottom: 0.7rem;
+    font-size: 0.55rem;
+  }
+
+  .hero-reference__image-caption > span:first-child {
+    font-size: 0.44rem;
+  }
+
+  .hero-reference__floating-card {
+    width: 100%;
+    margin-top: 0.55rem;
+    margin-inline-start: 0;
+    padding: 0.62rem 0.7rem;
+    box-shadow: 0.28rem 0.28rem 0 #16d5df;
+  }
+
+  .hero-reference__floating-card strong {
+    font-size: 0.66rem;
+  }
+
+  .hero-reference__proof-grid {
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .hero-reference__proof-item {
+    grid-template-columns: 1.8rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 3.85rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid rgb(212 231 255 / 0.14);
+    border-radius: 0.62rem 0.14rem 0.62rem 0.14rem;
+    background: rgb(7 24 62 / 0.58);
+  }
+
+  .hero-reference__proof-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .hero-reference__proof-item > span:last-child {
+    text-align: right;
+  }
+
+  .hero-reference__proof-item strong {
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .hero-reference__proof-item small {
+    margin-top: 0.1rem;
+    font-size: 0.58rem;
+    line-height: 1.45;
+  }
+
+  .hero-reference__scroll-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-reference__layout {
+    gap: 1.25rem;
+    padding-block: 5rem 2.15rem !important;
+  }
+
+  .hero-reference__content h1 {
+    font-size: 2.05rem;
+  }
+
+  .hero-reference__description {
+    font-size: 0.76rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reference__image-frame,
+  .hero-reference__image-mask img,
+  .hero-reference__primary-action,
+  .hero-reference__secondary-action {
+    transition: none;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .hero-reference__content h1 {
+    max-width: 16ch;
+  }
+}
