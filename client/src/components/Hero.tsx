@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { ArrowDownLeft, ArrowUpLeft, Code2, Palette, ShoppingBag } from 'lucide-react';
 
 const proofPoints = [
@@ -7,6 +8,31 @@ const proofPoints = [
 ];
 
 export default function Hero() {
+  const imageRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const imageFrame = imageRef.current;
+    if (!imageFrame) return;
+
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      imageFrame.classList.add('is-in-view');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          imageFrame.classList.add('is-in-view');
+          observer.unobserve(imageFrame);
+        }
+      },
+      { threshold: 0.35, rootMargin: '0px 0px -10% 0px' },
+    );
+
+    observer.observe(imageFrame);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="home" className="hero-reference relative overflow-hidden text-white" aria-labelledby="hero-title">
       <div className="hero-reference__grid pointer-events-none absolute inset-0" aria-hidden="true" />
@@ -29,7 +55,7 @@ export default function Hero() {
               <span />
             </div>
 
-            <figure className="hero-reference__image-frame hero-reference-enter hero-reference-enter--image">
+            <figure ref={imageRef} className="hero-reference__image-frame hero-reference__image-frame--reveal">
               <div className="hero-reference__image-mask">
                 <img
                   src="/manus-storage/mam-tkno-hero-tech-01_58bcbb7a.jpg"
@@ -67,12 +93,12 @@ export default function Hero() {
 
             <div className="hero-reference__actions">
               <a href="#contact" className="hero-reference__primary-action">
-                ابدأ طلب مشروعك
-                <ArrowUpLeft className="h-5 w-5" aria-hidden="true" />
+                طلب مشروع
+                <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />
               </a>
               <a href="#projects" className="hero-reference__secondary-action">
-                شاهد الأعمال المختارة
-                <ArrowDownLeft className="h-5 w-5" aria-hidden="true" />
+                شاهد الأعمال
+                <ArrowDownLeft className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
 
