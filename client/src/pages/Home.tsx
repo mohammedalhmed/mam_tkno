@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Projects from '@/components/Projects';
+import CanvaShowcase from '@/components/CanvaShowcase';
 import Skills from '@/components/Skills';
 import Services from '@/components/Services';
 import FAQ from '@/components/FAQ';
@@ -28,6 +29,7 @@ export default function Home() {
         <Hero />
         <Services />
         <Projects />
+        <CanvaShowcase />
         <Skills />
         <FAQ />
         <Contact />
