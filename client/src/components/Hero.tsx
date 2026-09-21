@@ -9,27 +9,32 @@ const proofPoints = [
 
 export default function Hero() {
   const imageRef = useRef<HTMLElement>(null);
+  const proofRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const imageFrame = imageRef.current;
-    if (!imageFrame) return;
+    const proofItems = Array.from(proofRef.current?.querySelectorAll<HTMLElement>('.hero-reference__proof-item') ?? []);
+    const revealItems = [imageFrame, ...proofItems].filter((item): item is HTMLElement => Boolean(item));
+    if (!revealItems.length) return;
 
     if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      imageFrame.classList.add('is-in-view');
+      revealItems.forEach((item) => item.classList.add('is-in-view'));
       return;
     }
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          imageFrame.classList.add('is-in-view');
-          observer.unobserve(imageFrame);
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in-view');
+            observer.unobserve(entry.target);
+          }
+        });
       },
-      { threshold: 0.35, rootMargin: '0px 0px -10% 0px' },
+      { threshold: 0.2, rootMargin: '0px 0px -12% 0px' },
     );
 
-    observer.observe(imageFrame);
+    revealItems.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
 
@@ -104,9 +109,9 @@ export default function Hero() {
 
           </div>
 
-          <div className="hero-reference__proof-grid" aria-label="مجالات MAM_Tkno">
+          <div ref={proofRef} className="hero-reference__proof-grid" aria-label="مجالات MAM_Tkno">
             {proofPoints.map(({ icon: Icon, label, detail }) => (
-              <div key={label} className="hero-reference__proof-item">
+              <div key={label} className="hero-reference__proof-item hero-reference__proof-item--reveal">
                 <span className="hero-reference__proof-icon">
                   <Icon className="h-4 w-4" aria-hidden="true" />
                 </span>
