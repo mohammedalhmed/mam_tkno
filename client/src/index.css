@@ -5687,3 +5687,217 @@ body {
     transition: none;
   }
 }
+
+
+/* Canva catalog extension: category tabs, scalable empty states, and per-work WhatsApp CTA. */
+.canva-showcase__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+  padding: 0.65rem;
+  border: 1px solid rgb(212 231 255 / 0.14);
+  border-radius: 0.9rem 0.18rem 0.9rem 0.18rem;
+  background: rgb(4 16 48 / 0.36);
+}
+
+.canva-showcase__filter-lead {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.45rem;
+  padding-inline: 0.7rem;
+  color: rgb(223 237 255 / 0.52);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.canva-filter {
+  display: inline-flex;
+  min-height: 2.45rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border: 1px solid transparent;
+  border-radius: 0.58rem 0.12rem 0.58rem 0.12rem;
+  padding-inline: 0.72rem;
+  color: rgb(239 247 255 / 0.66);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-align: center;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.canva-filter span {
+  display: inline-grid;
+  min-width: 1.2rem;
+  min-height: 1.2rem;
+  place-items: center;
+  border: 1px solid rgb(212 231 255 / 0.16);
+  border-radius: 999px;
+  color: rgb(223 237 255 / 0.5);
+  font-size: 0.58rem;
+  line-height: 1;
+}
+
+.canva-filter:hover,
+.canva-filter:focus-visible,
+.canva-filter.is-active {
+  border-color: rgb(22 213 223 / 0.55);
+  background: rgb(22 213 223 / 0.12);
+  color: #c9fbff;
+}
+
+.canva-filter:active {
+  transform: scale(0.97);
+}
+
+.canva-filter:focus-visible {
+  outline: 2px solid #b8f8ff;
+  outline-offset: 2px;
+}
+
+.canva-showcase__results {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.4rem;
+  color: rgb(223 237 255 / 0.54);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.canva-showcase__results > span:first-child {
+  color: #c9fbff;
+}
+
+.canva-design-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.canva-design-card__link,
+.canva-design-card__whatsapp {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+  padding-inline: 0.82rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  white-space: nowrap;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.canva-design-card__link {
+  border: 1px solid rgb(22 213 223 / 0.56);
+  color: #c9fbff;
+}
+
+.canva-design-card__whatsapp {
+  border: 1px solid rgb(125 229 166 / 0.55);
+  background: rgb(125 229 166 / 0.12);
+  color: #bfffd8;
+}
+
+.canva-design-card__link:hover,
+.canva-design-card__link:focus-visible,
+.canva-design-card__whatsapp:hover,
+.canva-design-card__whatsapp:focus-visible {
+  transform: translateY(-2px);
+}
+
+.canva-design-card__link:hover,
+.canva-design-card__link:focus-visible {
+  background: #16d5df;
+  color: #061437;
+}
+
+.canva-design-card__whatsapp:hover,
+.canva-design-card__whatsapp:focus-visible {
+  border-color: #7de5a6;
+  background: #7de5a6;
+  color: #062318;
+}
+
+.canva-design-card__link:focus-visible,
+.canva-design-card__whatsapp:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.canva-showcase__empty {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  border: 1px dashed rgb(22 213 223 / 0.42);
+  border-radius: 0.9rem 0.15rem 0.9rem 0.15rem;
+  padding: 1.15rem 1.25rem;
+  background: rgb(22 213 223 / 0.06);
+  color: #8bdcff;
+}
+
+.canva-showcase__empty strong {
+  display: block;
+  color: #effaff;
+  font-size: 0.9rem;
+}
+
+.canva-showcase__empty p {
+  margin-top: 0.25rem;
+  color: rgb(223 237 255 / 0.56);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 767px) {
+  .canva-showcase__filters {
+    align-items: stretch;
+    padding: 0.5rem;
+  }
+
+  .canva-showcase__filter-lead {
+    width: 100%;
+    justify-content: flex-start;
+    min-height: 2rem;
+  }
+
+  .canva-filter {
+    flex: 1 1 calc(50% - 0.55rem);
+    min-width: 8.6rem;
+    padding-inline: 0.5rem;
+    font-size: 0.66rem;
+  }
+
+  .canva-design-card__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .canva-design-card__link,
+  .canva-design-card__whatsapp {
+    width: 100%;
+    padding-inline: 0.4rem;
+    font-size: 0.63rem;
+  }
+
+  .canva-showcase__empty {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canva-filter,
+  .canva-design-card__link,
+  .canva-design-card__whatsapp {
+    transition: none;
+  }
+}
