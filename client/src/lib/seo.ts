@@ -1,4 +1,5 @@
 export const SITE_URL = 'https://mahmoudfolio-izrbytxa.manus.space';
+export const BRAND_IMAGE = `${SITE_URL}/manus-storage/mahmoud-brand-logo_4a650db3.jpg`;
 
 export type PageMetadata = {
   title: string;
@@ -13,7 +14,7 @@ export const HOME_METADATA: PageMetadata = {
   description: 'MAM_Tkno وكالة تقنية وتصميمية تبني مواقع ومنتجات رقمية وهويات بصرية واضحة، سريعة، ومتجاوبة للعلامات التجارية.',
   canonicalPath: '/',
   ogType: 'website',
-  image: `${SITE_URL}/manus-storage/mam-tkno-hero-tech-01_58bcbb7a.jpg`,
+  image: BRAND_IMAGE,
 };
 
 function upsertMeta(attribute: 'name' | 'property', key: string, content: string) {
@@ -34,10 +35,16 @@ export function setPageMetadata(metadata: PageMetadata) {
   upsertMeta('property', 'og:description', metadata.description);
   upsertMeta('property', 'og:type', metadata.ogType ?? 'website');
   upsertMeta('property', 'og:url', canonicalUrl);
-  if (metadata.image) upsertMeta('property', 'og:image', metadata.image);
+  if (metadata.image) {
+    upsertMeta('property', 'og:image', metadata.image);
+    upsertMeta('property', 'og:image:alt', metadata.image === BRAND_IMAGE ? 'شعار MAM_Tkno — وكالة تقنية وتصميمية للمنتجات الرقمية' : metadata.title);
+  }
   upsertMeta('name', 'twitter:title', metadata.title);
   upsertMeta('name', 'twitter:description', metadata.description);
-  if (metadata.image) upsertMeta('name', 'twitter:image', metadata.image);
+  if (metadata.image) {
+    upsertMeta('name', 'twitter:image', metadata.image);
+    upsertMeta('name', 'twitter:image:alt', metadata.image === BRAND_IMAGE ? 'شعار MAM_Tkno — وكالة تقنية وتصميمية للمنتجات الرقمية' : metadata.title);
+  }
 
   let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
   if (!canonical) {
