@@ -6300,3 +6300,123 @@ body {
     overflow-y: auto;
   }
 }
+
+
+/* Mobile scroll and touch polish: smooth navigation, safe-area spacing, and tactile feedback. */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 767px) {
+  html,
+  body {
+    overscroll-behavior-x: none;
+    scroll-padding-top: 5.75rem;
+  }
+
+  body {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .site-shell {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
+
+  .mobile-cta-dock {
+    bottom: calc(0.65rem + env(safe-area-inset-bottom));
+    min-height: 3.45rem;
+    padding-inline: 1rem;
+    touch-action: manipulation;
+    transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .mobile-cta-dock:active {
+    transform: translateY(0.15rem) scale(0.98);
+    background: rgb(5 18 42 / 0.98);
+    box-shadow: 0 0.45rem 1.25rem rgb(7 22 79 / 0.28);
+  }
+
+  .js-motion main > section:not(#home) > .container {
+    transition-duration: 560ms;
+  }
+
+  .canva-showcase__filters {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-inline: contain;
+  }
+
+  .lime-button,
+  .service-card__cta,
+  .project-actions > a,
+  .project-actions > button,
+  .canva-filter,
+  .canva-design-card__link,
+  .canva-design-card__whatsapp,
+  .quote-summary__row,
+  .contact-system__channels > div > a,
+  .contact-system__social-grid > a,
+  .footer-system__nav nav a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: transform 140ms cubic-bezier(0.23, 1, 0.32, 1), border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease, filter 140ms ease;
+  }
+
+  .lime-button:active,
+  .service-card__cta:active,
+  .project-actions > a:active,
+  .project-actions > button:active,
+  .canva-filter:active,
+  .canva-design-card__link:active,
+  .canva-design-card__whatsapp:active,
+  .quote-summary__row:active,
+  .contact-system__channels > div > a:active,
+  .contact-system__social-grid > a:active,
+  .footer-system__nav nav a:active {
+    transform: translateY(0.12rem) scale(0.985);
+    filter: brightness(0.96);
+  }
+
+  .service-card:active,
+  .faq-card:active,
+  .project-entry:active {
+    transform: scale(0.995);
+  }
+
+  .faq-card__summary {
+    min-height: 3.75rem;
+    touch-action: manipulation;
+  }
+
+  .contact-system__actions > a,
+  .quote-summary__row,
+  .contact-system__channels > div > a,
+  .contact-system__social-grid > a,
+  .footer-system__nav nav a {
+    scroll-margin-top: 5.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .mobile-cta-dock:active,
+  .lime-button:active,
+  .service-card__cta:active,
+  .project-actions > a:active,
+  .project-actions > button:active,
+  .canva-filter:active,
+  .canva-design-card__link:active,
+  .canva-design-card__whatsapp:active,
+  .quote-summary__row:active,
+  .contact-system__channels > div > a:active,
+  .contact-system__social-grid > a:active,
+  .footer-system__nav nav a:active,
+  .service-card:active,
+  .faq-card:active,
+  .project-entry:active {
+    transform: none;
+    filter: none;
+  }
+}
