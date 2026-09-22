@@ -6042,3 +6042,117 @@ body {
     align-self: center;
   }
 }
+
+
+/* Mobile contact/footer harmony: centered social cards and a clearer Explore panel. */
+@media (max-width: 767px) {
+  .contact-system__social-heading {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .contact-system__social-heading > div {
+    margin-inline: auto;
+  }
+
+  .contact-system__social-heading > span {
+    margin-inline: auto;
+  }
+
+  .contact-system__social-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    border: 0;
+    background: transparent;
+  }
+
+  .contact-system__social-grid > a {
+    display: flex;
+    min-height: 8.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 0.85rem 0.16rem 0.85rem 0.16rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .contact-system__social-grid > a > div {
+    width: 100%;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .contact-system__social-grid > a > div > span:first-child {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .contact-system__social-grid > a > div > svg {
+    opacity: 0.65;
+    transform: none;
+  }
+
+  .contact-system__social-grid > a > p {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .footer-system__nav {
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 0.95rem 0.18rem 0.95rem 0.18rem;
+    padding: 1rem 0.75rem 0.85rem;
+    background: linear-gradient(145deg, rgb(16 40 91 / 0.42), rgb(4 13 36 / 0.34));
+  }
+
+  .footer-system__nav > p {
+    text-align: center;
+  }
+
+  .footer-system__nav nav {
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 1rem;
+  }
+
+  .footer-system__nav nav a {
+    min-height: 3.35rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 0.65rem 0.12rem 0.65rem 0.12rem;
+    background: rgb(255 255 255 / 0.035);
+    padding-inline: 0.8rem;
+    justify-content: center;
+    gap: 0.85rem;
+  }
+
+  .footer-system__nav nav a > span {
+    min-width: 9rem;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .footer-system__nav nav a > span > span {
+    display: inline-grid;
+    width: 1.65rem;
+    height: 1.65rem;
+    place-items: center;
+    border: 1px solid rgb(22 213 223 / 0.3);
+    border-radius: 999px;
+    background: rgb(22 213 223 / 0.08);
+    font-size: 0.58rem;
+  }
+
+  .footer-system__nav nav a > svg {
+    opacity: 0.55;
+    transform: none;
+  }
+
+  .footer-system__nav nav a:hover,
+  .footer-system__nav nav a:focus-visible {
+    border-color: rgb(22 213 223 / 0.55);
+    background: rgb(22 213 223 / 0.1);
+  }
+}
