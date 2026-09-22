@@ -5957,3 +5957,88 @@ body {
     line-height: 1.9;
   }
 }
+
+
+/* Footer mobile alignment: center the complete footer without changing desktop RTL layout. */
+@media (max-width: 767px) {
+  .footer-system__lead,
+  .footer-system__nav,
+  .footer-system__connect,
+  .footer-system__bottom {
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer-system__lead {
+    align-items: center;
+  }
+
+  .footer-system__lead > div:first-child,
+  .footer-system__lead h2,
+  .footer-system__lead p,
+  .footer-system__nav,
+  .footer-system__connect,
+  .footer-system__bottom {
+    margin-inline: auto;
+  }
+
+  .footer-system__lead > div:first-child {
+    justify-content: center;
+  }
+
+  .footer-system__lead h2,
+  .footer-system__lead p {
+    text-align: center;
+  }
+
+  .footer-system__lead .lime-button {
+    display: inline-flex;
+    margin-inline: auto;
+  }
+
+  .footer-system__nav nav a {
+    justify-content: center;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .footer-system__connect > div:first-of-type a {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-system__connect > div:first-of-type a > span,
+  .footer-system__connect > div:first-of-type a > span > span {
+    text-align: center;
+  }
+
+  .footer-system__connect > div:last-of-type {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-system__bottom {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-system__bottom > a:first-child,
+  .footer-system__bottom > div,
+  .footer-system__bottom > a:last-child {
+    margin-inline: auto;
+  }
+
+  .footer-system__bottom > a:first-child {
+    justify-content: center;
+  }
+
+  .footer-system__bottom > div {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-system__bottom > a:last-child {
+    align-self: center;
+  }
+}
