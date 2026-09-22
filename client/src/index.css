@@ -5901,3 +5901,59 @@ body {
     transition: none;
   }
 }
+
+
+/* Expert review pass: clearer catalog controls, larger touch targets, and quieter future categories. */
+.canva-showcase__filter-lead {
+  font-size: 0.78rem;
+}
+
+.canva-filter {
+  min-height: 2.75rem;
+  font-size: 0.76rem;
+}
+
+.canva-filter--disclosure {
+  border-color: rgb(131 207 255 / 0.25);
+  background: rgb(131 207 255 / 0.05);
+  color: #b8dcff;
+}
+
+.canva-filter--disclosure.is-active {
+  border-color: rgb(22 213 223 / 0.55);
+  background: rgb(22 213 223 / 0.12);
+  color: #c9fbff;
+}
+
+.canva-design-card__body p {
+  font-size: 0.8rem;
+}
+
+.canva-design-card__link,
+.canva-design-card__whatsapp {
+  min-height: 3rem;
+  font-size: 0.76rem;
+}
+
+.canva-showcase__note {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 767px) {
+  .canva-filter {
+    min-height: 2.75rem;
+    min-width: 8.8rem;
+    font-size: 0.72rem;
+  }
+
+  .canva-design-card__link,
+  .canva-design-card__whatsapp {
+    min-height: 3rem;
+    font-size: 0.7rem;
+  }
+
+  .canva-showcase__note {
+    font-size: 0.76rem;
+    line-height: 1.9;
+  }
+}

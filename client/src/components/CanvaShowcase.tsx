@@ -19,6 +19,7 @@ function buildWhatsAppUrl(title: string, categoryLabel: string, shareUrl: string
 
 export default function CanvaShowcase() {
   const [activeCategory, setActiveCategory] = useState<CanvaCategoryId>('all');
+  const [showUpcomingCategories, setShowUpcomingCategories] = useState(false);
   const categoryLabels = useMemo(
     () => new Map<CanvaCategoryId, string>([
       ['all', 'كل الأعمال'],
@@ -26,12 +27,40 @@ export default function CanvaShowcase() {
     ]),
     [],
   );
+  const categoryCounts = useMemo(
+    () => new Map(canvaCategories.map((category) => [category.id, canvaDesigns.filter((design) => design.categoryId === category.id).length])),
+    [],
+  );
+  const populatedCategories = useMemo(
+    () => canvaCategories.filter((category) => (categoryCounts.get(category.id) ?? 0) > 0),
+    [categoryCounts],
+  );
+  const upcomingCategories = useMemo(
+    () => canvaCategories.filter((category) => (categoryCounts.get(category.id) ?? 0) === 0),
+    [categoryCounts],
+  );
+  const visibleCategories = showUpcomingCategories ? canvaCategories : populatedCategories;
   const visibleDesigns = activeCategory === 'all'
     ? canvaDesigns
     : canvaDesigns.filter((design) => design.categoryId === activeCategory);
   const activeCategoryLabel = activeCategory === 'all'
     ? 'كل الأعمال'
     : categoryLabels.get(activeCategory) ?? 'تصميمات بصرية';
+
+  const selectCategory = (categoryId: CanvaCategoryId) => {
+    setActiveCategory(categoryId);
+    if (categoryId !== 'all' && (categoryCounts.get(categoryId) ?? 0) === 0) {
+      setShowUpcomingCategories(true);
+    }
+  };
+
+  const toggleUpcomingCategories = () => {
+    const nextValue = !showUpcomingCategories;
+    if (!nextValue && activeCategory !== 'all' && (categoryCounts.get(activeCategory) ?? 0) === 0) {
+      setActiveCategory('all');
+    }
+    setShowUpcomingCategories(nextValue);
+  };
 
   return (
     <section id="canva-designs" className="canva-showcase relative overflow-hidden" aria-labelledby="canva-designs-title">
@@ -48,38 +77,46 @@ export default function CanvaShowcase() {
           </div>
         </header>
 
-        <div className="canva-showcase__filters" role="tablist" aria-label="تصنيف أعمال التصميم">
+        <div className="canva-showcase__filters" role="group" aria-label="تصفية أعمال التصميم">
           <div className="canva-showcase__filter-lead">
             <Filter className="h-4 w-4" aria-hidden="true" />
             <span>تصنيف الأعمال</span>
           </div>
           <button
             type="button"
-            role="tab"
-            aria-selected={activeCategory === 'all'}
+            aria-pressed={activeCategory === 'all'}
             className={`canva-filter ${activeCategory === 'all' ? 'is-active' : ''}`}
-            onClick={() => setActiveCategory('all')}
+            onClick={() => selectCategory('all')}
           >
             كل الأعمال <span>{canvaDesigns.length}</span>
           </button>
-          {canvaCategories.map((category) => {
-            const count = canvaDesigns.filter((design) => design.categoryId === category.id).length;
+          {visibleCategories.map((category) => {
+            const count = categoryCounts.get(category.id) ?? 0;
             return (
               <button
                 key={category.id}
                 type="button"
-                role="tab"
-                aria-selected={activeCategory === category.id}
+                aria-pressed={activeCategory === category.id}
                 className={`canva-filter ${activeCategory === category.id ? 'is-active' : ''}`}
-                onClick={() => setActiveCategory(category.id)}
+                onClick={() => selectCategory(category.id)}
               >
                 {category.shortLabel} <span>{count}</span>
               </button>
             );
           })}
+          {upcomingCategories.length > 0 && (
+            <button
+              type="button"
+              aria-expanded={showUpcomingCategories}
+              className={`canva-filter canva-filter--disclosure ${showUpcomingCategories ? 'is-active' : ''}`}
+              onClick={toggleUpcomingCategories}
+            >
+              {showUpcomingCategories ? 'إخفاء الفئات القادمة' : 'فئات قادمة'} <span>{upcomingCategories.length}</span>
+            </button>
+          )}
         </div>
 
-        <div className="canva-showcase__results" aria-live="polite">
+        <div className="canva-showcase__results" aria-live="polite" role="status">
           <span>{activeCategoryLabel}</span>
           <span>{visibleDesigns.length} {visibleDesigns.length === 1 ? 'عمل' : 'أعمال'}</span>
         </div>

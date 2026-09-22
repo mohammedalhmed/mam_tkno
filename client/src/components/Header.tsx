@@ -6,6 +6,7 @@ const navItems = [
   { label: 'البداية', href: '/#home', id: 'home' },
   { label: 'الخدمات', href: '/#services', id: 'services' },
   { label: 'الأعمال', href: '/#projects', id: 'projects' },
+  { label: 'التصاميم', href: '/#canva-designs', id: 'canva-designs' },
   { label: 'المنهجية', href: '/#skills', id: 'skills' },
   { label: 'الأسئلة', href: '/#faq', id: 'faq' },
 ];
