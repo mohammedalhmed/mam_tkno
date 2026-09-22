@@ -6156,3 +6156,79 @@ body {
     background: rgb(22 213 223 / 0.1);
   }
 }
+
+
+/* Contact mobile polish: compact actions and structured channel cards. */
+@media (max-width: 767px) {
+  .contact-system__actions {
+    width: 100%;
+    gap: 0.6rem;
+    margin-top: 1.35rem;
+  }
+
+  .contact-system__actions > a {
+    min-height: 3.45rem;
+    border-radius: 0.75rem 0.16rem 0.75rem 0.16rem;
+    padding-inline: 1rem;
+    box-shadow: 0 0.8rem 1.6rem rgb(0 8 36 / 0.16);
+  }
+
+  .contact-system__actions > a:first-child {
+    border: 1px solid rgb(22 213 223 / 0.55);
+  }
+
+  .contact-system__actions > a:last-child {
+    background: rgb(255 255 255 / 0.035);
+    color: rgb(255 255 255 / 0.88);
+  }
+
+  .contact-system__channels {
+    margin-top: 2rem;
+    border: 0;
+  }
+
+  .contact-system__channels > div {
+    display: grid;
+    gap: 0.6rem;
+    background: transparent;
+  }
+
+  .contact-system__channels > div > a {
+    display: flex;
+    min-height: 6.25rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 0.85rem 0.16rem 0.85rem 0.16rem;
+    background: linear-gradient(145deg, rgb(17 42 94 / 0.56), rgb(7 17 46 / 0.72));
+    padding: 0.8rem 1rem;
+    text-align: center;
+    box-shadow: 0 0.7rem 1.5rem rgb(0 5 24 / 0.14);
+  }
+
+  .contact-system__channels > div > a:hover,
+  .contact-system__channels > div > a:focus-visible {
+    border-color: rgb(22 213 223 / 0.6);
+    background: linear-gradient(145deg, rgb(22 213 223 / 0.14), rgb(7 22 56 / 0.8));
+    transform: translateY(-2px);
+  }
+
+  .contact-system__channels > div > a > svg {
+    width: 1.45rem;
+    height: 1.45rem;
+    margin: 0 0 0.2rem;
+  }
+
+  .contact-system__channels > div > a > span {
+    margin: 0;
+    text-align: center;
+  }
+
+  .contact-system__channels > div > a > span:last-child {
+    max-width: 100%;
+    font-size: 0.72rem;
+    line-height: 1.55;
+  }
+}
