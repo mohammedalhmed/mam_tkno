@@ -388,17 +388,17 @@ export default function QuoteRequest() {
       )}
 
       {step === 4 && (
-        <div>
-          <div className="flex items-start gap-3 border-r-2 border-[#16d5df] bg-[#16d5df]/[.06] p-4 text-sm leading-7 text-white/72">
+        <div className="quote-summary">
+          <div className="quote-summary__notice flex items-start gap-3 border-r-2 border-[#16d5df] bg-[#16d5df]/[.06] p-4 text-sm leading-7 text-white/72">
             <ClipboardList className="mt-1 h-5 w-5 shrink-0 text-[#16d5df]" />
             <p>راجع التفاصيل قبل تجهيز الرسالة. لن تُرسل البيانات إلى خادم؛ ستجهز لك رسالة منظمة لتراجعها ثم ترسلها عبر واتساب أو البريد.</p>
           </div>
-          <dl className="mt-5 divide-y divide-white/10 border border-white/12 bg-white/[.025]">
-            <div className="grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="text-xs font-bold text-white/38">المجال</dt><dd className="text-sm font-bold text-white/82">{categoryLabel(form.category)}</dd></div>
-            <div className="grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="text-xs font-bold text-white/38">الخدمة</dt><dd className="text-sm font-bold text-white/82">{selectedService?.title || 'توجيه لاختيار الخدمة'}</dd></div>
-            <div className="grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="text-xs font-bold text-white/38">البداية</dt><dd className="text-sm text-white/72">{form.timeline || 'لم تُحدد'} · {form.budget || 'نطاق غير محدد'}</dd></div>
-            <div className="grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="text-xs font-bold text-white/38">التواصل</dt><dd className="font-latin text-sm text-white/72">{form.name || '—'} · {form.email || '—'}</dd></div>
-            <div className="grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="text-xs font-bold text-white/38">الاحتياج</dt><dd className="whitespace-pre-wrap text-sm leading-7 text-white/72">{form.details || '—'}</dd></div>
+          <dl className="quote-summary__list mt-5 divide-y divide-white/10 border border-white/12 bg-white/[.025]">
+            <div className="quote-summary__row grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="quote-summary__label text-xs font-bold text-white/38">المجال</dt><dd className="quote-summary__value text-sm font-bold text-white/82">{categoryLabel(form.category)}</dd></div>
+            <div className="quote-summary__row grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="quote-summary__label text-xs font-bold text-white/38">الخدمة</dt><dd className="quote-summary__value text-sm font-bold text-white/82">{selectedService?.title || 'توجيه لاختيار الخدمة'}</dd></div>
+            <div className="quote-summary__row grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="quote-summary__label text-xs font-bold text-white/38">البداية</dt><dd className="quote-summary__value text-sm text-white/72">{form.timeline || 'لم تُحدد'} · {form.budget || 'نطاق غير محدد'}</dd></div>
+            <div className="quote-summary__row grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="quote-summary__label text-xs font-bold text-white/38">التواصل</dt><dd className="quote-summary__value font-latin text-sm text-white/72">{form.name || '—'} · {form.email || '—'}</dd></div>
+            <div className="quote-summary__row quote-summary__row--details grid gap-1 p-4 sm:grid-cols-[8rem_1fr] sm:gap-4"><dt className="quote-summary__label text-xs font-bold text-white/38">الاحتياج</dt><dd className="quote-summary__value whitespace-pre-wrap text-sm leading-7 text-white/72">{form.details || '—'}</dd></div>
           </dl>
         </div>
       )}

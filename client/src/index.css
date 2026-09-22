@@ -6232,3 +6232,71 @@ body {
     line-height: 1.55;
   }
 }
+
+
+/* Quote summary mobile polish: turn review rows into the same centered card language as Contact. */
+@media (max-width: 767px) {
+  .quote-summary {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .quote-summary__notice {
+    align-items: center;
+    gap: 0.7rem;
+    border: 1px solid rgb(22 213 223 / 0.28);
+    border-inline-start: 2px solid #16d5df;
+    border-radius: 0.85rem 0.16rem 0.85rem 0.16rem;
+    background: linear-gradient(145deg, rgb(22 213 223 / 0.13), rgb(7 25 61 / 0.68));
+    padding: 0.85rem 0.9rem;
+  }
+
+  .quote-summary__notice svg {
+    margin-top: 0;
+  }
+
+  .quote-summary__notice p {
+    font-size: 0.72rem;
+    line-height: 1.8;
+  }
+
+  .quote-summary__list {
+    display: grid;
+    gap: 0.55rem;
+    border: 0;
+    background: transparent;
+  }
+
+  .quote-summary__row {
+    min-height: 4.35rem;
+    align-content: center;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 0.8rem 0.14rem 0.8rem 0.14rem;
+    background: linear-gradient(145deg, rgb(17 42 94 / 0.56), rgb(7 17 46 / 0.72));
+    padding: 0.75rem 0.9rem;
+  }
+
+  .quote-summary__row--details {
+    min-height: 6rem;
+  }
+
+  .quote-summary__label {
+    color: rgb(157 239 255 / 0.72);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .quote-summary__value {
+    overflow-wrap: anywhere;
+    color: rgb(255 255 255 / 0.86);
+    font-size: 0.78rem;
+    line-height: 1.65;
+    text-align: center;
+  }
+
+  .quote-summary__row--details .quote-summary__value {
+    max-height: 8rem;
+    overflow-y: auto;
+  }
+}
