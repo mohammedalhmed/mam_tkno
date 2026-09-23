@@ -17,8 +17,20 @@
     <meta name="application-name" content="MAM_Tkno | وكالة تقنية وتصميمية" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#f4f0e6" />
+    <script>
+      (() => {
+        try {
+          const stored = window.localStorage.getItem('mam-tkno-theme');
+          const theme = stored === 'dark' ? 'dark' : 'light';
+          document.documentElement.classList.toggle('dark', theme === 'dark');
+          document.documentElement.style.colorScheme = theme;
+        } catch {
+          document.documentElement.style.colorScheme = 'light';
+        }
+      })();
+    </script>
 
     <title>MAM_Tkno | وكالة تقنية وتصميمية للمنتجات الرقمية</title>
     <link rel="canonical" href="https://mahmoudfolio-izrbytxa.manus.space/" />

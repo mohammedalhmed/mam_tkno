@@ -72,3 +72,21 @@ pnpm run build
 4. اعتماد بنية الصفحات ونطاق الإصدار الأول.
 5. اعتماد قائمة الأعمال والوسائط وحقوق استخدامها.
 6. اعتماد نتيجة الاختبارات قبل النشر.
+
+
+## Feature Slice: Theme switching and loading state
+
+### Build order
+1. تثبيت عقد الثيم في `ThemeContext` وتهيئة class مبكرة في `index.html`.
+2. إضافة `ThemeToggle` إلى الهيدر مع دعم سطح المكتب والهاتف.
+3. إضافة tokens/overrides للوضعين وإظهار الثيم المختار في meta `theme-color`.
+4. بناء `PageLoadingSkeleton` واستخدامه في `App` و`Home` بدل fallback فارغ.
+5. تشغيل check/build/verify:seo ثم معاينة 390×844 و768×1024 و1280×720.
+
+### Risks and mitigation
+- الألوان الثابتة في الهوية الداكنة قد تتغلب على tokens؛ تُستهدف الأسطح العامة فقط ولا يُعاد تلوين Hero/Services/FAQ/Contact التي صُممت أصلًا كلوحات داكنة.
+- شاشة تحميل طويلة قد تؤخر الوصول للمحتوى؛ تُغلق بعد readiness مع حد أدنى قصير، وتُعطل الحركة الإضافية مع reduced motion.
+- وميض الثيم قبل React؛ يقرأ script صغير اختيار `localStorage` قبل تحميل التطبيق.
+
+### Exit gate
+لا يُحفظ checkpoint إلا بعد نجاح `pnpm run check && pnpm run build && pnpm run verify:seo` ومراجعة سلوك الزر والـ fallback على أحجام الهاتف وسطح المكتب.

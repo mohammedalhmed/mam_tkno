@@ -4,13 +4,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
+import PageLoadingSkeleton from "./components/PageLoadingSkeleton";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 const ServiceCategory = lazy(() => import("./pages/ServiceCategory"));
 const CaseStudyPage = lazy(() => import("./pages/CaseStudy"));
 
 function Router() {
-  const fallback = <div className="min-h-screen bg-[#061437]" aria-label="جارٍ تحميل الصفحة" />;
+  const fallback = <PageLoadingSkeleton fullScreen />;
   return (
     <Suspense fallback={fallback}>
       <Switch>
@@ -32,7 +33,7 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
+      <ThemeProvider defaultTheme="light" switchable>
         <TooltipProvider>
           <Toaster />
           <Router />

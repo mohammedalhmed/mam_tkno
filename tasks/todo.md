@@ -209,3 +209,21 @@
 - [ ] Task: تحديث توثيق المحتوى والتحقق من SEO والاستجابة والبناء.
   - Acceptance: نجاح `verify:seo` وTypeScript وبناء الإنتاج، مع مراجعة الصفحة الرئيسية ودراسات الحالة على الهاتف وسطح المكتب.
   - Verify: الأوامر الآلية والمعاينة البصرية ثم حفظ checkpoint.
+
+
+## Theme and loading experience
+
+- [x] Task: تفعيل تبديل الوضع الفاتح والداكن.
+  - Acceptance: زر واضح في الهيدر، حفظ الاختيار محليًا، class `dark` و`color-scheme` محدثان، وتباين مقروء في الوضعين.
+  - Verify: تبديل بالماوس ولوحة المفاتيح، إعادة تحميل، معاينة 390/768/1280.
+  - Files: `client/index.html`, `client/src/contexts/ThemeContext.tsx`, `client/src/components/Header.tsx`, `client/src/index.css`, `client/src/App.tsx`
+
+- [x] Task: إضافة شاشة تحميل هيكلية قابلة لإعادة الاستخدام.
+  - Acceptance: fallback غير فارغ للمسارات الكسولة، شاشة إقلاع قصيرة للصفحة الرئيسية، نص عربي وaria-live ودعم reduced motion.
+  - Verify: معاينة الإقلاع والتنقل إلى مسار خدمة/دراسة حالة، ثم `pnpm run check && pnpm run build`.
+  - Files: `client/src/components/PageLoadingSkeleton.tsx`, `client/src/pages/Home.tsx`, `client/src/App.tsx`, `client/src/index.css`
+
+- [x] Task: إغلاق بوابة التحقق وحفظ checkpoint.
+  - Acceptance: نجاح check/build/verify:seo وعدم وجود تراجع مرئي أو تمرير أفقي.
+  - Verify: `pnpm run check && pnpm run build && pnpm run verify:seo` + معاينة responsive.
+  - Files: repository state and checkpoint metadata

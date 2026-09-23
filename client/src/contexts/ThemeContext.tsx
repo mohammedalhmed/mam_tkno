@@ -2,9 +2,11 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 
+const THEME_STORAGE_KEY = "mam-tkno-theme";
+
 interface ThemeContextType {
   theme: Theme;
-  toggleTheme?: () => void;
+  toggleTheme: () => void;
   switchable: boolean;
 }
 
@@ -22,9 +24,9 @@ export function ThemeProvider({
   switchable = false,
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
-    if (switchable) {
-      const stored = localStorage.getItem("theme");
-      return (stored as Theme) || defaultTheme;
+    if (switchable && typeof window !== "undefined") {
+      const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+      return stored === "dark" || stored === "light" ? stored : defaultTheme;
     }
     return defaultTheme;
   });
@@ -37,16 +39,18 @@ export function ThemeProvider({
       root.classList.remove("dark");
     }
 
+    root.style.colorScheme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#061437" : "#f4f0e6");
+
     if (switchable) {
-      localStorage.setItem("theme", theme);
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme);
     }
   }, [theme, switchable]);
 
-  const toggleTheme = switchable
-    ? () => {
-        setTheme(prev => (prev === "light" ? "dark" : "light"));
-      }
-    : undefined;
+  const toggleTheme = () => {
+    if (!switchable) return;
+    setTheme(prev => (prev === "light" ? "dark" : "light"));
+  };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, switchable }}>

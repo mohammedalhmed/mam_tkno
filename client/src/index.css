@@ -6420,3 +6420,308 @@ html {
     filter: none;
   }
 }
+
+
+/* Theme switcher and loading experience. */
+.theme-toggle {
+  display: inline-flex;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 0.8rem;
+  background: rgb(255 255 255 / 0.08);
+  color: #eafaff;
+  transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: rgb(22 213 223 / 0.72);
+  background: rgb(22 213 223 / 0.16);
+  color: #16d5df;
+  transform: translateY(-2px);
+}
+
+.theme-toggle:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.page-loader {
+  position: relative;
+  display: grid;
+  min-height: 20rem;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 14%, rgb(22 213 223 / 0.13), transparent 17rem),
+    linear-gradient(145deg, var(--brand-surface), var(--brand-paper));
+  color: var(--foreground);
+}
+
+.page-loader--fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  min-height: 100svh;
+  padding: 1rem;
+}
+
+.page-loader__inner {
+  width: min(100%, 70rem);
+  padding: clamp(1rem, 4vw, 3rem);
+}
+
+.page-loader__topline,
+.page-loader__hero,
+.page-loader__actions {
+  display: flex;
+  align-items: center;
+}
+
+.page-loader__topline {
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--brand-line);
+  padding-bottom: 1rem;
+}
+
+.page-loader__brand,
+.page-loader__nav,
+.page-loader__button,
+.page-loader__eyebrow,
+.page-loader__title,
+.page-loader__paragraph,
+.page-loader__actions span,
+.page-loader__visual-card {
+  display: block;
+  border-radius: 0.35rem;
+  background: linear-gradient(110deg, rgb(7 22 79 / 0.08) 28%, rgb(22 213 223 / 0.24) 48%, rgb(7 22 79 / 0.08) 68%);
+  background-size: 220% 100%;
+  animation: page-loader-shimmer 1.35s ease-in-out infinite;
+}
+
+.page-loader__brand {
+  width: 8rem;
+  height: 1.2rem;
+}
+
+.page-loader__nav {
+  width: min(38%, 22rem);
+  height: 0.8rem;
+}
+
+.page-loader__button {
+  width: 6.5rem;
+  height: 2.75rem;
+  border-radius: 0.7rem;
+}
+
+.page-loader__hero {
+  justify-content: space-between;
+  gap: clamp(2rem, 7vw, 7rem);
+  padding-block: clamp(3rem, 10vw, 7rem);
+}
+
+.page-loader__copy {
+  width: min(100%, 34rem);
+}
+
+.page-loader__eyebrow {
+  width: 10rem;
+  height: 0.7rem;
+}
+
+.page-loader__title {
+  width: min(100%, 29rem);
+  height: clamp(3rem, 8vw, 6rem);
+  margin-top: 1.2rem;
+}
+
+.page-loader__title--short {
+  width: min(78%, 22rem);
+  margin-top: 0.7rem;
+}
+
+.page-loader__paragraph {
+  width: min(92%, 25rem);
+  height: 4rem;
+  margin-top: 1.5rem;
+}
+
+.page-loader__actions {
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.page-loader__actions span {
+  width: 8rem;
+  height: 3rem;
+}
+
+.page-loader__actions span:last-child {
+  width: 7rem;
+  opacity: 0.6;
+}
+
+.page-loader__visual {
+  position: relative;
+  display: grid;
+  width: min(42%, 23rem);
+  aspect-ratio: 1 / 0.92;
+  place-items: center;
+  border: 1px solid rgb(22 213 223 / 0.24);
+  background: rgb(22 213 223 / 0.06);
+  transform: rotate(-2deg);
+}
+
+.page-loader__visual-glow {
+  position: absolute;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: rgb(22 213 223 / 0.18);
+  filter: blur(34px);
+}
+
+.page-loader__visual-card {
+  position: relative;
+  width: 68%;
+  height: 66%;
+  border: 1px solid rgb(22 213 223 / 0.44);
+  background: linear-gradient(145deg, rgb(7 22 79 / 0.8), rgb(22 213 223 / 0.12));
+  box-shadow: 0.7rem 0.7rem 0 rgb(22 213 223 / 0.35);
+}
+
+.page-loader__label {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+@keyframes page-loader-shimmer {
+  0%, 100% {
+    opacity: 0.62;
+    background-position: 120% 0;
+  }
+  50% {
+    opacity: 1;
+    background-position: -20% 0;
+  }
+}
+
+/* Light theme keeps the dark editorial panels, while making the page canvas and capability map airy. */
+html:not(.dark),
+html:not(.dark) body {
+  background: var(--brand-paper);
+}
+
+html:not(.dark) .site-shell {
+  background:
+    radial-gradient(circle at 86% 8%, rgb(22 213 223 / 0.1), transparent 26rem),
+    radial-gradient(circle at 7% 45%, rgb(245 116 25 / 0.055), transparent 24rem),
+    linear-gradient(180deg, #f8f4e9 0%, #f4f0e6 58%, #fbf8f0 100%);
+  color: var(--brand-ink);
+}
+
+html:not(.dark) .skills-system {
+  background-color: rgb(251 248 240 / 0.72);
+  color: var(--brand-ink);
+}
+
+html:not(.dark) .skills-system article {
+  border-color: var(--brand-line);
+}
+
+html:not(.dark) .skills-system .atelier-measure {
+  color: rgb(7 22 79 / 0.46);
+}
+
+html.dark,
+html.dark body {
+  background: #061437;
+}
+
+html.dark .site-shell {
+  background:
+    radial-gradient(circle at 86% 9%, rgb(73 137 255 / 0.19), transparent 29rem),
+    radial-gradient(circle at 4% 42%, rgb(22 213 223 / 0.11), transparent 24rem),
+    linear-gradient(180deg, #061437 0%, #071a43 42%, #061437 100%);
+  color: #eff7ff;
+}
+
+html.dark .skills-system {
+  background:
+    radial-gradient(circle at 85% 15%, rgb(22 213 223 / 0.12), transparent 22rem),
+    #071a43;
+  color: #eff7ff;
+}
+
+html.dark .skills-system .eyebrow,
+html.dark .skills-system .atelier-note,
+html.dark .skills-system article h3,
+html.dark .skills-system article p,
+html.dark .skills-system article > div:first-child > span:first-child {
+  color: #eff7ff;
+}
+
+html.dark .skills-system article {
+  border-color: rgb(212 231 255 / 0.16);
+}
+
+html.dark .skills-system article > div:nth-child(3) span {
+  border-color: rgb(212 231 255 / 0.18);
+  background: rgb(255 255 255 / 0.06);
+  color: #dffbff;
+}
+
+html.dark .skills-system .atelier-measure {
+  color: rgb(223 237 255 / 0.58);
+}
+
+html.dark .page-loader {
+  background:
+    radial-gradient(circle at 78% 14%, rgb(22 213 223 / 0.15), transparent 18rem),
+    linear-gradient(145deg, #071a43, #061437);
+  color: #eff7ff;
+}
+
+html.dark .page-loader__label {
+  color: rgb(223 237 255 / 0.7);
+}
+
+html.dark .theme-toggle {
+  border-color: rgb(212 231 255 / 0.2);
+  background: rgb(255 255 255 / 0.07);
+}
+
+@media (max-width: 639px) {
+  .page-loader__hero {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .page-loader__visual {
+    width: min(100%, 19rem);
+    margin-inline: auto;
+  }
+
+  .page-loader__nav {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader__brand,
+  .page-loader__nav,
+  .page-loader__button,
+  .page-loader__eyebrow,
+  .page-loader__title,
+  .page-loader__paragraph,
+  .page-loader__actions span,
+  .page-loader__visual-card {
+    animation: none;
+  }
+}

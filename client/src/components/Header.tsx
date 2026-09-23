@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpLeft, ChevronDown, Menu, X } from 'lucide-react';
+import { ArrowUpLeft, ChevronDown, Menu, Moon, Sun, X } from 'lucide-react';
 import BrandMark from '@/components/BrandMark';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const navItems = [
   { label: 'البداية', href: '/#home', id: 'home' },
@@ -27,6 +28,7 @@ const serviceGroups = [
 ];
 
 export default function Header() {
+  const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -149,6 +151,16 @@ export default function Header() {
             </nav>
 
             <div className="flex items-center gap-2">
+              <button
+                type="button"
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label={theme === 'dark' ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'}
+                title={theme === 'dark' ? 'الوضع الفاتح' : 'الوضع الداكن'}
+              >
+                {theme === 'dark' ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
+                <span className="sr-only">{theme === 'dark' ? 'الوضع الفاتح' : 'الوضع الداكن'}</span>
+              </button>
               <a href="/#contact" className="hidden min-h-11 items-center gap-2 rounded-[.8rem] bg-[#16d5df] px-4 text-sm font-bold text-[#061437] shadow-[3px_3px_0_#285fbe] transition-transform duration-200 hover:-translate-y-0.5 sm:inline-flex">
                 اطلب عرضًا
                 <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />

@@ -1,6 +1,7 @@
 /** Product Systems Atelier — صفحة واحدة متصلة من التعريف إلى الدليل ثم آلية العمل والتواصل. */
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import Header from '@/components/Header';
+import PageLoadingSkeleton from '@/components/PageLoadingSkeleton';
 import Hero from '@/components/Hero';
 import Projects from '@/components/Projects';
 import CanvaShowcase from '@/components/CanvaShowcase';
@@ -14,13 +15,19 @@ const SectionRevealObserver = lazy(() => import('@/components/SectionRevealObser
 import { HOME_METADATA, setJsonLd, setPageMetadata } from '@/lib/seo';
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     setPageMetadata(HOME_METADATA);
     setJsonLd('case-study-jsonld', null);
+
+    const loadingTimer = window.setTimeout(() => setIsLoading(false), 420);
+    return () => window.clearTimeout(loadingTimer);
   }, []);
   return (
-    <div className="site-shell relative">
-      <Suspense fallback={null}>
+    <div className="site-shell relative" aria-busy={isLoading}>
+      {isLoading && <PageLoadingSkeleton fullScreen />}
+      <Suspense fallback={<PageLoadingSkeleton />}>
         <InteractiveAtmosphere />
         <SectionRevealObserver />
       </Suspense>
@@ -34,7 +41,7 @@ export default function Home() {
         <FAQ />
         <Contact />
       </main>
-      <Suspense fallback={null}>
+      <Suspense fallback={<PageLoadingSkeleton />}>
         <Footer />
       </Suspense>
     </div>
