@@ -249,3 +249,21 @@
   - Acceptance: نجاح الفحوص والمعاينة وعدم وجود overflow أفقي.
   - Verify: DOM assertions + checkpoint.
   - Files: repository state and checkpoint metadata
+
+
+## Service category text alignment
+
+- [x] Task: توحيد محاذاة نصوص القسمين 01 و02 على الهاتف.
+  - Acceptance: العناوين والوصف والسؤال والرابط بمحاذاة RTL واحدة، دون توسيط غير مقصود أو قص.
+  - Verify: معاينة `/services/technology` و`/services/design` على 390 و768.
+  - Files: `client/src/index.css`
+
+- [x] Task: ضبط محاذاة بطاقات الخدمات والـ metadata.
+  - Acceptance: العنوان والوصف والمخرجات يمينًا، والرموز الإنجليزية LTR، وCTA واضح بعرض مناسب.
+  - Verify: فحص بصري + DOM وغياب overflow أفقي.
+  - Files: `client/src/index.css`, `client/src/components/Services.tsx`
+
+- [x] Task: تشغيل الفحوص وحفظ checkpoint.
+  - Acceptance: نجاح check/build/verify:seo ومعاينة responsive للقسمين.
+  - Verify: الأوامر الآلية وصور المعاينة.
+  - Files: repository state and checkpoint metadata

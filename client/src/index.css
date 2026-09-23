@@ -6882,3 +6882,93 @@ html:not(.dark) .theme-toggle-mobile:hover {
     display: inline-flex;
   }
 }
+
+
+/* Service categories: one RTL reading axis on compact screens. */
+@media (max-width: 767px) {
+  .service-system__category-info {
+    width: 100%;
+    text-align: right;
+  }
+
+  .service-system__category-info > div:first-child {
+    justify-content: flex-start;
+    direction: rtl;
+  }
+
+  .service-system__category-info > div:first-child > span:first-child {
+    order: 1;
+  }
+
+  .service-system__category-info > div:first-child > span:last-child {
+    order: 2;
+  }
+
+  .service-system__category-info .canva-kicker {
+    display: block;
+    margin-top: 1.25rem;
+    text-align: right;
+  }
+
+  .service-system__category-info h3,
+  .service-system__category-info > p,
+  .service-system__category-info > p:last-of-type {
+    max-width: none;
+    margin-inline: 0;
+    text-align: right;
+  }
+
+  .service-system__category-info h3 {
+    width: auto;
+    font-size: clamp(1.55rem, 7.4vw, 2.2rem);
+  }
+
+  .service-system__category-info > p {
+    font-size: 0.82rem;
+    line-height: 1.9;
+  }
+
+  .service-system__category-info > p:last-of-type {
+    padding-inline: 0.85rem 0;
+    font-size: 0.76rem;
+  }
+
+  .service-system__category-info > a {
+    justify-content: flex-start;
+    margin-inline: 0;
+    text-align: right;
+  }
+
+  .service-card {
+    text-align: right;
+  }
+
+  .service-card__body {
+    width: 100%;
+    text-align: right;
+  }
+
+  .service-card__meta {
+    justify-content: flex-start;
+    direction: rtl;
+  }
+
+  .service-card__title,
+  .service-card__summary {
+    max-width: none;
+    text-align: right;
+  }
+
+  .service-card__outputs {
+    justify-content: flex-start;
+    text-align: right;
+  }
+
+  .service-card__outputs li {
+    justify-content: flex-start;
+  }
+
+  .service-card__cta {
+    width: 100%;
+  }
+}
