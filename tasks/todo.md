@@ -227,3 +227,25 @@
   - Acceptance: نجاح check/build/verify:seo وعدم وجود تراجع مرئي أو تمرير أفقي.
   - Verify: `pnpm run check && pnpm run build && pnpm run verify:seo` + معاينة responsive.
   - Files: repository state and checkpoint metadata
+
+
+## Mobile controls and tonal theme refinement
+- [x] Task: إزالة زر الطلب العائم من الجوال.
+  - Acceptance: لا يوجد `mobile-cta-dock` في DOM، ولا مساحة سفلية محجوزة له على الهاتف.
+  - Verify: معاينة 390 و768 وفحص DOM.
+  - Files: `client/src/components/Header.tsx`, `client/src/index.css`
+
+- [x] Task: إظهار زر الثيم داخل قائمة الجوال فقط.
+  - Acceptance: زر واحد في هيدر desktop، وزر داخل drawer عند فتح القائمة على mobile؛ لا يظهر الزر في الهيدر المغلق على الهاتف.
+  - Verify: اختبار فتح/إغلاق القائمة، keyboard focus، وتبديل light/dark.
+  - Files: `client/src/components/Header.tsx`, `client/src/index.css`
+
+- [x] Task: جعل الوضع الفاتح أزرقًا ساطعًا مع الحفاظ على الداكن الحالي.
+  - Acceptance: light surfaces زرقاء/سماوية مضيئة وليست بيضاء، dark visual regression غير متغير، وتباين مقروء.
+  - Verify: screenshots 390/768/1280 + `pnpm run check && pnpm run build && pnpm run verify:seo`.
+  - Files: `client/src/index.css`, `client/src/contexts/ThemeContext.tsx`
+
+- [x] Task: حفظ checkpoint بعد التحقق النهائي.
+  - Acceptance: نجاح الفحوص والمعاينة وعدم وجود overflow أفقي.
+  - Verify: DOM assertions + checkpoint.
+  - Files: repository state and checkpoint metadata

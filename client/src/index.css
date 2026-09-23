@@ -6725,3 +6725,160 @@ html.dark .theme-toggle {
     animation: none;
   }
 }
+
+
+/* Mobile controls and tonal light theme refinement. */
+.mobile-cta-dock {
+  display: none !important;
+}
+
+@media (max-width: 1023px) {
+  .theme-toggle-desktop {
+    display: none;
+  }
+
+  .site-shell {
+    padding-bottom: 0 !important;
+  }
+}
+
+html:not(.dark),
+html:not(.dark) body {
+  background-color: #2b72b8 !important;
+  color: #effaff;
+}
+
+html:not(.dark) body {
+  background-image:
+    radial-gradient(circle at 9% 5%, rgb(137 239 255 / 0.24), transparent 24rem),
+    radial-gradient(circle at 94% 38%, rgb(255 180 93 / 0.12), transparent 26rem),
+    linear-gradient(180deg, #3e91cf 0%, #2b72b8 52%, #225b9e 100%);
+}
+
+html:not(.dark) .site-shell {
+  background:
+    radial-gradient(circle at 86% 8%, rgb(137 239 255 / 0.2), transparent 26rem),
+    radial-gradient(circle at 7% 45%, rgb(255 180 93 / 0.1), transparent 24rem),
+    linear-gradient(180deg, #3d91cf 0%, #2b72b8 54%, #225b9e 100%);
+  color: #effaff;
+}
+
+html:not(.dark) .hero-reference {
+  background:
+    radial-gradient(circle at 78% 18%, rgb(224 252 255 / 0.28), transparent 15rem),
+    linear-gradient(180deg, #8bdcf0 0%, #3d91cf 30%, #225faf 63%, #174b92 100%) !important;
+}
+
+html:not(.dark) .service-system,
+html:not(.dark) .projects-system,
+html:not(.dark) .canva-showcase,
+html:not(.dark) .faq-system,
+html:not(.dark) .contact-system,
+html:not(.dark) .footer-system {
+  color: #effaff;
+}
+
+html:not(.dark) .service-system {
+  background:
+    radial-gradient(circle at 8% 40%, rgb(137 239 255 / 0.18), transparent 24rem),
+    linear-gradient(180deg, #2f7fc6 0%, #1e579f 100%) !important;
+}
+
+html:not(.dark) .projects-system {
+  background:
+    radial-gradient(circle at 86% 24%, rgb(65 157 255 / 0.24), transparent 24rem),
+    linear-gradient(180deg, #225fae 0%, #174584 100%) !important;
+}
+
+html:not(.dark) .canva-showcase {
+  background:
+    radial-gradient(circle at 82% 12%, rgb(137 239 255 / 0.18), transparent 24rem),
+    linear-gradient(180deg, #2f7fc6 0%, #1e579f 100%) !important;
+}
+
+html:not(.dark) .faq-system {
+  background:
+    radial-gradient(circle at 14% 46%, rgb(137 239 255 / 0.16), transparent 24rem),
+    linear-gradient(180deg, #245fa9 0%, #183f7d 100%) !important;
+}
+
+html:not(.dark) .contact-system,
+html:not(.dark) .footer-system {
+  background:
+    radial-gradient(circle at 82% 15%, rgb(22 213 223 / 0.17), transparent 24rem),
+    linear-gradient(180deg, #1d4f95 0%, #143665 100%) !important;
+}
+
+html:not(.dark) .surface-ink {
+  background:
+    radial-gradient(circle at 84% 8%, rgb(137 239 255 / 0.16), transparent 24rem),
+    linear-gradient(180deg, #2b72b8 0%, #194984 100%) !important;
+  color: #effaff;
+}
+
+html:not(.dark) .skills-system {
+  background:
+    linear-gradient(135deg, rgb(76 165 219 / 0.96), rgb(40 108 182 / 0.98)),
+    #2b72b8 !important;
+  color: #effaff;
+}
+
+html:not(.dark) .skills-system .eyebrow,
+html:not(.dark) .skills-system > .container > .grid p,
+html:not(.dark) .skills-system h2,
+html:not(.dark) .skills-system article h3,
+html:not(.dark) .skills-system article p,
+html:not(.dark) .skills-system article > div:first-child > span:first-child {
+  color: #effaff !important;
+}
+
+html:not(.dark) .skills-system > .container > .grid p,
+html:not(.dark) .skills-system article p {
+  color: rgb(239 250 255 / 0.78) !important;
+}
+
+html:not(.dark) .skills-system article,
+html:not(.dark) .skills-system > .container > .mt-16 {
+  border-color: rgb(232 251 255 / 0.28) !important;
+}
+
+html:not(.dark) .skills-system article > div:nth-child(3) span {
+  border-color: rgb(232 251 255 / 0.35) !important;
+  background: rgb(255 255 255 / 0.12) !important;
+  color: #effaff !important;
+}
+
+html:not(.dark) .skills-system .atelier-measure,
+html:not(.dark) .skills-system .font-latin {
+  color: rgb(232 251 255 / 0.7);
+}
+
+html:not(.dark) .page-loader {
+  background:
+    radial-gradient(circle at 78% 14%, rgb(137 239 255 / 0.24), transparent 18rem),
+    linear-gradient(145deg, #3d91cf, #225b9e);
+  color: #effaff;
+}
+
+html:not(.dark) .page-loader__label {
+  color: rgb(239 250 255 / 0.78);
+}
+
+html:not(.dark) .theme-toggle-desktop,
+html:not(.dark) .theme-toggle-mobile {
+  border-color: rgb(232 251 255 / 0.3);
+  background: rgb(7 35 91 / 0.28);
+  color: #effaff;
+}
+
+html:not(.dark) .theme-toggle-desktop:hover,
+html:not(.dark) .theme-toggle-mobile:hover {
+  background: rgb(22 213 223 / 0.22);
+  color: #ffffff;
+}
+
+@media (max-width: 1023px) {
+  .theme-toggle-mobile {
+    display: inline-flex;
+  }
+}

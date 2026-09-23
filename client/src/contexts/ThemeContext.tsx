@@ -40,7 +40,7 @@ export function ThemeProvider({
     }
 
     root.style.colorScheme = theme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#061437" : "#f4f0e6");
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#061437" : "#2b72b8");
 
     if (switchable) {
       window.localStorage.setItem(THEME_STORAGE_KEY, theme);

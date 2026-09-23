@@ -153,7 +153,7 @@ export default function Header() {
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                className="theme-toggle"
+                className="theme-toggle theme-toggle-desktop"
                 onClick={toggleTheme}
                 aria-label={theme === 'dark' ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'}
                 title={theme === 'dark' ? 'الوضع الفاتح' : 'الوضع الداكن'}
@@ -206,6 +206,19 @@ export default function Header() {
                 </a>
               ))}
             </div>
+            <button
+              type="button"
+              className="theme-toggle theme-toggle-mobile mt-5 w-full justify-between px-4"
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'}
+              title={theme === 'dark' ? 'الوضع الفاتح' : 'الوضع الداكن'}
+            >
+              <span className="flex items-center gap-3">
+                {theme === 'dark' ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
+                <span>{theme === 'dark' ? 'الوضع الفاتح' : 'الوضع الداكن'}</span>
+              </span>
+              <span className="sr-only">{theme === 'dark' ? 'التبديل إلى الوضع الفاتح' : 'التبديل إلى الوضع الداكن'}</span>
+            </button>
             <div className="mt-6 grid gap-2">
               {serviceGroups.map((group) => (
                 <a key={group.code} href={group.href} className="border border-white/12 bg-white/[.055] p-4" onClick={closeMobileMenu}>
@@ -222,10 +235,6 @@ export default function Header() {
         </div>
       )}
 
-      <a href="/#contact" className="mobile-cta-dock" aria-label="الانتقال إلى نموذج طلب عرض السعر">
-        ابدأ طلب مشروعك
-        <ArrowUpLeft className="h-5 w-5 text-[#16d5df]" aria-hidden="true" />
-      </a>
     </>
   );
 }
