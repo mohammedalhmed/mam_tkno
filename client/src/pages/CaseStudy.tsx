@@ -94,7 +94,7 @@ export default function CaseStudyPage() {
 
   if (!study || !project) {
     return (
-      <div className="site-shell">
+      <div className="site-shell case-study-page">
         <Header />
         <main className="container flex min-h-[70vh] flex-col items-start justify-center py-24">
           <p className="section-number">CASE STUDY / 404</p>
@@ -113,10 +113,10 @@ export default function CaseStudyPage() {
   } as CSSProperties;
 
   return (
-    <div className="site-shell" style={themeStyle}>
+    <div className="site-shell case-study-page" style={themeStyle}>
       <Header />
       <main>
-        <section className="relative overflow-hidden border-b border-white/10 bg-[#061437] pb-16 pt-32 text-white md:pb-24 md:pt-44">
+        <section className="case-study-hero relative overflow-hidden border-b border-white/10 bg-[#061437] pb-16 pt-32 text-white md:pb-24 md:pt-44">
           <div className="canva-page-grid pointer-events-none absolute inset-0 opacity-80" aria-hidden="true" />
           <div className="pointer-events-none absolute -left-48 top-1/3 h-96 w-96 rounded-full bg-[var(--case-accent)]/10 blur-3xl" aria-hidden="true" />
           <div className="container relative">
@@ -146,7 +146,7 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        <section className={`bg-[#071a43] py-16 text-white md:py-24`}>
+        <section className={`case-study-work bg-[#071a43] py-16 text-white md:py-24`}>
           <div className={`container grid gap-10 lg:items-start ${theme.grid}`}>
           <div className={`overflow-hidden border border-t-4 border-[var(--case-line)] border-t-[var(--case-accent)] bg-[#0b2459] shadow-[0_24px_70px_rgba(0,5,30,.35)] ${theme.mediaOrder}`}>
             {study.media.map((media, index) => (
@@ -172,7 +172,7 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden border-y border-white/10 bg-[#061437] py-16 text-white md:py-24">
+        <section className="case-study-story relative overflow-hidden border-y border-white/10 bg-[#061437] py-16 text-white md:py-24">
           <div className="canva-page-grid pointer-events-none absolute inset-0 opacity-65" aria-hidden="true" />
           <div className="container grid gap-5 md:grid-cols-2 md:grid-rows-[auto_auto]">
             <article className="relative border border-white/14 border-t-4 border-t-[var(--case-accent)] bg-[#0b2459]/78 p-7 md:row-span-2 md:flex md:min-h-[25rem] md:flex-col md:justify-end"><p className="font-latin text-[10px] font-extrabold tracking-[.18em] text-[var(--case-accent)]">01 / PROBLEM</p><h2 className="mt-4 font-display text-[clamp(2rem,3vw,3rem)] font-bold text-white">المشكلة</h2><p className="mt-5 max-w-xl leading-8 text-white/68">{study.problem}</p></article>
@@ -181,7 +181,7 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        <section className="bg-[#071a43] py-16 text-white md:py-24">
+        <section className="case-study-deliverables bg-[#071a43] py-16 text-white md:py-24">
           <div className="container grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
           <div><p className="canva-kicker">DELIVERABLES / SCOPE</p><h2 className="mt-4 font-display text-3xl font-bold text-white">ما الذي دخل في النطاق؟</h2><p className="mt-5 max-w-sm text-sm leading-7 text-white/55">مخرجات محددة يمكن مراجعتها داخل الواجهة، وليست قائمة ادعاءات عامة.</p></div>
           <div><ul className="grid gap-3 sm:grid-cols-2">{study.deliverables.map((item) => <li key={item} className="flex items-start gap-3 border border-white/14 bg-white/[.045] p-4 text-sm leading-7 text-white/78"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#16d5df]" aria-hidden="true" />{item}</li>)}</ul><div className="mt-8 flex flex-wrap gap-2">{study.services.map((service) => <span key={service} className="border border-[var(--case-line)] bg-[var(--case-soft)] px-3 py-2 text-xs font-bold text-[var(--case-accent)]">{service}</span>)}</div></div>

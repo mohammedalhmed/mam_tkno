@@ -267,3 +267,26 @@
   - Acceptance: نجاح check/build/verify:seo ومعاينة responsive للقسمين.
   - Verify: الأوامر الآلية وصور المعاينة.
   - Files: repository state and checkpoint metadata
+
+
+## Mobile composition and type rhythm
+
+- [x] Task: توسيط وتوزيع محتوى الهاتف في الصفحة الرئيسية ودراسات الحالة.
+  - Acceptance: الحاويات والوسائط والكتل النصية والأزرار ضمن عرض متوازن بلا ميل أو overflow أفقي.
+  - Verify: معاينة `/` و`/case-studies/bellabox` و`/case-studies/altaj` على 390 و768 وفحص `scrollWidth`.
+  - Files: `client/src/pages/CaseStudy.tsx`, `client/src/index.css`
+
+- [x] Task: توحيد حجم العناوين الفرعية على الجوال.
+  - Acceptance: عناوين بطاقات الخدمات والمشاريع ودراسات الحالة وCanva والتواصل ضمن مقياس هاتف متناسق، دون تغيير Hero الرئيسي.
+  - Verify: فحص بصري ومقارنة computed styles على الهاتف.
+  - Files: `client/src/index.css`
+
+- [x] Task: إضافة فاصل بصري خفيف بين بطاقات الخدمات.
+  - Acceptance: separator منخفض التباين بين البطاقات، لا يسبب تداخلًا أو تغييرًا في مساحة المحتوى.
+  - Verify: معاينة قسم الخدمات على 390 و1280 واختبار hover/focus.
+  - Files: `client/src/index.css`
+
+- [x] Task: تشغيل الفحوص وحفظ checkpoint.
+  - Acceptance: نجاح check/build/verify:seo والمعاينة responsive.
+  - Verify: الأوامر الآلية + DOM assertions + checkpoint.
+  - Files: repository state and checkpoint metadata
