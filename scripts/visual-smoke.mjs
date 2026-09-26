@@ -110,10 +110,15 @@ async function main() {
               categoryTextAlign: category ? getComputedStyle(category).textAlign : null,
               categoryWidth: category ? Math.round(category.getBoundingClientRect().width) : null,
               firstCardWidth: firstCard ? Math.round(firstCard.getBoundingClientRect().width) : null,
+              outputDisplay: firstCard ? getComputedStyle(firstCard.querySelector('.service-card__outputs')).display : null,
+              outputItems: firstCard ? Array.from(firstCard.querySelectorAll('.service-card__outputs li')).map((item) => Math.round(item.getBoundingClientRect().width)) : [],
             };
           });
           if (viewport.width === 390 && serviceMetrics.categoryTextAlign !== 'center') {
             throw new Error('Expected centered service category heading at 390px.');
+          }
+          if (viewport.width === 390 && serviceMetrics.outputDisplay !== 'flex') {
+            throw new Error('Expected horizontal flex service outputs at 390px.');
           }
 
           const serviceFilePath = `${outputRoot}/${viewport.width}/services.png`;

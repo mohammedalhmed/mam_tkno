@@ -279,3 +279,18 @@ pnpm run verify:seo
 
 ### Verification
 تشغيل `pnpm run check` و`pnpm run build` و`pnpm run verify:seo` و`pnpm run test:visual`، ثم مراجعة قسمي الخدمات وFAQ على الهاتف وسطح المكتب.
+
+
+## 20. Horizontal service outputs
+
+### Objective
+عرض نقاط المخرجات داخل بطاقات الخدمات بجانب بعضها كصف أفقي متجاوب بدل ظهورها كعمود متراص على الهاتف، مع السماح بالالتفاف الطبيعي عند ضيق العرض.
+
+### Acceptance criteria
+- تظهر نقاط المخرجات في صف أفقي عند 390 و768 بكسل متى سمح العرض.
+- تلتف النقاط إلى صف ثانٍ عند الحاجة دون قص أو overflow.
+- تبقى أيقونة التحقق والنص العربي في كل نقطة متجاورين، مع استمرار التوسيط العام للبطاقة.
+- لا يتغير تخطيط سطح المكتب أو ترتيب الخدمات.
+
+### Verification
+تشغيل `pnpm run check` و`pnpm run build` و`pnpm run verify:seo` و`pnpm run test:visual`، ثم فحص computed styles لقائمة المخرجات.

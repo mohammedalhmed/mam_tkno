@@ -331,3 +331,16 @@
   - Acceptance: نجاح check/build/verify:seo/test:visual والمراجعة على 1280.
   - Verify: الأوامر الآلية + المعاينة responsive.
   - Files: repository state and checkpoint metadata
+
+
+## Horizontal service outputs
+
+- [x] Task: عرض نقاط المخرجات بجانب بعضها كصف متجاوب.
+  - Acceptance: flex row مع wrap عند الحاجة، دون تداخل أو overflow في 390 و768.
+  - Verify: computed styles + test:visual.
+  - Files: `client/src/index.css`
+
+- [x] Task: تشغيل الفحوص وحفظ checkpoint.
+  - Acceptance: نجاح check/build/verify:seo/test:visual.
+  - Verify: الأوامر الآلية ومعاينة البطاقات.
+  - Files: repository state and checkpoint metadata

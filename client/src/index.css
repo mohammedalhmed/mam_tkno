@@ -7246,3 +7246,26 @@ html:not(.dark) .theme-toggle-mobile:hover {
     align-self: center;
   }
 }
+
+
+/* Keep service outputs in a horizontal, wrapping row on phones. */
+@media (max-width: 767px) {
+  #services .service-card__outputs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem 0.9rem;
+  }
+
+  #services .service-card__outputs li {
+    width: auto;
+    max-width: 100%;
+    flex: 0 1 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+}
