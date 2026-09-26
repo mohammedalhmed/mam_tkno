@@ -313,3 +313,21 @@
   - Acceptance: نجاح check/build/verify:seo/test:visual ومراجعة اللقطات.
   - Verify: الأوامر الآلية + صور الاختبار.
   - Files: repository state and checkpoint metadata
+
+
+## Service category editorial alignment
+
+- [x] Task: توسيط رأسَي الفئتين 01 و02 على الهاتف.
+  - Acceptance: الرقم والأيقونة وkicker والعنوان والوصف والسؤال والرابط في محور قراءة مركزي متسق مع FAQ.
+  - Verify: معاينة الصفحة الرئيسية عند 390 و768.
+  - Files: `client/src/index.css`
+
+- [x] Task: موازنة محتوى بطاقات الخدمات وCTA.
+  - Acceptance: metadata والعنوان والوصف والمخرجات والزر بعرض متوازن دون ميل جانبي.
+  - Verify: فحص بصري وغياب overflow مع بقاء فواصل البطاقات.
+  - Files: `client/src/index.css`
+
+- [x] Task: تشغيل الفحوص وحفظ checkpoint.
+  - Acceptance: نجاح check/build/verify:seo/test:visual والمراجعة على 1280.
+  - Verify: الأوامر الآلية + المعاينة responsive.
+  - Files: repository state and checkpoint metadata

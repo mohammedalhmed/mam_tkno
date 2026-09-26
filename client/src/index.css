@@ -7154,3 +7154,95 @@ html:not(.dark) .theme-toggle-mobile:hover {
     transition: none;
   }
 }
+
+
+/* Service categories on phones follow the centered FAQ reading rhythm. */
+@media (max-width: 767px) {
+  #services .service-system__category-info {
+    width: min(100%, 31rem);
+    max-width: 31rem;
+    margin-inline: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  #services .service-system__category-info > div:first-child {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #services .service-system__category-info .canva-kicker {
+    width: 100%;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  #services .service-system__category-info h3 {
+    width: 100%;
+    max-width: 22rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  #services .service-system__category-info > p {
+    width: 100%;
+    max-width: 30rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  #services .service-system__category-info > p:last-of-type {
+    max-width: 25rem;
+    border-inline-end: 0;
+    border-block-start: 1px solid currentColor;
+    padding: 0.85rem 0 0;
+  }
+
+  #services .service-system__category-info > a {
+    width: fit-content;
+    margin-inline: auto;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #services .service-card {
+    justify-items: center;
+    text-align: center;
+  }
+
+  #services .service-card__body {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  #services .service-card__meta,
+  #services .service-card__outputs {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #services .service-card__title,
+  #services .service-card__summary {
+    width: 100%;
+    max-width: 30rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  #services .service-card__outputs {
+    align-items: center;
+    text-align: center;
+  }
+
+  #services .service-card__outputs li {
+    justify-content: center;
+    text-align: center;
+  }
+
+  #services .service-card__cta {
+    width: min(100%, 22rem);
+    margin-inline: auto;
+    align-self: center;
+  }
+}

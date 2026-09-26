@@ -95,12 +95,30 @@ async function main() {
         }
 
         if (route.name === 'home') {
-          await page.locator('#services .service-card').first().scrollIntoViewIfNeeded();
+          const firstServiceCard = page.locator('#services .service-card').first();
+          await firstServiceCard.scrollIntoViewIfNeeded();
           await page.waitForTimeout(650);
           const revealedCards = await page.locator('#services .service-card.is-visible').count();
           if (metrics.serviceCards < 1 || revealedCards < 1) {
             throw new Error(`Expected service cards and reveal state at ${viewport.width}px.`);
           }
+
+          const serviceMetrics = await page.evaluate(() => {
+            const category = document.querySelector('#services .service-system__category-info');
+            const firstCard = document.querySelector('#services .service-card');
+            return {
+              categoryTextAlign: category ? getComputedStyle(category).textAlign : null,
+              categoryWidth: category ? Math.round(category.getBoundingClientRect().width) : null,
+              firstCardWidth: firstCard ? Math.round(firstCard.getBoundingClientRect().width) : null,
+            };
+          });
+          if (viewport.width === 390 && serviceMetrics.categoryTextAlign !== 'center') {
+            throw new Error('Expected centered service category heading at 390px.');
+          }
+
+          const serviceFilePath = `${outputRoot}/${viewport.width}/services.png`;
+          await page.screenshot({ path: serviceFilePath, fullPage: false });
+          metrics.serviceFocus = { ...serviceMetrics, filePath: serviceFilePath };
         }
 
         const filePath = `${outputRoot}/${viewport.width}/${route.name}.png`;
