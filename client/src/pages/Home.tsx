@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import PageLoadingSkeleton from '@/components/PageLoadingSkeleton';
 import Hero from '@/components/Hero';
 import Projects from '@/components/Projects';
-import CanvaShowcase from '@/components/CanvaShowcase';
+import WebsiteTypes from '@/components/WebsiteTypes';
 import Skills from '@/components/Skills';
 import Services from '@/components/Services';
 import FAQ from '@/components/FAQ';
@@ -35,8 +35,8 @@ export default function Home() {
       <main className="relative z-10">
         <Hero />
         <Services />
+        <WebsiteTypes />
         <Projects />
-        <CanvaShowcase />
         <Skills />
         <FAQ />
         <Contact />

@@ -6,8 +6,8 @@ import { useTheme } from '@/contexts/ThemeContext';
 const navItems = [
   { label: 'البداية', href: '/#home', id: 'home' },
   { label: 'الخدمات', href: '/#services', id: 'services' },
+  { label: 'أنواع المواقع', href: '/#website-types', id: 'website-types' },
   { label: 'الأعمال', href: '/#projects', id: 'projects' },
-  { label: 'التصاميم', href: '/#canva-designs', id: 'canva-designs' },
   { label: 'المنهجية', href: '/#skills', id: 'skills' },
   { label: 'الأسئلة', href: '/#faq', id: 'faq' },
 ];

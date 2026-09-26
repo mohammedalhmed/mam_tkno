@@ -344,3 +344,31 @@
   - Acceptance: نجاح check/build/verify:seo/test:visual.
   - Verify: الأوامر الآلية ومعاينة البطاقات.
   - Files: repository state and checkpoint metadata
+
+
+## Website types catalog and quote handoff
+
+- [x] Task: إخفاء معرض التصاميم البصرية من الصفحة والتنقل.
+  - Acceptance: لا يظهر CanvaShowcase أو رابط `canva-designs` في الواجهة، وتبقى الملفات والبيانات محفوظة.
+  - Verify: rg + معاينة الصفحة الرئيسية.
+  - Files: `client/src/pages/Home.tsx`, `client/src/components/Header.tsx`
+
+- [x] Task: إضافة مصدر بيانات تصنيفات مواقع الويب.
+  - Acceptance: ستة تصنيفات، معلومات ملاءمة ومكونات وخدمات وأسئلة ومصادر.
+  - Verify: typecheck + مراجعة schema البيانات.
+  - Files: `client/src/lib/website-types.ts`
+
+- [x] Task: بناء واجهة اختيار النوع والخدمات والأقسام الإضافية.
+  - Acceptance: بطاقة «هذا هو اختياري»، لوحة تفاصيل، checkboxes، ملخص حي، وملاحظات اختيارية.
+  - Verify: معاينة تفاعلية وkeyboard/focus.
+  - Files: `client/src/components/WebsiteTypes.tsx`, `client/src/index.css`, `client/src/pages/Home.tsx`
+
+- [x] Task: تجهيز رسالة واتساب منظمة للفكرة المختارة.
+  - Acceptance: النوع والخدمات والأقسام والملاحظات تظهر في رسالة encoded يراجعها الزائر قبل الإرسال.
+  - Verify: فحص href/URL وفتح القناة يدويًا عند الحاجة.
+  - Files: `client/src/components/WebsiteTypes.tsx`, `client/src/lib/portfolio-data.ts`
+
+- [x] Task: تشغيل الفحوص والمعاينة وحفظ checkpoint.
+  - Acceptance: نجاح check/build/verify:seo/test:visual، وعدم وجود overflow عند 390 و768 و1280.
+  - Verify: الأوامر الآلية + معاينة القسم.
+  - Files: repository state and checkpoint metadata

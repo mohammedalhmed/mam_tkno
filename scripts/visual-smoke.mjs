@@ -85,6 +85,7 @@ async function main() {
           scrollWidth: document.documentElement.scrollWidth,
           bodyWidth: document.body.scrollWidth,
           serviceCards: document.querySelectorAll('#services .service-card').length,
+          websiteTypeCards: document.querySelectorAll('#website-types .website-type-card').length,
           firstProjectImagePosition: document.querySelector('.project-media__image')
             ? getComputedStyle(document.querySelector('.project-media__image')).objectPosition
             : null,
@@ -124,6 +125,33 @@ async function main() {
           const serviceFilePath = `${outputRoot}/${viewport.width}/services.png`;
           await page.screenshot({ path: serviceFilePath, fullPage: false });
           metrics.serviceFocus = { ...serviceMetrics, filePath: serviceFilePath };
+
+          if (metrics.websiteTypeCards !== 6) {
+            throw new Error(`Expected six website type cards at ${viewport.width}px.`);
+          }
+          const typeCards = page.locator('#website-types .website-type-card');
+          await typeCards.nth(1).locator('button').click();
+          await page.waitForTimeout(120);
+          const builderMetrics = await page.evaluate(() => ({
+            selectedCode: document.querySelector('#website-type-builder .canva-kicker')?.textContent ?? null,
+            serviceOptions: document.querySelectorAll('#website-type-builder fieldset:first-of-type input').length,
+            sectionOptions: document.querySelectorAll('#website-type-builder fieldset:nth-of-type(2) input').length,
+            whatsappHref: document.querySelector('.website-type-builder__submit')?.getAttribute('href') ?? '',
+          }));
+          if (!builderMetrics.selectedCode?.includes('WEB-02') || builderMetrics.serviceOptions < 4 || builderMetrics.sectionOptions < 4 || !builderMetrics.whatsappHref.includes('wa.me/')) {
+            throw new Error(`Website type builder did not initialize correctly at ${viewport.width}px.`);
+          }
+          await page.locator('#website-type-builder fieldset:first-of-type input').first().check();
+          await page.locator('#website-type-builder fieldset:nth-of-type(2) input').first().check();
+          const updatedWhatsappHref = await page.locator('.website-type-builder__submit').getAttribute('href');
+          if (!updatedWhatsappHref || updatedWhatsappHref === builderMetrics.whatsappHref) {
+            throw new Error(`Website type selections did not update the WhatsApp brief at ${viewport.width}px.`);
+          }
+          await page.locator('#website-type-builder').scrollIntoViewIfNeeded();
+          await page.waitForTimeout(150);
+          const websiteTypesFilePath = `${outputRoot}/${viewport.width}/website-types.png`;
+          await page.screenshot({ path: websiteTypesFilePath, fullPage: false });
+          metrics.websiteTypeFocus = { ...builderMetrics, selectionsUpdateMessage: true, filePath: websiteTypesFilePath };
         }
 
         const filePath = `${outputRoot}/${viewport.width}/${route.name}.png`;
