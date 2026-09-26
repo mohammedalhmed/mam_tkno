@@ -141,3 +141,20 @@ pnpm run build
 
 ### Exit gate
 لا يوجد overflow أفقي، الحاويات المركزية متساوية على 390 و768، أحجام العناوين الفرعية متقاربة، والفواصل ظاهرة بلطف بين بطاقات الخدمات دون تراجع سطح المكتب.
+
+
+## Feature Slice: Project media focus and visual regression smoke test
+
+### Build order
+1. إضافة موضع تركيز mobile لكل صورة مشروع وربطه مباشرة بعنصر الصورة مع إبقاء object-position العريض مستقلًا.
+2. إعادة استخدام نمط reveal الموجود لبطاقات الخدمات عبر IntersectionObserver وتأخير متدرج قصير، مع دعم reduced motion.
+3. إضافة سكربت Playwright خفيف يلتقط `/` و`/case-studies/bellabox` عند 390 و768 ويتحقق من overflow والعناصر الأساسية.
+4. تشغيل check/build/verify:seo/test:visual ومراجعة اللقطات قبل حفظ checkpoint.
+
+### Risk controls
+- لا تُعدّل أصول الصور الأصلية؛ التغيير محصور في object-position.
+- لا تُضاف حركة مستمرة أو ثقيلة؛ البطاقة تتحرك مرة واحدة عند دخولها viewport.
+- الاختبار deterministic ويستخدم Chromium المحلي، ومخرجاته ضمن `artifacts/visual/` المستبعدة من Git.
+
+### Exit gate
+نجاح جميع الفحوص، وجود ثماني لقطات اختبارية للمقاسين والمسارين، عدم وجود overflow أفقي، وبقاء تجربة reduced motion بلا انتقالات.

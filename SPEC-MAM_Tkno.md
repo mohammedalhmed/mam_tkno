@@ -249,3 +249,18 @@ pnpm run verify:seo
 
 ### Verification
 تشغيل `pnpm run check` و`pnpm run build` و`pnpm run verify:seo`، ثم معاينة `/` و`/case-studies/bellabox` و`/case-studies/altaj` على 390×844 و768×1024 و1280×720 مع فحص `scrollWidth`.
+
+
+## 18. Project media focus, service reveal, and visual smoke test
+
+### Objective
+ضبط مواضع قص صور المشاريع على الهاتف بحيث تبقى نقطة التركيز مرئية، إضافة انتقال ظهور خفيف لبطاقات الخدمات عند دخولها نافذة العرض، وتوفير اختبار بصري آلي يلتقط الصفحة الرئيسية ودراسة حالة عند 390 و768 بكسل قبل اعتماد التحديثات.
+
+### Acceptance criteria
+- لكل مشروع موضع قص mobile موثق وقابل للتعديل دون تغيير أصل الصورة أو قص سطح المكتب.
+- تظهر بطاقات الخدمات تدريجيًا عند التمرير بمدة قصيرة، مع تعطيل الحركة عند `prefers-reduced-motion`.
+- يزور الاختبار `/` و`/case-studies/bellabox` عند عرضي 390 و768، يلتقط screenshots، ويتحقق من غياب overflow الأفقي ووجود البطاقات الأساسية.
+- تكون مخرجات الاختبار خارج Git أو قابلة لإعادة التوليد، ويعمل الأمر محليًا قبل كل checkpoint.
+
+### Verification
+تشغيل `pnpm run test:visual` بعد `pnpm run build` أو مع خادم preview، ثم مراجعة الصور الناتجة وفحص `scrollWidth` في المقاسين.

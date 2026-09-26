@@ -290,3 +290,26 @@
   - Acceptance: نجاح check/build/verify:seo والمعاينة responsive.
   - Verify: الأوامر الآلية + DOM assertions + checkpoint.
   - Files: repository state and checkpoint metadata
+
+
+## Project media focus and visual smoke test
+
+- [x] Task: ضبط مواضع قص صور المشاريع على الهاتف.
+  - Acceptance: نقطة التركيز لكل BellaBox وNERFONA والتاج بلس تبقى مرئية عند 390 و768، دون تغيير أصل الصورة.
+  - Verify: screenshots للمشاريع وobject-position computed styles.
+  - Files: `client/src/components/Projects.tsx`, `client/src/index.css`
+
+- [x] Task: إضافة انتقال ظهور لبطاقات الخدمات أثناء التمرير.
+  - Acceptance: ظهور مرة واحدة بتأخير متدرج قصير، وتعطيل الحركة مع reduced motion.
+  - Verify: IntersectionObserver + معاينة الهاتف.
+  - Files: `client/src/components/Services.tsx`, `client/src/index.css`
+
+- [x] Task: إنشاء اختبار بصري آلي للمقاسين 390 و768.
+  - Acceptance: التقاط الصفحة الرئيسية ودراسة حالة، وفحص overflow والعناصر الأساسية قبل checkpoint.
+  - Verify: `pnpm run test:visual`.
+  - Files: `scripts/visual-smoke.mjs`, `package.json`, `.gitignore`
+
+- [x] Task: تشغيل الفحوص وحفظ checkpoint.
+  - Acceptance: نجاح check/build/verify:seo/test:visual ومراجعة اللقطات.
+  - Verify: الأوامر الآلية + صور الاختبار.
+  - Files: repository state and checkpoint metadata

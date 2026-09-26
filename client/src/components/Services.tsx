@@ -1,3 +1,4 @@
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { ArrowUpLeft, Check, Code2, Palette } from 'lucide-react';
 import { serviceCategories } from '@/lib/services';
 
@@ -19,8 +20,36 @@ const categoryMeta = {
 } as const;
 
 export default function Services() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const cards = Array.from(section.querySelectorAll<HTMLElement>('.service-card'));
+    if (!cards.length) return;
+
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cards.forEach((card) => card.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      }),
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.12 },
+    );
+
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="services" className="service-system relative overflow-hidden bg-[#071a43] py-20 text-white sm:py-28" aria-labelledby="services-title">
+    <section ref={sectionRef} id="services" className="service-system relative overflow-hidden bg-[#071a43] py-20 text-white sm:py-28" aria-labelledby="services-title">
       <div className="canva-page-grid pointer-events-none absolute inset-0 opacity-80" aria-hidden="true" />
       <div className="pointer-events-none absolute -left-40 top-1/3 h-80 w-80 rounded-full bg-[#16d5df]/10 blur-3xl" aria-hidden="true" />
       <div className="container relative">
@@ -62,7 +91,12 @@ export default function Services() {
 
                 <div className="service-system__list border-t border-white/16">
                   {category.services.map((service, index) => (
-                    <article key={service.id} className="service-card focus-card group grid gap-5 border-b border-white/14 py-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:py-9">
+                    <article
+                      key={service.id}
+                      data-service-reveal
+                      style={{ '--service-reveal-delay': `${Math.min(index * 55, 220)}ms` } as CSSProperties}
+                      className="service-card reveal-card focus-card group grid gap-5 border-b border-white/14 py-7 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:py-9"
+                    >
                       <div className="service-card__body">
                         <div className="service-card__meta flex flex-wrap items-center gap-3">
                           <span className="font-latin text-[10px] font-extrabold tracking-[.12em] text-[#a9c8ff]">{service.code}</span>

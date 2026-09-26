@@ -9,18 +9,24 @@ const projectSignatures = {
     note: 'هدوء العناية يتحول إلى مسار شراء واضح وسهل.',
     tone: 'border-[#f3b8d5]/55 bg-[#f3b8d5]/12 text-[#ffd9e8]',
     line: '#f3b8d5',
+    imagePosition: '50% 50%',
+    mobileImagePosition: '50% 42%',
   },
   nerfona: {
     label: 'CARE / EDUCATION',
     note: 'المحتوى يشرح القيمة قبل أن يطلب من الزائر الشراء.',
     tone: 'border-[#a9e4c4]/48 bg-[#a9e4c4]/10 text-[#d8ffe7]',
     line: '#a9e4c4',
+    imagePosition: '50% 50%',
+    mobileImagePosition: '54% 42%',
   },
   altaj: {
     label: 'SPACE / LEAD',
     note: 'خدمات متعددة تجتمع حول نقطة تواصل واحدة ومباشرة.',
     tone: 'border-[#d7baff]/50 bg-[#d7baff]/10 text-[#eadfff]',
     line: '#d7baff',
+    imagePosition: '50% 50%',
+    mobileImagePosition: '50% 38%',
   },
 } as const;
 
@@ -128,7 +134,15 @@ export default function Projects() {
                     <span className="font-latin max-w-[62%] truncate text-[9px] sm:text-[10px]">{project.url.replace('https://', '')}</span>
                   </div>
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <img src={project.image} alt={`معاينة مشروع ${project.arabicTitle}`} loading="lazy" decoding="async" sizes="(min-width: 1024px) 58vw, 100vw" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                    <img
+                      src={project.image}
+                      alt={`معاينة مشروع ${project.arabicTitle}`}
+                      loading="lazy"
+                      decoding="async"
+                      sizes="(min-width: 1024px) 58vw, 100vw"
+                      className="project-media__image h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                      style={{ '--project-image-position': signature.imagePosition, '--project-image-position-mobile': signature.mobileImagePosition } as CSSProperties}
+                    />
                     <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-[#061437]/90 p-4 text-white sm:p-5">
                       <div>
                         <span className="font-latin text-[9px] font-extrabold tracking-[.12em] text-[#16d5df]">ROLE / SCOPE</span>
