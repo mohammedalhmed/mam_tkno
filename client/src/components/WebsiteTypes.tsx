@@ -118,12 +118,14 @@ export default function WebsiteTypes() {
     if (!isBuilderOpen) return undefined;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') closeBuilder();
     };
     document.addEventListener('keydown', handleEscape);
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.body.classList.remove('modal-open');
       document.removeEventListener('keydown', handleEscape);
     };
   }, [isBuilderOpen]);

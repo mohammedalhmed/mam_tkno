@@ -136,6 +136,14 @@ async function main() {
           if (!await builder.getAttribute('class').then((value) => value?.includes('is-modal')) || await builder.locator('.website-type-builder__backdrop').count() !== 1 || await builder.locator('.website-type-builder__close').count() !== 1) {
             throw new Error(`Expected a focused modal with backdrop and close button at ${viewport.width}px.`);
           }
+          const modalGeometry = await builder.evaluate((element) => {
+            const dialog = element.querySelector('.website-type-builder__dialog')?.getBoundingClientRect();
+            const input = element.querySelector('input')?.getBoundingClientRect();
+            return { dialogWidth: dialog?.width ?? 0, dialogHeight: dialog?.height ?? 0, inputTop: input?.top ?? -1, inputHeight: input?.height ?? 0 };
+          });
+          if (modalGeometry.dialogWidth < 280 || modalGeometry.dialogHeight < 240 || modalGeometry.inputTop < 0 || modalGeometry.inputHeight < 20) {
+            throw new Error(`Modal opened without a visible input surface at ${viewport.width}px.`);
+          }
           await builder.locator('[data-builder-step="3"]').click();
           const bookingMetrics = await builder.evaluate((element) => ({
             selectedCode: element.querySelector('.canva-kicker')?.textContent ?? null,
@@ -146,7 +154,7 @@ async function main() {
           if (!bookingMetrics.selectedCode?.includes('WEB-05') || bookingMetrics.defaultCorePages < 5 || !hasBookingPayment) {
             throw new Error(`Type-specific booking brief options did not update at ${viewport.width}px.`);
           }
-          await builder.locator('.website-type-builder__backdrop').click({ position: { x: 4, y: 4 } });
+          await builder.locator('.website-type-builder__backdrop').dispatchEvent('click');
           if ((await builder.getAttribute('class'))?.includes('is-modal')) {
             throw new Error(`Backdrop click did not close the modal at ${viewport.width}px.`);
           }

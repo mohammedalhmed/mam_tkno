@@ -60,3 +60,15 @@
   - Acceptance: نجاح check/build/verify:seo/test:visual.
   - Verify: الأوامر الآلية والمراجعة البصرية.
   - Files: repository state and checkpoint metadata
+
+## Modal visibility regression fix
+
+- [x] Task: إزالة تأثير transform عن حاوية القسم أثناء فتح modal حتى يرتبط بالviewport.
+  - Acceptance: dialog والحقول تظهر فورًا داخل الشاشة بدل خروجها خارجها.
+  - Verify: قياس DOM عند 450x818 + الاختبار البصري.
+  - Files: `client/src/components/WebsiteTypes.tsx`, `client/src/index.css`
+
+- [x] Task: إضافة اختبار يمنع عودة الشاشة الفارغة.
+  - Acceptance: الاختبار يتحقق من أبعاد dialog وظهور أول حقل إدخال، إضافة إلى backdrop وEscape وعدم overflow.
+  - Verify: `pnpm run test:visual` على 390 و768.
+  - Files: `scripts/visual-smoke.mjs`

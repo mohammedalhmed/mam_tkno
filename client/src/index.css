@@ -8543,3 +8543,12 @@ html:not(.dark) .theme-toggle-mobile:hover {
     animation: none;
   }
 }
+
+/* A transformed reveal container becomes a fixed-position containing block. Release it while the dialog is open. */
+body.modal-open .website-types > .container {
+  transform: none !important;
+}
+
+body.modal-open .website-types > .container {
+  transition: none !important;
+}
