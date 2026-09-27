@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ChangeEvent, type CSSProperties, type MouseEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type ChangeEvent, type CSSProperties, type MouseEvent } from 'react';
 import { ArrowUpLeft, Check, ChevronLeft, ChevronRight, CircleAlert, ExternalLink, Layers3, Send, X } from 'lucide-react';
 import { contactDetails } from '@/lib/portfolio-data';
 import { websiteTypes, type WebsiteType } from '@/lib/website-types';
@@ -86,6 +86,7 @@ export default function WebsiteTypes() {
   const [activeStep, setActiveStep] = useState<BuilderStep>(1);
   const [attempted, setAttempted] = useState(false);
   const [isBuilderOpen, setIsBuilderOpen] = useState(false);
+  const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
 
   const selectedType = useMemo(
     () => websiteTypes.find((type) => type.id === selectedTypeId) ?? websiteTypes[0],
@@ -108,12 +109,22 @@ export default function WebsiteTypes() {
     [brief, intakeValues, notes, selectedFeatures, selectedPages, selectedType],
   );
 
+  const closeBuilder = () => {
+    setIsBuilderOpen(false);
+    window.setTimeout(() => lastTriggerRef.current?.focus(), 0);
+  };
+
   useEffect(() => {
-    if (!isBuilderOpen || !window.matchMedia('(max-width: 767px)').matches) return undefined;
+    if (!isBuilderOpen) return undefined;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeBuilder();
+    };
+    document.addEventListener('keydown', handleEscape);
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [isBuilderOpen]);
 
@@ -125,11 +136,7 @@ export default function WebsiteTypes() {
     setIntakeValues({});
     setActiveStep(1);
     setAttempted(false);
-    if (window.matchMedia('(max-width: 767px)').matches) {
-      setIsBuilderOpen(true);
-      return;
-    }
-    window.setTimeout(() => document.getElementById('website-type-builder')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0);
+    setIsBuilderOpen(true);
   };
 
   const updateBrief = (field: keyof BriefForm) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -171,8 +178,6 @@ export default function WebsiteTypes() {
     setAttempted(true);
     setActiveStep(identityMissing.length ? 1 : 2);
   };
-
-  const closeBuilder = () => setIsBuilderOpen(false);
 
   return (
     <section id="website-types" className="website-types relative overflow-hidden border-y border-white/10 bg-[#061437] py-20 text-white sm:py-28" aria-labelledby="website-types-title">
@@ -217,7 +222,7 @@ export default function WebsiteTypes() {
                     <ul>{type.optionalFeatures.slice(0, 3).map((feature) => <li key={feature.id}>{feature.label}</li>)}</ul>
                   </div>
                 </div>
-                <button type="button" className="website-type-card__button" onClick={() => chooseType(type.id)} aria-pressed={isSelected}>
+                <button ref={(node) => { if (type.id === selectedTypeId) lastTriggerRef.current = node; }} type="button" className="website-type-card__button" onClick={() => chooseType(type.id)} aria-pressed={isSelected}>
                   {isSelected ? 'خصص هذا النوع' : 'اختر هذا التصنيف'}
                   {isSelected ? <ChevronLeft className="h-4 w-4" aria-hidden="true" /> : <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />}
                 </button>
@@ -226,7 +231,9 @@ export default function WebsiteTypes() {
           })}
         </div>
 
-        <div id="website-type-builder" className={`website-type-builder mt-16 scroll-mt-28 ${isBuilderOpen ? 'is-mobile-modal' : ''}`} aria-labelledby="website-type-builder-title" role={isBuilderOpen ? 'dialog' : undefined} aria-modal={isBuilderOpen ? true : undefined}>
+        <div id="website-type-builder" className={`website-type-builder ${isBuilderOpen ? 'is-modal' : ''}`} aria-labelledby="website-type-builder-title" role={isBuilderOpen ? 'dialog' : undefined} aria-modal={isBuilderOpen ? true : undefined}>
+          <div className="website-type-builder__backdrop" onClick={closeBuilder} aria-hidden="true" />
+          <div className="website-type-builder__dialog">
           <button type="button" className="website-type-builder__close" onClick={closeBuilder} aria-label="إغلاق نموذج تخصيص الموقع"><X className="h-5 w-5" aria-hidden="true" /></button>
           <div className="website-type-builder__intro">
             <span className="canva-kicker">SELECTED TYPE / {selectedType.code}</span>
@@ -308,6 +315,7 @@ export default function WebsiteTypes() {
               {activeStep > 1 && <button type="button" className="website-type-builder__step-button website-type-builder__step-button--back" onClick={goBack}><ChevronRight className="h-4 w-4" aria-hidden="true" />السابق</button>}
               {activeStep < 5 && <button type="button" className="website-type-builder__step-button" onClick={goNext}>التالي: {stepLabels[activeStep].shortLabel}<ChevronLeft className="h-4 w-4" aria-hidden="true" /></button>}
             </div>
+          </div>
           </div>
         </div>
       </div>

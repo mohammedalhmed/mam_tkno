@@ -28,3 +28,15 @@ Cards as mini scope maps: each card acts like a compact project brief, not a ser
 
 ### Exit gate
 تجربة إدخال مركزة لا تفقد البيانات، modal الهاتف قابل للإغلاق والتنقل بالكيبورد، desktop لا يتراجع بصريًا، والرسالة النهائية لا تتفعل قبل اكتمال الحقول المطلوبة.
+
+## Feature Slice: Focused modal presentation
+
+### Build order
+1. تحويل builder إلى modal واحد يظهر فوق الصفحة في كل المقاسات بدل النسخة inline/الممتدة.
+2. إضافة backdrop مستقل بتمويه وطبقة تعتيم، مع منع تفاعل وتمرير الخلفية.
+3. إعادة ضبط بطاقة الحوار: header مختصر، close corner، خطوات واضحة، ومحتوى داخلي قابل للتمرير.
+4. دعم Escape والإغلاق مع بقاء البيانات، ثم معاينة الهاتف وسطح المكتب.
+5. تحديث اختبار المتصفح ليثبت وجود modal/backdrop وإغلاقه وعدم overflow، ثم حفظ checkpoint.
+
+### Exit gate
+المستخدم يرى نفس الصفحة خلف modal مموه، ويستطيع فتح/إغلاق النموذج دون فقد البيانات أو تغيير الوجهة، مع نجاح check/build/verify:seo/test:visual.

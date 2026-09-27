@@ -43,3 +43,20 @@
   - Acceptance: نجاح check/build/verify:seo/test:visual عند 390 و768 و1280.
   - Verify: الأوامر الآلية + المراجعة البصرية.
   - Files: repository state and checkpoint metadata
+
+## Focused modal presentation
+
+- [x] Task: تحويل الباني إلى modal مركزي داخل نفس الصفحة.
+  - Acceptance: لا يوجد inline builder ظاهر؛ النموذج يظهر فوق الصفحة ببطاقة محددة العرض والارتفاع.
+  - Verify: معاينة 390 و768 و1280.
+  - Files: `client/src/components/WebsiteTypes.tsx`, `client/src/index.css`
+
+- [x] Task: إضافة backdrop مموه وإغلاق واضح وحفظ الحالة.
+  - Acceptance: الخلفية معتمة ومموهة، زر الإغلاق في الزاوية، Escape والإغلاق لا يفقدان البيانات.
+  - Verify: اختبار Playwright + فحص focus/overflow.
+  - Files: `client/src/components/WebsiteTypes.tsx`, `client/src/index.css`, `scripts/visual-smoke.mjs`
+
+- [x] Task: تشغيل الفحوص وحفظ checkpoint.
+  - Acceptance: نجاح check/build/verify:seo/test:visual.
+  - Verify: الأوامر الآلية والمراجعة البصرية.
+  - Files: repository state and checkpoint metadata

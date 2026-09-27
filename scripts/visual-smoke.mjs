@@ -133,8 +133,8 @@ async function main() {
           await typeCards.nth(4).locator('button').click();
           await page.waitForTimeout(100);
           let builder = page.locator('#website-type-builder');
-          if (viewport.width === 390 && await builder.getAttribute('class').then((value) => !value?.includes('is-mobile-modal'))) {
-            throw new Error('Expected the brief builder to open as a mobile modal at 390px.');
+          if (!await builder.getAttribute('class').then((value) => value?.includes('is-modal')) || await builder.locator('.website-type-builder__backdrop').count() !== 1 || await builder.locator('.website-type-builder__close').count() !== 1) {
+            throw new Error(`Expected a focused modal with backdrop and close button at ${viewport.width}px.`);
           }
           await builder.locator('[data-builder-step="3"]').click();
           const bookingMetrics = await builder.evaluate((element) => ({
@@ -146,8 +146,9 @@ async function main() {
           if (!bookingMetrics.selectedCode?.includes('WEB-05') || bookingMetrics.defaultCorePages < 5 || !hasBookingPayment) {
             throw new Error(`Type-specific booking brief options did not update at ${viewport.width}px.`);
           }
-          if (viewport.width === 390) {
-            await builder.locator('.website-type-builder__close').click();
+          await builder.locator('.website-type-builder__backdrop').click({ position: { x: 4, y: 4 } });
+          if ((await builder.getAttribute('class'))?.includes('is-modal')) {
+            throw new Error(`Backdrop click did not close the modal at ${viewport.width}px.`);
           }
           await typeCards.nth(1).locator('button').click();
           await page.waitForTimeout(120);
@@ -156,9 +157,9 @@ async function main() {
             selectedCode: element.querySelector('.canva-kicker')?.textContent ?? null,
             stepCount: element.querySelectorAll('[data-builder-step]').length,
             hasLegacyServicesHeading: element.textContent?.includes('الخدمات التي تريد مناقشتها') ?? false,
-            isMobileModal: element.classList.contains('is-mobile-modal'),
+            isModal: element.classList.contains('is-modal'),
           }));
-          if (!builderMetrics.selectedCode?.includes('WEB-02') || builderMetrics.stepCount !== 5 || builderMetrics.hasLegacyServicesHeading || (viewport.width === 390 && !builderMetrics.isMobileModal)) {
+          if (!builderMetrics.selectedCode?.includes('WEB-02') || builderMetrics.stepCount !== 5 || builderMetrics.hasLegacyServicesHeading || !builderMetrics.isModal) {
             throw new Error(`Website type builder did not initialize correctly at ${viewport.width}px.`);
           }
           await builder.locator('[data-builder-step="3"]').click();
@@ -194,6 +195,10 @@ async function main() {
           const websiteTypesFilePath = `${outputRoot}/${viewport.width}/website-types.png`;
           await page.screenshot({ path: websiteTypesFilePath, fullPage: false });
           metrics.websiteTypeFocus = { ...builderMetrics, ...corePageMetrics, featureOptions, completedBriefMessage: true, filePath: websiteTypesFilePath };
+          await page.keyboard.press('Escape');
+          if ((await builder.getAttribute('class'))?.includes('is-modal')) {
+            throw new Error(`Escape did not close the modal at ${viewport.width}px.`);
+          }
         }
 
         const filePath = `${outputRoot}/${viewport.width}/${route.name}.png`;

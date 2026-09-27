@@ -8392,3 +8392,154 @@ html:not(.dark) .theme-toggle-mobile:hover {
     transition: none;
   }
 }
+
+/* Focused modal presentation: same-page dialog with a blurred backdrop. */
+.website-type-builder {
+  display: none;
+}
+
+.website-type-builder.is-modal {
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.75rem, 3vw, 2rem);
+}
+
+.website-type-builder__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(1 7 23 / 0.72);
+  backdrop-filter: blur(13px) saturate(0.78);
+  cursor: pointer;
+}
+
+.website-type-builder__dialog {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(960px, calc(100vw - 2rem));
+  max-height: min(860px, calc(100dvh - 2rem));
+  grid-template-columns: minmax(235px, 0.72fr) minmax(0, 1.28fr);
+  overflow: hidden;
+  border: 1px solid rgb(145 226 255 / 0.28);
+  background: linear-gradient(135deg, rgb(7 28 72 / 0.98), rgb(4 18 52 / 0.99));
+  box-shadow: 0 30px 100px rgb(0 0 0 / 0.55), 0 0 0 1px rgb(22 213 223 / 0.08);
+  animation: focused-modal-in 220ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.website-type-builder__dialog > .website-type-builder__intro {
+  min-width: 0;
+  overflow-y: auto;
+  border-inline-end: 1px solid rgb(212 231 255 / 0.12);
+  padding: clamp(1.25rem, 3vw, 2.2rem);
+}
+
+.website-type-builder__dialog > .website-type-builder__form {
+  min-width: 0;
+  max-height: min(860px, calc(100dvh - 2rem));
+  overflow-y: auto;
+  padding: clamp(1rem, 2vw, 1.4rem);
+  scrollbar-color: rgb(22 213 223 / 0.6) transparent;
+}
+
+.website-type-builder__close {
+  position: absolute;
+  z-index: 4;
+  top: 0.85rem;
+  inset-inline-end: 0.85rem;
+  display: inline-flex;
+  width: 2.65rem;
+  height: 2.65rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(212 231 255 / 0.28);
+  background: rgb(4 18 52 / 0.82);
+  color: rgb(255 255 255 / 0.86);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.2);
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.website-type-builder__close:hover,
+.website-type-builder__close:focus-visible {
+  border-color: #16d5df;
+  background: #16d5df;
+  color: #061437;
+}
+
+.website-type-builder__close:active {
+  transform: scale(0.96);
+}
+
+.website-type-builder__dialog .website-type-builder__steps {
+  position: sticky;
+  z-index: 3;
+  top: -1.4rem;
+  margin-top: -1.4rem;
+  padding-top: 1.4rem;
+  background: linear-gradient(rgb(4 18 52 / 0.99) 70%, transparent);
+}
+
+@keyframes focused-modal-in {
+  from { opacity: 0; transform: translateY(0.75rem) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 767px) {
+  .website-type-builder.is-modal {
+    padding: 0.75rem;
+  }
+
+  .website-type-builder__dialog {
+    display: block;
+    width: min(100%, 35rem);
+    max-height: calc(100dvh - 1.5rem);
+  }
+
+  .website-type-builder__dialog > .website-type-builder__intro {
+    max-height: 10rem;
+    border-inline-end: 0;
+    border-bottom: 1px solid rgb(212 231 255 / 0.12);
+    padding: 1rem 4rem 0.8rem 1rem;
+  }
+
+  .website-type-builder__dialog > .website-type-builder__intro h3 {
+    margin-top: 0.45rem;
+    font-size: clamp(1.35rem, 6vw, 1.9rem);
+  }
+
+  .website-type-builder__dialog > .website-type-builder__intro > p {
+    margin-top: 0.35rem;
+    font-size: 0.74rem;
+    line-height: 1.7;
+  }
+
+  .website-type-builder__dialog .website-type-builder__best-for,
+  .website-type-builder__dialog .website-type-builder__scope-note,
+  .website-type-builder__dialog .website-type-builder__sources {
+    display: none;
+  }
+
+  .website-type-builder__dialog > .website-type-builder__form {
+    max-height: calc(100dvh - 11.5rem);
+    padding: 0.85rem;
+  }
+
+  .website-type-builder__dialog .website-type-builder__steps {
+    top: -0.85rem;
+    margin-top: -0.85rem;
+    padding-top: 0.85rem;
+  }
+
+  .website-type-builder__dialog .website-type-builder__section {
+    margin-top: 0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .website-type-builder__dialog {
+    animation: none;
+  }
+}
