@@ -15,3 +15,16 @@ Cards as mini scope maps: each card acts like a compact project brief, not a ser
 
 ### Exit gate
 لا يوجد قسم خدمات، الصفحات الأساسية محددة مسبقًا حسب النوع، الإضافات متخصصة لكل نوع، الرسالة تحتوي brief كاملًا، الحقول المطلوبة تمنع الإرسال الناقص، والفحوص البصرية لا تكشف overflow.
+
+## Feature Slice: Guided brief entry and mobile modal
+
+### Build order
+1. تحويل واجهة الباني إلى state machine بسيطة من خمس خطوات: الهوية، تفاصيل النوع، الصفحات، الإضافات، المراجعة.
+2. نقل التحقق إلى حدود الخطوتين الأولى والثانية مع رسائل نقص واضحة، والإبقاء على بيانات الخطوات السابقة.
+3. إضافة dialog mobile يفتح من بطاقة التصنيف، يمنع scroll الخلفية، ويقدم close/back/next وsticky step navigation.
+4. الإبقاء على الباني التحريري لسطح المكتب مع intro sticky، وإخفاء النسخة inline على الهاتف.
+5. تحديث اختبار Playwright ليتحقق من فتح modal، التنقل، الحقول المطلوبة، الصفحات الافتراضية، رابط واتساب، وعدم overflow.
+6. تشغيل check/build/verify:seo/test:visual ثم حفظ checkpoint.
+
+### Exit gate
+تجربة إدخال مركزة لا تفقد البيانات، modal الهاتف قابل للإغلاق والتنقل بالكيبورد، desktop لا يتراجع بصريًا، والرسالة النهائية لا تتفعل قبل اكتمال الحقول المطلوبة.

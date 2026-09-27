@@ -132,47 +132,68 @@ async function main() {
           const typeCards = page.locator('#website-types .website-type-card');
           await typeCards.nth(4).locator('button').click();
           await page.waitForTimeout(100);
-          const bookingMetrics = await page.evaluate(() => ({
-            selectedCode: document.querySelector('#website-type-builder .canva-kicker')?.textContent ?? null,
-            defaultCorePages: document.querySelectorAll('#website-type-builder .website-type-builder__options--pages input:checked').length,
-            hasBookingPayment: document.body.textContent?.includes('دفع مقدم أو عربون') ?? false,
+          let builder = page.locator('#website-type-builder');
+          if (viewport.width === 390 && await builder.getAttribute('class').then((value) => !value?.includes('is-mobile-modal'))) {
+            throw new Error('Expected the brief builder to open as a mobile modal at 390px.');
+          }
+          await builder.locator('[data-builder-step="3"]').click();
+          const bookingMetrics = await builder.evaluate((element) => ({
+            selectedCode: element.querySelector('.canva-kicker')?.textContent ?? null,
+            defaultCorePages: element.querySelectorAll('.website-type-builder__options--pages input:checked').length,
           }));
-          if (!bookingMetrics.selectedCode?.includes('WEB-05') || bookingMetrics.defaultCorePages < 5 || !bookingMetrics.hasBookingPayment) {
+          await builder.locator('[data-builder-step="4"]').click();
+          const hasBookingPayment = await builder.textContent().then((text) => text?.includes('دفع مقدم أو عربون') ?? false);
+          if (!bookingMetrics.selectedCode?.includes('WEB-05') || bookingMetrics.defaultCorePages < 5 || !hasBookingPayment) {
             throw new Error(`Type-specific booking brief options did not update at ${viewport.width}px.`);
+          }
+          if (viewport.width === 390) {
+            await builder.locator('.website-type-builder__close').click();
           }
           await typeCards.nth(1).locator('button').click();
           await page.waitForTimeout(120);
-          const builderMetrics = await page.evaluate(() => ({
-            selectedCode: document.querySelector('#website-type-builder .canva-kicker')?.textContent ?? null,
-            corePageOptions: document.querySelectorAll('#website-type-builder .website-type-builder__options--pages input').length,
-            defaultCorePages: document.querySelectorAll('#website-type-builder .website-type-builder__options--pages input:checked').length,
-            featureOptions: document.querySelectorAll('#website-type-builder .website-type-builder__feature-options input').length,
-            requiredFields: document.querySelectorAll('#website-type-builder input[required], #website-type-builder textarea[required]').length,
-            hasLegacyServicesHeading: document.body.textContent?.includes('الخدمات التي تريد مناقشتها') ?? false,
-            whatsappHref: document.querySelector('.website-type-builder__submit')?.getAttribute('href') ?? '',
+          builder = page.locator('#website-type-builder');
+          const builderMetrics = await builder.evaluate((element) => ({
+            selectedCode: element.querySelector('.canva-kicker')?.textContent ?? null,
+            stepCount: element.querySelectorAll('[data-builder-step]').length,
+            hasLegacyServicesHeading: element.textContent?.includes('الخدمات التي تريد مناقشتها') ?? false,
+            isMobileModal: element.classList.contains('is-mobile-modal'),
           }));
-          if (!builderMetrics.selectedCode?.includes('WEB-02') || builderMetrics.corePageOptions < 5 || builderMetrics.defaultCorePages < 5 || builderMetrics.featureOptions < 5 || builderMetrics.requiredFields < 4 || builderMetrics.hasLegacyServicesHeading || builderMetrics.whatsappHref) {
+          if (!builderMetrics.selectedCode?.includes('WEB-02') || builderMetrics.stepCount !== 5 || builderMetrics.hasLegacyServicesHeading || (viewport.width === 390 && !builderMetrics.isMobileModal)) {
             throw new Error(`Website type builder did not initialize correctly at ${viewport.width}px.`);
           }
-          await page.locator('.website-type-builder__submit').click();
-          const missingBriefError = await page.locator('.website-type-builder__error').count();
+          await builder.locator('[data-builder-step="3"]').click();
+          const corePageMetrics = await builder.evaluate((element) => ({
+            corePageOptions: element.querySelectorAll('.website-type-builder__options--pages input').length,
+            defaultCorePages: element.querySelectorAll('.website-type-builder__options--pages input:checked').length,
+          }));
+          await builder.locator('[data-builder-step="4"]').click();
+          const featureOptions = await builder.locator('.website-type-builder__feature-options input').count();
+          if (corePageMetrics.corePageOptions < 5 || corePageMetrics.defaultCorePages < 5 || featureOptions < 5) {
+            throw new Error(`Core pages or optional features did not initialize at ${viewport.width}px.`);
+          }
+          await builder.locator('[data-builder-step="1"]').click();
+          await builder.locator('.website-type-builder__step-button').last().click();
+          const missingBriefError = await builder.locator('.website-type-builder__error').count();
           if (missingBriefError !== 1) {
             throw new Error(`Incomplete brief did not show required-field feedback at ${viewport.width}px.`);
           }
-          const requiredFields = page.locator('#website-type-builder input[required], #website-type-builder textarea[required]');
-          for (let index = 0; index < await requiredFields.count(); index += 1) {
-            await requiredFields.nth(index).fill(`بيانات اختبار ${index + 1}`);
-          }
-          await page.locator('#website-type-builder .website-type-builder__feature-options input').first().check();
-          const updatedWhatsappHref = await page.locator('.website-type-builder__submit').getAttribute('href');
+          const identityFields = builder.locator('.website-type-builder__field input[required]');
+          for (let index = 0; index < await identityFields.count(); index += 1) await identityFields.nth(index).fill(`هوية اختبار ${index + 1}`);
+          await builder.locator('[data-builder-step="2"]').click();
+          const typeFields = builder.locator('.website-type-builder__field input[required], .website-type-builder__field textarea[required]');
+          for (let index = 0; index < await typeFields.count(); index += 1) await typeFields.nth(index).fill(`تفصيل اختبار ${index + 1}`);
+          await builder.locator('[data-builder-step="4"]').click();
+          await builder.locator('.website-type-builder__feature-options input').first().check();
+          await builder.locator('[data-builder-step="5"]').click();
+          const updatedWhatsappHref = await builder.locator('.website-type-builder__submit').getAttribute('href');
           if (!updatedWhatsappHref?.includes('wa.me/')) {
             throw new Error(`Completed brief did not enable the WhatsApp handoff at ${viewport.width}px.`);
           }
-          await page.locator('#website-type-builder').scrollIntoViewIfNeeded();
+          await builder.scrollIntoViewIfNeeded();
           await page.waitForTimeout(150);
           const websiteTypesFilePath = `${outputRoot}/${viewport.width}/website-types.png`;
           await page.screenshot({ path: websiteTypesFilePath, fullPage: false });
-          metrics.websiteTypeFocus = { ...builderMetrics, completedBriefMessage: true, filePath: websiteTypesFilePath };
+          metrics.websiteTypeFocus = { ...builderMetrics, ...corePageMetrics, featureOptions, completedBriefMessage: true, filePath: websiteTypesFilePath };
         }
 
         const filePath = `${outputRoot}/${viewport.width}/${route.name}.png`;

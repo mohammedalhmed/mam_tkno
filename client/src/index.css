@@ -8123,3 +8123,272 @@ html:not(.dark) .theme-toggle-mobile:hover {
     align-self: start;
   }
 }
+
+
+/* Guided brief builder and mobile modal experience. */
+.website-type-builder__close {
+  display: none;
+}
+
+.website-type-builder__steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-bottom: 0.8rem;
+}
+
+.website-type-builder__steps button {
+  display: grid;
+  min-width: 0;
+  gap: 0.2rem;
+  border: 1px solid rgb(212 231 255 / 0.13);
+  background: rgb(255 255 255 / 0.025);
+  padding: 0.65rem 0.45rem;
+  color: rgb(239 247 255 / 0.42);
+  text-align: right;
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.website-type-builder__steps button:hover,
+.website-type-builder__steps button:focus-visible {
+  border-color: rgb(22 213 223 / 0.45);
+  color: #fff;
+}
+
+.website-type-builder__steps button.is-active {
+  border-color: #16d5df;
+  background: rgb(22 213 223 / 0.12);
+  color: #fff;
+}
+
+.website-type-builder__steps button.is-complete {
+  border-color: rgb(22 213 223 / 0.25);
+  color: rgb(201 251 255 / 0.72);
+}
+
+.website-type-builder__steps button > span {
+  color: #16d5df;
+  font-family: var(--font-latin);
+  font-size: 0.6rem;
+  font-weight: 800;
+}
+
+.website-type-builder__steps button strong {
+  overflow: hidden;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.website-type-builder__steps button small {
+  overflow: hidden;
+  color: inherit;
+  font-size: 0.58rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.website-type-builder__step-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+}
+
+.website-type-builder__step-button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-inline-start: auto;
+  border: 1px solid #16d5df;
+  background: #16d5df;
+  padding: 0.7rem 1rem;
+  color: #061437;
+  font-size: 0.73rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.website-type-builder__step-button:hover,
+.website-type-builder__step-button:focus-visible {
+  background: #50e2ea;
+}
+
+.website-type-builder__step-button:active {
+  transform: scale(0.98);
+}
+
+.website-type-builder__step-button--back {
+  margin-inline-start: 0;
+  border-color: rgb(212 231 255 / 0.2);
+  background: transparent;
+  color: rgb(239 247 255 / 0.72);
+}
+
+.website-type-builder__step-button--back:hover,
+.website-type-builder__step-button--back:focus-visible {
+  border-color: #16d5df;
+  background: rgb(22 213 223 / 0.08);
+  color: #fff;
+}
+
+.website-type-builder__notes--step > span {
+  display: block;
+  color: rgb(239 247 255 / 0.72);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.website-type-builder__notes--step > span small {
+  color: rgb(255 255 255 / 0.36);
+  font-weight: 400;
+}
+
+@media (max-width: 767px) {
+  .website-type-builder:not(.is-mobile-modal) {
+    display: none;
+  }
+
+  .website-type-builder.is-mobile-modal {
+    position: fixed;
+    z-index: 120;
+    inset: 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: #061437;
+    padding: 1rem 1rem 2.5rem;
+    box-shadow: 0 0 0 100vmax rgb(1 7 23 / 0.78), 0 24px 80px rgb(0 0 0 / 0.45);
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__close {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    display: inline-flex;
+    width: 2.6rem;
+    height: 2.6rem;
+    align-items: center;
+    justify-content: center;
+    margin-inline-start: auto;
+    border: 1px solid rgb(212 231 255 / 0.22);
+    background: rgb(6 20 55 / 0.92);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__intro {
+    margin-top: -2.6rem;
+    padding: 0.5rem 2.9rem 1.25rem 0.2rem;
+    text-align: right;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__intro h3 {
+    margin-top: 0.65rem;
+    font-size: clamp(1.55rem, 7vw, 2.2rem);
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__intro > p {
+    margin-top: 0.65rem;
+    font-size: 0.78rem;
+    line-height: 1.85;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__best-for,
+  .website-type-builder.is-mobile-modal .website-type-builder__sources,
+  .website-type-builder.is-mobile-modal .website-type-builder__scope-note {
+    display: none;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__form {
+    border-top: 1px solid rgb(212 231 255 / 0.14);
+    padding-top: 1rem;
+  }
+
+  .website-type-builder__steps {
+    position: sticky;
+    z-index: 1;
+    top: 3.6rem;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin-inline: -0.25rem;
+    background: rgb(6 20 55 / 0.94);
+    padding: 0.45rem 0.25rem;
+    backdrop-filter: blur(14px);
+  }
+
+  .website-type-builder__steps button {
+    min-height: 3.1rem;
+    padding: 0.45rem 0.25rem;
+    text-align: center;
+  }
+
+  .website-type-builder__steps button strong {
+    font-size: 0.58rem;
+  }
+
+  .website-type-builder__steps button small {
+    display: none;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__section {
+    margin-top: 0.8rem;
+    padding: 0.85rem;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__section-heading {
+    gap: 0.6rem;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__section-heading > span:first-child {
+    min-width: 1.75rem;
+    min-height: 1.75rem;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__field-grid {
+    gap: 0.8rem;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__field input,
+  .website-type-builder.is-mobile-modal .website-type-builder__field textarea,
+  .website-type-builder.is-mobile-modal .website-type-builder__notes > textarea {
+    min-height: 3rem;
+    font-size: 0.8rem;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__feature-options label,
+  .website-type-builder.is-mobile-modal .website-type-builder__options--pages label {
+    min-height: 3.2rem;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__step-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    margin-inline: -0.25rem;
+    margin-bottom: -0.75rem;
+    background: linear-gradient(transparent, #061437 24%);
+    padding: 1rem 0.25rem 0.75rem;
+  }
+
+  .website-type-builder.is-mobile-modal .website-type-builder__step-button {
+    min-height: 3rem;
+    padding-inline: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .website-type-builder__steps button,
+  .website-type-builder__step-button {
+    transition: none;
+  }
+}

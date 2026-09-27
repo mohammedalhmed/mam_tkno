@@ -1,5 +1,5 @@
-import { useMemo, useState, type CSSProperties, type ChangeEvent } from 'react';
-import { ArrowUpLeft, Check, CircleAlert, ExternalLink, Layers3, Send } from 'lucide-react';
+import { useEffect, useMemo, useState, type ChangeEvent, type CSSProperties, type MouseEvent } from 'react';
+import { ArrowUpLeft, Check, ChevronLeft, ChevronRight, CircleAlert, ExternalLink, Layers3, Send, X } from 'lucide-react';
 import { contactDetails } from '@/lib/portfolio-data';
 import { websiteTypes, type WebsiteType } from '@/lib/website-types';
 
@@ -12,6 +12,8 @@ type BriefForm = {
   existingUrl: string;
 };
 
+type BuilderStep = 1 | 2 | 3 | 4 | 5;
+
 const initialBrief: BriefForm = {
   siteTitle: '',
   industry: '',
@@ -20,6 +22,14 @@ const initialBrief: BriefForm = {
   socialLinks: '',
   existingUrl: '',
 };
+
+const stepLabels: Array<{ id: BuilderStep; label: string; shortLabel: string }> = [
+  { id: 1, label: 'بيانات المشروع', shortLabel: 'الهوية' },
+  { id: 2, label: 'تفاصيل النوع', shortLabel: 'التفاصيل' },
+  { id: 3, label: 'الصفحات الأساسية', shortLabel: 'الصفحات' },
+  { id: 4, label: 'الإضافات', shortLabel: 'الإضافات' },
+  { id: 5, label: 'المراجعة والإرسال', shortLabel: 'المراجعة' },
+];
 
 function toggleValue(values: string[], value: string) {
   return values.includes(value) ? values.filter((item) => item !== value) : [...values, value];
@@ -73,26 +83,39 @@ export default function WebsiteTypes() {
   const [selectedPages, setSelectedPages] = useState<string[]>(websiteTypes[0].corePages);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const [notes, setNotes] = useState('');
+  const [activeStep, setActiveStep] = useState<BuilderStep>(1);
   const [attempted, setAttempted] = useState(false);
+  const [isBuilderOpen, setIsBuilderOpen] = useState(false);
 
   const selectedType = useMemo(
     () => websiteTypes.find((type) => type.id === selectedTypeId) ?? websiteTypes[0],
     [selectedTypeId],
   );
-  const missingRequired = useMemo(() => {
+  const identityMissing = useMemo(() => {
     const missing: string[] = [];
     if (!brief.siteTitle.trim()) missing.push('اسم / عنوان الموقع');
     if (!brief.industry.trim()) missing.push('المجال');
-    selectedType.intakeFields.filter((field) => field.required).forEach((field) => {
-      if (!intakeValues[field.id]?.trim()) missing.push(field.label);
-    });
     return missing;
-  }, [brief.industry, brief.siteTitle, intakeValues, selectedType]);
+  }, [brief.industry, brief.siteTitle]);
+  const typeMissing = useMemo(
+    () => selectedType.intakeFields.filter((field) => field.required && !intakeValues[field.id]?.trim()).map((field) => field.label),
+    [intakeValues, selectedType],
+  );
+  const missingRequired = [...identityMissing, ...typeMissing];
   const isReady = missingRequired.length === 0;
   const whatsappUrl = useMemo(
     () => buildWhatsAppUrl(selectedType, brief, intakeValues, selectedPages, selectedFeatures, notes),
     [brief, intakeValues, notes, selectedFeatures, selectedPages, selectedType],
   );
+
+  useEffect(() => {
+    if (!isBuilderOpen || !window.matchMedia('(max-width: 767px)').matches) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isBuilderOpen]);
 
   const chooseType = (typeId: string) => {
     const nextType = websiteTypes.find((type) => type.id === typeId) ?? websiteTypes[0];
@@ -100,7 +123,12 @@ export default function WebsiteTypes() {
     setSelectedPages(nextType.corePages);
     setSelectedFeatures([]);
     setIntakeValues({});
+    setActiveStep(1);
     setAttempted(false);
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      setIsBuilderOpen(true);
+      return;
+    }
     window.setTimeout(() => document.getElementById('website-type-builder')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0);
   };
 
@@ -109,12 +137,42 @@ export default function WebsiteTypes() {
     setAttempted(false);
   };
 
-  const handleSubmitClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const updateIntake = (fieldId: string) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setIntakeValues((values) => ({ ...values, [fieldId]: event.target.value }));
+    setAttempted(false);
+  };
+
+  const validateStep = (step: BuilderStep) => {
+    if (step === 1 && identityMissing.length) {
+      setAttempted(true);
+      return false;
+    }
+    if (step === 2 && typeMissing.length) {
+      setAttempted(true);
+      return false;
+    }
+    setAttempted(false);
+    return true;
+  };
+
+  const goNext = () => {
+    if (!validateStep(activeStep) || activeStep === 5) return;
+    setActiveStep((step) => Math.min(5, step + 1) as BuilderStep);
+  };
+
+  const goBack = () => {
+    setAttempted(false);
+    setActiveStep((step) => Math.max(1, step - 1) as BuilderStep);
+  };
+
+  const handleSubmitClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (isReady) return;
     event.preventDefault();
     setAttempted(true);
-    document.getElementById('website-type-builder')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActiveStep(identityMissing.length ? 1 : 2);
   };
+
+  const closeBuilder = () => setIsBuilderOpen(false);
 
   return (
     <section id="website-types" className="website-types relative overflow-hidden border-y border-white/10 bg-[#061437] py-20 text-white sm:py-28" aria-labelledby="website-types-title">
@@ -160,15 +218,16 @@ export default function WebsiteTypes() {
                   </div>
                 </div>
                 <button type="button" className="website-type-card__button" onClick={() => chooseType(type.id)} aria-pressed={isSelected}>
-                  {isSelected ? 'هذا هو اختياري' : 'اختر هذا التصنيف'}
-                  {isSelected ? <Check className="h-4 w-4" aria-hidden="true" /> : <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />}
+                  {isSelected ? 'خصص هذا النوع' : 'اختر هذا التصنيف'}
+                  {isSelected ? <ChevronLeft className="h-4 w-4" aria-hidden="true" /> : <ArrowUpLeft className="h-4 w-4" aria-hidden="true" />}
                 </button>
               </article>
             );
           })}
         </div>
 
-        <div id="website-type-builder" className="website-type-builder mt-16 scroll-mt-28" aria-labelledby="website-type-builder-title">
+        <div id="website-type-builder" className={`website-type-builder mt-16 scroll-mt-28 ${isBuilderOpen ? 'is-mobile-modal' : ''}`} aria-labelledby="website-type-builder-title" role={isBuilderOpen ? 'dialog' : undefined} aria-modal={isBuilderOpen ? true : undefined}>
+          <button type="button" className="website-type-builder__close" onClick={closeBuilder} aria-label="إغلاق نموذج تخصيص الموقع"><X className="h-5 w-5" aria-hidden="true" /></button>
           <div className="website-type-builder__intro">
             <span className="canva-kicker">SELECTED TYPE / {selectedType.code}</span>
             <h3 id="website-type-builder-title">{selectedType.name}</h3>
@@ -177,7 +236,7 @@ export default function WebsiteTypes() {
               <strong>يناسب غالبًا:</strong>
               <ul>{selectedType.bestFor.map((item) => <li key={item}><Check className="h-3.5 w-3.5" aria-hidden="true" />{item}</li>)}</ul>
             </div>
-            <div className="website-type-builder__scope-note"><Layers3 className="h-4 w-4" aria-hidden="true" /><span>ستبدأ بصفحات أساسية مقترحة لهذا النوع، ويمكنك تعديلها قبل إرسال brief.</span></div>
+            <div className="website-type-builder__scope-note"><Layers3 className="h-4 w-4" aria-hidden="true" /><span>الخطوات تحفظ اختياراتك تلقائيًا، والصفحات الأساسية تبدأ محددة حسب نوع الموقع.</span></div>
             <div className="website-type-builder__sources">
               <span>مراجع مختارة</span>
               {selectedType.sources.map((source) => <a key={source} href={source} target="_blank" rel="noopener noreferrer" aria-label={`فتح المصدر ${source}`}><ExternalLink className="h-3.5 w-3.5" aria-hidden="true" /></a>)}
@@ -185,64 +244,70 @@ export default function WebsiteTypes() {
           </div>
 
           <div className="website-type-builder__form">
-            <section className="website-type-builder__section" aria-labelledby="brief-identity-title">
+            <nav className="website-type-builder__steps" aria-label="خطوات تخصيص الموقع">
+              {stepLabels.map((step) => <button key={step.id} type="button" data-builder-step={step.id} className={activeStep === step.id ? 'is-active' : activeStep > step.id ? 'is-complete' : ''} onClick={() => setActiveStep(step.id)} aria-current={activeStep === step.id ? 'step' : undefined}><span>{String(step.id).padStart(2, '0')}</span><strong>{step.shortLabel}</strong><small>{step.label}</small></button>)}
+            </nav>
+
+            {activeStep === 1 && <section className="website-type-builder__section" aria-labelledby="brief-identity-title">
               <div className="website-type-builder__section-heading"><span>01</span><div><h4 id="brief-identity-title">بيانات المشروع</h4><p>ابدأ بالمعلومات التي تساعدنا على فهم هوية الموقع واتجاهه.</p></div></div>
               <div className="website-type-builder__field-grid">
-                <label className="website-type-builder__field"><span>اسم / عنوان الموقع <b>*</b></span><input value={brief.siteTitle} onChange={updateBrief('siteTitle')} placeholder="مثال: متجر نبتة للعناية الطبيعية" required aria-required="true" /></label>
+                <label className="website-type-builder__field"><span>اسم / عنوان الموقع <b>*</b></span><input autoFocus value={brief.siteTitle} onChange={updateBrief('siteTitle')} placeholder="مثال: متجر نبتة للعناية الطبيعية" required aria-required="true" /></label>
                 <label className="website-type-builder__field"><span>المجال <b>*</b></span><input value={brief.industry} onChange={updateBrief('industry')} placeholder="مثال: تجارة إلكترونية للعناية بالبشرة" required aria-required="true" /></label>
                 <label className="website-type-builder__field"><span>الشعار أو العلامة التجارية <small>(إن وجدت)</small></span><input value={brief.brandDetails} onChange={updateBrief('brandDetails')} placeholder="رابط الشعار أو وصف الهوية والألوان" /></label>
                 <label className="website-type-builder__field"><span>معلومات التواصل <small>(إن وجدت)</small></span><input value={brief.contactInfo} onChange={updateBrief('contactInfo')} placeholder="البريد، الهاتف، واتساب، الموقع" /></label>
                 <label className="website-type-builder__field"><span>روابط التواصل الاجتماعي <small>(إن وجدت)</small></span><input value={brief.socialLinks} onChange={updateBrief('socialLinks')} placeholder="Instagram / Facebook / X ..." dir="ltr" /></label>
                 <label className="website-type-builder__field"><span>رابط موقع قائم <small>(اختياري)</small></span><input type="url" value={brief.existingUrl} onChange={updateBrief('existingUrl')} placeholder="https://example.com" dir="ltr" /></label>
               </div>
-            </section>
+            </section>}
 
-            <section className="website-type-builder__section" aria-labelledby="brief-type-title">
+            {activeStep === 2 && <section className="website-type-builder__section" aria-labelledby="brief-type-title">
               <div className="website-type-builder__section-heading"><span>02</span><div><h4 id="brief-type-title">تفاصيل {selectedType.name}</h4><p>أسئلة قصيرة تختلف حسب نوع الموقع الذي اخترته.</p></div></div>
               <div className="website-type-builder__field-grid website-type-builder__field-grid--specialized">
                 {selectedType.intakeFields.map((field) => {
                   const FieldTag = field.type === 'textarea' ? 'textarea' : 'input';
-                  return <label key={field.id} className="website-type-builder__field"><span>{field.label} {field.required && <b>*</b>}</span><FieldTag {...(field.type === 'url' ? { type: 'url' } : {})} value={intakeValues[field.id] ?? ''} onChange={(event) => setIntakeValues((values) => ({ ...values, [field.id]: event.target.value }))} placeholder={field.placeholder} rows={field.type === 'textarea' ? 3 : undefined} required={field.required} aria-required={field.required ? 'true' : undefined} /></label>;
+                  return <label key={field.id} className="website-type-builder__field"><span>{field.label} {field.required && <b>*</b>}</span><FieldTag {...(field.type === 'url' ? { type: 'url' } : {})} value={intakeValues[field.id] ?? ''} onChange={updateIntake(field.id)} placeholder={field.placeholder} rows={field.type === 'textarea' ? 3 : undefined} required={field.required} aria-required={field.required ? 'true' : undefined} /></label>;
                 })}
               </div>
-            </section>
+            </section>}
 
-            <fieldset className="website-type-builder__section">
-              <div className="website-type-builder__section-heading"><span>03</span><div><legend>الصفحات الأساسية المقترحة</legend><p>هذه الصفحات محددة تلقائيًا ويمكنك إلغاء أي صفحة لا تحتاجها.</p></div></div>
+            {activeStep === 3 && <fieldset className="website-type-builder__section">
+              <div className="website-type-builder__section-heading"><span>03</span><div><h4>الصفحات الأساسية المقترحة</h4><p>هذه الصفحات محددة تلقائيًا ويمكنك إلغاء أي صفحة لا تحتاجها.</p></div></div>
               <div className="website-type-builder__options website-type-builder__options--pages">
                 {selectedType.corePages.map((page) => {
                   const checked = selectedPages.includes(page);
                   return <label key={page} className={checked ? 'is-checked' : ''}><input type="checkbox" checked={checked} onChange={() => setSelectedPages((values) => toggleValue(values, page))} /><span>{page}</span><Check className="h-4 w-4" aria-hidden="true" /></label>;
                 })}
               </div>
-            </fieldset>
+            </fieldset>}
 
-            <fieldset className="website-type-builder__section">
-              <div className="website-type-builder__section-heading"><span>04</span><div><legend>إضافات ووظائف أخرى</legend><p>اختر الوظائف التابعة لهذا النوع التي تريد مناقشتها ضمن النطاق.</p></div></div>
+            {activeStep === 4 && <fieldset className="website-type-builder__section">
+              <div className="website-type-builder__section-heading"><span>04</span><div><h4>إضافات ووظائف أخرى</h4><p>اختر الوظائف التابعة لهذا النوع التي تريد مناقشتها ضمن النطاق.</p></div></div>
               <div className="website-type-builder__feature-options">
                 {selectedType.optionalFeatures.map((feature) => {
                   const checked = selectedFeatures.includes(feature.id);
                   return <label key={feature.id} className={checked ? 'is-checked' : ''}><input type="checkbox" checked={checked} onChange={() => setSelectedFeatures((values) => toggleValue(values, feature.id))} /><span><strong>{feature.label}</strong><small>{feature.description}</small></span><Check className="h-4 w-4" aria-hidden="true" /></label>;
                 })}
               </div>
-            </fieldset>
+            </fieldset>}
 
-            <label className="website-type-builder__notes website-type-builder__section">
-              <div className="website-type-builder__section-heading"><span>05</span><div><span>ملاحظات إضافية <small>(اختياري)</small></span><p>أي سياق أو رابط أو شرط يجب أن نعرفه قبل إعداد الدراسة.</p></div></div>
-              <textarea value={notes} onChange={(event) => setNotes(event.target.value)} rows={4} placeholder="مثال: أريد موقعًا عربيًا أولًا، وأحتاج ربطه بخدمة شحن أو نظام قائم..." />
-            </label>
+            {activeStep === 5 && <section className="website-type-builder__section" aria-labelledby="brief-review-title">
+              <div className="website-type-builder__section-heading"><span>05</span><div><h4 id="brief-review-title">مراجعة وإرسال brief</h4><p>راجع اختياراتك وأضف أي سياق يساعدنا على إعداد الدراسة.</p></div></div>
+              <label className="website-type-builder__notes website-type-builder__notes--step"><span>ملاحظات إضافية <small>(اختياري)</small></span><textarea autoFocus value={notes} onChange={(event) => setNotes(event.target.value)} rows={4} placeholder="مثال: أريد موقعًا عربيًا أولًا، وأحتاج ربطه بخدمة شحن أو نظام قائم..." /></label>
+              <div className="website-type-builder__summary" aria-live="polite">
+                <div><span>التصنيف</span><strong>{selectedType.name}</strong></div>
+                <div><span>الصفحات</span><strong>{selectedPages.length} محددة</strong></div>
+                <div><span>الإضافات</span><strong>{selectedFeatures.length} محددة</strong></div>
+              </div>
+              {attempted && !isReady && <p className="website-type-builder__error" role="alert"><CircleAlert className="h-4 w-4" aria-hidden="true" />أكمل البيانات المطلوبة: {missingRequired.join('، ')}.</p>}
+              <a href={isReady ? whatsappUrl : undefined} target={isReady ? '_blank' : undefined} rel={isReady ? 'noopener noreferrer' : undefined} className={`website-type-builder__submit ${!isReady ? 'is-disabled' : ''}`} onClick={handleSubmitClick} aria-disabled={!isReady}>أرسل brief لمراجعة النطاق<Send className="h-4 w-4" aria-hidden="true" /></a>
+              <p className="website-type-builder__hint">بعد الإرسال ستفتح رسالة واتساب جاهزة للمراجعة. لا يتم إرسال البيانات تلقائيًا أو حفظها في الموقع.</p>
+            </section>}
 
-            <div className="website-type-builder__summary" aria-live="polite">
-              <div><span>التصنيف</span><strong>{selectedType.name}</strong></div>
-              <div><span>الصفحات</span><strong>{selectedPages.length} محددة</strong></div>
-              <div><span>الإضافات</span><strong>{selectedFeatures.length} محددة</strong></div>
+            {attempted && activeStep !== 5 && ((activeStep === 1 && identityMissing.length) || (activeStep === 2 && typeMissing.length)) ? <p className="website-type-builder__error" role="alert"><CircleAlert className="h-4 w-4" aria-hidden="true" />أكمل: {(activeStep === 1 ? identityMissing : typeMissing).join('، ')}.</p> : null}
+            <div className="website-type-builder__step-actions">
+              {activeStep > 1 && <button type="button" className="website-type-builder__step-button website-type-builder__step-button--back" onClick={goBack}><ChevronRight className="h-4 w-4" aria-hidden="true" />السابق</button>}
+              {activeStep < 5 && <button type="button" className="website-type-builder__step-button" onClick={goNext}>التالي: {stepLabels[activeStep].shortLabel}<ChevronLeft className="h-4 w-4" aria-hidden="true" /></button>}
             </div>
-            {attempted && !isReady && <p className="website-type-builder__error" role="alert"><CircleAlert className="h-4 w-4" aria-hidden="true" />أكمل البيانات المطلوبة: {missingRequired.join('، ')}.</p>}
-            <a href={isReady ? whatsappUrl : undefined} target={isReady ? '_blank' : undefined} rel={isReady ? 'noopener noreferrer' : undefined} className={`website-type-builder__submit ${!isReady ? 'is-disabled' : ''}`} onClick={handleSubmitClick} aria-disabled={!isReady}>
-              أرسل brief لمراجعة النطاق
-              <Send className="h-4 w-4" aria-hidden="true" />
-            </a>
-            <p className="website-type-builder__hint">بعد الإرسال ستفتح رسالة واتساب جاهزة للمراجعة. لا يتم إرسال البيانات تلقائيًا أو حفظها في الموقع.</p>
           </div>
         </div>
       </div>
