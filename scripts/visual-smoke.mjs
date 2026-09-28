@@ -157,6 +157,20 @@ async function main() {
           if (!suggestionMetrics.selectedCode?.includes('WEB-02') || !suggestionMetrics.suggestionVisible || !suggestionMetrics.suggestionText?.includes('المتاجر الإلكترونية') || suggestedPages < 5) {
             throw new Error(`Industry suggestion did not update the type and pages at ${viewport.width}px.`);
           }
+          await builder.locator('[data-builder-step="4"]').click();
+          const ecommerceRecommendationMetrics = await builder.evaluate((element) => ({
+            noteVisible: Boolean(element.querySelector('[data-feature-recommendation-note]')),
+            paymentChecked: Boolean(element.querySelector('input[id="shop-payment"]:checked')),
+            searchChecked: Boolean(element.querySelector('input[id="shop-search"]:checked')),
+          }));
+          if (!ecommerceRecommendationMetrics.noteVisible || !ecommerceRecommendationMetrics.paymentChecked || !ecommerceRecommendationMetrics.searchChecked) {
+            throw new Error(`Ecommerce feature recommendations did not initialize at ${viewport.width}px.`);
+          }
+          await builder.locator('label[for="shop-payment"]').click();
+          if (await builder.locator('input#shop-payment').isChecked()) {
+            throw new Error(`Recommended ecommerce feature could not be removed manually at ${viewport.width}px.`);
+          }
+          await builder.locator('label[for="shop-payment"]').click();
           metrics.websiteTypeFocus = { autoSuggestion: { ...suggestionMetrics, suggestedPages } };
           await builder.locator('.website-type-builder__backdrop').dispatchEvent('click');
           if ((await builder.getAttribute('class'))?.includes('is-modal')) {
@@ -171,8 +185,12 @@ async function main() {
             defaultCorePages: element.querySelectorAll('.website-type-builder__options--pages input:checked').length,
           }));
           await builder.locator('[data-builder-step="4"]').click();
-          const hasBookingPayment = await builder.textContent().then((text) => text?.includes('دفع مقدم أو عربون') ?? false);
-          if (!bookingMetrics.selectedCode?.includes('WEB-05') || bookingMetrics.defaultCorePages < 5 || !hasBookingPayment) {
+          const bookingRecommendationMetrics = await builder.evaluate((element) => ({
+            hasBookingPayment: element.textContent?.includes('دفع مقدم أو عربون') ?? false,
+            notificationsChecked: Boolean(element.querySelector('input[id="booking-notifications"]:checked')),
+            recommendationNote: Boolean(element.querySelector('[data-feature-recommendation-note]')),
+          }));
+          if (!bookingMetrics.selectedCode?.includes('WEB-05') || bookingMetrics.defaultCorePages < 5 || !bookingRecommendationMetrics.hasBookingPayment || !bookingRecommendationMetrics.notificationsChecked || !bookingRecommendationMetrics.recommendationNote) {
             throw new Error(`Type-specific booking brief options did not update at ${viewport.width}px.`);
           }
           await builder.locator('.website-type-builder__backdrop').dispatchEvent('click');

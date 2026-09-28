@@ -112,3 +112,21 @@
   - Acceptance: check/build/verify:seo/test:visual ناجحة بلا overflow.
   - Verify: الاختبار الآلي على 390 و768.
   - Files: `scripts/visual-smoke.mjs`, repository state and checkpoint metadata
+
+
+## Automatic feature recommendations
+
+- [x] Task: تعريف الإضافات المقترحة لكل نوع موقع.
+  - Acceptance: المتجر يقترح الدفع والبحث/الفلاتر، والحجز يقترح التذكيرات.
+  - Verify: اختبار نوع المتجر والحجز.
+  - Files: `client/src/lib/website-types.ts`
+
+- [x] Task: تحديد الاقتراحات وعرضها داخل النموذج مع إبقاء الإلغاء اليدوي.
+  - Acceptance: الاقتراحات تحدد تلقائيًا عند تطابق المجال، وكل خيار يعرض سببًا وشارة واضحة.
+  - Verify: تفاعل checkbox ومراجعة responsive.
+  - Files: `client/src/components/WebsiteTypes.tsx`, `client/src/index.css`
+
+- [x] Task: تحديث الاختبار وتشغيل الفحوص وحفظ checkpoint.
+  - Acceptance: نجاح check/build/verify:seo/test:visual بلا overflow.
+  - Verify: 390 و768.
+  - Files: `scripts/visual-smoke.mjs`, repository state and checkpoint metadata

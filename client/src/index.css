@@ -8668,3 +8668,57 @@ body.modal-open .website-types > .container {
   margin-top: 0.2rem;
   color: #16d5df;
 }
+
+/* Recommended optional features. */
+.website-type-builder__recommendation-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin: 0 0 0.85rem;
+  border-inline-start: 2px solid #16d5df;
+  background: rgb(22 213 223 / 0.07);
+  padding: 0.65rem 0.8rem;
+  color: #d8fdff;
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.website-type-builder__recommendation-note > svg {
+  flex-shrink: 0;
+  margin-top: 0.18rem;
+  color: #16d5df;
+}
+
+.website-type-builder__recommendation-note span {
+  min-width: 0;
+}
+
+.website-type-builder__recommendation-note strong,
+.website-type-builder__recommendation-note small {
+  display: block;
+}
+
+.website-type-builder__recommendation-note small {
+  color: rgb(239 247 255 / 0.54);
+  font-size: 0.62rem;
+}
+
+.website-type-builder__feature-options label.is-recommended {
+  border-color: rgb(22 213 223 / 0.52);
+}
+
+.website-type-builder__feature-options label strong {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.website-type-builder__feature-options label em {
+  border: 1px solid rgb(22 213 223 / 0.32);
+  color: #16d5df;
+  font-size: 0.55rem;
+  font-style: normal;
+  font-weight: 700;
+  padding: 0.12rem 0.35rem;
+}

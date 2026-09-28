@@ -12,6 +12,11 @@ export type OptionalFeature = {
   description: string;
 };
 
+export type FeatureRecommendation = {
+  featureId: string;
+  reason: string;
+};
+
 export type WebsiteType = {
   id: string;
   code: string;
@@ -21,6 +26,7 @@ export type WebsiteType = {
   bestFor: string[];
   corePages: string[];
   optionalFeatures: OptionalFeature[];
+  recommendedFeatures: FeatureRecommendation[];
   intakeFields: IntakeField[];
   components: string[];
   services: string[];
@@ -47,6 +53,10 @@ export const websiteTypes: WebsiteType[] = [
       { id: 'corporate-notifications', label: 'إشعارات الطلبات', description: 'تنبيهات عند وصول استفسار أو طلب عرض جديد.' },
       { id: 'corporate-chat', label: 'محادثة عبر الموقع', description: 'قناة محادثة سريعة لأسئلة الزوار قبل التواصل الرسمي.' },
       { id: 'corporate-booking', label: 'حجز استشارة', description: 'اختيار موعد مناسب بدل الاكتفاء بنموذج التواصل.' },
+    ],
+    recommendedFeatures: [
+      { featureId: 'corporate-crm', reason: 'ينظم طلبات التواصل وطلبات العرض في مسار واحد.' },
+      { featureId: 'corporate-notifications', reason: 'ينبهك فور وصول استفسار أو طلب جديد.' },
     ],
     intakeFields: [
       { id: 'audience', label: 'من الجمهور أو العملاء المستهدفون؟', placeholder: 'مثال: شركات ناشئة ومتاجر متوسطة الحجم', required: true },
@@ -78,6 +88,10 @@ export const websiteTypes: WebsiteType[] = [
       { id: 'shop-loyalty', label: 'عضوية وولاء', description: 'نقاط ومكافآت وعروض خاصة للعملاء المتكررين.' },
       { id: 'shop-chat', label: 'محادثة ومساعدة قبل الشراء', description: 'إجابة سريعة عن المنتج والشحن والتوفر.' },
     ],
+    recommendedFeatures: [
+      { featureId: 'shop-payment', reason: 'يسهّل إتمام الطلب بدل ترك العميل عند خطوة الدفع.' },
+      { featureId: 'shop-search', reason: 'يساعد العميل على الوصول إلى المنتج بسرعة داخل الكتالوج.' },
+    ],
     intakeFields: [
       { id: 'productCatalog', label: 'ما المنتجات وعدد الفئات التقريبي؟', placeholder: 'مثال: عناية بالبشرة، 5 فئات، 80 منتجًا', required: true },
       { id: 'commercePlatform', label: 'ما المنصة أو طريقة البيع الحالية؟', placeholder: 'مثال: سلة، متجر قائم، أو ما زلت أبدأ', required: true },
@@ -106,6 +120,10 @@ export const websiteTypes: WebsiteType[] = [
       { id: 'landing-notifications', label: 'إشعارات فورية', description: 'تنبيه الفريق عند إرسال النموذج أو إتمام الإجراء.' },
       { id: 'landing-chat', label: 'محادثة قبل التحويل', description: 'إجابة الاعتراضات بسرعة قبل التسجيل أو الطلب.' },
       { id: 'landing-tracking', label: 'تتبع الحملات والتحليلات', description: 'قياس النقرات والإرسال ومصادر الزيارات.' },
+    ],
+    recommendedFeatures: [
+      { featureId: 'landing-form', reason: 'يحافظ على التحويل الأساسي واضحًا وقابلًا للقياس.' },
+      { featureId: 'landing-tracking', reason: 'يُظهر أي حملة أو مصدر يحقق النتيجة الأفضل.' },
     ],
     intakeFields: [
       { id: 'campaignOffer', label: 'ما العرض أو الإجراء المطلوب؟', placeholder: 'مثال: حجز جلسة مجانية أو تنزيل دليل', required: true },
@@ -136,6 +154,10 @@ export const websiteTypes: WebsiteType[] = [
       { id: 'portfolio-chat', label: 'محادثة سريعة', description: 'تسهيل السؤال الأول قبل إرسال brief كامل.' },
       { id: 'portfolio-newsletter', label: 'اشتراك بالمحتوى', description: 'بناء قائمة مهتمين بالأعمال والمقالات.' },
     ],
+    recommendedFeatures: [
+      { featureId: 'portfolio-testimonials', reason: 'يعزز الثقة عندما يرى العميل نتائج وتجارب موثقة.' },
+      { featureId: 'portfolio-booking', reason: 'يحوّل الاهتمام إلى مكالمة أو فرصة عمل بسهولة.' },
+    ],
     intakeFields: [
       { id: 'portfolioSpecialty', label: 'ما تخصصك أو تخصص الفريق؟', placeholder: 'مثال: تصميم متاجر سلة وتجارب التجارة الإلكترونية', required: true },
       { id: 'portfolioAudience', label: 'من تريد أن يصل إليه الموقع؟', placeholder: 'مثال: أصحاب المتاجر والشركات الناشئة', required: true },
@@ -165,6 +187,10 @@ export const websiteTypes: WebsiteType[] = [
       { id: 'booking-waitlist', label: 'قائمة انتظار', description: 'طلب إشعار عند فتح موعد أو توفر مورد.' },
       { id: 'booking-reviews', label: 'تقييمات العملاء', description: 'عرض التجارب بعد إتمام الخدمة أو الحجز.' },
     ],
+    recommendedFeatures: [
+      { featureId: 'booking-notifications', reason: 'يقلل نسيان المواعيد ويرسل تحديثات الإلغاء والتعديل.' },
+      { featureId: 'booking-auth', reason: 'يسمح للعميل بمراجعة حجوزاته القادمة والسابقة.' },
+    ],
     intakeFields: [
       { id: 'bookingBusiness', label: 'ما نوع الخدمة أو النشاط؟', placeholder: 'مثال: عيادة أسنان، صالون، دورات تدريبية', required: true },
       { id: 'bookingRules', label: 'ما قواعد المواعيد والتوفر؟', placeholder: 'مثال: مدة الجلسة، الفروع، أوقات العمل، الإلغاء', required: true, type: 'textarea' },
@@ -193,6 +219,10 @@ export const websiteTypes: WebsiteType[] = [
       { id: 'saas-chat', label: 'محادثة ودعم داخل المنتج', description: 'مساعدة مباشرة مرتبطة بسياق المستخدم.' },
       { id: 'saas-integrations', label: 'تكاملات خارجية', description: 'ربط خدمات أو مصادر بيانات يحتاجها المنتج.' },
       { id: 'saas-analytics', label: 'تقارير ومؤشرات متقدمة', description: 'رسوم وفلاتر تساعد على المقارنة واتخاذ القرار.' },
+    ],
+    recommendedFeatures: [
+      { featureId: 'saas-auth', reason: 'يحمي الحسابات والصلاحيات ويهيئ تجربة استخدام واضحة.' },
+      { featureId: 'saas-analytics', reason: 'يحوّل بيانات المنتج إلى مؤشرات تساعد على القرار.' },
     ],
     intakeFields: [
       { id: 'saasUsers', label: 'من المستخدمون وما أدوارهم؟', placeholder: 'مثال: مدير، موظف مبيعات، محاسب', required: true },

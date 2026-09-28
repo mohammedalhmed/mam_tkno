@@ -107,6 +107,7 @@ export default function WebsiteTypes() {
     () => websiteTypes.find((type) => type.id === selectedTypeId) ?? websiteTypes[0],
     [selectedTypeId],
   );
+  const recommendedFeatureIds = useMemo(() => selectedType.recommendedFeatures.map((recommendation) => recommendation.featureId), [selectedType]);
   const industrySuggestion = useMemo(() => suggestWebsiteType(brief.industry), [brief.industry]);
   const identityMissing = useMemo(() => {
     const missing: string[] = [];
@@ -150,7 +151,7 @@ export default function WebsiteTypes() {
     const nextType = websiteTypes.find((type) => type.id === typeId) ?? websiteTypes[0];
     setSelectedTypeId(nextType.id);
     setSelectedPages(nextType.corePages);
-    setSelectedFeatures([]);
+    setSelectedFeatures(nextType.recommendedFeatures.map((recommendation) => recommendation.featureId));
     setIntakeValues({});
     setActiveStep(1);
     setAttempted(false);
@@ -161,7 +162,7 @@ export default function WebsiteTypes() {
 
   const updateBrief = (field: keyof BriefForm) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setBrief((current) => ({ ...current, [field]: event.target.value }));
-    if (field === 'industry' && !event.target.value.trim()) setManualTypeOverride(null);
+    if (field === 'industry') setManualTypeOverride(null);
     setAttempted(false);
   };
 
@@ -170,7 +171,7 @@ export default function WebsiteTypes() {
     if (industrySuggestion.type.id === selectedTypeId) return;
     setSelectedTypeId(industrySuggestion.type.id);
     setSelectedPages(industrySuggestion.type.corePages);
-    setSelectedFeatures([]);
+    setSelectedFeatures(industrySuggestion.type.recommendedFeatures.map((recommendation) => recommendation.featureId));
     setIntakeValues({});
     setShowAllFeatures(false);
     setAttempted(false);
@@ -317,11 +318,13 @@ export default function WebsiteTypes() {
             </fieldset>}
 
             {activeStep === 4 && <fieldset className="website-type-builder__section">
-              <div className="website-type-builder__section-heading"><span>04</span><div><h4>إضافات ووظائف أخرى</h4><p>ابدأ بالأكثر شيوعًا، ثم افتح الخيارات الإضافية إذا احتجتها.</p></div></div>
+              <div className="website-type-builder__section-heading"><span>04</span><div><h4>إضافات ووظائف أخرى</h4><p>حددنا لك خيارات مناسبة لنوع الموقع، ويمكنك إلغاء أي اقتراح أو إضافة خيارات أخرى.</p></div></div>
+              {recommendedFeatureIds.length > 0 && <div className="website-type-builder__recommendation-note" data-feature-recommendation-note><Check className="h-4 w-4" aria-hidden="true" /><span><strong>{recommendedFeatureIds.length} إضافات مقترحة تلقائيًا</strong><small>مبنية على نوع الموقع ومجال العمل، وليست إلزامية.</small></span></div>}
               <div className="website-type-builder__feature-options">
                 {selectedType.optionalFeatures.slice(0, showAllFeatures ? undefined : 4).map((feature) => {
                   const checked = selectedFeatures.includes(feature.id);
-                  return <label key={feature.id} className={checked ? 'is-checked' : ''}><input type="checkbox" checked={checked} onChange={() => setSelectedFeatures((values) => toggleValue(values, feature.id))} /><span><strong>{feature.label}</strong><small>{feature.description}</small></span><Check className="h-4 w-4" aria-hidden="true" /></label>;
+                  const recommendation = selectedType.recommendedFeatures.find((item) => item.featureId === feature.id);
+                  return <label key={feature.id} htmlFor={feature.id} className={`${checked ? 'is-checked' : ''} ${recommendation ? 'is-recommended' : ''}`}><input id={feature.id} type="checkbox" checked={checked} onChange={() => setSelectedFeatures((values) => toggleValue(values, feature.id))} /><span><strong>{feature.label}{recommendation && <em>مقترح لمجالك</em>}</strong><small>{recommendation?.reason ?? feature.description}</small></span><Check className="h-4 w-4" aria-hidden="true" /></label>;
                 })}
               </div>
               {selectedType.optionalFeatures.length > 4 && <button type="button" className="website-type-builder__show-more" onClick={() => setShowAllFeatures((value) => !value)} aria-expanded={showAllFeatures}><span>{showAllFeatures ? 'إخفاء الخيارات الإضافية' : `عرض ${selectedType.optionalFeatures.length - 4} خيارات إضافية`}</span><ChevronDown className={`h-4 w-4 ${showAllFeatures ? 'rotate-180' : ''}`} aria-hidden="true" /></button>}
