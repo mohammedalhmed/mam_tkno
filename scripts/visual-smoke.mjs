@@ -139,9 +139,10 @@ async function main() {
           const modalGeometry = await builder.evaluate((element) => {
             const dialog = element.querySelector('.website-type-builder__dialog')?.getBoundingClientRect();
             const input = element.querySelector('input')?.getBoundingClientRect();
-            return { dialogWidth: dialog?.width ?? 0, dialogHeight: dialog?.height ?? 0, inputTop: input?.top ?? -1, inputHeight: input?.height ?? 0 };
+            const header = document.querySelector('header')?.getBoundingClientRect();
+            return { dialogWidth: dialog?.width ?? 0, dialogHeight: dialog?.height ?? 0, dialogTop: dialog?.top ?? -1, inputTop: input?.top ?? -1, inputHeight: input?.height ?? 0, headerBottom: header?.bottom ?? 0 };
           });
-          if (modalGeometry.dialogWidth < 280 || modalGeometry.dialogHeight < 240 || modalGeometry.inputTop < 0 || modalGeometry.inputHeight < 20) {
+          if (modalGeometry.dialogWidth < 280 || modalGeometry.dialogHeight < 240 || modalGeometry.inputTop < 0 || modalGeometry.inputHeight < 20 || modalGeometry.dialogTop < modalGeometry.headerBottom - 1) {
             throw new Error(`Modal opened without a visible input surface at ${viewport.width}px.`);
           }
           await builder.locator('[data-builder-step="3"]').click();
@@ -177,7 +178,9 @@ async function main() {
           }));
           await builder.locator('[data-builder-step="4"]').click();
           const featureOptions = await builder.locator('.website-type-builder__feature-options input').count();
-          if (corePageMetrics.corePageOptions < 5 || corePageMetrics.defaultCorePages < 5 || featureOptions < 5) {
+          await builder.locator('.website-type-builder__show-more').click();
+          const expandedFeatureOptions = await builder.locator('.website-type-builder__feature-options input').count();
+          if (corePageMetrics.corePageOptions < 5 || corePageMetrics.defaultCorePages < 5 || featureOptions !== 4 || expandedFeatureOptions <= featureOptions) {
             throw new Error(`Core pages or optional features did not initialize at ${viewport.width}px.`);
           }
           await builder.locator('[data-builder-step="1"]').click();
@@ -202,7 +205,7 @@ async function main() {
           await page.waitForTimeout(150);
           const websiteTypesFilePath = `${outputRoot}/${viewport.width}/website-types.png`;
           await page.screenshot({ path: websiteTypesFilePath, fullPage: false });
-          metrics.websiteTypeFocus = { ...builderMetrics, ...corePageMetrics, featureOptions, completedBriefMessage: true, filePath: websiteTypesFilePath };
+          metrics.websiteTypeFocus = { ...builderMetrics, ...corePageMetrics, featureOptions, expandedFeatureOptions, completedBriefMessage: true, filePath: websiteTypesFilePath };
           await page.keyboard.press('Escape');
           if ((await builder.getAttribute('class'))?.includes('is-modal')) {
             throw new Error(`Escape did not close the modal at ${viewport.width}px.`);

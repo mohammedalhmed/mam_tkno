@@ -40,3 +40,16 @@ Cards as mini scope maps: each card acts like a compact project brief, not a ser
 
 ### Exit gate
 المستخدم يرى نفس الصفحة خلف modal مموه، ويستطيع فتح/إغلاق النموذج دون فقد البيانات أو تغيير الوجهة، مع نجاح check/build/verify:seo/test:visual.
+
+## Feature Slice: UX audit and intake simplification
+
+### Build order
+1. Stabilize modal layering: high stacking context, viewport bounds, header-safe padding, and no reveal transition while open.
+2. Reduce step 1 to site title + industry; move optional identity/contact/social links into one review note.
+3. Keep type-specific questions concise and make only the truly necessary questions required.
+4. Collapse secondary feature options behind an explicit show-more control.
+5. Update visual smoke checks for header overlap, visible input geometry, reduced field count, expansion behavior, and state-preserving close.
+6. Run check/build/verify:seo/test:visual and save checkpoint.
+
+### Exit gate
+The customer can start the brief in two fields, understands what is requested at each step, never sees content behind the fixed header, and can close/reopen without losing data.

@@ -8552,3 +8552,70 @@ body.modal-open .website-types > .container {
 body.modal-open .website-types > .container {
   transition: none !important;
 }
+
+/* UX audit pass: keep the dialog above the fixed header and reduce form density. */
+.website-type-builder.is-modal {
+  z-index: 1000;
+  isolation: isolate;
+}
+
+.website-type-builder__show-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  min-height: 2.7rem;
+  margin-top: 0.7rem;
+  border: 1px dashed rgb(22 213 223 / 0.42);
+  background: rgb(22 213 223 / 0.06);
+  color: #c9fbff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.website-type-builder__show-more:hover,
+.website-type-builder__show-more:focus-visible {
+  border-color: #16d5df;
+  background: rgb(22 213 223 / 0.13);
+}
+
+.website-type-builder__show-more svg {
+  transition: transform 180ms ease;
+}
+
+@media (max-width: 767px) {
+  .website-type-builder.is-modal {
+    align-items: flex-start;
+    padding: 5.6rem 0.75rem 1rem;
+  }
+
+  .website-type-builder.is-modal .website-type-builder__dialog {
+    max-height: calc(100dvh - 6.6rem);
+  }
+
+  .website-type-builder.is-modal .website-type-builder__dialog > .website-type-builder__intro {
+    max-height: 8.8rem;
+  }
+
+  .website-type-builder.is-modal .website-type-builder__dialog > .website-type-builder__form {
+    max-height: calc(100dvh - 15.4rem);
+  }
+
+  .website-type-builder__field-grid--starter {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .website-type-builder.is-modal {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+  }
+
+  .website-type-builder.is-modal .website-type-builder__dialog {
+    max-height: calc(100dvh - 8rem);
+  }
+}

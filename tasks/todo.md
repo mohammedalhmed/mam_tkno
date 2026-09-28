@@ -72,3 +72,25 @@
   - Acceptance: الاختبار يتحقق من أبعاد dialog وظهور أول حقل إدخال، إضافة إلى backdrop وEscape وعدم overflow.
   - Verify: `pnpm run test:visual` على 390 و768.
   - Files: `scripts/visual-smoke.mjs`
+
+## UX audit and intake simplification
+
+- [x] Task: تثبيت طبقات modal فوق الهيدر ومنع تداخل المحتوى.
+  - Acceptance: backdrop يغطي viewport والبطاقة لا تبدأ تحت header في 390/768/desktop.
+  - Verify: قياس DOM ولقطات responsive.
+  - Files: `client/src/components/WebsiteTypes.tsx`, `client/src/index.css`
+
+- [x] Task: تقليل وتنظيم حقول الإدخال.
+  - Acceptance: الخطوة الأولى حقلان مطلوبان فقط، والبيانات الاختيارية في ملاحظة واحدة.
+  - Verify: اختبار عدد الحقول ومراجعة UX.
+  - Files: `client/src/components/WebsiteTypes.tsx`
+
+- [x] Task: تقليل كثافة الإضافات مع عرض المزيد عند الطلب.
+  - Acceptance: أربع إضافات أولية ثم توسعة واضحة لبقية الخيارات.
+  - Verify: اختبار DOM والتفاعل.
+  - Files: `client/src/components/WebsiteTypes.tsx`, `client/src/index.css`
+
+- [x] Task: تشغيل الفحوص وحفظ checkpoint.
+  - Acceptance: نجاح check/build/verify:seo/test:visual.
+  - Verify: الأوامر الآلية والمراجعة البصرية.
+  - Files: repository state and checkpoint metadata

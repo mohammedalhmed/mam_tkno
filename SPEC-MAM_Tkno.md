@@ -52,3 +52,26 @@
 - زر إغلاق في زاوية البطاقة، قابل للوحة المفاتيح وله aria-label واضح.
 - لا يظهر باني إضافي inline خلف الصفحة، ولا يحدث نقل أو overflow أفقي.
 - دعم Escape لإغلاق النافذة عند فتحها، مع عودة التركيز إلى زر التصنيف إن أمكن.
+
+## 25. UX audit: modal layering and intake simplification
+
+### Study findings
+- **Layering failure:** the section reveal transform can establish a containing block for fixed descendants; when combined with a fixed header, the dialog may render outside the viewport or appear behind the header.
+- **Mobile density:** the first step exposed six fields in a narrow column. Only the site title and industry are needed to begin a useful conversation; brand, contact, social, and existing URL are supporting material, not blockers.
+- **Cognitive load:** five steps are acceptable, but the feature step initially exposes every option at once. The first view should show the most common options and reveal the rest only on request.
+- **Clarity:** optional identity/contact data should be collected as one clearly labelled note instead of several similarly weighted inputs.
+
+### Updated experience contract
+1. Modal layer is above the fixed header and covers the full viewport with a dimmed, blurred backdrop.
+2. The first step contains two required fields only: site name/title and industry.
+3. Type-specific requirements remain in the second step and use concise labels.
+4. Supporting links/brand/contact details are collected in one optional notes field in the review step.
+5. The feature step initially shows four common options and an explicit “show more” control.
+6. Closing returns to the homepage at the same scroll position without losing the brief.
+
+### Acceptance criteria
+- No modal content intersects the fixed header at 390x818, 768x1024, or desktop widths.
+- Dialog and first input are visible within 100ms after opening; backdrop covers the full viewport.
+- Step 1 renders exactly two required inputs and no repeated contact/social fields.
+- Feature step exposes a compact initial set and expands on demand.
+- Escape, close button, and backdrop close restore the homepage view and preserve state.

@@ -1,15 +1,11 @@
 import { useEffect, useMemo, useRef, useState, type ChangeEvent, type CSSProperties, type MouseEvent } from 'react';
-import { ArrowUpLeft, Check, ChevronLeft, ChevronRight, CircleAlert, ExternalLink, Layers3, Send, X } from 'lucide-react';
+import { ArrowUpLeft, Check, ChevronDown, ChevronLeft, ChevronRight, CircleAlert, ExternalLink, Layers3, Send, X } from 'lucide-react';
 import { contactDetails } from '@/lib/portfolio-data';
 import { websiteTypes, type WebsiteType } from '@/lib/website-types';
 
 type BriefForm = {
   siteTitle: string;
   industry: string;
-  brandDetails: string;
-  contactInfo: string;
-  socialLinks: string;
-  existingUrl: string;
 };
 
 type BuilderStep = 1 | 2 | 3 | 4 | 5;
@@ -17,10 +13,6 @@ type BuilderStep = 1 | 2 | 3 | 4 | 5;
 const initialBrief: BriefForm = {
   siteTitle: '',
   industry: '',
-  brandDetails: '',
-  contactInfo: '',
-  socialLinks: '',
-  existingUrl: '',
 };
 
 const stepLabels: Array<{ id: BuilderStep; label: string; shortLabel: string }> = [
@@ -54,10 +46,7 @@ function buildWhatsAppUrl(
     `نوع الموقع: ${type.name} — ${type.nameEn}`,
     `اسم / عنوان الموقع: ${brief.siteTitle.trim() || 'غير مكتمل'}`,
     `المجال: ${brief.industry.trim() || 'غير مكتمل'}`,
-    `الشعار أو العلامة التجارية: ${brief.brandDetails.trim() || 'لم يحدد بعد'}`,
-    `معلومات التواصل: ${brief.contactInfo.trim() || 'لم تحدد بعد'}`,
-    `روابط التواصل الاجتماعي: ${brief.socialLinks.trim() || 'لم تحدد بعد'}`,
-    `رابط قائم: ${brief.existingUrl.trim() || 'لا يوجد'}`,
+    `تفاصيل الهوية والتواصل والروابط: ${notes.trim() || 'لم تحدد بعد'}`,
     '',
     'الصفحات الأساسية المختارة:',
     ...(selectedPages.length ? selectedPages.map((page) => `- ${page}`) : ['- أحتاج اقتراح الصفحات المناسبة']),
@@ -83,6 +72,7 @@ export default function WebsiteTypes() {
   const [selectedPages, setSelectedPages] = useState<string[]>(websiteTypes[0].corePages);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const [notes, setNotes] = useState('');
+  const [showAllFeatures, setShowAllFeatures] = useState(false);
   const [activeStep, setActiveStep] = useState<BuilderStep>(1);
   const [attempted, setAttempted] = useState(false);
   const [isBuilderOpen, setIsBuilderOpen] = useState(false);
@@ -138,6 +128,7 @@ export default function WebsiteTypes() {
     setIntakeValues({});
     setActiveStep(1);
     setAttempted(false);
+    setShowAllFeatures(false);
     setIsBuilderOpen(true);
   };
 
@@ -259,13 +250,9 @@ export default function WebsiteTypes() {
 
             {activeStep === 1 && <section className="website-type-builder__section" aria-labelledby="brief-identity-title">
               <div className="website-type-builder__section-heading"><span>01</span><div><h4 id="brief-identity-title">بيانات المشروع</h4><p>ابدأ بالمعلومات التي تساعدنا على فهم هوية الموقع واتجاهه.</p></div></div>
-              <div className="website-type-builder__field-grid">
+              <div className="website-type-builder__field-grid website-type-builder__field-grid--starter">
                 <label className="website-type-builder__field"><span>اسم / عنوان الموقع <b>*</b></span><input autoFocus value={brief.siteTitle} onChange={updateBrief('siteTitle')} placeholder="مثال: متجر نبتة للعناية الطبيعية" required aria-required="true" /></label>
                 <label className="website-type-builder__field"><span>المجال <b>*</b></span><input value={brief.industry} onChange={updateBrief('industry')} placeholder="مثال: تجارة إلكترونية للعناية بالبشرة" required aria-required="true" /></label>
-                <label className="website-type-builder__field"><span>الشعار أو العلامة التجارية <small>(إن وجدت)</small></span><input value={brief.brandDetails} onChange={updateBrief('brandDetails')} placeholder="رابط الشعار أو وصف الهوية والألوان" /></label>
-                <label className="website-type-builder__field"><span>معلومات التواصل <small>(إن وجدت)</small></span><input value={brief.contactInfo} onChange={updateBrief('contactInfo')} placeholder="البريد، الهاتف، واتساب، الموقع" /></label>
-                <label className="website-type-builder__field"><span>روابط التواصل الاجتماعي <small>(إن وجدت)</small></span><input value={brief.socialLinks} onChange={updateBrief('socialLinks')} placeholder="Instagram / Facebook / X ..." dir="ltr" /></label>
-                <label className="website-type-builder__field"><span>رابط موقع قائم <small>(اختياري)</small></span><input type="url" value={brief.existingUrl} onChange={updateBrief('existingUrl')} placeholder="https://example.com" dir="ltr" /></label>
               </div>
             </section>}
 
@@ -290,18 +277,19 @@ export default function WebsiteTypes() {
             </fieldset>}
 
             {activeStep === 4 && <fieldset className="website-type-builder__section">
-              <div className="website-type-builder__section-heading"><span>04</span><div><h4>إضافات ووظائف أخرى</h4><p>اختر الوظائف التابعة لهذا النوع التي تريد مناقشتها ضمن النطاق.</p></div></div>
+              <div className="website-type-builder__section-heading"><span>04</span><div><h4>إضافات ووظائف أخرى</h4><p>ابدأ بالأكثر شيوعًا، ثم افتح الخيارات الإضافية إذا احتجتها.</p></div></div>
               <div className="website-type-builder__feature-options">
-                {selectedType.optionalFeatures.map((feature) => {
+                {selectedType.optionalFeatures.slice(0, showAllFeatures ? undefined : 4).map((feature) => {
                   const checked = selectedFeatures.includes(feature.id);
                   return <label key={feature.id} className={checked ? 'is-checked' : ''}><input type="checkbox" checked={checked} onChange={() => setSelectedFeatures((values) => toggleValue(values, feature.id))} /><span><strong>{feature.label}</strong><small>{feature.description}</small></span><Check className="h-4 w-4" aria-hidden="true" /></label>;
                 })}
               </div>
+              {selectedType.optionalFeatures.length > 4 && <button type="button" className="website-type-builder__show-more" onClick={() => setShowAllFeatures((value) => !value)} aria-expanded={showAllFeatures}><span>{showAllFeatures ? 'إخفاء الخيارات الإضافية' : `عرض ${selectedType.optionalFeatures.length - 4} خيارات إضافية`}</span><ChevronDown className={`h-4 w-4 ${showAllFeatures ? 'rotate-180' : ''}`} aria-hidden="true" /></button>}
             </fieldset>}
 
             {activeStep === 5 && <section className="website-type-builder__section" aria-labelledby="brief-review-title">
               <div className="website-type-builder__section-heading"><span>05</span><div><h4 id="brief-review-title">مراجعة وإرسال brief</h4><p>راجع اختياراتك وأضف أي سياق يساعدنا على إعداد الدراسة.</p></div></div>
-              <label className="website-type-builder__notes website-type-builder__notes--step"><span>ملاحظات إضافية <small>(اختياري)</small></span><textarea autoFocus value={notes} onChange={(event) => setNotes(event.target.value)} rows={4} placeholder="مثال: أريد موقعًا عربيًا أولًا، وأحتاج ربطه بخدمة شحن أو نظام قائم..." /></label>
+              <label className="website-type-builder__notes website-type-builder__notes--step"><span>تفاصيل مساعدة <small>(اختياري)</small></span><textarea autoFocus value={notes} onChange={(event) => setNotes(event.target.value)} rows={4} placeholder="يمكنك ذكر الشعار، روابط التواصل، موقع قائم، ألوان الهوية أو أي ملاحظة مهمة..." /></label>
               <div className="website-type-builder__summary" aria-live="polite">
                 <div><span>التصنيف</span><strong>{selectedType.name}</strong></div>
                 <div><span>الصفحات</span><strong>{selectedPages.length} محددة</strong></div>
