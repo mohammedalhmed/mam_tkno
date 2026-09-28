@@ -27,6 +27,7 @@ export type WebsiteType = {
   additionalSections: string[];
   planningQuestions: string[];
   sources: string[];
+  suggestionKeywords: string[];
   accent: string;
 };
 
@@ -57,6 +58,7 @@ export const websiteTypes: WebsiteType[] = [
     additionalSections: ['صفحة عن الشركة والفريق', 'دراسات حالة وشهادات موثقة', 'مدونة أو مركز موارد', 'صفحة فروع ومواقع', 'لغتان أو أكثر', 'تكامل CRM أو نماذج التواصل'],
     planningQuestions: ['من الجمهور الأساسي؟', 'ما الإجراء الرئيسي المطلوب من الزائر؟', 'ما الصفحات والمحتوى المتاح؟', 'هل توجد أنظمة أو لغات يجب دعمها؟'],
     sources: ['https://developers.google.com/search/docs/fundamentals/seo-starter-guide', 'https://www.w3.org/WAI/standards-guidelines/wcag/'],
+    suggestionKeywords: ['شركة', 'شركات', 'مؤسسة', 'خدمات', 'استشارات', 'وكالة', 'corporate', 'company', 'business', 'services', 'agency', 'consulting'],
     accent: '#16d5df',
   },
   {
@@ -86,6 +88,7 @@ export const websiteTypes: WebsiteType[] = [
     additionalSections: ['قائمة الرغبات والمقارنة', 'تقييمات وأسئلة المنتجات', 'عضوية وولاء', 'مدونة ومحتوى إرشادي', 'تكامل الشحن والدفع', 'عروض وباقات مخصصة'],
     planningQuestions: ['ما عدد الفئات والمنتجات والمتغيرات؟', 'ما مسار الدفع والشحن والإرجاع؟', 'ما المنصة والأنظمة المطلوب ربطها؟', 'ما الأسواق واللغات والعملات؟'],
     sources: ['https://baymard.com/learn/checkout-flow-ux-optimization', 'https://developers.google.com/search/docs/appearance/structured-data/product'],
+    suggestionKeywords: ['متجر', 'متاجر', 'منتجات', 'تجارة إلكترونية', 'تجارة', 'بيع', 'سلة', 'شوبيفاي', 'ecommerce', 'e-commerce', 'shop', 'store', 'products', 'shopify'],
     accent: '#83cfff',
   },
   {
@@ -114,6 +117,7 @@ export const websiteTypes: WebsiteType[] = [
     additionalSections: ['نسخ متعددة لاختبار A/B', 'صفحة شكر مخصصة', 'فيديو أو عرض تفاعلي', 'تكامل CRM والبريد', 'كوبون أو حجز موعد', 'تتبع مصادر الزيارات'],
     planningQuestions: ['ما هدف الحملة الوحيد؟', 'من الجمهور ومصدر الزيارات؟', 'ما العرض والأصول المتاحة؟', 'كيف ستُقاس النتيجة؟'],
     sources: ['https://www.nngroup.com/articles/homepage-design-principles/', 'https://www.w3.org/WAI/tutorials/forms/labels/'],
+    suggestionKeywords: ['حملة', 'حملات', 'إعلان', 'إعلانات', 'هبوط', 'إطلاق', 'تسجيل', 'lead', 'landing', 'campaign', 'launch', 'marketing', 'advertising'],
     accent: '#ff7a0a',
   },
   {
@@ -142,6 +146,7 @@ export const websiteTypes: WebsiteType[] = [
     additionalSections: ['سيرة ذاتية قابلة للتنزيل', 'دراسات حالة موسعة', 'شهادات أو شعارات مصرح بها', 'مدونة أو مقالات', 'صفحة خدمات تفصيلية', 'نموذج طلب مشروع مشابه'],
     planningQuestions: ['ما الهدف التجاري أو المهني الأول؟', 'من صاحب القرار والجمهور؟', 'ما المشاريع والمحتوى المتاح؟', 'هل تحتاج إلى إدارة محتوى أو لغات؟'],
     sources: ['https://developers.google.com/search/docs/fundamentals/seo-starter-guide', 'https://www.w3.org/WAI/fundamentals/accessibility-intro/'],
+    suggestionKeywords: ['شخصي', 'أعمال', 'ملف شخصي', 'بورتفوليو', 'معرض أعمال', 'مستقل', 'مبدع', 'portfolio', 'personal', 'freelance', 'creator', 'resume'],
     accent: '#d7baff',
   },
   {
@@ -170,6 +175,7 @@ export const websiteTypes: WebsiteType[] = [
     additionalSections: ['فروع وساعات العمل', 'خريطة وتعليمات الوصول', 'قائمة انتظار', 'تذكيرات البريد أو الرسائل', 'دفع مقدم أو عربون', 'سياسة إلغاء واضحة'],
     planningQuestions: ['ما نوع المورد أو الخدمة المحجوزة؟', 'ما قواعد التوفر والمدة؟', 'ما البيانات التي يجب جمعها؟', 'هل يوجد نظام حجز أو تقويم للتكامل؟'],
     sources: ['https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/datepicker-dialog/', 'https://developers.google.com/search/docs/appearance/structured-data/local-business'],
+    suggestionKeywords: ['حجز', 'مواعيد', 'موعد', 'عيادة', 'صالون', 'فندق', 'مطعم', 'تأجير', 'فعاليات', 'booking', 'appointments', 'clinic', 'salon', 'hotel', 'restaurant'],
     accent: '#a9e4c4',
   },
   {
@@ -198,6 +204,7 @@ export const websiteTypes: WebsiteType[] = [
     additionalSections: ['تجربة مجانية أو عرض تجريبي', 'تهيئة onboarding', 'صلاحيات وفِرَق', 'إشعارات وسجل نشاط', 'تكاملات خارجية', 'حالات تحميل وفراغ متقدمة'],
     planningQuestions: ['من المستخدمون وما الصلاحيات؟', 'ما أهم المهام والوحدات في الإصدار الأول؟', 'هل المطلوب موقع تسويقي أم تطبيق موثّق؟', 'ما متطلبات العربية والأمان والتكاملات؟'],
     sources: ['https://www.nngroup.com/articles/dashboards-preattentive/', 'https://www.w3.org/WAI/tips/designing/'],
+    suggestionKeywords: ['تطبيق', 'منصة', 'نظام', 'لوحة تحكم', 'برمجية', 'saas', 'dashboard', 'app', 'platform', 'software', 'system', 'subscription'],
     accent: '#f3b8d5',
   },
 ];

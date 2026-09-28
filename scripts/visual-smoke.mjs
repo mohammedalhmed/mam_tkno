@@ -130,7 +130,7 @@ async function main() {
             throw new Error(`Expected six website type cards at ${viewport.width}px.`);
           }
           const typeCards = page.locator('#website-types .website-type-card');
-          await typeCards.nth(4).locator('button').click();
+          await typeCards.first().locator('button').click();
           await page.waitForTimeout(100);
           let builder = page.locator('#website-type-builder');
           if (!await builder.getAttribute('class').then((value) => value?.includes('is-modal')) || await builder.locator('.website-type-builder__backdrop').count() !== 1 || await builder.locator('.website-type-builder__close').count() !== 1) {
@@ -145,6 +145,26 @@ async function main() {
           if (modalGeometry.dialogWidth < 280 || modalGeometry.dialogHeight < 240 || modalGeometry.inputTop < 0 || modalGeometry.inputHeight < 20 || modalGeometry.dialogTop < modalGeometry.headerBottom - 1) {
             throw new Error(`Modal opened without a visible input surface at ${viewport.width}px.`);
           }
+          await builder.locator('.website-type-builder__field input').nth(1).fill('متجر إلكتروني للعناية بالبشرة');
+          await page.waitForTimeout(120);
+          const suggestionMetrics = await builder.evaluate((element) => ({
+            selectedCode: element.querySelector('.canva-kicker')?.textContent ?? null,
+            suggestionVisible: Boolean(element.querySelector('[data-industry-suggestion]')),
+            suggestionText: element.querySelector('[data-industry-suggestion]')?.textContent ?? null,
+          }));
+          await builder.locator('[data-builder-step="3"]').click();
+          const suggestedPages = await builder.locator('.website-type-builder__options--pages input:checked').count();
+          if (!suggestionMetrics.selectedCode?.includes('WEB-02') || !suggestionMetrics.suggestionVisible || !suggestionMetrics.suggestionText?.includes('المتاجر الإلكترونية') || suggestedPages < 5) {
+            throw new Error(`Industry suggestion did not update the type and pages at ${viewport.width}px.`);
+          }
+          metrics.websiteTypeFocus = { autoSuggestion: { ...suggestionMetrics, suggestedPages } };
+          await builder.locator('.website-type-builder__backdrop').dispatchEvent('click');
+          if ((await builder.getAttribute('class'))?.includes('is-modal')) {
+            throw new Error(`Suggestion modal did not close at ${viewport.width}px.`);
+          }
+          await typeCards.nth(4).locator('button').click();
+          await page.waitForTimeout(100);
+          builder = page.locator('#website-type-builder');
           await builder.locator('[data-builder-step="3"]').click();
           const bookingMetrics = await builder.evaluate((element) => ({
             selectedCode: element.querySelector('.canva-kicker')?.textContent ?? null,
@@ -205,7 +225,7 @@ async function main() {
           await page.waitForTimeout(150);
           const websiteTypesFilePath = `${outputRoot}/${viewport.width}/website-types.png`;
           await page.screenshot({ path: websiteTypesFilePath, fullPage: false });
-          metrics.websiteTypeFocus = { ...builderMetrics, ...corePageMetrics, featureOptions, expandedFeatureOptions, completedBriefMessage: true, filePath: websiteTypesFilePath };
+          metrics.websiteTypeFocus = { ...metrics.websiteTypeFocus, ...builderMetrics, ...corePageMetrics, featureOptions, expandedFeatureOptions, completedBriefMessage: true, filePath: websiteTypesFilePath };
           await page.keyboard.press('Escape');
           if ((await builder.getAttribute('class'))?.includes('is-modal')) {
             throw new Error(`Escape did not close the modal at ${viewport.width}px.`);

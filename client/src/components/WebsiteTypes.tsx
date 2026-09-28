@@ -27,6 +27,30 @@ function toggleValue(values: string[], value: string) {
   return values.includes(value) ? values.filter((item) => item !== value) : [...values, value];
 }
 
+function normalizeSuggestionText(value: string) {
+  return value
+    .toLocaleLowerCase('ar')
+    .replace(/[ًٌٍَُِّْـ]/g, '')
+    .replace(/[إأآ]/g, 'ا')
+    .replace(/ة/g, 'ه')
+    .trim();
+}
+
+function suggestWebsiteType(industry: string) {
+  const normalizedIndustry = normalizeSuggestionText(industry);
+  if (normalizedIndustry.length < 3) return null;
+
+  const ranked = websiteTypes
+    .map((type) => {
+      const matches = type.suggestionKeywords.filter((keyword) => normalizedIndustry.includes(normalizeSuggestionText(keyword)));
+      return { type, matches, score: matches.reduce((score, match) => score + (normalizeSuggestionText(match).includes(' ') ? 2 : 1), 0) };
+    })
+    .sort((left, right) => right.score - left.score);
+
+  const best = ranked[0];
+  return best && best.score > 0 ? best : null;
+}
+
 function buildWhatsAppUrl(
   type: WebsiteType,
   brief: BriefForm,
@@ -76,12 +100,14 @@ export default function WebsiteTypes() {
   const [activeStep, setActiveStep] = useState<BuilderStep>(1);
   const [attempted, setAttempted] = useState(false);
   const [isBuilderOpen, setIsBuilderOpen] = useState(false);
+  const [manualTypeOverride, setManualTypeOverride] = useState<string | null>(null);
   const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
 
   const selectedType = useMemo(
     () => websiteTypes.find((type) => type.id === selectedTypeId) ?? websiteTypes[0],
     [selectedTypeId],
   );
+  const industrySuggestion = useMemo(() => suggestWebsiteType(brief.industry), [brief.industry]);
   const identityMissing = useMemo(() => {
     const missing: string[] = [];
     if (!brief.siteTitle.trim()) missing.push('اسم / عنوان الموقع');
@@ -129,13 +155,26 @@ export default function WebsiteTypes() {
     setActiveStep(1);
     setAttempted(false);
     setShowAllFeatures(false);
+    setManualTypeOverride(brief.industry.trim() ? nextType.id : null);
     setIsBuilderOpen(true);
   };
 
   const updateBrief = (field: keyof BriefForm) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setBrief((current) => ({ ...current, [field]: event.target.value }));
+    if (field === 'industry' && !event.target.value.trim()) setManualTypeOverride(null);
     setAttempted(false);
   };
+
+  useEffect(() => {
+    if (!isBuilderOpen || !industrySuggestion || manualTypeOverride) return;
+    if (industrySuggestion.type.id === selectedTypeId) return;
+    setSelectedTypeId(industrySuggestion.type.id);
+    setSelectedPages(industrySuggestion.type.corePages);
+    setSelectedFeatures([]);
+    setIntakeValues({});
+    setShowAllFeatures(false);
+    setAttempted(false);
+  }, [industrySuggestion, isBuilderOpen, manualTypeOverride, selectedTypeId]);
 
   const updateIntake = (fieldId: string) => (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setIntakeValues((values) => ({ ...values, [fieldId]: event.target.value }));
@@ -252,8 +291,9 @@ export default function WebsiteTypes() {
               <div className="website-type-builder__section-heading"><span>01</span><div><h4 id="brief-identity-title">بيانات المشروع</h4><p>ابدأ بالمعلومات التي تساعدنا على فهم هوية الموقع واتجاهه.</p></div></div>
               <div className="website-type-builder__field-grid website-type-builder__field-grid--starter">
                 <label className="website-type-builder__field"><span>اسم / عنوان الموقع <b>*</b></span><input autoFocus value={brief.siteTitle} onChange={updateBrief('siteTitle')} placeholder="مثال: متجر نبتة للعناية الطبيعية" required aria-required="true" /></label>
-                <label className="website-type-builder__field"><span>المجال <b>*</b></span><input value={brief.industry} onChange={updateBrief('industry')} placeholder="مثال: تجارة إلكترونية للعناية بالبشرة" required aria-required="true" /></label>
+                <label className="website-type-builder__field"><span>المجال <b>*</b></span><input value={brief.industry} onChange={updateBrief('industry')} placeholder="مثال: تجارة إلكترونية للعناية بالبشرة" required aria-required="true" /><small className="website-type-builder__field-hint">اكتب مجالك، وسنقترح نوع الموقع وصفحاته تلقائيًا.</small></label>
               </div>
+              {industrySuggestion && <div className="website-type-builder__suggestion" data-industry-suggestion aria-live="polite"><Layers3 className="h-4 w-4" aria-hidden="true" /><span>اقتراح مناسب لمجالك: <strong>{industrySuggestion.type.name}</strong><small>{industrySuggestion.matches.slice(0, 2).join(' · ')} — {industrySuggestion.type.corePages.length} صفحات أساسية محددة تلقائيًا</small></span><Check className="h-4 w-4" aria-hidden="true" /></div>}
             </section>}
 
             {activeStep === 2 && <section className="website-type-builder__section" aria-labelledby="brief-type-title">

@@ -94,3 +94,21 @@
   - Acceptance: نجاح check/build/verify:seo/test:visual.
   - Verify: الأوامر الآلية والمراجعة البصرية.
   - Files: repository state and checkpoint metadata
+
+
+## Automatic website type suggestion
+
+- [x] Task: إضافة قواعد مطابقة المجال بأنواع المواقع.
+  - Acceptance: كلمات دالة عربية/إنجليزية تربط المجال بنوع مناسب دون تخمين عند النصوص العامة.
+  - Verify: اختبارات متجر/عيادة/منصة برمجية ونص عام.
+  - Files: `client/src/lib/website-types.ts`, `client/src/components/WebsiteTypes.tsx`
+
+- [x] Task: تحديث النوع والصفحات وعرض سبب الاقتراح.
+  - Acceptance: النوع والصفحات الأساسية تتحدث تلقائيًا، مع إبقاء التعديل اليدوي متاحًا.
+  - Verify: قياس DOM ولقطة responsive.
+  - Files: `client/src/components/WebsiteTypes.tsx`, `client/src/index.css`
+
+- [x] Task: تحديث الاختبار البصري وتشغيل الفحوص وحفظ checkpoint.
+  - Acceptance: check/build/verify:seo/test:visual ناجحة بلا overflow.
+  - Verify: الاختبار الآلي على 390 و768.
+  - Files: `scripts/visual-smoke.mjs`, repository state and checkpoint metadata

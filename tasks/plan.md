@@ -53,3 +53,16 @@ Cards as mini scope maps: each card acts like a compact project brief, not a ser
 
 ### Exit gate
 The customer can start the brief in two fields, understands what is requested at each step, never sees content behind the fixed header, and can close/reopen without losing data.
+
+
+## Feature Slice: Automatic website type and section suggestion
+
+### Build order
+1. إضافة قاموس كلمات دالة عربي/إنجليزي لكل نوع موقع.
+2. مطابقة المجال بعد إدخاله وتحديث النوع والصفحات الأساسية تلقائيًا عند وجود إشارة واضحة.
+3. عرض بطاقة اقتراح صغيرة توضّح النوع وعدد الصفحات المقترحة دون إضافة حقول جديدة.
+4. إبقاء صفحات النوع قابلة للتعديل يدويًا في خطوة الصفحات.
+5. تحديث اختبار Playwright للتحقق من المطابقة والتحديث، ثم تشغيل الفحوص وحفظ checkpoint.
+
+### Exit gate
+عند كتابة مجال واضح مثل متجر إلكتروني أو عيادة وحجز، يظهر الاقتراح فورًا ويصبح النوع والصفحات الأساسية المناسبة محددة تلقائيًا، دون overflow أو فقدان بقية بيانات brief.

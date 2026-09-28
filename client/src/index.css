@@ -8619,3 +8619,52 @@ body.modal-open .website-types > .container {
     max-height: calc(100dvh - 8rem);
   }
 }
+
+/* Automatic website-type suggestion. */
+.website-type-builder__field-hint {
+  color: rgb(201 251 255 / 0.54);
+  font-size: 0.62rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.website-type-builder__suggestion {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: 0.8rem;
+  border: 1px solid rgb(22 213 223 / 0.38);
+  background: linear-gradient(100deg, rgb(22 213 223 / 0.13), rgb(22 213 223 / 0.045));
+  padding: 0.75rem 0.85rem;
+  color: #c9fbff;
+  font-size: 0.73rem;
+  line-height: 1.7;
+}
+
+.website-type-builder__suggestion > svg:first-child {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: #16d5df;
+}
+
+.website-type-builder__suggestion > span {
+  min-width: 0;
+  flex: 1;
+}
+
+.website-type-builder__suggestion strong {
+  color: #fff;
+}
+
+.website-type-builder__suggestion small {
+  display: block;
+  margin-top: 0.12rem;
+  color: rgb(239 247 255 / 0.52);
+  font-size: 0.62rem;
+}
+
+.website-type-builder__suggestion > svg:last-child {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: #16d5df;
+}
