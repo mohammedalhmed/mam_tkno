@@ -10,8 +10,8 @@ export type PageMetadata = {
 };
 
 export const HOME_METADATA: PageMetadata = {
-  title: 'MAM_Tkno | وكالة تقنية وتصميمية للمنتجات الرقمية',
-  description: 'MAM_Tkno وكالة تقنية وتصميمية تبني مواقع ومنتجات رقمية وهويات بصرية واضحة، سريعة، ومتجاوبة للعلامات التجارية.',
+  title: 'MAM_Tkno | تصميم وتطوير المواقع وثيمات سلة وباني brief',
+  description: 'MAM_Tkno استوديو عربي لتصميم وتطوير المواقع وثيمات متاجر سلة، يساعدك على اختيار نوع الموقع وصفحاته وإضافاته قبل دراسة النطاق والتكلفة.',
   canonicalPath: '/',
   ogType: 'website',
   image: BRAND_IMAGE,
@@ -37,13 +37,13 @@ export function setPageMetadata(metadata: PageMetadata) {
   upsertMeta('property', 'og:url', canonicalUrl);
   if (metadata.image) {
     upsertMeta('property', 'og:image', metadata.image);
-    upsertMeta('property', 'og:image:alt', metadata.image === BRAND_IMAGE ? 'شعار MAM_Tkno — وكالة تقنية وتصميمية للمنتجات الرقمية' : metadata.title);
+    upsertMeta('property', 'og:image:alt', metadata.image === BRAND_IMAGE ? 'شعار MAM_Tkno — استوديو تصميم وتطوير المواقع وثيمات سلة' : metadata.title);
   }
   upsertMeta('name', 'twitter:title', metadata.title);
   upsertMeta('name', 'twitter:description', metadata.description);
   if (metadata.image) {
     upsertMeta('name', 'twitter:image', metadata.image);
-    upsertMeta('name', 'twitter:image:alt', metadata.image === BRAND_IMAGE ? 'شعار MAM_Tkno — وكالة تقنية وتصميمية للمنتجات الرقمية' : metadata.title);
+    upsertMeta('name', 'twitter:image:alt', metadata.image === BRAND_IMAGE ? 'شعار MAM_Tkno — استوديو تصميم وتطوير المواقع وثيمات سلة' : metadata.title);
   }
 
   let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');

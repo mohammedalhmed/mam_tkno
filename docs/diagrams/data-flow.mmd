@@ -1,0 +1,15 @@
+flowchart LR
+  DATA[website-types.ts<br/>الأنواع والكلمات الدالة والتوصيات] --> TYPE[selectedType]
+  INPUT[brief.industry] --> NORMALIZE[تطبيع النص]
+  NORMALIZE --> RANK[حساب score للكلمات الدالة]
+  DATA --> RANK
+  RANK --> SUGGESTION[industrySuggestion]
+  SUGGESTION --> STATE[selectedTypeId + corePages]
+  TYPE --> RECOMMENDED[recommendedFeatures]
+  RECOMMENDED --> FEATURES[selectedFeatures]
+  USER[اختيارات العميل] --> FEATURES
+  BRIEF[siteTitle + industry + intakeValues + notes] --> SERIALIZE[buildWhatsAppUrl]
+  STATE --> SERIALIZE
+  FEATURES --> SERIALIZE
+  SERIALIZE --> WA[رابط WhatsApp]
+  PROJECTS[portfolio-data.ts] --> PROOF[المشاريع والتواصل وSEO]
