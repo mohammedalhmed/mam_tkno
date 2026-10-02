@@ -24,6 +24,13 @@
 4. إنشاء brief أولي مخصص، مع اقتراح الصفحات والإضافات المناسبة تلقائيًا.
 5. تسليم brief مفصل إلى واتساب لمراجعته وإعداد دراسة نطاق وعرض سعر لاحقًا.
 
+## Screenshots
+
+<p>
+  <img src="docs/screenshots/home-desktop.png" width="67%" alt="MAM_Tkno desktop homepage" />
+  <img src="docs/screenshots/home-mobile.png" width="27%" alt="MAM_Tkno mobile homepage" />
+</p>
+
 ## Portfolio Proof
 
 | البعد | الدليل |
