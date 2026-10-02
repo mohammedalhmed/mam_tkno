@@ -1,7 +1,7 @@
 {
-  "name": "portfolio_mahmoud",
+  "name": "mam-tkno",
   "version": "1.0.0",
-  "description": "موقع MAM_Tkno التعريفي وباني brief عربي لتحديد نوع الموقع وصفحاته وإضافاته قبل دراسة النطاق والتكلفة.",
+  "description": "MAM_Tkno — Arabic-first digital studio portfolio and interactive website brief builder.",
   "type": "module",
   "license": "MIT",
   "scripts": {
