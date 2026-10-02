@@ -12,7 +12,8 @@
     "check": "tsc --noEmit",
     "verify:seo": "node scripts/verify-seo.mjs",
     "test:visual": "node scripts/visual-smoke.mjs",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "vitest run"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
