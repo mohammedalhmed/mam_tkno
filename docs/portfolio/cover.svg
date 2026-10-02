@@ -1,70 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0B1020"/>
-      <stop offset="55%" stop-color="#111827"/>
-      <stop offset="100%" stop-color="#0B1020"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7C3AED"/>
-      <stop offset="100%" stop-color="#06B6D4"/>
-    </linearGradient>
-    <radialGradient id="glow">
-      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.34"/>
-      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="blur"><feGaussianBlur stdDeviation="34"/></filter>
-  </defs>
-
-  <rect width="1280" height="640" fill="url(#bg)"/>
-  <circle cx="1090" cy="90" r="240" fill="url(#glow)" filter="url(#blur)"/>
-  <circle cx="1170" cy="560" r="260" fill="#06B6D4" fill-opacity="0.10" filter="url(#blur)"/>
-
-  <g opacity="0.10" stroke="#FFFFFF">
-    <path d="M0 96H1280M0 192H1280M0 288H1280M0 384H1280M0 480H1280M0 576H1280"/>
-    <path d="M96 0V640M192 0V640M288 0V640M384 0V640M480 0V640M576 0V640M672 0V640M768 0V640M864 0V640M960 0V640M1056 0V640M1152 0V640"/>
-  </g>
-
-  <rect x="64" y="64" width="1152" height="512" rx="34" fill="#FFFFFF" fill-opacity="0.035" stroke="#FFFFFF" stroke-opacity="0.10"/>
-
-  <g transform="translate(72,86)">
-    <rect width="96" height="96" rx="28" fill="url(#accent)"/>
-    <text x="48" y="62" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800" fill="#FFFFFF">MT</text>
-  </g>
-
-  <text x="72" y="246" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="800" fill="#F9FAFB">MAM_Tkno</text>
-  <text x="72" y="306" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#CBD5E1">Arabic-first digital studio &amp; interactive website brief builder</text>
-
-  <g transform="translate(72,352)">
-    <rect width="360" height="8" rx="4" fill="url(#accent)"/>
-    <text y="58" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#06B6D4">MOHAMMED ALHADRAMI · MAM_TKNO</text>
-  </g>
-
-  <g transform="translate(72,500)">
-      <rect width="185" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.12"/>
-      <text x="92.5" y="29" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" fill="#E5E7EB">React 19</text>
-    </g>
-<g transform="translate(277,500)">
-      <rect width="185" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.12"/>
-      <text x="92.5" y="29" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" fill="#E5E7EB">TypeScript</text>
-    </g>
-<g transform="translate(482,500)">
-      <rect width="185" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.12"/>
-      <text x="92.5" y="29" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" fill="#E5E7EB">Vite</text>
-    </g>
-<g transform="translate(687,500)">
-      <rect width="185" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.12"/>
-      <text x="92.5" y="29" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" fill="#E5E7EB">RTL UX</text>
-    </g>
-<g transform="translate(892,500)">
-      <rect width="185" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.12"/>
-      <text x="92.5" y="29" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" fill="#E5E7EB">Product Design</text>
-    </g>
-
-  <g transform="translate(1050,150)">
-    <circle cx="88" cy="88" r="78" fill="none" stroke="url(#accent)" stroke-width="3" opacity="0.65"/>
-    <circle cx="88" cy="88" r="52" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="2"/>
-    <circle cx="88" cy="88" r="12" fill="#7C3AED"/>
-    <path d="M88 10V166M10 88H166" stroke="#FFFFFF" stroke-opacity="0.12"/>
-  </g>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0B1020"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+<linearGradient id="ac" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#06B6D4"/></linearGradient>
+</defs>
+<rect width="1280" height="640" fill="url(#bg)"/>
+<circle cx="1100" cy="90" r="260" fill="#7C3AED" opacity=".12"/>
+<circle cx="1180" cy="570" r="280" fill="#06B6D4" opacity=".08"/>
+<rect x="64" y="64" width="1152" height="512" rx="36" fill="#fff" opacity=".035" stroke="#fff" stroke-opacity=".12"/>
+<rect x="72" y="86" width="96" height="96" rx="28" fill="url(#ac)"/>
+<text x="120" y="148" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="800" fill="#fff">MT</text>
+<text x="72" y="258" font-family="Arial,sans-serif" font-size="68" font-weight="800" fill="#F9FAFB">MAM_Tkno</text>
+<text x="72" y="318" font-family="Arial,sans-serif" font-size="28" fill="#CBD5E1">Arabic-first digital studio &amp; interactive website brief builder</text>
+<rect x="72" y="360" width="360" height="8" rx="4" fill="url(#ac)"/>
+<text x="72" y="423" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#06B6D4">MOHAMMED ALHADRAMI · MAM_TKNO</text>
+<g font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#E5E7EB">
+<rect x="72" y="496" width="180" height="46" rx="23" fill="#fff" opacity=".07"/><text x="162" y="525" text-anchor="middle">React 19</text>
+<rect x="270" y="496" width="180" height="46" rx="23" fill="#fff" opacity=".07"/><text x="360" y="525" text-anchor="middle">TypeScript</text>
+<rect x="468" y="496" width="180" height="46" rx="23" fill="#fff" opacity=".07"/><text x="558" y="525" text-anchor="middle">Vite</text>
+<rect x="666" y="496" width="180" height="46" rx="23" fill="#fff" opacity=".07"/><text x="756" y="525" text-anchor="middle">RTL UX</text>
+<rect x="864" y="496" width="180" height="46" rx="23" fill="#fff" opacity=".07"/><text x="954" y="525" text-anchor="middle">Product Design</text>
+</g>
 </svg>
