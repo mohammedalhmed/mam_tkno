@@ -100,5 +100,6 @@
     "overrides": {
       "tailwindcss>nanoid": "3.3.7"
     }
-  }
+  },
+  "author": "Mohammed Alhadrami / MAM_Tkno"
 }
