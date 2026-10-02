@@ -50,7 +50,7 @@ jobs:
           pnpm exec playwright screenshot --browser=chromium --full-page --viewport-size="390,844" http://127.0.0.1:3000 docs/screenshots/home-mobile.png
 
       - name: Commit screenshots
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Capture MAM_Tkno portfolio screenshots"
           file_pattern: "docs/screenshots/*.png"
