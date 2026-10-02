@@ -1,0 +1,58 @@
+name: Capture Portfolio Screenshots
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/capture-portfolio-screenshots.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.4.1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Start app
+        run: |
+          pnpm dev -- --host 127.0.0.1 --port 4173 > /tmp/mam-tkno.log 2>&1 &
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:4173 >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat /tmp/mam-tkno.log
+          exit 1
+
+      - name: Capture screenshots
+        run: |
+          mkdir -p docs/screenshots
+          pnpm exec playwright screenshot --browser=chromium --full-page --viewport-size="1440,900" http://127.0.0.1:4173 docs/screenshots/home-desktop.png
+          pnpm exec playwright screenshot --browser=chromium --full-page --device="iPhone 13" http://127.0.0.1:4173 docs/screenshots/home-mobile.png
+
+      - name: Commit screenshots
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Capture MAM_Tkno portfolio screenshots"
+          file_pattern: "docs/screenshots/*.png"
