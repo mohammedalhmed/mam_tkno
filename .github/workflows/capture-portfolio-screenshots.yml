@@ -47,7 +47,7 @@ jobs:
         run: |
           mkdir -p docs/screenshots
           pnpm exec playwright screenshot --browser=chromium --full-page --viewport-size="1440,900" http://127.0.0.1:4173 docs/screenshots/home-desktop.png
-          pnpm exec playwright screenshot --browser=chromium --full-page --device="iPhone 13" http://127.0.0.1:4173 docs/screenshots/home-mobile.png
+          pnpm exec playwright screenshot --browser=chromium --full-page --viewport-size="390,844" http://127.0.0.1:4173 docs/screenshots/home-mobile.png
 
       - name: Commit screenshots
         uses: stefanzweifel/git-auto-commit-action@v5
