@@ -33,9 +33,9 @@ jobs:
 
       - name: Start app
         run: |
-          pnpm dev -- --host 127.0.0.1 --port 4173 > /tmp/mam-tkno.log 2>&1 &
+          pnpm dev > /tmp/mam-tkno.log 2>&1 &
           for i in {1..60}; do
-            if curl -fsS http://127.0.0.1:4173 >/dev/null; then
+            if curl -fsS http://127.0.0.1:3000 >/dev/null; then
               exit 0
             fi
             sleep 2
@@ -46,8 +46,8 @@ jobs:
       - name: Capture screenshots
         run: |
           mkdir -p docs/screenshots
-          pnpm exec playwright screenshot --browser=chromium --full-page --viewport-size="1440,900" http://127.0.0.1:4173 docs/screenshots/home-desktop.png
-          pnpm exec playwright screenshot --browser=chromium --full-page --viewport-size="390,844" http://127.0.0.1:4173 docs/screenshots/home-mobile.png
+          pnpm exec playwright screenshot --browser=chromium --full-page --viewport-size="1440,900" http://127.0.0.1:3000 docs/screenshots/home-desktop.png
+          pnpm exec playwright screenshot --browser=chromium --full-page --viewport-size="390,844" http://127.0.0.1:3000 docs/screenshots/home-mobile.png
 
       - name: Commit screenshots
         uses: stefanzweifel/git-auto-commit-action@v5
